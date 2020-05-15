@@ -48,13 +48,13 @@ url = "https://www.instagram.com/dadederk/"
 
 [menu]
 
-[[menu.main]]
+  [[menu.main]]
   name = "Home"
   identifier = "home"
   weight = 100
   url = "/"
 
-[[menu.main]]
+  [[menu.main]]
   name = "Posts"
   weight = 200
   identifier = "posts"
