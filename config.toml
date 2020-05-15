@@ -59,3 +59,15 @@ url = "https://www.instagram.com/dadederk/"
   weight = 200
   identifier = "posts"
   url = "/post/"
+
+  [[menu.main]]
+  name = "Book"
+  weight = 300
+  identifier = "book"
+  url = "https://www.amazon.co.uk/Developing-Accessible-iOS-Apps-VoiceOver/dp/1484253078/"
+
+  [[menu.main]]
+  name = "RSS"
+  weight = 400
+  identifier = "rss"
+  url = "https://dadederk.github.io/index.xml"
