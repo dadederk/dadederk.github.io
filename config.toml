@@ -1,0 +1,61 @@
+baseURL = "http://dadederk.com/"
+languageCode = "en-us"
+title = "Accessibility -> Up to 11!"
+theme = "anatole"
+
+# Parameters
+
+[params]
+title = "Hey, I'm Dani Devesa"
+author = "Dani Devesa"
+description = "Dani Devesa"
+profilePicture = "images/jobs.jpg"
+keywords = ""
+
+
+## Social links
+[[params.socialIcons]]
+icon = "fa-twitter"
+title = "Twitter"
+url = "https://twitter.com/dadederk"
+
+[[params.socialIcons]]
+icon = "fa-medium"
+title = "Medium"
+url = "https://medium.com/@dadederk"
+
+[[params.socialIcons]]
+icon = "fa-linkedin"
+title = "Linkedin"
+url = "https://de.linkedin.com/"
+
+[[params.socialIcons]]
+icon = "fa-github"
+title = "GitHub"
+url = "https://github.com/dadederk/"
+
+## [[params.socialIcons]]
+## icon = "fa-stackoverflow"
+## title = "Stackoverflow"
+## url = "https://stackoverflow.com/users/1336597/dadederk"
+
+[[params.socialIcons]]
+icon = "fa-instagram"
+title = "instagram"
+url = "https://www.instagram.com/dadederk/"
+
+## Menu items
+
+[menu]
+
+[[menu.main]]
+  name = "Home"
+  identifier = "home"
+  weight = 100
+  url = "/"
+
+[[menu.main]]
+  name = "Posts"
+  weight = 200
+  identifier = "posts"
+  url = "/post/"
