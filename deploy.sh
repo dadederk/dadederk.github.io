@@ -6,7 +6,7 @@ set -e
 printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
 # Build the project.
-hugo -t anatole
+# hugo -t anatole
 
 # Go To Public folder
 cd public

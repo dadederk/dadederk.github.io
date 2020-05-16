@@ -6,7 +6,7 @@ theme = "anatole"
 # Parameters
 
 [params]
-title = "Hey, I'm Dani Devesa"
+title = "Accessibility -> Up to 11!"
 author = "Dani Devesa"
 description = "Dani Devesa"
 profilePicture = "images/jobs.jpg"
@@ -49,15 +49,15 @@ url = "https://www.instagram.com/dadederk/"
 [menu]
 
   [[menu.main]]
-  name = "Home"
-  identifier = "home"
+  name = "Posts"
+  identifier = "posts"
   weight = 100
   url = "/"
 
   [[menu.main]]
-  name = "Posts"
+  name = "Blog"
   weight = 200
-  identifier = "posts"
+  identifier = "blog"
   url = "/post/"
 
   [[menu.main]]
