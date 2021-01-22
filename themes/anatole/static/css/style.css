@@ -300,6 +300,7 @@ a:hover, a:active {
   letter-spacing: 1px;
   color: #4786D6;
   overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 .post .post-content a:hover {
   color: #2F69B3;
