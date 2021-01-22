@@ -5,9 +5,9 @@ html {
 }
 
 body {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 1.0);
   font-family: 'Verdana', sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   width: 100%;
   margin: 0 auto 30px auto;
   background-color: #fff;
@@ -66,7 +66,7 @@ a:link, a:visited {
 }
 
 a:hover, a:active {
-  color: #4786D6;
+  color: #215497;
 }
 
 /*basic styles ends*/
@@ -168,15 +168,15 @@ a:hover, a:active {
   padding-right: 20px;
 }
 .page-top .nav a {
-  color: #5A5A5A;
+  color: #595959;
 }
 .page-top .nav a:hover {
-  color: #4786D6;
+  color: #215497;
 }
 .page-top .nav a.current {
-  color: #5A5A5A;
+  color: #595959;
   padding-bottom: 22px;
-  border-bottom: 1px solid #5A5A5A;
+  border-bottom: 1px solid #595959;
 }
 .page-top .information {
   float: right;
@@ -235,7 +235,7 @@ a:hover, a:active {
 }
 .sidebar .logo-title .title a {
   text-decoration: none;
-  color: #464646;
+  color: #595959;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -254,7 +254,7 @@ a:hover, a:active {
   line-height: 0;
 }
 .sidebar .social-links a {
-  color: #565654;
+  color: #595959;
 }
 .sidebar .social-links a:hover {
   color: #4786D6;
