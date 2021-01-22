@@ -7,7 +7,7 @@ html {
 body {
   color: rgba(0, 0, 0, 1.0);
   font-family: 'Verdana', sans-serif;
-  font-size: 22px;
+  font-size: 1.25em;
   width: 100%;
   margin: 0 auto 30px auto;
   background-color: #fff;
@@ -16,7 +16,7 @@ body {
 p {
   line-height: 1.9em;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1em;
 }
 
 a {
@@ -242,7 +242,7 @@ a:hover, a:active {
 .sidebar .social-links {
   list-style: none;
   padding: 0;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
 }
 .sidebar .social-links i {
@@ -299,6 +299,7 @@ a:hover, a:active {
   text-decoration: none;
   letter-spacing: 1px;
   color: #4786D6;
+  overflow-wrap: break-word;
 }
 .post .post-content a:hover {
   color: #2F69B3;
