@@ -64,7 +64,7 @@ url = "https://www.instagram.com/dadederk/"
   name = "Book"
   weight = 300
   identifier = "book"
-  url = "https://www.amazon.co.uk/Developing-Accessible-iOS-Apps-VoiceOver/dp/1484253078/"
+  url = "https://amzn.to/2PDr9cs"
 
   [[menu.main]]
   name = "RSS"
