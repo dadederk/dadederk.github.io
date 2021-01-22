@@ -1,12 +1,12 @@
 baseURL = "https://dadederk.github.io"
 languageCode = "en-us"
-title = "Accessibility -> Up to 11!"
+title = "Accessibility → Up to 11!"
 theme = "anatole"
 
 # Parameters
 
 [params]
-title = "Accessibility -> Up to 11!"
+title = "Accessibility → Up to 11!"
 author = "Dani Devesa"
 description = "Dani Devesa"
 profilePicture = "images/jobs.jpg"
