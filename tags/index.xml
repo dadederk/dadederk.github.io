@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Accessibility → Up to 11!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jan 2021 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 31 Aug 2021 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://dadederk.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>a11y</title>
       <link>https://dadederk.github.io/tags/a11y/</link>
-      <pubDate>Wed, 20 Jan 2021 12:00:00 +0100</pubDate>
+      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/a11y/</guid>
       <description></description>
@@ -23,27 +23,54 @@
     <item>
       <title>Accessibility</title>
       <link>https://dadederk.github.io/tags/accessibility/</link>
-      <pubDate>Wed, 20 Jan 2021 12:00:00 +0100</pubDate>
+      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/accessibility/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Android</title>
+      <link>https://dadederk.github.io/tags/android/</link>
+      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
+      
+      <guid>https://dadederk.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>iOS</title>
       <link>https://dadederk.github.io/tags/ios/</link>
-      <pubDate>Wed, 20 Jan 2021 12:00:00 +0100</pubDate>
+      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>#CocoaHeads NL</title>
+      <link>https://dadederk.github.io/tags/#cocoaheads-nl/</link>
+      <pubDate>Thu, 26 Aug 2021 15:00:00 +0100</pubDate>
+      
+      <guid>https://dadederk.github.io/tags/#cocoaheads-nl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Swift</title>
       <link>https://dadederk.github.io/tags/swift/</link>
-      <pubDate>Wed, 20 Jan 2021 12:00:00 +0100</pubDate>
+      <pubDate>Thu, 26 Aug 2021 15:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>talk</title>
+      <link>https://dadederk.github.io/tags/talk/</link>
+      <pubDate>Thu, 26 Aug 2021 15:00:00 +0100</pubDate>
+      
+      <guid>https://dadederk.github.io/tags/talk/</guid>
       <description></description>
     </item>
     
@@ -53,15 +80,6 @@
       <pubDate>Fri, 23 Oct 2020 15:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/#a11yto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>talk</title>
-      <link>https://dadederk.github.io/tags/talk/</link>
-      <pubDate>Fri, 23 Oct 2020 15:00:00 +0100</pubDate>
-      
-      <guid>https://dadederk.github.io/tags/talk/</guid>
       <description></description>
     </item>
     
