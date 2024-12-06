@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iOS 13 on Accessibility → Up to 11!</title>
+    <link>https://dadederk.github.io/tags/ios-13/</link>
+    <description>Recent content in iOS 13 on Accessibility → Up to 11!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 May 2020 18:30:00 +0100</lastBuildDate><atom:link href="https://dadederk.github.io/tags/ios-13/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Improving your App’s Accessibility with iOS 13</title>
+      <link>https://dadederk.github.io/post/2020-05-13-01/</link>
+      <pubDate>Wed, 13 May 2020 18:30:00 +0100</pubDate>
+      
+      <guid>https://dadederk.github.io/post/2020-05-13-01/</guid>
+      <description>Note: This article was originally published in Medium
+I know, iOS 13 has been with us for quite some time now, WWDC 2020 is just around the corner and we hope Apple will present again a ton of new accessibility features and improvements coming with iOS 14.
+But it is almost Global Accessibility Awareness Day! And it is still a great time to catch up and implement everything new that was presented around accessibility in iOS 13 - it was a packed year!</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Advent of iOS Accessibility on Accessibility → Up to 11!</title>
+    <link>https://dadederk.github.io/categories/advent-of-ios-accessibility/</link>
+    <description>Recent content in Advent of iOS Accessibility on Accessibility → Up to 11!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Dec 2024 12:00:00 +0100</lastBuildDate><atom:link href="https://dadederk.github.io/categories/advent-of-ios-accessibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advent of iOS Accessibility</title>
+      <link>https://dadederk.github.io/post/2024-12-06-01/</link>
+      <pubDate>Fri, 06 Dec 2024 12:00:00 +0100</pubDate>
+      
+      <guid>https://dadederk.github.io/post/2024-12-06-01/</guid>
+      <description>Advent of iOS Accessibility Starting something new: The Advent of iOS Accessibility. Twenty-four days of exploring some of the most common accessibility issues I&amp;rsquo;ve encountered, how to identify them, and—most importantly—how to fix them. Hope you enjoy the series!
+Day 1 One of the accessibility issues I see more often in iOS apps, believe it or not, is unlabelled elements. This happens especially for buttons with an icon but no title.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title> Dani Devesa | Advent of iOS Accessibility </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.85.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Dani Devesa">
+    <link rel="stylesheet" href="https://dadederk.github.io/css/style.css" type="text/css">
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <base href="https://dadederk.github.io">
+    
+    <link rel="shortcut icon" href="https://dadederk.github.iofavicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dadederk.github.ioapple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://dadederk.github.iofavicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://dadederk.github.iofavicon-16x16.png">
+
+    <link rel="canonical" href="https://dadederk.github.io/post/2024-12-06-01/">
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://dadederk.github.io/images/jobs.jpg" alt="profile picture" style="width:127px;border-radius: 50%;">
+        <h3 title=""><a href="/">Accessibility → Up to 11!</a></h3>
+        <div class="description">
+          <p>Dani Devesa</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <a href="https://twitter.com/dadederk" rel="me" >
+          <i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i>
+        </a>
+        
+        <a href="https://medium.com/@dadederk" rel="me" >
+          <i class="fa fa-medium" aria-hidden="true" title="Medium"></i>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/danieldevesa/" rel="me" >
+          <i class="fa fa-linkedin" aria-hidden="true" title="Linkedin"></i>
+        </a>
+        
+        <a href="https://github.com/dadederk/" rel="me" >
+          <i class="fa fa-github" aria-hidden="true" title="GitHub"></i>
+        </a>
+        
+        <a href="https://www.instagram.com/dadederk/" rel="me" >
+          <i class="fa fa-instagram" aria-hidden="true" title="instagram"></i>
+        </a>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Dani Devesa 2024 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <div class="nav">
+        
+        
+        <li><a  href="/" title="">Posts</a></li>
+
+        
+        <li><a  href="/post/" title="">Blog</a></li>
+
+        
+        <li><a  href="https://amzn.to/2PDr9cs" title="">Book</a></li>
+
+        
+        <li><a  href="https://dadederk.github.io/index.xml" title="">RSS</a></li>
+
+        
+    </div>
+</div>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Advent of iOS Accessibility
+        </h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Fri, Dec 6, 2024</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">2-minute read</span>
+        </div>
+        
+        </div>
+
+    <h2 id="advent-of-ios-accessibility">Advent of iOS Accessibility</h2>
+<p>Starting something new: The Advent of iOS Accessibility. Twenty-four days of exploring some of the most common accessibility issues I&rsquo;ve encountered, how to identify them, and—most importantly—how to fix them. Hope you enjoy the series!</p>
+<h3 id="day-1">Day 1</h3>
+<p>One of the accessibility issues I see more often in iOS apps, believe it or not, is unlabelled elements. This happens especially for buttons with an icon but no title. In those cases, you need to configure an accessibility label manually.</p>
+<p><img src="images/posts/2024-12-06-01/Day1.png" alt="Calendar of the Advent of iOS Accessibility. Day 1. Buttons with no labels (especially buttons with an icon, but no title). Button with a bell, that intends to let the user see the notifications. If the button has no accessibility label, VoiceOver could say things like: button, bellIcon, possibly notification&hellip; far from ideal! A good accessibility label would be &ldquo;Notifications&rdquo;. In UIKit, you can just assign a localized string to the accessibilityLabel property for the button. In SwiftUI, you can use the accessibilityLabel modifier and pass in a Localized String Key."></p>
+<h3 id="day-2">Day 2</h3>
+<p>Some recommendations for improving your accessibility labels: don&rsquo;t add the element type, avoid redundancy and verbosity, localize&hellip;</p>
+<p><img src="images/posts/2024-12-06-01/Day2.png" alt="Calendar of the Advent of iOS Accessibility. Day 2. Better accessibility labels. A music player with some examples of how to improve your accessibility labels. Don&rsquo;t add the element type: for the like button, if the label is &ldquo;Like button&rdquo;, VoiceOver will say &ldquo;Like button, button&rdquo;. So just &ldquo;Like&rdquo; is perfectly fine. Avoid redundancy and verbosity. For the repeat button, the label &ldquo;Repeat This is the last time from Kean&rdquo; would be too long, and if we specify the song and band for every action, it would be too verbose. Localize. For the next track button, try to use a localized string instead of a plain string so VoiceOver speaks in the correct language. Start with a capital letter and don&rsquo;t end with a period. This helps with VoiceOver&rsquo;s inflection."></p>
+<h3 id="day-3">Day 3</h3>
+<p>Anything representing a heading in the app should have the header trait. It allows for a faster way of exploring a screen and quickly jumping to the part of the app you are interested in. Screens should also start with a header.</p>
+<p><img src="images/posts/2024-12-06-01/Day3.png" alt="Calendar of Advent of iOS Accessibility. Day 3. Missing header trait for headings. BBC News app shows two sections Technology and Science & Environment. These sections consist of a horizontally scrollable carrousel of at least 5 elements. If the titles of the sections have the header trait, a single swipe down brings you from one section to the other, compared to 6 swipes to the right needed otherwise. At the top of the app, there&rsquo;s the BBC logo. Screens should start with a heading so the logo could also have the header trait. In UIKit you can insert the header accessibility trait to the accessibilityTraits property of the UI element representing the heading. In SwiftUI, you can use the accessibilityAddTraits modifier and pass isHeader as parameter."></p>
+<h3 id="day-4">Day 4</h3>
+<p>Important information is often conveyed visually through icons, badges, or progress bars&hellip; These details can easily be overlooked. Please make sure they&rsquo;re part of your UI&rsquo;s components' accessibility labels or values for a more inclusive experience.</p>
+<p><img src="images/posts/2024-12-06-01/Day4.png" alt="Calendar of Advent of iOS Accessibility. Day 4. Visual cues missing from VoiceOver&rsquo;s announcement. Four examples. The first one is a button with a person silhouette and a checkmark. VoiceOver announces it as &ldquo;Collaborate, button&rdquo;. It is missing the fact that you are already collaborating with someone. Represented by the checkmark. Second example shows a tab with the title &ldquo;Coming soon&rdquo; and a badge with the number 6. VoiceOver announces it as &ldquo;Coming soon, Tab 2 of 5&rdquo;. It is not conveying that there are 6 new movies and shows. Represented by the badge. Third example shows a chart&rsquo;s title: &ldquo;Daily Average 1h 55m&rdquo;, an arrow pointing down, and &ldquo;55% from last week&rdquo;. VoiceOver says &ldquo;Daily average, one hour fifty-five minutes. 55% from last week&rdquo;. The user wouldn&rsquo;t know if it went up or down. Represented by the arrow pointing down. Fourth example, episode download. The stop button is surrounded by circular progress bar. VoiceOver says &ldquo;Stop downloads, button&rdquo; but not how much is left."></p>
+<h3 id="day-5">Day 5</h3>
+<p>Images should either be decorative or have a proper accessibility label or alt text that describes them. If they&rsquo;re decorative you can make it so they get skipped by assistive tech so it doesn&rsquo;t get in the way of the experience.</p>
+<p><img src="images/posts/2024-12-06-01/Day5.png" alt="Calendar of Advent of iOS Accessibility. Day 5. Images: with a description or decorative. iOS app with Disney+ showing the &ldquo;How I met your mother&rdquo; screen. The header has two images, one of them in the background, with the characters, that could be considered decorative. The other one is an image with the title of the series, which needs a description. In UIKit images are not accessible by default. So in the case of images that need to be accessible, you need to make the accessible elements. In SwiftUI images are by default accessible. You have an Image constructor with a decorative parameter, where you pass the name of the image."></p>
+<p>Quick clarification on this one. It is probably not the best example of decorative images. I think these images should have alt text. But in my experience, most APIs won’t give you one for movie posters, music artwork, and things like that&hellip; And the point is that a random name just adds noise.</p>
+<p>And another nuance. VoiceOver has a feature called <a href="https://iosdev.space/@dadederk/109587356581980365">Image Explorer</a>. VoiceOver can recognise text, people and objects in images. So if you think that users can get value with this feature, you might want to consider exposing the image then.</p>
+<p>Oh! And avoid images of text please!</p>
+<h3 id="day-6">Day 6</h3>
+<p>With regular buttons from UIKit or SwiftUI, you are all set. With complex views, headings, or table/collection view cells that, when selected, bring the user somewhere else in the app or perform an action, you&rsquo;ll have to add the button accessibility trait yourself to convey users that it is an interactive component.</p>
+<p><img src="images/posts/2024-12-06-01/Day6.png" alt="Calendar of Advent of iOS Accessibility. Day 6. Missing button accessibility trait. Four examples of not-so-obvious elements that require the button trait to be added by developers. First example, the collection view cells representing shortcuts in the Shortcuts app. Runs the shortcut when selected. Second example, the table view cell with a post in the Mastodon app. It opens the detail view and thread when selected. Third example, the What to Watch header in the Apple TV+ app. It can be selected and it will open the What to Watch screen. Fourth example, a view that is more complex than a regular button like a notification in Notification Centre that opens the notification."></p>
+<h3 id="day-7">Day 7</h3>
+<p>One more sleep till the next tip! See you tomorrow!</p>
+<p>You can also follow the series in:</p>
+<ul>
+<li><a href="https://www.linkedin.com/feed/hashtag/?keywords=adventofiosaccessibility">LinkedIn</a></li>
+<li><a href="https://iosdev.space/tags/adventOfIOSAccessibility">Mastodon</a></li>
+<li><a href="https://bsky.app/hashtag/adventOfIOSAccessibility">BlueSky</a></li>
+<li><a href="https://www.threads.net/search?q=365DaysIOSAccessibility&amp;serp_type=tags&amp;tag_id=18487639627032592">Threads</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+<span class="separator"><a class="category" href="/categories/accessibility/">Accessibility</a><a class="category" href="/categories/advent-of-ios-accessibility/">Advent of iOS Accessibility</a></span>
+
+        
+    <span class="separator"><a class="tag" href="/tags/accessibility/">Accessibility</a><a class="tag" href="/tags/a11y/">a11y</a><a class="tag" href="/tags/ios/">iOS</a></span>
+
+      </div>
+    </div>
+
+    
+           
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="https://dadederk.github.io/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://dadederk.github.io/js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="https://dadederk.github.io/js/jquery-appear.min.js"></script><script type="text/javascript" src="https://dadederk.github.io/js/medium-zoom.min.js"></script>
+<script>
+	mediumZoom(document.querySelectorAll('div.post-content img'), {
+        background: '#fff'
+    });
+</script>
+<link rel="stylesheet" href="https://dadederk.github.io/css/medium-zoom.css" type="text/css"></html></body>
+
+</html>

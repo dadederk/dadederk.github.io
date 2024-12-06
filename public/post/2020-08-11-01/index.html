@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title> Dani Devesa | Tips for testing your iOS app’s accessibility </title>
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.85.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Dani Devesa">
+    <link rel="stylesheet" href="https://dadederk.github.io/css/style.css" type="text/css">
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <base href="https://dadederk.github.io">
+    
+    <link rel="shortcut icon" href="https://dadederk.github.iofavicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dadederk.github.ioapple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://dadederk.github.iofavicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://dadederk.github.iofavicon-16x16.png">
+
+    <link rel="canonical" href="https://dadederk.github.io/post/2020-08-11-01/">
+</head><body><div class="sidebar animated fadeInDown">
+    <div class="logo-title">
+      <div class="title">
+        <img src="https://dadederk.github.io/images/jobs.jpg" alt="profile picture" style="width:127px;border-radius: 50%;">
+        <h3 title=""><a href="/">Accessibility → Up to 11!</a></h3>
+        <div class="description">
+          <p>Dani Devesa</p>
+        </div>
+      </div>
+    </div>
+    <ul class="social-links">
+        
+        <a href="https://twitter.com/dadederk" rel="me" >
+          <i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i>
+        </a>
+        
+        <a href="https://medium.com/@dadederk" rel="me" >
+          <i class="fa fa-medium" aria-hidden="true" title="Medium"></i>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/danieldevesa/" rel="me" >
+          <i class="fa fa-linkedin" aria-hidden="true" title="Linkedin"></i>
+        </a>
+        
+        <a href="https://github.com/dadederk/" rel="me" >
+          <i class="fa fa-github" aria-hidden="true" title="GitHub"></i>
+        </a>
+        
+        <a href="https://www.instagram.com/dadederk/" rel="me" >
+          <i class="fa fa-instagram" aria-hidden="true" title="instagram"></i>
+        </a>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Dani Devesa 2024 </div>
+      </div>
+    </div>
+</div><div class="main">
+            <div class="page-top animated fadeInDown">
+    <div class="nav">
+        
+        
+        <li><a  href="/" title="">Posts</a></li>
+
+        
+        <li><a  href="/post/" title="">Blog</a></li>
+
+        
+        <li><a  href="https://amzn.to/2PDr9cs" title="">Book</a></li>
+
+        
+        <li><a  href="https://dadederk.github.io/index.xml" title="">RSS</a></li>
+
+        
+    </div>
+</div>
+            <div class="autopagerize_page_element">
+                <div class="content">
+<div class="post animated fadeInDown">
+    <div class="post-content">
+
+      <div class="post-title">
+        <h3>Tips for testing your iOS app’s accessibility
+        </h3>
+        
+        <div class="info">
+          <i class="fa fa-sun-o"></i><span class="date">Tue, Aug 11, 2020</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">6-minute read</span>
+        </div>
+        
+        </div>
+
+    <p>Note: This article was originally published in <a href="https://medium.com/@dadederk/tips-for-testing-your-ios-apps-accessibility-7d32a2dc5935">Medium</a></p>
+<p>The cycle for creating great accessible apps starts and ends with testing. Sure, it is always better to get feedback from users to create an experience that holds up to their expectations. But that’s not always possible. Till you can do it, I think the way to go is to do your best. Build it as well as you can, then gather all the feedback you can get, apply the suggestions, test, repeat.
+Therefore, you’ll probably have to start by self-auditing your app to try to find any potential issues or improvements, and after doing any changes, check that your fixes worked as expected. I’m going to focus on manual testing in this article. It is possible to automate some bits, but to get a real sense of the experience you are offering, you have to try it yourself.</p>
+<p>I think it is actually a very fun process. It is a great experience to use your app and device in ways you probably wouldn’t in your day-to-day life. It helps you look at it through a different lens that for sure will make you think in the UX of your app from a different perspective and maybe even give you some ideas on how to improve it.</p>
+<p>But I know it is also a process that some people may perceive complicated or difficult to approach at the beginning. So I thought I’d share some of my favorite tips when testing for accessibility in the apps I develop.</p>
+<h2 id="shortcuts">Shortcuts</h2>
+<p>The first thing for me is to allow myself to switch to ‘testing mode’ as easy and quick as possible. If it is easy to toggle on/off VoiceOver, Voice Control, Switch Control, or any of the multiple assistive technologies iOS lets you create a shortcut for, you’ll find yourself testing more, and more often. To enable Accessibility Shortcuts in your device go to Settings, Accessibility, scroll to the bottom and tap Accessibility Shortcut. The final step is to select any of the options you’d like to have quick access to.</p>
+<p><img src="images/posts/2020-08-11-01/AccessibilityShortcuts.jpeg" alt="Example of the Accessibility Shortcuts menu."></p>
+<p>From now on, they’ll be just a triple-click away to your home button or to the side button of your device (if you don’t have a home button anymore). I recommend having more than one option because actioning the shortcut will show you a menu with the options you enabled. If you don’t, you risk enabling VoiceOver accidentally in meetings. True story.</p>
+<h2 id="control-center">Control Center</h2>
+<p>Triple-clicking buttons is not always convenient, so you can also have quick access to Accessibility Shortcuts in Control Centre. Just go to Customize Controls in Control Centre’s Settings and make sure you add Accessibility Shortcuts to the included controls. I also like to have a Text Size control in Control Centre, and enable Larger Accessibility Sizes, to test my apps for Dynamic Type.</p>
+<p><img src="images/posts/2020-08-11-01/AccessibilityShortcutsControlCenter.jpeg" alt="Accessibility Shortcuts menu in Control Centre.">
+<img src="images/posts/2020-08-11-01/TextSizeControCenter.jpeg" alt="Text Size menu in Control Centre."></p>
+<h2 id="screen-curtain">Screen Curtain</h2>
+<p>One of my favorite tricks. Do you think you can use your app even with your eyes closed? Yes? Are you sure? Let’s try it out. A triple-tap with three fingers on the screen, when VoiceOver is on, will let you navigate your app with the screen off. You know how your app looks like, so if you are struggling to complete some of the most common flows, it is probably time to go back to Xcode and improve your app’s accessibility.</p>
+<h2 id="accessibility-inspector">Accessibility Inspector</h2>
+<p>It is a bit of an unknown tool for some reason, but it comes pre-installed with Xcode. You can use the Accessibility Inspector for quickly inspecting accessibility properties in your simulator or even for running an audit, which lets you find issues like: small hit areas, contrast ratio issues, non-accessible elements, and more. Go to Xcode’s top menu, Open Developer Tools, Accessibility Inspector. Select the simulator and start inspecting, auditing or modifying system’s settings in your app.</p>
+<p><img src="images/posts/2020-08-11-01/AccessibilityInspectorInspect.png" alt="Accessibility Inspector: Inspect mode.">
+<img src="images/posts/2020-08-11-01/AccessibilityInspectorAudit.png" alt="Accessibility Inspector: Audit mode."></p>
+<h2 id="environment-overrides">Environment Overrides</h2>
+<p>New to Xcode 11. It lets you test several accessibility configurations in the simulator, including: Reduce Transparency, Bold Text, Smart Invert Colors, etc. It is similar to the Settings you can find in the Accessibility Inspector but right there in Xcode, and with even more options like Dark Mode. You’ll find the Environment Overrides in the Debug Area’s toolbar. Next to the Debug Memory Graph button.</p>
+<p><img src="images/posts/2020-08-11-01/EnvironmentOverrides.png" alt="Environment Overrides menu in Xcode."></p>
+<h2 id="voice-control">Voice Control</h2>
+<p>Pro tip. You can use Voice Control to find issues with your accessibility labels. Turn it on, and say: “Show names”. You’ll see the accessibility labels of your actionable elements on screen. Handy!, especially to find mistakes such as buttons that you forgot to add an accessibility label to.</p>
+<p><img src="images/posts/2020-08-11-01/VoiceControlShowNames.jpeg" alt="Apple Maps app being used with Voice Control after saying “Show Names”."></p>
+<h2 id="switch-control">Switch Control</h2>
+<p>You can test Switch Control connecting a Bluetooth keyboard or even using your selfie camera and triggering the switch by moving your head! Go to Settings, Accessibility, Switch Control, Switches. You can configure, for example, a Right Head Movement to Move To Next Item and a Left Head Movement to Select Item.</p>
+<h2 id="color-contrast-calculator">Color Contrast Calculator</h2>
+<p>There are plenty of color contrast calculators online, but just as with the Accessibility Inspector, Xcode includes its own one, so look no further. With the Accessibility Inspector open, go to Window, in the top menu, and click Show Color Contrast Calculator. Or option+command+C.</p>
+<p><img src="images/posts/2020-08-11-01/ColorContrastCalculator.png" alt="Color Contrast Calculator tool in Xcode."></p>
+<h2 id="voiceover-caption-panel">VoiceOver Caption Panel</h2>
+<p>It is a great way to visualize what VoiceOver is saying. Not only is it good for testing but it can also be an alternative way to perform remote VoiceOver demos. Sharing VoiceOver’s audio in video calls can be challenging sometimes. But this way you or the people in the call can read the captions instead. To enable them, as usual, go to Settings, Accessibility, and then VoiceOver, and toggle on the Caption Panel option.</p>
+<p><img src="images/posts/2020-08-11-01/VoiceOverCaption.jpg" alt="Voice Over Caption Panel."></p>
+<h2 id="automation-and-3rd-party-frameworks">Automation and 3rd Party Frameworks</h2>
+<p>Ok, I know I said I was going to focus on manual testing this time. But we all love some help so here’s a bonus track. There are a few tools out there that were developed to help us create more accessible apps. They can help us catch early issues like missing accessibility labels, text that doesn’t support Dynamic Type, color contrast issues, small interactive areas, etc. Here are some of these projects that I would have a look to:</p>
+<ul>
+<li>A11yUITests: <a href="https://github.com/rwapp/A11yUITests">https://github.com/rwapp/A11yUITests</a></li>
+<li>UBKAccessibilityKit: <a href="https://github.com/NAB/UBKAccessibilityKit">https://github.com/NAB/UBKAccessibilityKit</a></li>
+<li>AccessibilitySnapshot: <a href="https://github.com/cashapp/AccessibilitySnapshot">https://github.com/cashapp/AccessibilitySnapshot</a></li>
+<li>GTXiLib: <a href="https://github.com/google/GTXiLib">https://github.com/google/GTXiLib</a></li>
+</ul>
+<h2 id="its-a-wrap">It’s a wrap!</h2>
+<p>Thanks for reading! I really hope this post helps you test your app’s accessibility and create more accessible apps. Did you know these tips? Any you found particularly useful? Do you have any others I didn’t mention? I’d be super interested in knowing more about it. You can find me in Twitter with the handle <a href="https://twitter.com/dadederk">@dadederk</a>.</p>
+<p><img src="images/posts/2020-05-14-01/Book.png" alt="Developing Accessible iOS Apps by Daniel Devesa Derksen-Staats"></p>
+<p>You can find all these tips, and many more in my book, Developing Accessible iOS apps.</p>
+<p>Available in:
+*Amazon: <a href="https://amzn.to/2PDr9cs">https://amzn.to/2PDr9cs</a>
+*Appress: <a href="https://www.apress.com/gp/book/9781484253076">https://www.apress.com/gp/book/9781484253076</a>
+*Apple Books: <a href="https://books.apple.com/gb/book/developing-accessible-ios-apps/id1490937769">https://books.apple.com/gb/book/developing-accessible-ios-apps/id1490937769</a></p>
+<ul>
+<li>Or your favorite online bookstore.</li>
+</ul>
+<p>And some useful accessibility code examples in my book’s repo: <a href="https://github.com/Apress/developing-accessible-iOS-apps">https://github.com/Apress/developing-accessible-iOS-apps</a></p>
+
+    </div>
+    <div class="post-footer">
+      <div class="info">
+        
+<span class="separator"><a class="category" href="/categories/accessibility/">Accessibility</a></span>
+
+        
+    <span class="separator"><a class="tag" href="/tags/accessibility/">Accessibility</a><a class="tag" href="/tags/a11y/">a11y</a><a class="tag" href="/tags/ios/">iOS</a><a class="tag" href="/tags/swift/">Swift</a></span>
+
+      </div>
+    </div>
+
+    
+           
+    
+</div>
+
+
+                </div>
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="https://dadederk.github.io/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://dadederk.github.io/js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="https://dadederk.github.io/js/jquery-appear.min.js"></script><script type="text/javascript" src="https://dadederk.github.io/js/medium-zoom.min.js"></script>
+<script>
+	mediumZoom(document.querySelectorAll('div.post-content img'), {
+        background: '#fff'
+    });
+</script>
+<link rel="stylesheet" href="https://dadederk.github.io/css/medium-zoom.css" type="text/css"></html></body>
+
+</html>
