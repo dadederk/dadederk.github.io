@@ -6,15 +6,11 @@
     <description>Recent content in Tags on Accessibility → Up to 11!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Aug 2021 12:00:00 +0100</lastBuildDate>
-    
-	<atom:link href="https://dadederk.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 06 Dec 2024 12:00:00 +0100</lastBuildDate><atom:link href="https://dadederk.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>a11y</title>
       <link>https://dadederk.github.io/tags/a11y/</link>
-      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
+      <pubDate>Fri, 06 Dec 2024 12:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/a11y/</guid>
       <description></description>
@@ -23,9 +19,18 @@
     <item>
       <title>Accessibility</title>
       <link>https://dadederk.github.io/tags/accessibility/</link>
-      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
+      <pubDate>Fri, 06 Dec 2024 12:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/accessibility/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS</title>
+      <link>https://dadederk.github.io/tags/ios/</link>
+      <pubDate>Fri, 06 Dec 2024 12:00:00 +0100</pubDate>
+      
+      <guid>https://dadederk.github.io/tags/ios/</guid>
       <description></description>
     </item>
     
@@ -35,15 +40,6 @@
       <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
       
       <guid>https://dadederk.github.io/tags/android/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>iOS</title>
-      <link>https://dadederk.github.io/tags/ios/</link>
-      <pubDate>Tue, 31 Aug 2021 12:00:00 +0100</pubDate>
-      
-      <guid>https://dadederk.github.io/tags/ios/</guid>
       <description></description>
     </item>
     

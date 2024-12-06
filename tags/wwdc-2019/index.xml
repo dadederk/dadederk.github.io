@@ -6,11 +6,7 @@
     <description>Recent content in WWDC 2019 on Accessibility → Up to 11!</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 May 2020 18:30:00 +0100</lastBuildDate>
-    
-	<atom:link href="https://dadederk.github.io/tags/wwdc-2019/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 13 May 2020 18:30:00 +0100</lastBuildDate><atom:link href="https://dadederk.github.io/tags/wwdc-2019/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Improving your App’s Accessibility with iOS 13</title>
       <link>https://dadederk.github.io/post/2020-05-13-01/</link>
