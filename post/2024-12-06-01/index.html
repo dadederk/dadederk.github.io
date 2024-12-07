@@ -81,7 +81,7 @@
         
         <div class="info">
           <i class="fa fa-sun-o"></i><span class="date">Fri, Dec 6, 2024</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">2-minute read</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">3-minute read</span>
         </div>
         
         </div>
@@ -110,6 +110,17 @@
 <p>With regular buttons from UIKit or SwiftUI, you are all set. With complex views, headings, or table/collection view cells that, when selected, bring the user somewhere else in the app or perform an action, you&rsquo;ll have to add the button accessibility trait yourself to convey users that it is an interactive component.</p>
 <p><img src="images/posts/2024-12-06-01/Day6.png" alt="Calendar of Advent of iOS Accessibility. Day 6. Missing button accessibility trait. Four examples of not-so-obvious elements that require the button trait to be added by developers. First example, the collection view cells representing shortcuts in the Shortcuts app. Runs the shortcut when selected. Second example, the table view cell with a post in the Mastodon app. It opens the detail view and thread when selected. Third example, the What to Watch header in the Apple TV+ app. It can be selected and it will open the What to Watch screen. Fourth example, a view that is more complex than a regular button like a notification in Notification Centre that opens the notification."></p>
 <h3 id="day-7">Day 7</h3>
+<p>Grouping elements when it makes sense can make a huge impact on easing navigation with some assistive technologies like VoiceOver, Switch Control, or Full Keyboard Access. It also helps on reducing redundancy.</p>
+<p><img src="images/posts/2024-12-06-01/Day7.png" alt="Calendar of Advent of iOS Accessibility. Day 7. Grouping elements for easier navigation. There is an example using the Foursquare app. There is a list of restaurants. Each restaurant has a name, type, location, and rate. By default, you&rsquo;d need four swipes to the right with VoiceOver to go from one restaurant to the next one. That&rsquo;s 32 swipes to go through 8 restaurants. If we group all these, it is just a single swipe to go from one item to the next one, easing navigation a lot. There is another example showing Next Door. The post in the example would require 9 swipes. So you can see how things can quickly get worse for more complex views. In that case, each post has a more options, like, reply, and share buttons that would repeat for every single item causing lots of redundancy."></p>
+<p>In <strong>UIKit</strong>, this process consists of three steps:</p>
+<ol>
+<li>Setting the parent view as an accessible element: <a href="https://iosdev.space/@dadederk/109693895401281036">https://iosdev.space/@dadederk/109693895401281036</a></li>
+<li>Configure relevant accessibility label, value, traits and hints on the parent view: <a href="https://iosdev.space/@dadederk/109806337876803727">https://iosdev.space/@dadederk/109806337876803727</a></li>
+<li>If there are secondary actions within the grouped view, configure custom actions: <a href="https://iosdev.space/@dadederk/1097016">https://iosdev.space/@dadederk/1097016</a></li>
+</ol>
+<p>In <strong>SwiftUI</strong>, it might be as simple as using the .accessibilityElement(children:) modifier with the .combine accessibility child behaviour: <a href="https://iosdev.space/@dadederk/109932750048041110">https://iosdev.space/@dadederk/109932750048041110</a>
+If that doesn&rsquo;t quite work as expected, try to tweak the internal views. If not, you can fall back to UIKit&rsquo;s three step process.</p>
+<h3 id="day-8">Day 8</h3>
 <p>One more sleep till the next tip! See you tomorrow!</p>
 <p>You can also follow the series in:</p>
 <ul>
