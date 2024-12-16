@@ -81,7 +81,7 @@
         
         <div class="info">
           <i class="fa fa-sun-o"></i><span class="date">Fri, Dec 6, 2024</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">4-minute read</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">5-minute read</span>
         </div>
         
         </div>
@@ -136,6 +136,18 @@ If that doesn&rsquo;t quite work as expected, try to tweak the internal views. I
 <p>Sometimes we may fail to update users of things changing on the screen in a perceivable way. Toasts and similar should be announced. We may want to make clear that some content on the screen changed or to update on a task&rsquo;s progress.</p>
 <p><img src="images/posts/2024-12-06-01/Day12.png" alt="Calendar of Advent of iOS Accessibility. Day 12. Failing to update the user of changes. Three examples over the Apple TV app on the Ted Lasso page. The first one has a hud saying “Episode added to Up Next”. Toasts, snackbars and huds can be conveyed to VoiceOver usersa using accessibility announcements. The second one is a drop down to select the season which changes the episodes visible in the carrousel underneath it. A layout changed notification can help with changing content in the screen. The third one shows an episode with a download indicator. The updates frequently trait could help with that."></p>
 <h3 id="day-13">Day 13</h3>
+<p>Sometimes, you may want to create a custom component, even if there is a similar one in UIKit or SwiftUI because you want to style it in a way that the default one won&rsquo;t let you. Or add extra functionality. That&rsquo;s fine, but please take into account that you may need a bit of extra work to make it accessible.</p>
+<p><img src="images/posts/2024-12-06-01/Day13.png" alt="Calendar of Advent of iOS Accessibility. Day 13. Custom components can need a bit of work. If you develop a custom tab bar, you need to set the tab bar accessibility trait in the container, then you need to set up the container type with the value semantic group, then give it a localised string, &ldquo;Tab bar&rdquo;, as an accessibility label. Also, you need to set up the large content viewer by setting show large content viewer to true and adding the interaction to the buttons&hellip; If you use Swift UI, the .accessibilityRepresentation(representation: ) modifier can help you create more accessible custom components."></p>
+<h3 id="day-14">Day 14</h3>
+<p>iOS and Xcode provide a wide variety of tools and options to deal with color, and help us providing good color contrast ratios. From system colors that automatically support Increase Contrast, to high contrast (and light and dark mode) color asset variants, automatic checks with the Audit feature in the Accessibility Inspector, and even a built-in contrast calculator.</p>
+<p><img src="images/posts/2024-12-06-01/Day14.png" alt="Calendar of Advent of iOS Accessibility. Day 14. Color contrast. Some of the tools available in Xcode that help you create apps with great contrast are the asset catalog which lets you provide high contrast variants for color sets and assets, and the color contrast calculator. Some examples show how text size also affects contrast ratios. White on Black passes for all sizes. A grey with a 4.5 to 1 ratio over black will fail on small text sizes. A grey with a 2.9 to 1 ratio over black, fails for all text sizes. You can also use system colors an make sure that your app works well with the High Contrast setting."></p>
+<h3 id="day-15">Day 15</h3>
+<p>Touch target sizes are recommended to be at least 44 x 44 points for better usability. Buttons in the navigation bar (especially when not using nav bar button items), dismiss buttons, and custom toolbars, are common examples that often fall below this size.</p>
+<p><img src="images/posts/2024-12-06-01/Day15.png" alt="Calendar of Advent of iOS Accessibility. Day 15. Small touch target sizes. Three examples of common cases with buttons that tend to have small touch target areas. The first one is buttons in the navigation bar. The second one is dismiss buttons for modal or inline popups. The third one is toolbars, especially custom ones."></p>
+<h3 id="day-16">Day 16</h3>
+<p>A reminder that the more modes we use to convey important information, the more likely it is that all users will perceive it. Consider a combination. of color, icons, messages, sound, haptics, animations, etc.</p>
+<p><img src="images/posts/2024-12-06-01/Day16.png" alt="Calendar of Advent of iOS Accessibility. Day 16. Multimodal information. One example shows an app where you need to introduce a 6-digit pin. When it is the wrong pin, it does a shake animation on the pin field. It is using one mode: animation. If reduce motion is enabled, or for VoiceOver users, this information will not be perceived. The second example shows the same app but it adds a warning icon and a message that says &ldquo;Incorrect pin&rdquo; in red and the device also vibrates and does a sound to indicate the error. It uses several modes: animation, iconography, messaging, color, sound, and haptics. This is preferred."></p>
+<h3 id="day-17">Day 17</h3>
 <p>This post is work in progress&hellip; One more sleep till the next tip! See you tomorrow!</p>
 <p>You can also follow the series in:</p>
 <ul>
