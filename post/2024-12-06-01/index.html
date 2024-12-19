@@ -81,7 +81,7 @@
         
         <div class="info">
           <i class="fa fa-sun-o"></i><span class="date">Fri, Dec 6, 2024</span>
-          <i class="fa fa-clock-o"></i><span class="reading-time">5-minute read</span>
+          <i class="fa fa-clock-o"></i><span class="reading-time">6-minute read</span>
         </div>
         
         </div>
@@ -155,6 +155,10 @@ If that doesn&rsquo;t quite work as expected, try to tweak the internal views. I
 <p>When building custom components, or if not relying on UIControl&rsquo;s attributes to configure state, it can be easy to forget to specify the right accessibility traits. These are indispensable for a good experience with VoiceOver, Switch Control, Voice Control, Full Keyboard Access&hellip;</p>
 <p><img src="images/posts/2024-12-06-01/Day18.png" alt="Calendar of advent of iOS Accessibility. Day 18. Missing traits. Three examples. The first one shows a custom segmented controller. These tend to have a missing selected trait for the selected option. The second one shows a custom page control. These should configure an adjustable trait. The third one shows a button that shows the disabled state by changing the color of the text instead of setting isEnabled to false. This means the button will be lacking the not enabled trait."></p>
 <h3 id="day-19">Day 19</h3>
+<p>Accessibility labels might not be the best input labels, used for example to find or interact with elements with Voice Control or Full Keyboard Access. In those cases, you can provide accessibility user input labels.</p>
+<p><img src="images/posts/2024-12-06-01/Day19.png" alt="Calendar of Advent of iOS Accessibility. Day 19. User input labels. One example shows Apple&rsquo;s Podcast app in the 13 letters podcast page. There is a button in the top right corner with a + icon. The default label is &ldquo;Follow&rdquo;. That might not be everyone&rsquo;s first guess on how that button is named. You could add &ldquo;Plus&rdquo; and &ldquo;Add&rdquo; as alternative labels. The second example is some episodes of that same podcast. The default label is very long consisting of a few details about each episode like the publication date and title. That might be a bit long for Voice Control. You can use just the title, or the word &ldquo;Episode&rdquo; as possible input alternatives."></p>
+<p>To know more about accessibilityUserInputLabels checkout: <a href="https://basbroek.nl/improving-voice-co">&ldquo;Improving Accessibility: Voice Control&rdquo;</a> by <a href="https://iosdev.space/@bas">Bas Broek</a></p>
+<h3 id="day-20">Day 20</h3>
 <p>This post is work in progress&hellip; One more sleep till the next tip! See you tomorrow!</p>
 <p>You can also follow the series in:</p>
 <ul>
