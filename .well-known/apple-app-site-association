@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["5RA76D6WD4.com.desfici.Xarra"],
+        "components": [
+          { "/": "/xarra/open-latest-share" },
+          { "/": "/xarra/*" }
+        ]
+      }
+    ]
+  }
+}
