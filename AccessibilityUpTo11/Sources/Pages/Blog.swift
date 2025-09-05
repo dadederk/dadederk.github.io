@@ -33,9 +33,8 @@ struct Blog: StaticPage {
 }
 
 // Custom article preview style for Blog page with horizontal layout
-@MainActor
-struct BlogArticlePreviewStyle: @MainActor ArticlePreviewStyle {
-    func body(content: Article) -> any HTML {
+struct BlogArticlePreviewStyle: ArticlePreviewStyle {
+    nonisolated func body(content: Article) -> any HTML {
         Card {
             // Content area - responsive layout
             Group {
