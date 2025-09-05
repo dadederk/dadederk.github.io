@@ -21,25 +21,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Swift
-        run: |
-          # Install dependencies
-          sudo apt-get update
-          sudo apt-get install -y wget curl
-          
-          # Download and install Swift
-          wget -q https://swift.org/builds/swift-5.9.3-release/ubuntu2204/swift-5.9.3-RELEASE/swift-5.9.3-RELEASE-ubuntu22.04.tar.gz
-          tar xzf swift-5.9.3-RELEASE-ubuntu22.04.tar.gz
-          echo "$PWD/swift-5.9.3-RELEASE-ubuntu22.04/usr/bin" >> $GITHUB_PATH
-          
-          # Verify installation
-          export PATH="$PWD/swift-5.9.3-RELEASE-ubuntu22.04/usr/bin:$PATH"
-          swift --version
+      - name: Setup Swift
+        uses: fwal/setup-swift@v1
+        with:
+          swift-version: "5.9.3"
 
       - name: Build site
         run: |
           cd AccessibilityUpTo11
-          export PATH="$PWD/../swift-5.9.3-RELEASE-ubuntu22.04/usr/bin:$PATH"
           swift run AccessibilityUpTo11 build
 
       - name: Setup Pages
