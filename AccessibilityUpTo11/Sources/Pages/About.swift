@@ -4,7 +4,7 @@ import Ignite
 struct About: StaticPage {
     var title = "About"
     
-    var body: some HTML {
+    @MainActor var body: some HTML {
         VStack {
             
             // Author information

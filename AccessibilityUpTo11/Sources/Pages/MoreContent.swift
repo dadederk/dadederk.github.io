@@ -5,7 +5,7 @@ struct MoreContent: StaticPage {
     var title = "More Content"
     var path = "/more-content"
     
-    var body: some HTML {
+    @MainActor var body: some HTML {
         VStack(alignment: .leading) {
             // Publications Section
             Section {

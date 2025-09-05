@@ -44,7 +44,7 @@ struct Home: StaticPage {
 
 // Custom article preview style for Home page that limits description to ~8 lines
 struct HomeArticlePreviewStyle: ArticlePreviewStyle {
-    nonisolated func body(content: Article) -> any HTML {
+    @MainActor func body(content: Article) -> any HTML {
         Card(imageName: content.image) {
             Text(content.description)
                 .lineLimit(8)

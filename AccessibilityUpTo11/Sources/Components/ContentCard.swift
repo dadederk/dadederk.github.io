@@ -33,7 +33,7 @@ struct ContentCard: HTML {
         self.actions = actions
     }
     
-    var body: some HTML {
+    @MainActor var body: some HTML {
         Card {
             if let imagePath = imagePath, let imageDescription = imageDescription {
                 // Original horizontal layout for cards with images (publications)

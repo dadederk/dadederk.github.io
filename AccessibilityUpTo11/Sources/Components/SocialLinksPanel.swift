@@ -3,7 +3,7 @@ import Ignite
 
 // Extracted component for social links panel
 struct SocialLinksPanel: HTML {
-    var body: some HTML {
+    @MainActor var body: some HTML {
         HStack(alignment: .center) {
             VStack {
                 Text("Let's connect!")

@@ -12,7 +12,7 @@ struct ActionButton: HTML {
         case secondary
     }
     
-    var body: some HTML {
+    @MainActor var body: some HTML {
         Link(title, target: target)
             .class("btn", style == .primary ? "btn-primary" : "btn-secondary")
     }

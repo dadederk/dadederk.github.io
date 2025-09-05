@@ -11,7 +11,7 @@ struct AppCard: HTML {
     let imageDescription: String
     let actions: [ActionButton]
     
-    var body: some HTML {
+    @MainActor var body: some HTML {
         Card {
             HStack {
                 VStack(alignment: .leading) {

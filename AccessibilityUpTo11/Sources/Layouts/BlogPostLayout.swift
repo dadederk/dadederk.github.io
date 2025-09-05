@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct BlogPostLayout: ArticlePage {
-    var body: some HTML {
+    @MainActor var body: some HTML {
         // Article-specific meta tags and structured data using Script element
         // This overrides the global meta tags for article pages with article-specific content
         Script(code: """

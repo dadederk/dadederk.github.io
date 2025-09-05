@@ -4,7 +4,7 @@ import Ignite
 struct MainLayout: Layout {
     @Environment(\.page) var page
     
-    var body: some Document {
+    @MainActor var body: some Document {
         PlainDocument {
             Head {
                 // Essential meta tags for SEO and functionality

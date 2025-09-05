@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct LogoNavBar: HTML {
-    var body: some HTML {
+    @MainActor var body: some HTML {
         NavigationBar {
             Link("Blog", target: "/blog")
             Link("Apps", target: "/apps")

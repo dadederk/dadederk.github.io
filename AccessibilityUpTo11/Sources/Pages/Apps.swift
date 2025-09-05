@@ -4,7 +4,7 @@ import Ignite
 struct Apps: StaticPage {
     var title = "Apps"
     
-    var body: some HTML {
+    @MainActor var body: some HTML {
         VStack {
             // Apps content
             Section {

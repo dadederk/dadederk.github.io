@@ -3,7 +3,7 @@ import Ignite
 
 // Extracted component for author information (name and title)
 struct AuthorInfoPanel: HTML {
-    var body: some HTML {
+    @MainActor var body: some HTML {
         VStack(alignment: .leading) {
             Text("Daniel Devesa Derksen-Staats")
                 .font(.title2)

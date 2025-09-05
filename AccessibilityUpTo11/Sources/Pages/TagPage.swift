@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct MyTagPage: TagPage {
-    var body: some HTML {
+    @MainActor var body: some HTML {
         VStack(alignment: .leading, spacing: 24) {
             // Page header
             Section {
