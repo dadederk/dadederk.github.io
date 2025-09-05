@@ -42,7 +42,7 @@ struct AccessibilityUpTo11Site: Site {
         contentCount: 1000,
         path: "/feed.rss",
         image: FeedConfiguration.FeedImage(
-            url: "https://accessibilityupto11.com/Images/Site/Global/Logo.png",
+            url: "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png",
             width: 144,
             height: 144
         )
