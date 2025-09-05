@@ -21,14 +21,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Swift
-        uses: fwal/setup-swift@v1
-        with:
-          swift-version: "6.0"
+      - name: Install Swift 6.0
+        run: |
+          # Install dependencies
+          sudo apt-get update
+          sudo apt-get install -y wget curl clang libicu-dev
+          
+          # Download Swift 6.0 using the official method
+          wget -q https://download.swift.org/swift-6.0-release/ubuntu2204/swift-6.0-RELEASE/swift-6.0-RELEASE-ubuntu22.04.tar.gz
+          tar xzf swift-6.0-RELEASE-ubuntu22.04.tar.gz
+          echo "$PWD/swift-6.0-RELEASE-ubuntu22.04/usr/bin" >> $GITHUB_PATH
+          
+          # Verify installation
+          export PATH="$PWD/swift-6.0-RELEASE-ubuntu22.04/usr/bin:$PATH"
+          swift --version
 
       - name: Build site
         run: |
           cd AccessibilityUpTo11
+          export PATH="$PWD/../swift-6.0-RELEASE-ubuntu22.04/usr/bin:$PATH"
           swift run AccessibilityUpTo11 build
 
       - name: Setup Pages
