@@ -1,2 +1,0 @@
-# BlogDadederk
-My personal blog.
