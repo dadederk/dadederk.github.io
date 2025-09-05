@@ -75,14 +75,21 @@ struct MainLayout: Layout {
                 }
                 .id("main-content")
                 .padding()
+                .style(.paddingBottom, "80px")
 
                 
-                // Footer - Ignite component, much shorter
-                IgniteFooter()
-                    .position(.stickyBottom)
-                    .style(.backgroundColor, "var(--bs-secondary-bg)")
-                    .border(.gray, edges: .top)
-                    .ignorePageGutters()
+                // Footer - Fixed bottom implementation
+                Section {
+                    Text {
+                        "Created in Swift with "
+                        Link("Ignite", target: "https://github.com/twostraws/Ignite")
+                    }
+                }
+                .position(.fixedBottom)
+                .style(.backgroundColor, "var(--bs-secondary-bg)")
+                .border(.gray, edges: .top)
+                .ignorePageGutters()
+                .class("text-center", "py-3")
             }
             .data("current-page", page.url.path)
         }
