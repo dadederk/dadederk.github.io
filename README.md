@@ -28,15 +28,15 @@ While this is my personal blog, the repository is public to:
 To run this site locally:
 
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/accessibility-up-to-11.git
-   cd accessibility-up-to-11
-   ```
+```bash
+git clone https://github.com/yourusername/accessibility-up-to-11.git
+cd accessibility-up-to-11
+```
 
 2. **Install Ignite CLI:**
 ```bash
-   make
-   make install
+make
+make install
 ```
 
 3. **Build the site:**
@@ -45,7 +45,7 @@ ignite build
 ```
 
 4. **Preview locally:**
-   ```bash
+```bash
 ignite run --preview
 ```
 
