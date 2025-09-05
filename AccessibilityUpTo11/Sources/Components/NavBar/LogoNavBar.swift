@@ -30,6 +30,14 @@ struct LogoNavBar: HTML {
             Span("Accessibility up to 11!")
                 .font(.title1)
                 .fontWeight(.bold)
+                .class("d-none d-lg-block") // Show on large screens (desktop)
+                .attribute("aria-label", "Accessibility up to 11!")
+
+            Span("Accessibility up to 11!")
+                .font(.title6)
+                .fontWeight(.bold)
+                .class("d-lg-none") // Show on small/medium screens (mobile/tablet)
+                .attribute("aria-label", "Accessibility up to 11!")
         }
         .navigationItemAlignment(.trailing)
         .style(.backgroundColor, "var(--bs-navbar-bg)")
