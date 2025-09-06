@@ -1,7 +1,7 @@
 # Accessibility Up to 11
 
 <p align="center">
-    <img src="AccessibilityUpTo11/Assets/Images/Site/Global/LogoShare.png" alt="Accessibility Up to 11 logo" width="200" height="200" />
+    <img src="AccessibilityUpTo11/Assets/Images/Site/Global/LogoShare.png" alt="Accessibility Up to 11 logo" />
 </p>
 
 **Accessibility Up to 11** is my personal blog and website focused on digital accessibility, iOS development, and creating inclusive mobile experiences. The site is built using Swift and the [Ignite](https://github.com/twostraws/Ignite) static site generator framework.
