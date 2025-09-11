@@ -62,6 +62,61 @@ struct MestreApp: StaticPage {
                             }
                         }
                     }
+                    .class("d-none d-md-flex") // Show HStack on medium+ screens
+                    
+                    // Mobile layout - VStack
+                    VStack(alignment: .leading) {
+                        Image(app.imagePath, description: app.imageDescription)
+                            .resizable()
+                            .aspectRatio(.square, contentMode: .fit)
+                            .frame(width: 200, height: 200)
+                            .padding()
+                        
+                        VStack(alignment: .leading) {
+                            Text(app.title)
+                                .font(.title1)
+                                .fontWeight(.bold)
+                            
+                            Text(app.subtitle)
+                                .font(.title2)
+                                .foregroundStyle(.secondary)
+                                .padding(.bottom, 10)
+                            
+                            Text(app.description)
+                                .font(.body)
+                                .padding(.bottom, 10)
+                            
+                            Text(app.nameOrigin)
+                                .font(.body)
+                                .foregroundStyle(.secondary)
+                                .padding(.bottom, 20)
+                            
+                            // Action buttons
+                            HStack {
+                                ForEach(app.actions) { action in
+                                    ActionButton(
+                                        title: action.title,
+                                        target: action.target,
+                                        style: action.style == "primary" ? .primary : .secondary
+                                    )
+                                }
+                            }
+                            .padding(.bottom, 20)
+                            
+                            // Terms, Privacy, and Support links
+                            VStack {
+                                Link("Terms & Conditions", target: "/apps/mestre/terms")
+                                    .class("btn btn-outline-secondary mb-2")
+                                
+                                Link("Privacy Policy", target: "/apps/mestre/privacy")
+                                    .class("btn btn-outline-secondary mb-2")
+                                
+                                Link("Support & Contact", target: "#support-contact")
+                                    .class("btn btn-outline-secondary")
+                            }
+                        }
+                    }
+                    .class("d-md-none") // Show VStack on small screens only
                 }
                 .padding(.vertical)
                 
@@ -142,7 +197,6 @@ struct MestreApp: StaticPage {
                     Text("Support & Contact")
                         .font(.title2)
                         .fontWeight(.bold)
-                        .horizontalAlignment(.leading)
                         .padding(.bottom)
                     
                     Text("Need help or have questions about \(app.title)? We're here to assist you.")
