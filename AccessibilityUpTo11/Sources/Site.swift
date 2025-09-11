@@ -69,7 +69,17 @@ struct AccessibilityUpTo11Site: Site {
             Blog(),
             About(),
             Apps(),
-            MoreContent()
+            MoreContent(),
+            // App pages
+            MestreApp(),
+            XarraApp(),
+            // Terms pages
+            MestreTerms(),
+            XarraTerms(),
+            // Privacy pages
+            MestrePrivacy(),
+            XarraPrivacy()
         ]
     }
+    
 }

@@ -23,7 +23,7 @@ struct AppCard: HTML {
                             .padding()
                         
                         VStack(alignment: .leading) {
-                            Text(title)
+                            Link(title, target: "/apps/\(title.lowercased().replacingOccurrences(of: " ", with: "-"))")
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .horizontalAlignment(.leading)

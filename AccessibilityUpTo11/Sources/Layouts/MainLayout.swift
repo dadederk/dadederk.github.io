@@ -75,7 +75,7 @@ struct MainLayout: Layout {
                 }
                 .id("main-content")
                 .padding()
-                .style(.paddingBottom, "60px")
+                .style(.paddingBottom, "80px")
 
                 
                 // Footer - Fixed bottom implementation
@@ -89,7 +89,7 @@ struct MainLayout: Layout {
                 .style(.backgroundColor, "var(--bs-secondary-bg)")
                 .border(.gray, edges: .top)
                 .ignorePageGutters()
-                .class("text-center", "py-2")
+                .class("text-center", "py-3")
             }
             .data("current-page", page.url.path)
         }
