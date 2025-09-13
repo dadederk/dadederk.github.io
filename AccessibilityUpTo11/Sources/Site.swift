@@ -70,15 +70,13 @@ struct AccessibilityUpTo11Site: Site {
             About(),
             Apps(),
             MoreContent(),
-            // App pages
-            MestreApp(),
-            XarraApp(),
-            // Terms pages
-            MestreTerms(),
-            XarraTerms(),
-            // Privacy pages
-            MestrePrivacy(),
-            XarraPrivacy()
+            // App pages using UniversalAppPage template
+            UniversalAppPage(appIdentifier: "mestre", pageType: .main),
+            UniversalAppPage(appIdentifier: "mestre", pageType: .terms),
+            UniversalAppPage(appIdentifier: "mestre", pageType: .privacy),
+            UniversalAppPage(appIdentifier: "xarra", pageType: .main),
+            UniversalAppPage(appIdentifier: "xarra", pageType: .terms),
+            UniversalAppPage(appIdentifier: "xarra", pageType: .privacy)
         ]
     }
     
