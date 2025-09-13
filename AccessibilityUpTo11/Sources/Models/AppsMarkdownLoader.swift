@@ -26,6 +26,19 @@ struct AppsMarkdownLoader {
                 return ActionItem(title: title, target: target, style: style)
             }
             
+            let features = (contentData.features ?? []).compactMap { featureDict -> FeatureItem? in
+                guard let title = featureDict["title"],
+                      let description = featureDict["description"] else {
+                    return nil
+                }
+                return FeatureItem(
+                    title: title,
+                    description: description,
+                    imagePath: featureDict["imagePath"],
+                    imageDescription: featureDict["imageDescription"]
+                )
+            }
+            
             return AppItem(
                 title: contentData.title,
                 subtitle: contentData.subtitle ?? "",
@@ -33,7 +46,10 @@ struct AppsMarkdownLoader {
                 nameOrigin: contentData.nameOrigin ?? "",
                 imagePath: contentData.imagePath ?? "",
                 imageDescription: contentData.imageDescription ?? "",
-                actions: actions
+                actions: actions,
+                features: features,
+                supportText: contentData.supportText ?? "Need help or have questions about \(contentData.title)? We're here to help!",
+                contactEmail: contentData.contactEmail ?? "dadederk@icloud.com"
             )
         }
     }
@@ -81,9 +97,9 @@ struct AppsMarkdownLoader {
                 let key = String(trimmedLine[..<colonIndex]).trimmingCharacters(in: .whitespaces)
                 let value = String(trimmedLine[trimmedLine.index(after: colonIndex)...]).trimmingCharacters(in: .whitespaces)
                 
-                if key == "actions" {
-                    // Parse actions array
-                    continue // We'll handle this separately
+                if key == "actions" || key == "features" {
+                    // Parse arrays separately
+                    continue
                 } else if value.starts(with: "\"") && value.hasSuffix("\"") {
                     metadata[key] = String(value.dropFirst().dropLast())
                 } else if value == "" || value == "\"\"" {
@@ -94,8 +110,9 @@ struct AppsMarkdownLoader {
             }
         }
         
-        // Parse actions separately
-        let actionsSection = extractActionsFromFrontmatter(frontmatter)
+        // Parse actions and features separately
+        let actionsSection = extractArrayFromFrontmatter(frontmatter, key: "actions")
+        let featuresSection = extractArrayFromFrontmatter(frontmatter, key: "features")
         
         return AppsData.AppContentItem(
             title: metadata["title"] as? String ?? "",
@@ -105,59 +122,62 @@ struct AppsMarkdownLoader {
             imagePath: metadata["imagePath"] as? String,
             imageDescription: metadata["imageDescription"] as? String,
             actions: actionsSection,
+            features: featuresSection,
+            supportText: metadata["supportText"] as? String,
+            contactEmail: metadata["contactEmail"] as? String,
             date: Date() // Default date for now
         )
     }
     
-    private static func extractActionsFromFrontmatter(_ frontmatter: String) -> [[String: String]]? {
+    private static func extractArrayFromFrontmatter(_ frontmatter: String, key: String) -> [[String: String]]? {
         let lines = frontmatter.components(separatedBy: .newlines)
-        var actions: [[String: String]] = []
-        var isInActions = false
-        var currentAction: [String: String] = [:]
+        var items: [[String: String]] = []
+        var isInArray = false
+        var currentItem: [String: String] = [:]
         
         for line in lines {
             let trimmedLine = line.trimmingCharacters(in: .whitespaces)
             
-            if trimmedLine == "actions:" {
-                isInActions = true
+            if trimmedLine == "\(key):" {
+                isInArray = true
                 continue
             }
             
-            if isInActions {
+            if isInArray {
                 if trimmedLine.starts(with: "- ") {
-                    // Save previous action if it exists
-                    if !currentAction.isEmpty {
-                        actions.append(currentAction)
-                        currentAction = [:]
+                    // Save previous item if it exists
+                    if !currentItem.isEmpty {
+                        items.append(currentItem)
+                        currentItem = [:]
                     }
                     
-                    // Parse the first property of the new action
-                    let actionLine = String(trimmedLine.dropFirst(2))
-                    if let colonIndex = actionLine.firstIndex(of: ":") {
-                        let key = String(actionLine[..<colonIndex]).trimmingCharacters(in: .whitespaces)
-                        let value = String(actionLine[actionLine.index(after: colonIndex)...]).trimmingCharacters(in: .whitespaces)
-                        currentAction[key] = value
+                    // Parse the first property of the new item
+                    let itemLine = String(trimmedLine.dropFirst(2))
+                    if let colonIndex = itemLine.firstIndex(of: ":") {
+                        let itemKey = String(itemLine[..<colonIndex]).trimmingCharacters(in: .whitespaces)
+                        let itemValue = String(itemLine[itemLine.index(after: colonIndex)...]).trimmingCharacters(in: .whitespaces)
+                        currentItem[itemKey] = itemValue
                     }
                 } else if trimmedLine.contains(":") && !trimmedLine.isEmpty {
-                    // Continue parsing action properties
+                    // Continue parsing item properties
                     if let colonIndex = trimmedLine.firstIndex(of: ":") {
-                        let key = String(trimmedLine[..<colonIndex]).trimmingCharacters(in: .whitespaces)
-                        let value = String(trimmedLine[trimmedLine.index(after: colonIndex)...]).trimmingCharacters(in: .whitespaces)
-                        currentAction[key] = value
+                        let itemKey = String(trimmedLine[..<colonIndex]).trimmingCharacters(in: .whitespaces)
+                        let itemValue = String(trimmedLine[trimmedLine.index(after: colonIndex)...]).trimmingCharacters(in: .whitespaces)
+                        currentItem[itemKey] = itemValue
                     }
                 } else if trimmedLine.isEmpty || (!trimmedLine.starts(with: " ") && trimmedLine.contains(":")) {
-                    // End of actions section
+                    // End of array section
                     break
                 }
             }
         }
         
-        // Add the last action
-        if !currentAction.isEmpty {
-            actions.append(currentAction)
+        // Add the last item
+        if !currentItem.isEmpty {
+            items.append(currentItem)
         }
         
-        return actions.isEmpty ? nil : actions
+        return items.isEmpty ? nil : items
     }
     
     private static func getAppsURL() -> URL? {

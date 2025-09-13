@@ -19,6 +19,9 @@ struct AppsData {
         let imagePath: String?
         let imageDescription: String?
         let actions: [[String: String]]?
+        let features: [[String: String]]?
+        let supportText: String?
+        let contactEmail: String?
         let date: Date
     }
 }
@@ -32,4 +35,15 @@ struct AppItem: Identifiable {
     let imagePath: String
     let imageDescription: String
     let actions: [ActionItem]
+    let features: [FeatureItem]
+    let supportText: String
+    let contactEmail: String
+}
+
+struct FeatureItem: Identifiable {
+    let id = UUID()
+    let title: String
+    let description: String
+    let imagePath: String?
+    let imageDescription: String?
 }
