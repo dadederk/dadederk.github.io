@@ -1,5 +1,4 @@
 import Foundation
-import SwiftUI
 import Ignite
 
 // Generic AppPage template that can be reused for any app

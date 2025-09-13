@@ -1,5 +1,4 @@
 import Foundation
-import SwiftUI
 import Ignite
 
 // XarraApp now uses the generic AppPage template

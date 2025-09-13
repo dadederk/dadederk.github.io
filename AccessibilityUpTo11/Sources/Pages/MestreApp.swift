@@ -1,5 +1,4 @@
 import Foundation
-import SwiftUI
 import Ignite
 
 // MestreApp now uses the generic AppPage template
