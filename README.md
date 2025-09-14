@@ -1,5 +1,7 @@
 # Accessibility Up to 11
 
+[![Swift for Swifts](https://img.shields.io/badge/SWIFT-FOR%20SWIFTS-F6AF41?style=flat&labelColor=476B64&logo=swift&logoColor=F6AF41)](https://swiftforswifts.org)
+
 <p align="center">
     <img src="AccessibilityUpTo11/Assets/Images/Site/Global/LogoShare.png" alt="Accessibility Up to 11 logo" />
 </p>

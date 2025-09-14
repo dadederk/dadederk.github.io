@@ -80,10 +80,25 @@ struct MainLayout: Layout {
                 
                 // Footer - Fixed bottom implementation
                 Section {
-                    Text {
-                        "Created in Swift with "
-                        Link("Ignite", target: "https://github.com/twostraws/Ignite")
+                    HStack(alignment: .center) {
+                        Text {
+                            "Created in Swift with "
+                            Link("Ignite.", target: "https://github.com/twostraws/Ignite")
+                        }
+                        
+                        Link(target: "https://swiftforswifts.org") {
+                            Image("/Images/Site/Global/swift-for-swifts-small.png", description: "Swift for Swifts logo")
+                                .style(.maxWidth, "40px")
+                                .style(.maxHeight, "40px")
+                                .style(.width, "40px")
+                                .style(.height, "40px")
+                                .style(.objectFit, "contain")
+                                .style(.aspectRatio, "1 / 1")
+                        }
+                        
+                        Link("Supporting Swift for Swifts", target: "https://swiftforswifts.org")
                     }
+                    .style(.justifyContent, "center")
                 }
                 .position(.fixedBottom)
                 .style(.backgroundColor, "var(--bs-secondary-bg)")
