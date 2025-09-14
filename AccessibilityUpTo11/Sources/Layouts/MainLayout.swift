@@ -90,6 +90,8 @@ struct MainLayout: Layout {
                             Image(decorative: "https://swiftforswifts.org/downloads/swift-for-swifts-icon.png")
                                 .resizable()
                                 .frame(height: .em(2.0))
+                                .style(.objectFit, "contain")
+                                .style(.aspectRatio, "1 / 1")
                         }
                         
                         Link("Supporting Swift for Swifts", target: "https://swiftforswifts.org/")
