@@ -87,16 +87,14 @@ struct MainLayout: Layout {
                         }
                         
                         Link(target: "https://swiftforswifts.org") {
-                            Image("/Images/Site/Global/swift-for-swifts-small.png", description: "Swift for Swifts logo")
-                                .style(.maxWidth, "40px")
-                                .style(.maxHeight, "40px")
-                                .style(.width, "40px")
-                                .style(.height, "40px")
-                                .style(.objectFit, "contain")
-                                .style(.aspectRatio, "1 / 1")
+                            Image(decorative: "https://swiftforswifts.org/downloads/swift-for-swifts-icon.png")
+                                .resizable()
+                                .frame(height: .em(2.0))
                         }
                         
-                        Link("Supporting Swift for Swifts", target: "https://swiftforswifts.org")
+                        Link("Supporting Swift for Swifts", target: "https://swiftforswifts.org/")
+                            .target(.newWindow)
+                            .relationship(.noOpener)
                     }
                     .style(.justifyContent, "center")
                 }
