@@ -56,6 +56,11 @@ struct MarkdownRenderer: HTML {
                     .font(.title4)
                     .fontWeight(.bold)
                     .padding(.vertical, 4))
+            } else if trimmedLine.hasPrefix("![") {
+                // Image syntax: ![alt text](image_url)
+                if let imageElement = parseImageMarkdown(trimmedLine) {
+                    elements.append(imageElement)
+                }
             } else if trimmedLine.hasPrefix("- ") {
                 // Bullet point
                 let text = String(trimmedLine.dropFirst(2))
@@ -72,6 +77,36 @@ struct MarkdownRenderer: HTML {
         }
         
         return elements
+    }
+    
+    private func parseImageMarkdown(_ text: String) -> (any HTML)? {
+        // Parse image syntax: ![alt text](image_url)
+        let pattern = #"!\[([^\]]*)\]\(([^)]+)\)"#
+        
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []),
+              let match = regex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.count)) else {
+            return nil
+        }
+        
+        let altTextRange = Range(match.range(at: 1), in: text)
+        let imageURLRange = Range(match.range(at: 2), in: text)
+        
+        guard let altTextRange = altTextRange,
+              let imageURLRange = imageURLRange else {
+            return nil
+        }
+        
+        let altText = String(text[altTextRange])
+        let imageURL = String(text[imageURLRange])
+        
+        return Section {
+            Image(imageURL, description: altText.isEmpty ? "Image" : altText)
+                .resizable()
+                .frame(maxWidth: 600)
+                .cornerRadius(8)
+        }
+        .horizontalAlignment(.center)
+        .padding(.vertical, 12)
     }
     
     private func parseInlineMarkdown(_ text: String) -> String {

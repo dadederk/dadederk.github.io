@@ -5,6 +5,7 @@ struct LogoNavBar: HTML {
     @MainActor var body: some HTML {
         NavigationBar {
             Link("Blog", target: "/blog")
+            Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
             Link("Apps", target: "/apps")
             Dropdown("More Content") {
                 Link("Publications", target: "/more-content#publications")
