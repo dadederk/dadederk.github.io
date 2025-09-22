@@ -112,6 +112,9 @@ struct MarkdownRenderer: HTML {
     private func parseInlineMarkdown(_ text: String) -> String {
         var result = text
         
+        // Parse hashtags #tag (must be done before other parsing to avoid conflicts)
+        result = parseHashtags(result)
+        
         // Parse bold text **text** or __text__
         result = result.replacingOccurrences(of: #"\*\*(.*?)\*\*"#, with: "<strong>$1</strong>", options: .regularExpression)
         result = result.replacingOccurrences(of: #"__(.*?)__"#, with: "<strong>$1</strong>", options: .regularExpression)
@@ -122,6 +125,36 @@ struct MarkdownRenderer: HTML {
         
         // Parse links [text](url)
         result = result.replacingOccurrences(of: #"\[([^\]]+)\]\(([^)]+)\)"#, with: "<a href=\"$2\">$1</a>", options: .regularExpression)
+        
+        return result
+    }
+    
+    /// Parse hashtags in text and convert them to clickable links
+    private func parseHashtags(_ text: String) -> String {
+        // Pattern to match hashtags: # followed by word characters, hyphens, or underscores
+        // Simple pattern that works reliably
+        let hashtagPattern = #"#([a-zA-Z0-9_-]+)"#
+        
+        guard let regex = try? NSRegularExpression(pattern: hashtagPattern, options: []) else {
+            return text
+        }
+        
+        let range = NSRange(location: 0, length: text.count)
+        let matches = regex.matches(in: text, options: [], range: range)
+        
+        var result = text
+        // Process matches in reverse order to avoid index shifting
+        for match in matches.reversed() {
+            if let hashtagRange = Range(match.range(at: 1), in: text) {
+                let hashtag = String(text[hashtagRange])
+                let tagPath = "/365-days-ios-accessibility/tag/\(hashtag.lowercased().replacingOccurrences(of: " ", with: "-"))"
+                let linkHTML = "<a href=\"\(tagPath)\" class=\"hashtag-link\">#\(hashtag)</a>"
+                
+                if let fullRange = Range(match.range, in: text) {
+                    result.replaceSubrange(fullRange, with: linkHTML)
+                }
+            }
+        }
         
         return result
     }

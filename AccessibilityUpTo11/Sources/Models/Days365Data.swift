@@ -217,17 +217,51 @@ struct Days365Loader {
         return String(trimmed[..<index]) + "..."
     }
     
-    /// Get posts by tag
+    /// Get posts by tag (searches both frontmatter tags and content hashtags)
     static func posts(withTag tag: String) -> [Days365Data] {
         return loadPosts().filter { post in
-            post.tags.contains { $0.lowercased() == tag.lowercased() }
+            // Check frontmatter tags
+            let hasFrontmatterTag = post.tags.contains { $0.lowercased() == tag.lowercased() }
+            
+            // Check content hashtags
+            let contentHashtags = extractHashtags(from: post.content)
+            let hasContentHashtag = contentHashtags.contains { $0.lowercased() == tag.lowercased() }
+            
+            return hasFrontmatterTag || hasContentHashtag
         }
     }
     
-    /// Get all unique tags
+    /// Get all unique tags (from frontmatter and content hashtags)
     static func allTags() -> [String] {
-        let allTags = loadPosts().flatMap { $0.tags }
+        let allPosts = loadPosts()
+        var allTags: [String] = []
+        
+        // Add frontmatter tags
+        allTags.append(contentsOf: allPosts.flatMap { $0.tags })
+        
+        // Add content hashtags
+        allTags.append(contentsOf: allPosts.flatMap { extractHashtags(from: $0.content) })
+        
         return Array(Set(allTags)).sorted()
+    }
+    
+    /// Extract hashtags from markdown content
+    static func extractHashtags(from content: String) -> [String] {
+        let hashtagPattern = #"#([a-zA-Z0-9_-]+)"#
+        
+        guard let regex = try? NSRegularExpression(pattern: hashtagPattern, options: []) else {
+            return []
+        }
+        
+        let range = NSRange(location: 0, length: content.count)
+        let matches = regex.matches(in: content, options: [], range: range)
+        
+        return matches.compactMap { match in
+            if let hashtagRange = Range(match.range(at: 1), in: content) {
+                return String(content[hashtagRange])
+            }
+            return nil
+        }
     }
     
     /// Find post by filename (without extension)
