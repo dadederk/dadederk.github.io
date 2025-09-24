@@ -11,6 +11,14 @@ struct Days365StaticPages {
         // Load all posts
         let allPosts = Days365Loader.loadPosts()
         
+        // Generate paginated main pages
+        let postsPerPage = 15
+        let totalPages = (allPosts.count + postsPerPage - 1) / postsPerPage
+        
+        for pageNumber in 1...totalPages {
+            pages.append(Days365Page(pageNumber: pageNumber))
+        }
+        
         // Generate individual post pages
         for post in allPosts {
             pages.append(Days365PostPage(post: post))

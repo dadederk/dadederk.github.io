@@ -21,12 +21,22 @@ struct Days365Data: Identifiable {
         "/365-days-ios-accessibility/\(fileName.replacingOccurrences(of: ".md", with: ""))"
     }
     
-    /// Generate tag links for the post
+    /// Generate tag links for the post (matching Article.tagLinks() behavior)
     @MainActor func tagLinks() -> [any InlineElement] {
         return tags.map { tag in
             Link(tag, target: "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))")
-                .class("badge", "bg-primary", "text-white", "rounded-pill", "me-2")
+                // No custom styling - let the built-in Article styling handle it
         }
+    }
+
+    /// Absolute path for a given tag on the 365 Days section.
+    func path(forTag tag: String) -> String {
+        let slug = tag
+            .lowercased()
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: " ", with: "-")
+            .replacingOccurrences(of: "#", with: "")
+        return "/365-days-ios-accessibility/tag/\(slug)"
     }
 }
 
@@ -271,3 +281,5 @@ struct Days365Loader {
         }
     }
 }
+
+

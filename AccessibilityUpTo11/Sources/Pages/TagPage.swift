@@ -16,13 +16,13 @@ struct MyTagPage: TagPage {
             // Articles with this tag
             Section {
                 if !tag.articles.isEmpty {
-                    VStack(alignment: .leading, spacing: 12) {
+                    Grid(alignment: .topLeading) {
                         ForEach(tag.articles) { article in
                             ArticlePreview(for: article)
-                                .articlePreviewStyle(BlogArticlePreviewStyle())
+                                .articlePreviewStyle(HomeArticlePreviewStyle())
+                                .width(4)
                         }
                     }
-                    .horizontalAlignment(.leading)
                 } else {
                     Text("No blog posts found with the tag \"\(tag.name)\".")
                         .font(.body)

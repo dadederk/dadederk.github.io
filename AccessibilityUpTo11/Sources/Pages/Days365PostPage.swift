@@ -8,7 +8,7 @@ struct Days365PostPage: StaticPage {
     var path: String { post.path }
     
     @MainActor var body: some HTML {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack {
             // SEO meta tags and structured data using Script element
             Script(code: """
                 // Remove global meta tags that should be overridden for 365 days posts
@@ -28,7 +28,7 @@ struct Days365PostPage: StaticPage {
                     { property: 'og:description', content: '\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))' },
                     { property: 'og:type', content: 'article' },
                     { property: 'og:url', content: 'https://accessibilityupto11.com\(post.path)' },
-                    { property: 'og:image', content: '\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
+                    { property: 'og:image', content: '\(post.image ?? "/Images/Site/Global/LogoShare.png")' },
                     { property: 'og:image:alt', content: '\(post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")' },
                     { property: 'article:author', content: '\(post.author)' },
                     { property: 'article:published_time', content: '\(post.date.ISO8601Format())' },
@@ -36,7 +36,7 @@ struct Days365PostPage: StaticPage {
                     { property: 'article:tag', content: '\(post.tags.joined(separator: ","))' },
                     { name: 'twitter:title', content: '\(post.title.replacingOccurrences(of: "\"", with: "\\\""))' },
                     { name: 'twitter:description', content: '\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))' },
-                    { name: 'twitter:image', content: '\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
+                    { name: 'twitter:image', content: '\(post.image ?? "/Images/Site/Global/LogoShare.png")' },
                     { name: 'twitter:image:alt', content: '\(post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")' }
                 ];
                 
@@ -79,7 +79,7 @@ struct Days365PostPage: StaticPage {
                     "url": "https://accessibilityupto11.com\(post.path)",
                     "articleSection": "#365DaysIOSAccessibility",
                     "keywords": "\(post.tags.joined(separator: ", "))",
-                    "image": "\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")"
+                    "image": "\(post.image ?? "/Images/Site/Global/LogoShare.png")"
                 };
                 
                 const script = document.createElement('script');
@@ -90,79 +90,72 @@ struct Days365PostPage: StaticPage {
             
             // Breadcrumb navigation
             Section {
-                HStack {
-                    Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
-                        .foregroundStyle(.primary)
-                    
-                    Text(" / ")
-                        .foregroundStyle(.secondary)
-                    
-                    Text(post.title)
-                        .foregroundStyle(.secondary)
-                }
-                .font(.body)
+                Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
+                    .foregroundStyle(.primary)
+                    .font(.body)
+                    .horizontalAlignment(.leading)
             }
-            .padding(.bottom)
+            .horizontalAlignment(.leading)
             
-            // Article header
+            // Article header with title and metadata
             Section {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 12) {
+                    // Title
                     Text(post.title)
                         .font(.title1)
                         .fontWeight(.bold)
+                        .horizontalAlignment(.leading)
                     
-                    HStack {
-                        if !post.author.isEmpty {
-                            Text("By \(post.author)")
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                                .fontWeight(.medium)
-                        }
-                        
-                        Spacer()
-                        
-                        Text(post.date.formatted(date: .abbreviated, time: .omitted))
-                            .font(.body)
-                            .foregroundStyle(.secondary)
-                            .fontWeight(.medium)
-                    }
+                    // Date
+                    Text(post.date.formatted(date: .abbreviated, time: .omitted))
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .horizontalAlignment(.leading)
                     
-                }
-            }
-            .padding(.bottom)
-            
-            // Article content
-            Section {
-                // Convert markdown content to HTML
-                MarkdownRenderer(content: post.content)
-            }
-            .padding(.bottom)
-            
-            // Tags section
-            if !post.tags.isEmpty {
-                Section {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Tags")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        HStack {
+                    // Tags (clickable)
+                    if !post.tags.isEmpty {
+                        HStack(spacing: 8) {
                             ForEach(post.tags) { tag in
                                 Link(tag, target: "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))")
                                     .class("badge", "bg-primary", "text-white", "rounded-pill", "me-2")
                             }
                         }
                         .class("flex-wrap")
+                        .horizontalAlignment(.leading)
+                    }
+                    
+                    // Article metadata
+                    if !post.author.isEmpty {
+                        HStack {
+                            Text("By ")
+                                .font(.body)
+                                .foregroundStyle(.secondary)
+                            
+                            Link(post.author, target: "/about")
+                                .font(.body)
+                                .foregroundStyle(.primary)
+                        }
+                        .horizontalAlignment(.leading)
                     }
                 }
-                .padding(.top)
-                .border(.gray, edges: .top)
+                .horizontalAlignment(.leading)
+            }
+            .padding(.vertical, 24)
+            
+            // Article content
+            Section {
+                MarkdownRenderer(content: post.content)
+                    .horizontalAlignment(.leading)
+                    .padding(.horizontal)
             }
             
             // Navigation to other posts
             Section {
                 let allPosts = Days365Loader.loadPosts()
                 let currentIndex = allPosts.firstIndex(where: { $0.fileName == post.fileName }) ?? 0
+                
+                Divider()
+                    .padding(.top)
                 
                 HStack {
                     // Previous post (newer)
@@ -184,9 +177,8 @@ struct Days365PostPage: StaticPage {
                     }
                 }
             }
-            .padding(.top)
-            .border(.gray, edges: .top)
+            .padding(.bottom)
         }
-        .padding(.horizontal)
+        .horizontalAlignment(.leading)
     }
 }

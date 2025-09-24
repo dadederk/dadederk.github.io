@@ -17,6 +17,15 @@ struct MarkdownContentLoader {
         )
     }
     
+    static func loadAllContentItems() -> [MoreContentData.ContentItem] {
+        guard let contentURL = getContentURL() else { return [] }
+        let publications = loadContent(from: contentURL, type: "publication")
+        let talks = loadContent(from: contentURL, type: "talk")
+        let podcasts = loadContent(from: contentURL, type: "podcast")
+        
+        return (publications + talks + podcasts).sorted { $0.date > $1.date }
+    }
+    
     private static func loadPublications() -> [PublicationItem] {
         guard let contentURL = getContentURL() else { return [] }
         return loadContent(from: contentURL, type: "publication").compactMap { contentData -> PublicationItem? in
@@ -160,6 +169,11 @@ struct MarkdownContentLoader {
         
         guard let type = metadata["type"] as? String, type == expectedType else { return nil }
         
+        // Parse date
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate]
+        let date = (metadata["date"] as? String).flatMap { dateFormatter.date(from: $0) } ?? Date()
+        
         return MoreContentData.ContentItem(
             title: metadata["title"] as? String ?? "",
             subtitle: metadata["subtitle"] as? String,
@@ -168,7 +182,7 @@ struct MarkdownContentLoader {
             imagePath: metadata["imagePath"] as? String,
             imageDescription: metadata["imageDescription"] as? String,
             actions: actionsSection,
-            date: Date() // Default date for now
+            date: date
         )
     }
     

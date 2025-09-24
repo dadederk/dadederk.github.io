@@ -318,3 +318,21 @@ header nav.navbar {
     background-color: rgba(250, 235, 215, 0.2) !important;
     color: #FAEBD7 !important;
 }
+
+/* Responsive improvements for 365 Days pages */
+/* Responsive image handling in markdown content */
+.markdown-content img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Ensure tags wrap properly on all screen sizes */
+.flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+/* Make sure badges have proper spacing when wrapped */
+.badge {
+    margin-bottom: 0.25rem !important;
+}
+

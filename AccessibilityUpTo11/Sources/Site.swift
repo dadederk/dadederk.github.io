@@ -165,7 +165,7 @@ struct AccessibilityUpTo11Site: Site {
     var staticPages: [any StaticPage] {
         var pages: [any StaticPage] = [
             Blog(),
-            Days365(),
+            // Days365(), // Removed - now handled by Days365StaticPages.generateAllPages()
             About(),
             Apps(),
             MoreContent(),

@@ -11,7 +11,7 @@ actions:
   - title: Apple Podcasts
     target: https://podcasts.apple.com/gb/podcast/s4e7-progress-over-perfection/id1435076502
     style: primary
-date: 2023-05-01
+date: 2025-05-01
 ---
 
 To celebrate Global Accessibility Awareness Day, Mikaela and Paul recorded a special episode live at ARCtic Conference in Oulu, Finland, with a distinguished panel of accessibility champions: Rob Whitaker, Daniel Devesa Derksen-Staats and Klemens Strasser.

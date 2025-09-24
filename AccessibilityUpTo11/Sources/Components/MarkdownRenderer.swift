@@ -13,9 +13,6 @@ struct MarkdownRenderer: HTML {
         }
         .horizontalAlignment(.leading)
         .class("markdown-content")
-        .style(.maxWidth, "800px")
-        .style(.margin, "0 auto")
-        .style(.padding, "20px")
     }
     
     private func parseMarkdown(_ content: String) -> [any HTML] {
@@ -102,7 +99,6 @@ struct MarkdownRenderer: HTML {
         return Section {
             Image(imageURL, description: altText.isEmpty ? "Image" : altText)
                 .resizable()
-                .frame(maxWidth: 600)
                 .cornerRadius(8)
         }
         .horizontalAlignment(.center)
