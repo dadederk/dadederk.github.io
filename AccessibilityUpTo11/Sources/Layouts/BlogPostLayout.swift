@@ -133,8 +133,8 @@ struct BlogPostLayout: ArticlePage {
             Section {
                 Text(article.text)
                     .horizontalAlignment(.leading)
+                    .padding(.horizontal)
             }
-            .padding(.horizontal)
             
             // Article footer
             Section {
