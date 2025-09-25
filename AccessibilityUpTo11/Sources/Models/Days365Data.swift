@@ -121,9 +121,33 @@ struct Days365Loader {
             case "author":
                 author = value
             case "date":
-                let formatter = ISO8601DateFormatter()
-                formatter.formatOptions = [.withInternetDateTime]
-                date = formatter.date(from: value) ?? Date()
+                // Try multiple date formats to handle different input formats
+                var parsedDate: Date?
+                
+                // Try ISO8601 format first
+                let iso8601Formatter = ISO8601DateFormatter()
+                iso8601Formatter.formatOptions = [.withInternetDateTime]
+                if let parsed = iso8601Formatter.date(from: value) {
+                    parsedDate = parsed
+                } else {
+                    // Try custom format: YYYY-MM-DD HH:MM
+                    let customFormatter = DateFormatter()
+                    customFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    customFormatter.timeZone = TimeZone(identifier: "UTC")
+                    if let parsed = customFormatter.date(from: value) {
+                        parsedDate = parsed
+                    } else {
+                        // Try format: YYYY-MM-DD
+                        let dateOnlyFormatter = DateFormatter()
+                        dateOnlyFormatter.dateFormat = "yyyy-MM-dd"
+                        dateOnlyFormatter.timeZone = TimeZone(identifier: "UTC")
+                        if let parsed = dateOnlyFormatter.date(from: value) {
+                            parsedDate = parsed
+                        }
+                    }
+                }
+                
+                date = parsedDate ?? Date()
             case "tags":
                 tags = Self.parseArrayValue(value)
             case "categories":

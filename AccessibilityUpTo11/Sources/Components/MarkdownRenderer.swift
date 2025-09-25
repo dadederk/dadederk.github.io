@@ -18,13 +18,40 @@ struct MarkdownRenderer: HTML {
     private func parseMarkdown(_ content: String) -> [any HTML] {
         let lines = content.components(separatedBy: .newlines)
         var elements: [any HTML] = []
+        var i = 0
         
-        for line in lines {
+        while i < lines.count {
+            let line = lines[i]
             let trimmedLine = line.trimmingCharacters(in: .whitespaces)
             
             if trimmedLine.isEmpty {
                 // Empty line - add spacing
                 elements.append(Text("").style(.height, "16px"))
+                i += 1
+            } else if trimmedLine.hasPrefix("```") {
+                // Code block - collect all lines until closing ```
+                let language = String(trimmedLine.dropFirst(3)).trimmingCharacters(in: .whitespaces)
+                var codeLines: [String] = []
+                i += 1
+                
+                // Collect code lines until we find closing ```
+                while i < lines.count {
+                    let codeLine = lines[i]
+                    if codeLine.trimmingCharacters(in: .whitespaces).hasPrefix("```") {
+                        break
+                    }
+                    codeLines.append(codeLine)
+                    i += 1
+                }
+                
+                // Create code block element
+                let codeContent = codeLines.joined(separator: "\n")
+                let highlighterLanguage: HighlighterLanguage? = language.isEmpty ? nil : HighlighterLanguage(rawValue: language)
+                elements.append(CodeBlock(highlighterLanguage) {
+                    codeContent
+                }
+                .padding(.vertical, 12))
+                i += 1
             } else if trimmedLine.hasPrefix("# ") {
                 // H1 heading
                 let text = String(trimmedLine.dropFirst(2))
@@ -32,6 +59,7 @@ struct MarkdownRenderer: HTML {
                     .font(.title1)
                     .fontWeight(.bold)
                     .padding(.vertical, 8))
+                i += 1
             } else if trimmedLine.hasPrefix("## ") {
                 // H2 heading
                 let text = String(trimmedLine.dropFirst(3))
@@ -39,6 +67,7 @@ struct MarkdownRenderer: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.vertical, 6))
+                i += 1
             } else if trimmedLine.hasPrefix("### ") {
                 // H3 heading
                 let text = String(trimmedLine.dropFirst(4))
@@ -46,6 +75,7 @@ struct MarkdownRenderer: HTML {
                     .font(.title3)
                     .fontWeight(.bold)
                     .padding(.vertical, 4))
+                i += 1
             } else if trimmedLine.hasPrefix("#### ") {
                 // H4 heading
                 let text = String(trimmedLine.dropFirst(5))
@@ -53,11 +83,13 @@ struct MarkdownRenderer: HTML {
                     .font(.title4)
                     .fontWeight(.bold)
                     .padding(.vertical, 4))
+                i += 1
             } else if trimmedLine.hasPrefix("![") {
                 // Image syntax: ![alt text](image_url)
                 if let imageElement = parseImageMarkdown(trimmedLine) {
                     elements.append(imageElement)
                 }
+                i += 1
             } else if trimmedLine.hasPrefix("- ") {
                 // Bullet point
                 let text = String(trimmedLine.dropFirst(2))
@@ -65,11 +97,13 @@ struct MarkdownRenderer: HTML {
                     .font(.body)
                     .padding(.leading, 20)
                     .padding(.vertical, 2))
+                i += 1
             } else {
                 // Regular paragraph
                 elements.append(Text(parseInlineMarkdown(trimmedLine))
                     .font(.body)
                     .padding(.vertical, 4))
+                i += 1
             }
         }
         

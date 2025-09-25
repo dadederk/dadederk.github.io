@@ -1,0 +1,2 @@
+# This file ensures the Resources directory is not empty
+# Ignite expects this directory to exist for asset management
