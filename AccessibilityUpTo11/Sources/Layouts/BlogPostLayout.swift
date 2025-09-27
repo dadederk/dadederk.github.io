@@ -137,6 +137,11 @@ struct BlogPostLayout: ArticlePage {
                     .padding(.horizontal)
             }
             
+            // Related articles section
+            @Environment(\.articles) var articles
+            let relatedArticles = Article.relatedArticles(for: article, from: articles.all)
+            RelatedArticlesSection(relatedArticles: relatedArticles)
+            
             // Article footer
             Section {
                 Divider()

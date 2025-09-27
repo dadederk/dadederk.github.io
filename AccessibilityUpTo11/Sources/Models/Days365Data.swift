@@ -311,13 +311,21 @@ struct Days365Loader {
         var relatedPosts: [Days365Data] = []
         var usedPostIds = Set([currentPostId])
         
-        // First, try to get posts from specific tags
+        // First, try to get posts from specific tags (prioritizing those with images)
         if !specificTags.isEmpty {
             for tag in specificTags {
                 if relatedPosts.count >= limit { break }
                 
                 let postsWithTag = posts(withTag: tag)
                     .filter { !usedPostIds.contains($0.id) }
+                    // Prioritize posts with images, then shuffle
+                    .sorted { post1, post2 in
+                        let hasImage1 = post1.image != nil
+                        let hasImage2 = post2.image != nil
+                        if hasImage1 && !hasImage2 { return true }
+                        if !hasImage1 && hasImage2 { return false }
+                        return false // If both have images or both don't, maintain original order
+                    }
                     .shuffled()
                 
                 if let randomPost = postsWithTag.first {
@@ -327,7 +335,7 @@ struct Days365Loader {
             }
         }
         
-        // If we still need more posts, fill with posts from general tags
+        // If we still need more posts, fill with posts from general tags (prioritizing those with images)
         if relatedPosts.count < limit {
             let remainingNeeded = limit - relatedPosts.count
             
@@ -336,6 +344,14 @@ struct Days365Loader {
                 
                 let postsWithTag = posts(withTag: tag)
                     .filter { !usedPostIds.contains($0.id) }
+                    // Prioritize posts with images, then shuffle
+                    .sorted { post1, post2 in
+                        let hasImage1 = post1.image != nil
+                        let hasImage2 = post2.image != nil
+                        if hasImage1 && !hasImage2 { return true }
+                        if !hasImage1 && hasImage2 { return false }
+                        return false // If both have images or both don't, maintain original order
+                    }
                     .shuffled()
                 
                 let neededFromThisTag = min(remainingNeeded, postsWithTag.count)
@@ -347,10 +363,18 @@ struct Days365Loader {
             }
         }
         
-        // If we still don't have enough, fill with any random posts
+        // If we still don't have enough, fill with any random posts (prioritizing those with images)
         if relatedPosts.count < limit {
             let remainingPosts = allPosts
                 .filter { !usedPostIds.contains($0.id) }
+                // Prioritize posts with images, then shuffle
+                .sorted { post1, post2 in
+                    let hasImage1 = post1.image != nil
+                    let hasImage2 = post2.image != nil
+                    if hasImage1 && !hasImage2 { return true }
+                    if !hasImage1 && hasImage2 { return false }
+                    return false // If both have images or both don't, maintain original order
+                }
                 .shuffled()
             
             let needed = limit - relatedPosts.count
