@@ -44,10 +44,13 @@ struct MainLayout: Layout {
 
                 // Redirect from GitHub Pages to custom domain for SEO
                 Script(code: """
-                    // Redirect from dadederk.github.io to accessibilityupto11.com
-                    if (window.location.hostname === 'dadederk.github.io') {
-                        window.location.replace('https://accessibilityupto11.com' + window.location.pathname + window.location.search + window.location.hash);
-                    }
+                    // Immediate redirect from dadederk.github.io to accessibilityupto11.com
+                    (function() {
+                        if (window.location.hostname === 'dadederk.github.io') {
+                            // Redirect to about page for personal branding
+                            window.location.replace('https://accessibilityupto11.com/about');
+                        }
+                    })();
                 """)
                 
                 // Set theme data attributes for Ignite's theme switching JavaScript
