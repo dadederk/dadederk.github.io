@@ -28,7 +28,7 @@ struct Days365PostPage: StaticPage {
                     { property: 'og:description', content: '\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))' },
                     { property: 'og:type', content: 'article' },
                     { property: 'og:url', content: 'https://accessibilityupto11.com\(post.path)' },
-                    { property: 'og:image', content: '\(post.image ?? "/Images/Site/Global/LogoShare.png")' },
+                    { property: 'og:image', content: '\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
                     { property: 'og:image:alt', content: '\(post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")' },
                     { property: 'article:author', content: '\(post.author)' },
                     { property: 'article:published_time', content: '\(post.date.ISO8601Format())' },
@@ -36,7 +36,7 @@ struct Days365PostPage: StaticPage {
                     { property: 'article:tag', content: '\(post.tags.joined(separator: ","))' },
                     { name: 'twitter:title', content: '\(post.title.replacingOccurrences(of: "\"", with: "\\\""))' },
                     { name: 'twitter:description', content: '\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))' },
-                    { name: 'twitter:image', content: '\(post.image ?? "/Images/Site/Global/LogoShare.png")' },
+                    { name: 'twitter:image', content: '\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
                     { name: 'twitter:image:alt', content: '\(post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")' }
                 ];
                 
@@ -79,7 +79,7 @@ struct Days365PostPage: StaticPage {
                     "url": "https://accessibilityupto11.com\(post.path)",
                     "articleSection": "#365DaysIOSAccessibility",
                     "keywords": "\(post.tags.joined(separator: ", "))",
-                    "image": "\(post.image ?? "/Images/Site/Global/LogoShare.png")"
+                    "image": "\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")"
                 };
                 
                 const script = document.createElement('script');

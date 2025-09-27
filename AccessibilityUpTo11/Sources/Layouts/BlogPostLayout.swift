@@ -23,7 +23,7 @@ struct BlogPostLayout: ArticlePage {
                 { property: 'og:description', content: '\(article.description.replacingOccurrences(of: "\"", with: "\\\""))' },
                 { property: 'og:type', content: 'article' },
                 { property: 'og:url', content: 'https://accessibilityupto11.com\(article.path)' },
-                { property: 'og:image', content: '\(article.image ?? "/Images/Site/Global/LogoShare.png")' },
+                { property: 'og:image', content: '\(article.image != nil ? "https://accessibilityupto11.com\(article.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
                 { property: 'article:author', content: '\(article.author ?? "Daniel Devesa Derksen-Staats")' },
                 { property: 'article:published_time', content: '\(article.date.ISO8601Format())' },
                 { property: 'article:section', content: 'Technology' }\(article.tags?.map { tag in
@@ -31,7 +31,7 @@ struct BlogPostLayout: ArticlePage {
                 }.joined() ?? ""),
                 { name: 'twitter:title', content: '\(article.title.replacingOccurrences(of: "\"", with: "\\\""))' },
                 { name: 'twitter:description', content: '\(article.description.replacingOccurrences(of: "\"", with: "\\\""))' },
-                { name: 'twitter:image', content: '\(article.image ?? "/Images/Site/Global/LogoShare.png")' }
+                { name: 'twitter:image', content: '\(article.image != nil ? "https://accessibilityupto11.com\(article.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' }
             ];
             
             articleMetaTags.forEach(tag => {
@@ -72,7 +72,8 @@ struct BlogPostLayout: ArticlePage {
                 },
                 "url": "https://accessibilityupto11.com\(article.path)",
                 "articleSection": "Technology",
-                "keywords": "\(article.tags?.joined(separator: ", ") ?? "")"
+                "keywords": "\(article.tags?.joined(separator: ", ") ?? "")",
+                "image": "\(article.image != nil ? "https://accessibilityupto11.com\(article.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")"
             };
             
             const script = document.createElement('script');
