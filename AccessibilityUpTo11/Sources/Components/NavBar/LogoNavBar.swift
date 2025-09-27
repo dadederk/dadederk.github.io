@@ -8,6 +8,7 @@ struct LogoNavBar: HTML {
             Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
             Link("Apps", target: "/apps")
             Link("About", target: "/about")
+            Link("Resources", target: "/resources")
             Link("RSS", target: "/feed.rss")
         } logo: {
             // Custom logo with image and text using Span for text

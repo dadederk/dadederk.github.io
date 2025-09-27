@@ -127,6 +127,7 @@ struct AccessibilityUpTo11Website {
             ("/", "1.0", "monthly"),
             ("/blog", "0.9", "monthly"),
             ("/about", "0.9", "monthly"),
+            ("/resources", "0.9", "monthly"),
             ("/apps", "0.9", "monthly"),
             ("/365-days-ios-accessibility", "0.9", "weekly")
         ]
@@ -367,6 +368,7 @@ struct AccessibilityUpTo11Site: Site {
             Blog(),
             // Days365(), // Removed - now handled by Days365StaticPages.generateAllPages()
             About(),
+            Resources(),
             Apps(),
             // App pages using UniversalAppPage template
             UniversalAppPage(appIdentifier: "mestre", pageType: .main),
