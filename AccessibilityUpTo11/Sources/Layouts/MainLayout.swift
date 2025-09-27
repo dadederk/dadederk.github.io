@@ -17,6 +17,9 @@ struct MainLayout: Layout {
                 MetaTag(name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large")
                 MetaTag(name: "googlebot", content: "index, follow")
                 
+                // Canonical URL to prevent duplicate content issues
+                MetaLink(href: "https://accessibilityupto11.com\(page.path)", rel: "canonical")
+                
                 // Global Open Graph meta tags for SEO and social sharing
                 MetaTag(property: "og:title", content: "Accessibility up to 11!")
                 MetaTag(property: "og:description", content: "iOS accessibility development blog and resources for developers who want to make their apps accessible to everyone.")
@@ -39,6 +42,14 @@ struct MainLayout: Layout {
                 // Custom CSS for navigation and theme support
                 MetaLink(href: "/custom-navigation.css", rel: "stylesheet")
 
+                // Redirect from GitHub Pages to custom domain for SEO
+                Script(code: """
+                    // Redirect from dadederk.github.io to accessibilityupto11.com
+                    if (window.location.hostname === 'dadederk.github.io') {
+                        window.location.replace('https://accessibilityupto11.com' + window.location.pathname + window.location.search + window.location.hash);
+                    }
+                """)
+                
                 // Set theme data attributes for Ignite's theme switching JavaScript
                 Script(code: """
                     // Set theme data attributes immediately
