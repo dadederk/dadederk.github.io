@@ -67,7 +67,7 @@ struct Home: StaticPage {
                     Text("Collaborations")
                         .font(.title2)
                     
-                    Link("See All", target: "/more-content")
+                    Link("See All", target: "/about#publications")
                         .font(.body)
                 }
                 .class("d-none", "d-md-flex")
@@ -78,7 +78,7 @@ struct Home: StaticPage {
                     Text("Collaborations")
                         .font(.title4)
                     
-                    Link("See All", target: "/more-content")
+                    Link("See All", target: "/about#publications")
                         .font(.body)
                 }
                 .class("d-md-none")

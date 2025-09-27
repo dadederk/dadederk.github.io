@@ -7,11 +7,6 @@ struct LogoNavBar: HTML {
             Link("Blog", target: "/blog")
             Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
             Link("Apps", target: "/apps")
-            Dropdown("More Content") {
-                Link("Publications", target: "/more-content#publications")
-                Link("Talks", target: "/more-content#talks")
-                Link("Podcasts", target: "/more-content#podcasts")
-            }
             Link("About", target: "/about")
             Link("RSS", target: "/feed.rss")
         } logo: {

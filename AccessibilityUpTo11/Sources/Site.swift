@@ -128,7 +128,6 @@ struct AccessibilityUpTo11Website {
             ("/blog", "0.9", "monthly"),
             ("/about", "0.9", "monthly"),
             ("/apps", "0.9", "monthly"),
-            ("/more-content", "0.9", "monthly"),
             ("/365-days-ios-accessibility", "0.9", "weekly")
         ]
         
@@ -363,13 +362,12 @@ struct AccessibilityUpTo11Site: Site {
     }
     
     // Static pages
-    var staticPages: [any StaticPage] {
+        var staticPages: [any StaticPage] {
         var pages: [any StaticPage] = [
             Blog(),
             // Days365(), // Removed - now handled by Days365StaticPages.generateAllPages()
             About(),
             Apps(),
-            MoreContent(),
             // App pages using UniversalAppPage template
             UniversalAppPage(appIdentifier: "mestre", pageType: .main),
             UniversalAppPage(appIdentifier: "mestre", pageType: .terms),
