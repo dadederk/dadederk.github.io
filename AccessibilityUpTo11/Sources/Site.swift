@@ -11,6 +11,12 @@ struct AccessibilityUpTo11Website {
             
             // Generate custom RSS feed for 365 Days iOS Accessibility
             await generate365DaysRSSFeed()
+            
+            // Generate enhanced sitemap with lastmod and changefreq
+            await generateEnhancedSitemap()
+            
+            // Generate image sitemap
+            await generateImageSitemap()
         } catch {
             print(error.localizedDescription)
         }
@@ -99,6 +105,201 @@ struct AccessibilityUpTo11Website {
         """
         
         return rss
+    }
+    
+    /// Generate enhanced sitemap with lastmod and changefreq
+    static func generateEnhancedSitemap() async {
+        print("🗺️ Generating enhanced sitemap...")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let currentDate = dateFormatter.string(from: Date())
+        
+        var sitemap = """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        """
+        
+        // Add main pages
+        let mainPages = [
+            ("/", "1.0", "monthly"),
+            ("/blog", "0.9", "monthly"),
+            ("/about", "0.9", "monthly"),
+            ("/apps", "0.9", "monthly"),
+            ("/more-content", "0.9", "monthly"),
+            ("/365-days-ios-accessibility", "0.9", "weekly")
+        ]
+        
+        for (path, priority, changefreq) in mainPages {
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(path)</loc>
+                <lastmod>\(currentDate)</lastmod>
+                <changefreq>\(changefreq)</changefreq>
+                <priority>\(priority)</priority>
+            </url>
+            """
+        }
+        
+        // Add app pages
+        let appPages = [
+            ("/apps/mestre", "0.9", "monthly"),
+            ("/apps/mestre/terms", "0.8", "yearly"),
+            ("/apps/mestre/privacy", "0.8", "yearly"),
+            ("/apps/xarra", "0.9", "monthly"),
+            ("/apps/xarra/terms", "0.8", "yearly"),
+            ("/apps/xarra/privacy", "0.8", "yearly")
+        ]
+        
+        for (path, priority, changefreq) in appPages {
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(path)</loc>
+                <lastmod>\(currentDate)</lastmod>
+                <changefreq>\(changefreq)</changefreq>
+                <priority>\(priority)</priority>
+            </url>
+            """
+        }
+        
+        // Add blog posts - we'll get these from the site's articles
+        // Note: We can't access @Environment here, so we'll skip blog posts for now
+        // and add them manually or through a different approach
+        
+        // Add 365 Days posts
+        let days365Posts = Days365Loader.loadPosts()
+        for post in days365Posts {
+            let postDate = dateFormatter.string(from: post.date)
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(post.path)</loc>
+                <lastmod>\(postDate)</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.9</priority>
+            </url>
+            """
+        }
+        
+        // Add pagination pages for 365 Days
+        let totalPages = (days365Posts.count + 14) / 15 // 15 posts per page
+        for page in 2...totalPages {
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com/365-days-ios-accessibility/page-\(page)</loc>
+                <lastmod>\(currentDate)</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.9</priority>
+            </url>
+            """
+        }
+        
+        // Add tag pages
+        let allTags = Set(days365Posts.flatMap { $0.tags })
+        for tag in allTags {
+            let tagPath = "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))"
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(tagPath)</loc>
+                <lastmod>\(currentDate)</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.9</priority>
+            </url>
+            """
+        }
+        
+        sitemap += """
+        </urlset>
+        """
+        
+        // Write enhanced sitemap
+        let fileManager = FileManager.default
+        let currentDirectory = URL(fileURLWithPath: fileManager.currentDirectoryPath)
+        let buildDirectory = currentDirectory.appendingPathComponent("Build")
+        let sitemapFile = buildDirectory.appendingPathComponent("sitemap.xml")
+        
+        do {
+            try sitemap.write(to: sitemapFile, atomically: true, encoding: .utf8)
+            let totalURLs = mainPages.count + appPages.count + days365Posts.count + totalPages - 1 + allTags.count
+            print("✅ Successfully generated enhanced sitemap with \(totalURLs) URLs")
+        } catch {
+            print("❌ Error writing enhanced sitemap: \(error)")
+        }
+    }
+    
+    /// Generate image sitemap for better image SEO
+    static func generateImageSitemap() async {
+        print("🖼️ Generating image sitemap...")
+        
+        var imageSitemap = """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        """
+        
+        // Add images from blog posts - we'll add these manually for now
+        // since we can't access @Environment in this context
+        
+        // Add images from 365 Days posts
+        let days365Posts = Days365Loader.loadPosts()
+        for post in days365Posts {
+            if let imagePath = post.image {
+                let imageTitle = post.title
+                let imageCaption = post.excerpt
+                let imageURL = "https://accessibilityupto11.com\(imagePath)"
+                
+                imageSitemap += """
+                <url>
+                    <loc>https://accessibilityupto11.com\(post.path)</loc>
+                    <image:image>
+                        <image:loc>\(imageURL)</image:loc>
+                        <image:title>\(xmlEscape(imageTitle))</image:title>
+                        <image:caption>\(xmlEscape(imageCaption))</image:caption>
+                    </image:image>
+                </url>
+                """
+            }
+        }
+        
+        // Add site logo and branding images
+        let siteImages = [
+            ("/Images/Site/Global/LogoShare.png", "Accessibility up to 11! Logo", "iOS accessibility development blog logo"),
+            ("/Images/Site/Global/Logo.png", "Accessibility up to 11! Logo", "iOS accessibility development blog logo"),
+            ("/Images/Site/Global/LogoDarkMode.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode")
+        ]
+        
+        for (imagePath, title, caption) in siteImages {
+            let imageURL = "https://accessibilityupto11.com\(imagePath)"
+            imageSitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com/</loc>
+                <image:image>
+                    <image:loc>\(imageURL)</image:loc>
+                    <image:title>\(xmlEscape(title))</image:title>
+                    <image:caption>\(xmlEscape(caption))</image:caption>
+                </image:image>
+            </url>
+            """
+        }
+        
+        imageSitemap += """
+        </urlset>
+        """
+        
+        // Write image sitemap
+        let fileManager = FileManager.default
+        let currentDirectory = URL(fileURLWithPath: fileManager.currentDirectoryPath)
+        let buildDirectory = currentDirectory.appendingPathComponent("Build")
+        let imageSitemapFile = buildDirectory.appendingPathComponent("image-sitemap.xml")
+        
+        do {
+            try imageSitemap.write(to: imageSitemapFile, atomically: true, encoding: .utf8)
+            let imageCount = days365Posts.compactMap { $0.image }.count + siteImages.count
+            print("✅ Successfully generated image sitemap with \(imageCount) images")
+        } catch {
+            print("❌ Error writing image sitemap: \(error)")
+        }
     }
     
     /// XML escape helper function

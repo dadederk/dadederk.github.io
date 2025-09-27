@@ -6,6 +6,12 @@ struct About: StaticPage {
     
     @MainActor var body: some HTML {
         VStack {
+            // Page heading
+            Text("About Accessibility up to 11!")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
             
             // Author information
             Section {

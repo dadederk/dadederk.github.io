@@ -8,6 +8,12 @@ struct Home: StaticPage {
 
     var body: some HTML {
         VStack {
+            // Main page heading
+            Text("Developing Accessible iOS Apps")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
             
             // Recent Posts section (3 most recent)
             Section {
@@ -192,12 +198,14 @@ struct HomeArticlePreviewStyle: ArticlePreviewStyle {
             let tagLinks = content.tagLinks()
             
             if let tagLinks {
-                Section {
+                HStack(alignment: .center) {
                     ForEach(tagLinks) { link in
                         link
-                            .padding([.trailing])
+                            .padding([.trailing], 8)
+                            .padding(.top, 4)
                     }
                 }
+                .class("d-flex", "flex-wrap")
                 .margin(.top, -5)
             }
         }

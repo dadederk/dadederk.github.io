@@ -7,6 +7,13 @@ struct Days365: StaticPage {
     
     var body: some HTML {
         VStack {
+            // Page heading
+            Text("Tips and tricks to build accessible iOS apps: #365DaysIOSAccessibility")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
+            
             // Page header with RSS link
             Section {
                 // Desktop layout: HStack with title2

@@ -9,6 +9,13 @@ struct Blog: StaticPage {
     
     var body: some HTML {
         VStack {
+            // Page heading
+            Text("All Our Long-form Articles About iOS Accessibility")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
+            
             // Blog posts list - grid layout with consistent ArticlePreview components
             Section {
                 let allArticles = articles.all.sorted(by: \.date, order: .reverse)

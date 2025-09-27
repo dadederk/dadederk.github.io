@@ -7,6 +7,13 @@ struct MoreContent: StaticPage {
     
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {
+            // Page heading
+            Text("More Accessibility Content")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
+            
             // Publications Section
             Section {
                 Text("Publications")

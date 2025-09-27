@@ -6,6 +6,13 @@ struct Apps: StaticPage {
     
     @MainActor var body: some HTML {
         VStack {
+            // Page heading
+            Text("Our Apps")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
+            
             // Apps content
             Section {
                 let appsData = AppsData.loadContent()

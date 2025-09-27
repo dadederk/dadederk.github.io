@@ -34,59 +34,10 @@ struct ContentCard: HTML {
     }
     
     @MainActor var body: some HTML {
-        Card {
-            if let imagePath = imagePath, let imageDescription = imageDescription {
-                // Original horizontal layout for cards with images (publications)
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(title)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .horizontalAlignment(.leading)
-                        
-                        if let subtitle = subtitle {
-                            Text(subtitle)
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                                .padding(.bottom, 5)
-                        }
-                        
-                        VStack(alignment: .center) {
-                            Image(imagePath, description: imageDescription)
-                                .resizable()
-                                .aspectRatio(.square, contentMode: .fill)
-                                .frame(width: 200, height: 200)
-                                .border(.gray)
-                                .cornerRadius(6)
-                        }
-                        .padding(.top)
-                        
-                        Text(description)
-                            .font(.body)
-                            .padding(.vertical)
-                        
-                        if let additionalInfo = additionalInfo {
-                            Text(additionalInfo)
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                        }
-                        
-                        HStack {
-                            ForEach(actions) { action in
-                                action
-                            }
-                        }
-                        .padding(.top)
-                    }
-                }
-            } else {
-                // Vertical layout for cards without images (talks, podcasts)
+        if let imagePath = imagePath, let _ = imageDescription {
+            // Horizontal layout for cards with images (publications)
+            Card(imageName: imagePath) {
                 VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.title4)
-                        .fontWeight(.bold)
-                        .horizontalAlignment(.leading)
-                    
                     if let subtitle = subtitle {
                         Text(subtitle)
                             .font(.body)
@@ -102,17 +53,55 @@ struct ContentCard: HTML {
                         Text(additionalInfo)
                             .font(.body)
                             .foregroundStyle(.secondary)
-                            .padding(.bottom)
-                    }
-                    
-                    VStack(alignment: .center) {
-                        ForEach(actions) { action in
-                            action
-                        }
                     }
                 }
+            } header: {
+                Text(title)
+                    .font(.title2)
+            } footer: {
+                HStack(alignment: .center) {
+                    ForEach(actions) { action in
+                        action
+                            .padding(.top, 4)
+                    }
+                }
+                .class("d-flex", "flex-wrap")
+                .margin(.top, -5)
+            }
+        } else {
+            // Vertical layout for cards without images (talks, podcasts)
+            Card {
+                VStack(alignment: .leading) {
+                    if let subtitle = subtitle {
+                        Text(subtitle)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                            .padding(.bottom, 5)
+                    }
+                    
+                    Text(description)
+                        .font(.body)
+                        .padding(.bottom)
+                    
+                    if let additionalInfo = additionalInfo {
+                        Text(additionalInfo)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            } header: {
+                Text(title)
+                    .font(.title2)
+            } footer: {
+                HStack(alignment: .center) {
+                    ForEach(actions) { action in
+                        action
+                            .padding(.top, 4)
+                    }
+                }
+                .class("d-flex", "flex-wrap")
+                .margin(.top, -5)
             }
         }
-        .padding()
     }
 }
