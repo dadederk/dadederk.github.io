@@ -8,7 +8,7 @@ struct Days365TagPage: StaticPage {
     var path: String { "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))" }
     
     var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // Breadcrumb navigation
             Section {
                 Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")

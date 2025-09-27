@@ -8,7 +8,7 @@ struct Days365PostPage: StaticPage {
     var path: String { post.path }
     
     @MainActor var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // SEO meta tags and structured data using Script element
             Script(code: """
                 // Remove global meta tags that should be overridden for 365 days posts

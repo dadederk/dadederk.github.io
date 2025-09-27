@@ -5,7 +5,7 @@ struct Apps: StaticPage {
     var title = "Apps"
     
     @MainActor var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // Page heading
             Text("Our Apps")
                 .font(.title1)

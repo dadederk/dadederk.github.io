@@ -6,9 +6,9 @@ struct Days365: StaticPage {
     var path = "/365-days-ios-accessibility"
     
     var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // Page heading
-            Text("Tips and tricks to build accessible iOS apps: #365DaysIOSAccessibility")
+            Text("Tips and tricks to build accessible iOS apps")
                 .font(.title1)
                 .fontWeight(.bold)
                 .horizontalAlignment(.leading)
@@ -43,7 +43,7 @@ struct Days365: StaticPage {
                 Text("A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.")
                     .font(.body)
                     .foregroundStyle(.secondary)
-                    .padding(.bottom)
+                    .padding([.bottom, .leading, .trailing])
                 
                 let allPosts = Days365Loader.loadPosts()
                 let postsPerPage = 15
@@ -126,7 +126,14 @@ struct Days365Page: StaticPage {
     }
     
     var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
+            // Page heading
+            Text("Tips and tricks to build accessible iOS apps")
+                .font(.title1)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
+            
             // Page header with RSS link
             Section {
                 // Desktop layout: HStack with title2

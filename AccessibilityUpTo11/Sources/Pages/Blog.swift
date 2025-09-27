@@ -8,7 +8,7 @@ struct Blog: StaticPage {
     @Environment(\.articles) var articles
     
     var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // Page heading
             Text("All Our Long-form Articles About iOS Accessibility")
                 .font(.title1)

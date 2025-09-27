@@ -7,7 +7,7 @@ struct Home: StaticPage {
     @Environment(\.articles) var articles
 
     var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // Main page heading
             Text("Developing Accessible iOS Apps")
                 .font(.title1)

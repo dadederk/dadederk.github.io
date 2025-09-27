@@ -5,7 +5,7 @@ struct About: StaticPage {
     var title = "About"
     
     @MainActor var body: some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             // Page heading
             Text("About Accessibility up to 11!")
                 .font(.title1)
