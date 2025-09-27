@@ -18,7 +18,7 @@ struct MainLayout: Layout {
                 MetaTag(name: "googlebot", content: "index, follow")
                 
                 // Canonical URL to prevent duplicate content issues
-                MetaLink(href: "https://accessibilityupto11.com\(page.path)", rel: "canonical")
+                MetaLink(href: "https://accessibilityupto11.com\(page.url.path)", rel: "canonical")
                 
                 // Global Open Graph meta tags for SEO and social sharing
                 MetaTag(property: "og:title", content: "Accessibility up to 11!")
