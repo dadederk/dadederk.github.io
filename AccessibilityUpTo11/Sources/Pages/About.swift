@@ -6,7 +6,7 @@ struct About: StaticPage {
     
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {
-            // Page heading
+            // Page heading - proper H1
             Text("About Accessibility up to 11!")
                 .font(.title1)
                 .fontWeight(.bold)
@@ -35,7 +35,7 @@ struct About: StaticPage {
                 
                 VStack(spacing: 6) {
                     // Author photo
-                    Image("/Images/Site/Global/dani.jpg", description: "Daniel Devesa Derksen-Staats - iOS Developer & Accessibility Advocate")
+                    Image("/Images/Site/Global/dani.jpg", description: "Daniel, smiling slightly while wearing a navy sweater and a flat cap, standing outdoors with the rolling green hills of Tuscany and a cloudy sky in the background.")
                         .resizable()
                         .cornerRadius(6)
                         .border(.darkGray)
@@ -43,13 +43,13 @@ struct About: StaticPage {
                     // Author details
                     VStack(alignment: .leading) {
                         Text("""
-                            Dani is having a blast working at Yoto! He has his dream job as an iOS engineer specialised in accessibility.
+                            Dani is having a blast working at Yoto!
                             """)
                             .font(.body)
-                            .padding(.bottom)
+                            .padding(.vertical)
                         
                         Text("""
-                            He's loved working at Spotify, Skyscanner, and the BBC, where he gained valuable experience making iOS apps more inclusive and fostering organisational cultures that prioritise accessibility.
+                            He's loved working at Apple (Contractor), Spotify, Skyscanner, and the BBC, where he gained valuable experience making iOS apps more inclusive and fostering organisational cultures that prioritise accessibility.
                             """)
                             .font(.body)
                             .padding(.bottom)
