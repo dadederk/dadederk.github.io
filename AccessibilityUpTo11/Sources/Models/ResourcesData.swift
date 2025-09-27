@@ -4,19 +4,19 @@ import Ignite
 // MARK: - Resources Data Model
 
 struct ResourcesData {
-    let sections: [ResourceSection]
+    let sections: [ResourceSectionData]
     
     static func loadContent() -> ResourcesData {
         return ResourcesMarkdownLoader.loadResources()
     }
 }
 
-struct ResourceSection {
+struct ResourceSectionData {
     let title: String
-    var subsections: [ResourceSubsection]
+    var subsections: [ResourceSubsectionData]
 }
 
-struct ResourceSubsection {
+struct ResourceSubsectionData {
     let title: String
     var items: [ResourceItem]
 }

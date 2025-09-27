@@ -21,9 +21,9 @@ struct ResourcesMarkdownLoader {
     }
     
     private static func parseResourcesMarkdown(_ markdown: String) -> ResourcesData {
-        var sections: [ResourceSection] = []
-        var currentSection: ResourceSection?
-        var currentSubsection: ResourceSubsection?
+        var sections: [ResourceSectionData] = []
+        var currentSection: ResourceSectionData?
+        var currentSubsection: ResourceSubsectionData?
         
         let lines = markdown.components(separatedBy: .newlines)
         
@@ -39,9 +39,9 @@ struct ResourcesMarkdownLoader {
                     sections.append(section)
                 }
                 
-                let sectionTitle = String(trimmedLine.dropFirst(2))
-                currentSection = ResourceSection(title: sectionTitle, subsections: [])
-                currentSubsection = nil
+                    let sectionTitle = String(trimmedLine.dropFirst(2))
+                    currentSection = ResourceSectionData(title: sectionTitle, subsections: [])
+                    currentSubsection = nil
             }
             // Check for subsection (##)
             else if trimmedLine.hasPrefix("## ") {
@@ -51,8 +51,8 @@ struct ResourcesMarkdownLoader {
                     currentSection = section
                 }
                 
-                let subsectionTitle = String(trimmedLine.dropFirst(3))
-                currentSubsection = ResourceSubsection(title: subsectionTitle, items: [])
+                    let subsectionTitle = String(trimmedLine.dropFirst(3))
+                    currentSubsection = ResourceSubsectionData(title: subsectionTitle, items: [])
             }
             // Check for list item (*)
             else if trimmedLine.hasPrefix("* ") {
@@ -61,12 +61,12 @@ struct ResourcesMarkdownLoader {
                     if var subsection = currentSubsection {
                         subsection.items.append(resourceItem)
                         currentSubsection = subsection
-                    } else if var section = currentSection {
-                        // If no subsection, create a default one for direct list items under main sections
-                        let defaultSubsection = ResourceSubsection(title: "Resources", items: [resourceItem])
-                        section.subsections.append(defaultSubsection)
-                        currentSection = section
-                    }
+                        } else if var section = currentSection {
+                            // If no subsection, create a default one for direct list items under main sections
+                            let defaultSubsection = ResourceSubsectionData(title: "Resources", items: [resourceItem])
+                            section.subsections.append(defaultSubsection)
+                            currentSection = section
+                        }
                 }
             }
         }
