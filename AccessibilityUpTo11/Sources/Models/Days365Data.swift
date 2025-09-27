@@ -232,23 +232,9 @@ struct Days365Loader {
             options: .regularExpression
         )
         
-        // Get first paragraph or first 200 characters
-        let paragraphs = cleanContent.components(separatedBy: "\n\n")
-        if let firstParagraph = paragraphs.first, !firstParagraph.isEmpty {
-            let trimmed = firstParagraph.trimmingCharacters(in: .whitespacesAndNewlines)
-            if trimmed.count <= 200 {
-                return trimmed
-            }
-        }
-        
-        // Fallback to first 200 characters
-        let trimmed = cleanContent.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.count <= 200 {
-            return trimmed
-        }
-        
-        let index = trimmed.index(trimmed.startIndex, offsetBy: 200)
-        return String(trimmed[..<index]) + "..."
+        // Return the cleaned content without artificial truncation
+        // Let the .lineLimit(8) modifier in the preview cards handle visual truncation
+        return cleanContent.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     /// Get posts by tag (searches both frontmatter tags and content hashtags)
