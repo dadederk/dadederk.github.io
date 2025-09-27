@@ -290,6 +290,77 @@ struct Days365Loader {
             post.fileName.replacingOccurrences(of: ".md", with: "") == fileName
         }
     }
+    
+    /// Get related posts for a given post
+    /// Returns 3 posts: prioritizing specific tags, then falling back to general tags
+    static func relatedPosts(for post: Days365Data, limit: Int = 3) -> [Days365Data] {
+        let allPosts = loadPosts()
+        let currentPostId = post.id
+        
+        // Define general tags (fallback)
+        let generalTags = ["accessibility", "a11y", "ios"]
+        
+        // Get all tags from the current post (both frontmatter and content hashtags)
+        let currentPostTags = Set(post.tags + extractHashtags(from: post.content))
+        
+        // Separate specific tags from general tags
+        let specificTags = currentPostTags.filter { tag in
+            !generalTags.contains { $0.lowercased() == tag.lowercased() }
+        }
+        
+        var relatedPosts: [Days365Data] = []
+        var usedPostIds = Set([currentPostId])
+        
+        // First, try to get posts from specific tags
+        if !specificTags.isEmpty {
+            for tag in specificTags {
+                if relatedPosts.count >= limit { break }
+                
+                let postsWithTag = posts(withTag: tag)
+                    .filter { !usedPostIds.contains($0.id) }
+                    .shuffled()
+                
+                if let randomPost = postsWithTag.first {
+                    relatedPosts.append(randomPost)
+                    usedPostIds.insert(randomPost.id)
+                }
+            }
+        }
+        
+        // If we still need more posts, fill with posts from general tags
+        if relatedPosts.count < limit {
+            let remainingNeeded = limit - relatedPosts.count
+            
+            for tag in generalTags {
+                if relatedPosts.count >= limit { break }
+                
+                let postsWithTag = posts(withTag: tag)
+                    .filter { !usedPostIds.contains($0.id) }
+                    .shuffled()
+                
+                let neededFromThisTag = min(remainingNeeded, postsWithTag.count)
+                for i in 0..<neededFromThisTag {
+                    if relatedPosts.count >= limit { break }
+                    relatedPosts.append(postsWithTag[i])
+                    usedPostIds.insert(postsWithTag[i].id)
+                }
+            }
+        }
+        
+        // If we still don't have enough, fill with any random posts
+        if relatedPosts.count < limit {
+            let remainingPosts = allPosts
+                .filter { !usedPostIds.contains($0.id) }
+                .shuffled()
+            
+            let needed = limit - relatedPosts.count
+            for i in 0..<min(needed, remainingPosts.count) {
+                relatedPosts.append(remainingPosts[i])
+            }
+        }
+        
+        return relatedPosts
+    }
 }
 
 

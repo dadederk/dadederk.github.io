@@ -69,6 +69,10 @@ struct Days365PostPage: StaticPage {
                     .padding(.horizontal)
             }
             
+            // Related posts section
+            let relatedPosts = Days365Loader.relatedPosts(for: post)
+            RelatedPostsSection(relatedPosts: relatedPosts)
+            
             // Navigation to other posts
             Section {
                 let allPosts = Days365Loader.loadPosts()
