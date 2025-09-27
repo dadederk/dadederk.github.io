@@ -6,88 +6,8 @@ struct Days365PostPage: StaticPage {
     
     var title: String { post.title }
     var path: String { post.path }
-    
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {
-            // SEO meta tags and structured data using Script element
-            Script(code: """
-                // Remove global meta tags that should be overridden for 365 days posts
-                const globalTagsToRemove = [
-                    'og:title', 'og:description', 'og:type', 'og:url', 'og:image',
-                    'twitter:title', 'twitter:description', 'twitter:image'
-                ];
-                
-                globalTagsToRemove.forEach(property => {
-                    const existingTags = document.querySelectorAll(`meta[property="${property}"], meta[name="${property}"]`);
-                    existingTags.forEach(tag => tag.remove());
-                });
-                
-                // Add 365 days post-specific Open Graph meta tags
-                const postMetaTags = [
-                    { property: 'og:title', content: '\(post.title.replacingOccurrences(of: "\"", with: "\\\""))' },
-                    { property: 'og:description', content: '\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))' },
-                    { property: 'og:type', content: 'article' },
-                    { property: 'og:url', content: 'https://accessibilityupto11.com\(post.path)' },
-                    { property: 'og:image', content: '\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
-                    { property: 'og:image:alt', content: '\(post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")' },
-                    { property: 'article:author', content: '\(post.author)' },
-                    { property: 'article:published_time', content: '\(post.date.ISO8601Format())' },
-                    { property: 'article:section', content: '#365DaysIOSAccessibility' },
-                    { property: 'article:tag', content: '\(post.tags.joined(separator: ","))' },
-                    { name: 'twitter:title', content: '\(post.title.replacingOccurrences(of: "\"", with: "\\\""))' },
-                    { name: 'twitter:description', content: '\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))' },
-                    { name: 'twitter:image', content: '\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
-                    { name: 'twitter:image:alt', content: '\(post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")' }
-                ];
-                
-                postMetaTags.forEach(tag => {
-                    const meta = document.createElement('meta');
-                    if (tag.property) {
-                        meta.setAttribute('property', tag.property);
-                    } else {
-                        meta.setAttribute('name', tag.name);
-                    }
-                    meta.setAttribute('content', tag.content);
-                    document.head.appendChild(meta);
-                });
-                
-                // Add JSON-LD structured data
-                const structuredData = {
-                    "@context": "https://schema.org",
-                    "@type": "BlogPosting",
-                    "headline": "\(post.title.replacingOccurrences(of: "\"", with: "\\\""))",
-                    "description": "\(post.excerpt.replacingOccurrences(of: "\"", with: "\\\""))",
-                    "author": {
-                        "@type": "Person",
-                        "name": "\(post.author)",
-                        "url": "https://accessibilityupto11.com/about"
-                    },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Accessibility up to 11!",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png"
-                        }
-                    },
-                    "datePublished": "\(post.date.ISO8601Format())",
-                    "dateModified": "\(post.date.ISO8601Format())",
-                    "mainEntityOfPage": {
-                        "@type": "WebPage",
-                        "@id": "https://accessibilityupto11.com\(post.path)"
-                    },
-                    "url": "https://accessibilityupto11.com\(post.path)",
-                    "articleSection": "#365DaysIOSAccessibility",
-                    "keywords": "\(post.tags.joined(separator: ", "))",
-                    "image": "\(post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")"
-                };
-                
-                const script = document.createElement('script');
-                script.type = 'application/ld+json';
-                script.textContent = JSON.stringify(structuredData);
-                document.head.appendChild(script);
-            """)
-            
             // Breadcrumb navigation
             Section {
                 Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
