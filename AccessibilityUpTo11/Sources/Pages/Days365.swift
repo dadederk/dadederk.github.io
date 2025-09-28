@@ -100,6 +100,23 @@ struct Days365: StaticPage {
                         }
                         .padding(.top)
                     }
+                    
+                    // Footnote thanking Quintin Balsdon
+                    Section {
+                        HStack(spacing: 4) {
+                            Text("Special thanks to")
+                                .font(.small)
+                                .foregroundStyle(.secondary)
+                            Link("Quintin Balsdon", target: "https://qbalsdon.github.io/about/")
+                                .font(.small)
+                                .foregroundStyle(.secondary)
+                            Text("for helping extract the content from the original Twitter posts.")
+                                .font(.small)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.top, 32)
+                    .horizontalAlignment(.center)
                 } else {
                     Text("No 365 days posts available yet.")
                         .font(.body)
@@ -228,6 +245,23 @@ struct Days365Page: StaticPage {
                         }
                         .padding(.top)
                     }
+                    
+                    // Footnote thanking Quintin Balsdon
+                    Section {
+                        HStack(spacing: 4) {
+                            Text("Special thanks to")
+                                .font(.small)
+                                .foregroundStyle(.secondary)
+                            Link("Quintin Balsdon", target: "https://qbalsdon.github.io/about/")
+                                .font(.small)
+                                .foregroundStyle(.secondary)
+                            Text("for helping extract the content from the original Twitter posts.")
+                                .font(.small)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.top, 32)
+                    .horizontalAlignment(.center)
                 } else {
                     Text("No 365 days posts available yet.")
                         .font(.body)
