@@ -88,8 +88,12 @@ struct Days365TagPage: StaticPage {
                 HStack {
                     let allTags = Days365Loader.allTags()
                     ForEach(allTags) { tagName in
-                        Link(tagName, target: "/365-days-ios-accessibility/tag/\(tagName.lowercased().replacingOccurrences(of: " ", with: "-"))")
-                            .class("badge", "bg-primary", "text-white", "rounded-pill", "me-2", "mb-2")
+                        Link(target: "/365-days-ios-accessibility/tag/\(tagName.lowercased().replacingOccurrences(of: " ", with: "-"))") {
+                            Badge(tagName)
+                                .role(.primary)
+                        }
+                        .margin(.trailing, 8)
+                        .margin(.bottom, 8)
                     }
                 }
                 .class("flex-wrap")
