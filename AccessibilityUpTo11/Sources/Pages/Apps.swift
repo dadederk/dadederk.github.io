@@ -25,6 +25,7 @@ struct Apps: StaticPage {
                             nameOrigin: app.nameOrigin,
                             imagePath: app.imagePath,
                             imageDescription: app.imageDescription,
+                            platforms: app.platforms,
                             actions: app.actions.map { action in
                                 ActionButton(
                                     title: action.title,

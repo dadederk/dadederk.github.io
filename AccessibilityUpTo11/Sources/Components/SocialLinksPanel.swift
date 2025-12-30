@@ -16,7 +16,7 @@ struct SocialLinksPanel: HTML {
                     Link("Twitter", target: "https://twitter.com/dadederk")
                     Link("Mastodon", target: "https://iosdev.space/@dadederk")
                     Link("BlueSky", target: "https://bsky.app/profile/dadederk.bsky.social")
-                    Link("LinkedIn", target: "https://linkedin.com/in/danieldevesaderksenstaats")
+                    Link("LinkedIn", target: "https://www.linkedin.com/in/danieldevesa/")
                     Link("GitHub", target: "https://github.com/dadederk")
                 }
                 .horizontalAlignment(.center)

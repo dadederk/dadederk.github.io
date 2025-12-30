@@ -88,7 +88,23 @@ struct UniversalAppPage: StaticPage {
                                 Text(app.subtitle)
                                     .font(.title2)
                                     .foregroundStyle(.secondary)
+                                    .padding(.bottom, 5)
+                                
+                                if !app.platforms.isEmpty {
+                                    HStack(spacing: 4) {
+                                        ForEach(app.platforms) { platform in
+                                            Text(platform)
+                                                .font(.body)
+                                                .fontWeight(.medium)
+                                                .foregroundStyle(.secondary)
+                                                .padding(.horizontal, 4)
+                                                .padding(.vertical, 4)
+                                                .border(Color(hex: "#444444"))
+                                                .cornerRadius(4)
+                                        }
+                                    }
                                     .padding(.bottom, 10)
+                                }
                             }
                         }
                         .padding(.bottom)
@@ -144,7 +160,24 @@ struct UniversalAppPage: StaticPage {
                             Text(app.subtitle)
                                 .font(.title2)
                                 .foregroundStyle(.secondary)
+                                .padding(.bottom, 5)
+                            
+                            if !app.platforms.isEmpty {
+                                HStack {
+                                    ForEach(app.platforms) { platform in
+                                        Text(platform)
+                                            .font(.body)
+                                            .fontWeight(.medium)
+                                            .foregroundStyle(.secondary)
+                                            .padding(.horizontal, 4)
+                                            .padding(.vertical, 4)
+                                            .border(Color(hex: "#444444"))
+                                            .cornerRadius(4)
+                                            .margin(.trailing, 0)
+                                    }
+                                }
                                 .padding(.bottom, 10)
+                            }
                             
                             Text(app.description)
                                 .font(.body)
@@ -184,7 +217,58 @@ struct UniversalAppPage: StaticPage {
                 }
                 .padding(.vertical)
                 
-                // Features section with grid
+                // Features section with sub-sections
+                if !app.featureGroups.isEmpty {
+                    Section {
+                        Text("Features")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .horizontalAlignment(.leading)
+                            .padding(.bottom)
+                        
+                        ForEach(app.featureGroups) { group in
+                            VStack(alignment: .leading) {
+                                Text(group.title)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .horizontalAlignment(.leading)
+                                    .padding(.bottom)
+                                
+                                Grid(alignment: .topLeading) {
+                                    ForEach(group.features) { feature in
+                                        Card {
+                                            VStack(alignment: .leading, spacing: 0) {
+                                                // Always show an image - use feature image if available, otherwise fallback to app icon
+                                                Image(
+                                                    feature.imagePath ?? app.imagePath,
+                                                    description: feature.imageDescription ?? app.imageDescription
+                                                )
+                                                .resizable()
+                                                .aspectRatio(16/9, contentMode: .fit)
+                                                .margin(.leading, -12)
+                                                .margin(.top, -12)
+                                                .margin(.trailing, -12)
+                                                
+                                                Text(feature.title)
+                                                    .font(.title4)
+                                                    .fontWeight(.bold)
+                                                    .padding(.top)
+                                                    .padding(.bottom, 5)
+                                                
+                                                Text(feature.description)
+                                                    .font(.body)
+                                            }
+                                        }
+                                        .width(4)
+                                    }
+                                }
+                                .padding(.bottom, 30)
+                            }
+                        }
+                    }
+                    .padding(.vertical)
+                } else {
+                    // Fallback to flat features for backward compatibility
                 Section {
                     Text("Features")
                         .font(.title2)
@@ -195,18 +279,22 @@ struct UniversalAppPage: StaticPage {
                     Grid(alignment: .topLeading) {
                         ForEach(app.features) { feature in
                             Card {
-                                VStack(alignment: .leading) {
-                                    if let imagePath = feature.imagePath {
-                                        Image(imagePath, description: feature.imageDescription ?? "Feature screenshot")
+                                    VStack(alignment: .leading, spacing: 0) {
+                                        // Always show an image - use feature image if available, otherwise fallback to app icon
+                                        Image(
+                                            feature.imagePath ?? app.imagePath,
+                                            description: feature.imageDescription ?? app.imageDescription
+                                        )
                                             .resizable()
-                                            .aspectRatio(.square, contentMode: .fit)
-                                            .frame(height: 150)
-                                            .padding(.bottom)
-                                    }
+                                        .aspectRatio(16/9, contentMode: .fit)
+                                        .margin(.leading, -12)
+                                        .margin(.top, -12)
+                                        .margin(.trailing, -12)
                                     
                                     Text(feature.title)
                                         .font(.title3)
                                         .fontWeight(.bold)
+                                            .padding(.top)
                                         .padding(.bottom, 5)
                                     
                                     Text(feature.description)
@@ -218,6 +306,22 @@ struct UniversalAppPage: StaticPage {
                     }
                 }
                 .padding(.vertical)
+                }
+                
+                // Why Xarra? section
+                if let whySection = app.whySection {
+                    Section {
+                        Text("Why \(app.title)?")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .horizontalAlignment(.leading)
+                            .padding(.bottom)
+                        
+                        Text(whySection)
+                            .font(.body)
+                    }
+                    .padding(.vertical)
+                }
                 
                 // Support & Contact section
                 Section {

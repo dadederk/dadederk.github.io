@@ -1,0 +1,98 @@
+{
+  "title": "Xarra",
+  "subtitle": "Read, listen (or both), to your articles and documents.",
+  "description": "Import an article, a document, or some text, and Xarra will read it out loud while keeping the text in sync on screen. You can follow along line by line, listen hands-free, or switch between the two whenever it suits you.\n\nIt's designed for moments when reading alone isn't ideal, listening alone isn't enough, or when combining both helps you stay focused and engaged with the content.",
+  "nameOrigin": "Xarra (pronounced \"CHA-rra\") comes from a Valencian/Catalan word meaning \"to chat\" or \"to talk\".",
+  "imagePath": "/Images/Site/Apps/XarraIcon.png",
+  "imageDescription": "Xarra app icon - a stylized icon representing text to audio conversion",
+  "platforms": ["iOS", "iPadOS"],
+  "actions": [
+    {
+      "title": "Install with TestFlight",
+      "target": "https://testflight.apple.com/join/sjk3n7y6",
+      "style": "primary"
+    }
+  ],
+  "featureGroups": [
+    {
+      "title": "Bring your content, make it listenable",
+      "features": [
+        {
+          "title": "Text, links, and documents",
+          "description": "Add content by typing or pasting text, sharing a web page from Safari or Notes, entering a URL, or importing documents like PDFs from the Files app. Xarra focuses on the readable content and prepares it for listening.",
+          "imagePath": "/Images/Site/Apps/Xarra/TextLinksDocuments.png",
+          "imageDescription": "Screenshot of the Xarra app showing a context menu for adding new content. The menu lists four import options: Plain Text, Document, URL, and Clipboard, each with an accompanying icon."
+        },
+        {
+          "title": "Quick system integration",
+          "description": "Use the Share extension to send content into Xarra from anywhere in the system. A couple of taps is all it takes to turn something you're already reading into something you can listen to."
+        },
+        {
+          "title": "Synced across your devices",
+          "description": "Audio Documents are kept in sync with iCloud, so your library and listening progress follow you across iPhone and iPad. Start listening on one device, pick it up later on another."
+        }
+      ]
+    },
+    {
+      "title": "Listening, your way",
+      "features": [
+        {
+          "title": "Voices and languages",
+          "description": "Xarra supports multiple system voices and automatically detects the language of the content. Whether you're switching between languages or just have a preferred voice, playback adapts without extra setup."
+        },
+        {
+          "title": "Playback speed and preferences",
+          "description": "Adjust the reading speed to match your pace. You can also ask Xarra to respect your system's assistive voice and speech rate settings, so it feels consistent with the rest of your device."
+        },
+        {
+          "title": "Feels at home on iOS and iPadOS",
+          "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, and embraces Apple's latest design language, including Liquid Glass. More platforms are on the way."
+        }
+      ]
+    },
+    {
+      "title": "Follow along and stay oriented",
+      "features": [
+        {
+          "title": "Synchronized highlighting",
+          "description": "As Xarra reads, the current line is highlighted on screen. You can also enable word-level highlighting, using either a background or underline, depending on what you find clearer."
+        },
+        {
+          "title": "Chapters and navigation",
+          "description": "Xarra tries to detect headings and sections, turning them into chapters you can jump between. This makes longer articles or documents easier to explore."
+        },
+        {
+          "title": "Resume anytime",
+          "description": "Progress is saved automatically, so you can stop and continue later without losing your place. Xarra also works with system audio controls from the Lock Screen and Control Center."
+        }
+      ]
+    },
+    {
+      "title": "Accessibility",
+      "features": [
+        {
+          "title": "Designed for assistive technologies",
+          "description": "Xarra works thoughtfully with VoiceOver, Switch Control, Full Keyboard Access, and Voice Control. Navigation, playback, and content reading are designed to work with different interaction methods, without assuming how the app will be used.",
+          "imagePath": "/Images/Site/Apps/XarraIcon.png",
+          "imageDescription": "Xarra app icon representing accessibility features"
+        },
+        {
+          "title": "Adaptive by default",
+          "description": "Xarra respects system settings like Dynamic Type (including larger accessibility sizes), Reduce Motion, Dark and Light Mode, Increase Contrast, Bold Text, and Differentiate Without Color. The interface adapts to your preferences rather than asking you to adapt to it.",
+          "imagePath": "/Images/Site/Apps/XarraIcon.png",
+          "imageDescription": "Xarra app icon representing adaptive features"
+        },
+        {
+          "title": "Accessibility, made explicit",
+          "description": "Xarra supports Apple's Accessibility Nutrition Labels and aims to go beyond checklists by considering how content is imported, presented, and listened to. When articles include images with alt text or captions, that information is preserved and included in the audio experience.",
+          "imagePath": "/Images/Site/Apps/XarraIcon.png",
+          "imageDescription": "Xarra app icon representing explicit accessibility support"
+        }
+      ]
+    }
+  ],
+  "whySection": "Xarra is built to be helpful, respectful, and easy to trust. It works entirely offline once content is imported, keeping everything on your device. There are no ads, no trackers, and no accounts required. The app is lightweight, quick to download, and focused on doing one thing well helping you engage with text in the way that works best for you.",
+  "supportText": "Having trouble getting the most out of Xarra? We're here to help you turn your text into the perfect audio experience!",
+  "contactEmail": "dadederk@icloud.com"
+}
+

@@ -9,6 +9,7 @@ struct AppCard: HTML {
     let nameOrigin: String
     let imagePath: String
     let imageDescription: String
+    let platforms: [String]
     let actions: [ActionButton]
     
     @MainActor var body: some HTML {
@@ -32,6 +33,22 @@ struct AppCard: HTML {
                                 .font(.body)
                                 .foregroundStyle(.secondary)
                                 .padding(.bottom, 5)
+                            
+                            if !platforms.isEmpty {
+                                HStack(spacing: 4) {
+                                    ForEach(platforms) { platform in
+                                        Text(platform)
+                                            .font(.body)
+                                            .fontWeight(.medium)
+                                            .foregroundStyle(.secondary)
+                                            .padding(.horizontal, 4)
+                                            .padding(.vertical, 4)
+                                            .border(Color(hex: "#444444"))
+                                            .cornerRadius(4)
+                                    }
+                                }
+                                .padding(.bottom, 5)
+                            }
                         }
                     }
                     

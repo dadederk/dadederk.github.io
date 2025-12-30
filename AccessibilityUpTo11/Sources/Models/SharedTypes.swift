@@ -3,7 +3,7 @@ import Ignite
 
 // MARK: - Shared Types for More Content
 
-struct ActionItem {
+struct ActionItem: Codable {
     let title: String
     let target: String
     let style: String // "primary" or "secondary"
