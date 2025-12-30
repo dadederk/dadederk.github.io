@@ -338,9 +338,3 @@ header nav.navbar {
 
 /* MINIMAL CSS EXCEPTIONS - Only for features not available in Ignite modifiers */
 
-/* Feature images - width 100% and object-fit not available as modifiers */
-.card-body img[style*="aspect-ratio"] {
-    width: 100% !important;
-    object-fit: contain !important;
-}
-

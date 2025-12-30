@@ -15,21 +15,48 @@
   ],
   "featureGroups": [
     {
+      "title": "Follow along and stay oriented",
+      "features": [
+        {
+          "title": "Synchronized highlighting",
+          "description": "As Xarra reads, the current line is highlighted on screen. You can also enable word-level highlighting, using either a background or underline, depending on what you find clearer.",
+          "imagePath": "/Images/Site/Apps/Xarra/SynchronizedHighlighting.png",
+          "imageDescription": "Side-by-side screenshots of the Xarra app while reading an onboarding document. In both images, the current line “Hello, I am Xarra.” is highlighted as the active line. In the left screenshot, the word “Xarra” is additionally emphasized with an underline. In the right screenshot, the word “Xarra” is highlighted using a darker background, showing two different styles for word-level highlighting during playback."
+        },
+        {
+          "title": "Chapters and navigation",
+          "description": "Xarra tries to detect headings and sections, turning them into chapters you can jump between. This makes longer articles or documents easier to explore.",
+          "imagePath": "/Images/Site/Apps/Xarra/ChaptersAndNavigation.png",
+          "imageDescription": "Screenshot of Xarra showing a Chapters sheet. A list displays detected sections from a document, including “VoiceOver Noise” labeled as Chapter 1 and “Apple’s Use” labeled as Chapter 2. Each chapter appears as a selectable row with a chevron, and a close button is shown in the top-right corner of the sheet."
+        },
+        {
+          "title": "Resume anytime",
+          "description": "Progress is saved automatically, so you can stop and continue later without losing your place. Xarra also works with system audio controls from the Lock Screen and Control Center.",
+          "imagePath": "/Images/Site/Apps/Xarra/ResumeAnytime.png",
+          "imageDescription": "Screenshot of the iOS Control Center showing Xarra integrated with system media controls. The Now Playing tile displays artwork for an audio document titled “iOS 14: Custom Accessibility Content,” along with a pause button and skip backward and skip forward controls that move five lines at a time, indicating playback can be resumed and controlled from the Lock Screen and Control Center."
+        }
+      ]
+    },
+    {
       "title": "Bring your content, make it listenable",
       "features": [
         {
           "title": "Text, links, and documents",
           "description": "Add content by typing or pasting text, sharing a web page from Safari or Notes, entering a URL, or importing documents like PDFs from the Files app. Xarra focuses on the readable content and prepares it for listening.",
           "imagePath": "/Images/Site/Apps/Xarra/TextLinksDocuments.png",
-          "imageDescription": "Screenshot of the Xarra app showing a context menu for adding new content. The menu lists four import options: Plain Text, Document, URL, and Clipboard, each with an accompanying icon."
+          "imageDescription": "Screenshot of the Xarra app showing a context menu titled “From:” with options for adding content. The menu lists Plain Text, Document, URL, and Clipboard, each with an icon, indicating different ways to import text, links, or files into the app for listening."
         },
         {
           "title": "Quick system integration",
-          "description": "Use the Share extension to send content into Xarra from anywhere in the system. A couple of taps is all it takes to turn something you're already reading into something you can listen to."
+          "description": "Use the Share extension to send content into Xarra from anywhere in the system. A couple of taps is all it takes to turn something you're already reading into something you can listen to.",
+          "imagePath": "/Images/Site/Apps/Xarra/QuickSystemIntegration.png",
+          "imageDescription": "Screenshot of the iOS Share extension showing a web page titled “iOS 14: Custom Accessibility Content” from mobilea11y.com being shared to Xarra. The share sheet displays an Options button and a large checkmark confirmation, indicating that the article has been successfully imported into the app for listening."
         },
         {
           "title": "Synced across your devices",
-          "description": "Audio Documents are kept in sync with iCloud, so your library and listening progress follow you across iPhone and iPad. Start listening on one device, pick it up later on another."
+          "description": "Audio Documents are kept in sync with iCloud, so your library and listening progress follow you across iPhone and iPad. Start listening on one device, pick it up later on another.",
+          "imagePath": "/Images/Site/Apps/Xarra/SyncedAcrossYourDevices.png",
+          "imageDescription": "Screenshot of the iPad version of Xarra showing a list of Audio Documents synced via iCloud. Each document displays a progress bar and a percentage indicating how much has been listened to. One document is open on the right, where the transcript highlights the last line that was played previously, showing that listening progress is preserved across devices."
         }
       ]
     },
@@ -47,23 +74,6 @@
         {
           "title": "Feels at home on iOS and iPadOS",
           "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, and embraces Apple's latest design language, including Liquid Glass. More platforms are on the way."
-        }
-      ]
-    },
-    {
-      "title": "Follow along and stay oriented",
-      "features": [
-        {
-          "title": "Synchronized highlighting",
-          "description": "As Xarra reads, the current line is highlighted on screen. You can also enable word-level highlighting, using either a background or underline, depending on what you find clearer."
-        },
-        {
-          "title": "Chapters and navigation",
-          "description": "Xarra tries to detect headings and sections, turning them into chapters you can jump between. This makes longer articles or documents easier to explore."
-        },
-        {
-          "title": "Resume anytime",
-          "description": "Progress is saved automatically, so you can stop and continue later without losing your place. Xarra also works with system audio controls from the Lock Screen and Control Center."
         }
       ]
     },

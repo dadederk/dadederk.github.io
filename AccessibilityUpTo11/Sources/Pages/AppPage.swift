@@ -238,25 +238,27 @@ struct UniversalAppPage: StaticPage {
                                     ForEach(group.features) { feature in
                                         Card {
                                             VStack(alignment: .leading, spacing: 0) {
-                                                // Always show an image - use feature image if available, otherwise fallback to app icon
+                                                // Image at top, extends to card edges
                                                 Image(
                                                     feature.imagePath ?? app.imagePath,
                                                     description: feature.imageDescription ?? app.imageDescription
                                                 )
                                                 .resizable()
                                                 .aspectRatio(16/9, contentMode: .fit)
-                                                .margin(.leading, -12)
-                                                .margin(.top, -12)
-                                                .margin(.trailing, -12)
                                                 
-                                                Text(feature.title)
-                                                    .font(.title4)
-                                                    .fontWeight(.bold)
-                                                    .padding(.top)
-                                                    .padding(.bottom, 5)
-                                                
-                                                Text(feature.description)
-                                                    .font(.body)
+                                                // Text content with padding
+                                                VStack(alignment: .leading, spacing: 0) {
+                                                    Text(feature.title)
+                                                        .font(.title4)
+                                                        .fontWeight(.bold)
+                                                        .padding(.top)
+                                                        .padding(.bottom, 5)
+                                                    
+                                                    Text(feature.description)
+                                                        .font(.body)
+                                                }
+                                                .padding(.horizontal)
+                                                .padding(.bottom)
                                             }
                                         }
                                         .width(4)
@@ -279,26 +281,28 @@ struct UniversalAppPage: StaticPage {
                     Grid(alignment: .topLeading) {
                         ForEach(app.features) { feature in
                             Card {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    // Image at top, extends to card edges
+                                    Image(
+                                        feature.imagePath ?? app.imagePath,
+                                        description: feature.imageDescription ?? app.imageDescription
+                                    )
+                                    .resizable()
+                                    .aspectRatio(16/9, contentMode: .fit)
+                                    
+                                    // Text content with padding
                                     VStack(alignment: .leading, spacing: 0) {
-                                        // Always show an image - use feature image if available, otherwise fallback to app icon
-                                        Image(
-                                            feature.imagePath ?? app.imagePath,
-                                            description: feature.imageDescription ?? app.imageDescription
-                                        )
-                                            .resizable()
-                                        .aspectRatio(16/9, contentMode: .fit)
-                                        .margin(.leading, -12)
-                                        .margin(.top, -12)
-                                        .margin(.trailing, -12)
-                                    
-                                    Text(feature.title)
-                                        .font(.title3)
-                                        .fontWeight(.bold)
+                                        Text(feature.title)
+                                            .font(.title3)
+                                            .fontWeight(.bold)
                                             .padding(.top)
-                                        .padding(.bottom, 5)
-                                    
-                                    Text(feature.description)
-                                        .font(.body)
+                                            .padding(.bottom, 5)
+                                        
+                                        Text(feature.description)
+                                            .font(.body)
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.bottom)
                                 }
                             }
                             .width(4)
