@@ -65,11 +65,16 @@
       "features": [
         {
           "title": "Voices and languages",
-          "description": "Xarra supports multiple system voices and automatically detects the language of the content. Whether you're switching between languages or just have a preferred voice, playback adapts without extra setup."
+          "description": "Xarra supports multiple system voices and automatically detects the language of the content. Whether you're switching between languages or just have a preferred voice, playback adapts without extra setup.",
+          "imagePath": "/Images/Site/Apps/Xarra/VoicesAndLanguages.png",
+          "imageDescription": "Split screenshot from Xarra. On the left, the Settings screen shows a voice selector with multiple system voices, including enhanced English voices, with one selected. On the right, an Info screen for an Audio Document displays metadata such as the title, export date, detected language set to Spanish, and an automatically generated summary, illustrating voice selection and language detection."
         },
         {
           "title": "Playback speed and preferences",
-          "description": "Adjust the reading speed to match your pace. You can also ask Xarra to respect your system's assistive voice and speech rate settings, so it feels consistent with the rest of your device."
+          "description": "Adjust the reading speed to match your pace. You can also ask Xarra to respect your system's assistive voice and speech rate settings, so it feels consistent with the rest of your device.",
+          "imagePath": "/Images/Site/Apps/Xarra/PlaybackSpeedAndPreferences.png",
+          "imageDescription": "Side-by-side screenshot from Xarra. On the left, the Settings screen shows playback preferences, including a toggle to respect the device’s assistive technology settings and a selected custom voice. On the right, a playback speed menu is open, listing options from 0.25× to 1.5×, with 1.0× selected, illustrating how users can adjust reading speed."
+          
         },
         {
           "title": "Feels at home on iOS and iPadOS",
