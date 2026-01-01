@@ -17,41 +17,34 @@ struct MainLayout: Layout {
                 // Canonical URL to prevent duplicate content issues
                 MetaLink(href: "https://accessibilityupto11.com\(page.url.path)", rel: "canonical")
                 
-                // Conditional Open Graph meta tags based on page type
-                if page.url.path.hasPrefix("/365-days-ios-accessibility/day-") {
-                    // Days365 post - get post data and set specific meta tags
-                    let postFileName = page.url.path.replacingOccurrences(of: "/365-days-ios-accessibility/", with: "")
-                    if let post = Days365Loader.post(withFileName: postFileName) {
-                        MetaTag(property: "og:type", content: "article")
-                        MetaTag(property: "og:url", content: "https://accessibilityupto11.com\(post.path)")
-                        MetaTag(property: "og:image", content: post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")
-                        MetaTag(property: "og:image:alt", content: post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")
-                        MetaTag(property: "og:locale", content: "en_US")
-                        
-                        MetaTag(name: "twitter:image", content: post.image != nil ? "https://accessibilityupto11.com\(post.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")
-                        MetaTag(name: "twitter:image:alt", content: post.image != nil ? "\(post.title) - #365DaysIOSAccessibility" : "Accessibility up to 11! Logo")
-                    } else {
-                        // Fallback to global meta tags if post not found
-                        MetaTag(property: "og:type", content: "website")
-                        MetaTag(property: "og:url", content: "https://accessibilityupto11.com")
-                        MetaTag(property: "og:image", content: "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")
-                        MetaTag(property: "og:image:alt", content: "Accessibility up to 11! Logo")
-                        MetaTag(property: "og:locale", content: "en_US")
-                        
-                        MetaTag(name: "twitter:image", content: "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")
-                        MetaTag(name: "twitter:image:alt", content: "Accessibility up to 11! Logo")
-                    }
-                } else {
-                    // Global Open Graph meta tags for other pages
-                    MetaTag(property: "og:type", content: "website")
-                    MetaTag(property: "og:url", content: "https://accessibilityupto11.com")
-                    MetaTag(property: "og:image", content: "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")
-                    MetaTag(property: "og:image:alt", content: "Accessibility up to 11! Logo")
-                    MetaTag(property: "og:locale", content: "en_US")
-                    
-                    MetaTag(name: "twitter:image", content: "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")
-                    MetaTag(name: "twitter:image:alt", content: "Accessibility up to 11! Logo")
+                // Social meta tags (Open Graph and Twitter Cards)
+                let tagData = SocialMetaTags.getTagData(for: page.url.path)
+                
+                MetaTag(property: "og:type", content: tagData.ogType)
+                if let ogTitle = tagData.ogTitle {
+                    MetaTag(property: "og:title", content: ogTitle)
                 }
+                if let ogDescription = tagData.ogDescription {
+                    MetaTag(property: "og:description", content: ogDescription)
+                }
+                MetaTag(property: "og:url", content: tagData.ogUrl)
+                MetaTag(property: "og:image", content: tagData.ogImage)
+                MetaTag(property: "og:image:alt", content: tagData.ogImageAlt)
+                MetaTag(property: "og:locale", content: tagData.ogLocale)
+                
+                if let twitterCard = tagData.twitterCard {
+                    MetaTag(name: "twitter:card", content: twitterCard)
+                }
+                if let twitterTitle = tagData.twitterTitle {
+                    MetaTag(name: "twitter:title", content: twitterTitle)
+                }
+                if let twitterDescription = tagData.twitterDescription {
+                    MetaTag(name: "twitter:description", content: twitterDescription)
+                }
+                MetaTag(name: "twitter:image", content: tagData.twitterImage)
+                MetaTag(name: "twitter:image:alt", content: tagData.twitterImageAlt)
+                
+                // Common Twitter tags for all pages
                 MetaTag(name: "twitter:site", content: "@dadederk")
                 MetaTag(name: "twitter:creator", content: "@dadederk")
                 
