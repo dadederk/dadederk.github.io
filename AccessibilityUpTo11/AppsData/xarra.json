@@ -78,7 +78,9 @@
         },
         {
           "title": "Feels at home on iOS and iPadOS",
-          "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, and embraces Apple's latest design language, including Liquid Glass. More platforms are on the way."
+          "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, and embraces Apple's latest design language, including Liquid Glass. More platforms are on the way.",
+          "imagePath": "/Images/Site/Apps/Xarra/FeelsAtHome.png",
+          "imageDescription": "Screenshot of Xarra running on iPad in a multi-window setup. The app is open in a resizable window alongside other apps, showing a sidebar list of audio documents on the left and a transcript view on the right. A floating playback control panel with play and skip buttons sits above the content. The interface adapts naturally to the larger screen, demonstrating support for modern iPadOS windowing with Apple’s Liquid Glass visual style."
         }
       ]
     },
@@ -86,22 +88,22 @@
       "title": "Accessibility",
       "features": [
         {
-          "title": "Designed for assistive technologies",
+          "title": "Designed to work beautifully with assistive technologies",
           "description": "Xarra works thoughtfully with VoiceOver, Switch Control, Full Keyboard Access, and Voice Control. Navigation, playback, and content reading are designed to work with different interaction methods, without assuming how the app will be used.",
-          "imagePath": "/Images/Site/Apps/XarraIcon.png",
-          "imageDescription": "Xarra app icon representing accessibility features"
+          "imagePath": "/Images/Site/Apps/Xarra/DesignedForAssistiveTechnologies.png",
+          "imageDescription": "Screenshot of Xarra’s home screen with VoiceOver enabled. The VoiceOver cursor is focused on an Audio Document row titled “Welcome to Xarra,” highlighting the entire row. At the bottom of the screen, the Captions Panel displays VoiceOver’s spoken output for the focused element, showing the document title, source, and progress information."
         },
         {
           "title": "Adaptive by default",
           "description": "Xarra respects system settings like Dynamic Type (including larger accessibility sizes), Reduce Motion, Dark and Light Mode, Increase Contrast, Bold Text, and Differentiate Without Color. The interface adapts to your preferences rather than asking you to adapt to it.",
-          "imagePath": "/Images/Site/Apps/XarraIcon.png",
-          "imageDescription": "Xarra app icon representing adaptive features"
+          "imagePath": "/Images/Site/Apps/Xarra/AdaptiveByDefault.png",
+          "imageDescription": "Screenshot of Xarra running in a split iPad layout with large Dynamic Type enabled. The text is displayed at an accessibility size, and a chapter heading (“Chapter 1: What is Xarra?”) is clearly outlined with high contrast. A floating playback control panel sits above the content, showing large, easy-to-target controls. The layout adapts naturally to the larger text size without truncation or overlap."
         },
         {
           "title": "Accessibility, made explicit",
-          "description": "Xarra supports Apple's Accessibility Nutrition Labels and aims to go beyond checklists by considering how content is imported, presented, and listened to. When articles include images with alt text or captions, that information is preserved and included in the audio experience.",
-          "imagePath": "/Images/Site/Apps/XarraIcon.png",
-          "imageDescription": "Xarra app icon representing explicit accessibility support"
+          "description": "Xarra aims to offer the best experience possible for everyone. As a result, it naturally complies with Apple’s Accessibility Nutrition Labels, but it doesn’t stop there. Accessibility is considered throughout the whole experience: how content is imported, how it’s presented, and how it’s listened to. For example, when articles include images with alt text or captions, that information is preserved and included in the audio experience.",
+          "imagePath": "/Images/Site/Apps/Xarra/AccessibilityMadeExplicit.png",
+          "imageDescription": "Side-by-side screenshot comparison. On the left, Safari displays a blog post containing an image of the VoiceOver rotor set to “More Content.” On the right, the same article is shown in Xarra, where the image’s alt text has been extracted and inserted inline into the text, making the image description readable and listenable as part of the article."
         }
       ]
     }
