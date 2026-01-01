@@ -42,11 +42,13 @@ enum SocialMetaTags {
             }
         }
         
-        // App page
+        // App page - match /apps/{identifier} or /apps/{identifier}/
         if pagePath.hasPrefix("/apps/") && !pagePath.hasSuffix("/terms") && !pagePath.hasSuffix("/privacy") {
-            let pathComponents = pagePath.split(separator: "/")
-            if pathComponents.count >= 2 && pathComponents[0] == "apps" {
-                let appIdentifier = String(pathComponents[1])
+            // Extract app identifier from path like /apps/xarra or /apps/xarra/
+            let pathWithoutPrefix = pagePath.replacingOccurrences(of: "/apps/", with: "")
+            let appIdentifier = pathWithoutPrefix.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            
+            if !appIdentifier.isEmpty {
                 let appsData = AppsData.loadContent()
                 if let app = appsData.apps.first(where: { $0.title.lowercased() == appIdentifier.lowercased() }) {
                     let description = app.description.components(separatedBy: "\n\n").first ?? app.subtitle
