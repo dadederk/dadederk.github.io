@@ -27,8 +27,9 @@ struct AppItem: Identifiable, Codable {
     let whySection: String?
     let supportText: String
     let contactEmail: String
+    let order: Int
     
-    init(id: UUID = UUID(), title: String, subtitle: String, description: String, nameOrigin: String, imagePath: String, imageDescription: String, platforms: [String], actions: [ActionItem], featureGroups: [FeatureGroup], features: [FeatureItem], accessibility: String?, whySection: String?, supportText: String, contactEmail: String) {
+    init(id: UUID = UUID(), title: String, subtitle: String, description: String, nameOrigin: String, imagePath: String, imageDescription: String, platforms: [String], actions: [ActionItem], featureGroups: [FeatureGroup], features: [FeatureItem], accessibility: String?, whySection: String?, supportText: String, contactEmail: String, order: Int = 999) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
@@ -44,6 +45,7 @@ struct AppItem: Identifiable, Codable {
         self.whySection = whySection
         self.supportText = supportText
         self.contactEmail = contactEmail
+        self.order = order
     }
 }
 

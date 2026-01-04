@@ -30,7 +30,7 @@ struct AppsJSONLoader {
                 }
             }
             
-            return apps.sorted { $0.title < $1.title }
+            return apps.sorted { $0.order < $1.order }
         } catch {
             print("Error loading apps content from \(appsURL): \(error)")
             return []
@@ -78,6 +78,7 @@ private struct AppItemJSON: Codable {
     let whySection: String?
     let supportText: String?
     let contactEmail: String?
+    let order: Int?
     
     func toAppItem() -> AppItem {
         // Convert feature groups
@@ -119,7 +120,8 @@ private struct AppItemJSON: Codable {
             accessibility: accessibility,
             whySection: whySection,
             supportText: supportText ?? "Need help or have questions about \(title)? We're here to help!",
-            contactEmail: contactEmail ?? "dadederk@icloud.com"
+            contactEmail: contactEmail ?? "dadederk@icloud.com",
+            order: order ?? 999
         )
     }
 }
