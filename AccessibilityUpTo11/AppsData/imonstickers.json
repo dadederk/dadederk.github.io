@@ -9,8 +9,8 @@
   "platforms": ["Messages"],
   "actions": [
     {
-      "title": "Install with TestFlight",
-      "target": "https://testflight.apple.com/join/v2m7dQBk",
+      "title": "Download on the App Store",
+      "target": "https://apps.apple.com/us/app/imonstickers-for-messages/id1164272926",
       "style": "primary"
     }
   ],
