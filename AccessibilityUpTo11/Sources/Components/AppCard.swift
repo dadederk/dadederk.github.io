@@ -24,7 +24,7 @@ struct AppCard: HTML {
                             .padding()
                         
                         VStack(alignment: .leading) {
-                            Link(title, target: "/apps/\(title.lowercased().replacingOccurrences(of: " ", with: "-"))")
+                            Link(title, target: appURLPath(for: title))
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .horizontalAlignment(.leading)
@@ -71,5 +71,13 @@ struct AppCard: HTML {
             }
         }
         .padding()
+    }
+    
+    private func appURLPath(for title: String) -> String {
+        // Special case for iMonstickers to preserve capital M
+        if title == "iMonstickers" {
+            return "/apps/iMonstickers"
+        }
+        return "/apps/\(title.lowercased().replacingOccurrences(of: " ", with: "-"))"
     }
 }
