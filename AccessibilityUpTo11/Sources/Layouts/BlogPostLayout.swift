@@ -150,7 +150,15 @@ struct BlogPostLayout: ArticlePage {
                 Text("Published on \(article.date.formatted(date: .complete, time: .omitted))")
                     .font(.body)
                     .foregroundStyle(.secondary)
-                    .horizontalAlignment(.center)
+                    .horizontalAlignment(.leading)
+
+                Text {
+                    "Content © Daniel Devesa Derksen-Staats — "
+                    Link("Accessibility up to 11!", target: "https://accessibilityupto11.com")
+                }
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .horizontalAlignment(.leading)
             }
             .padding(.horizontal)
         }

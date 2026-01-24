@@ -72,6 +72,21 @@ struct Days365PostPage: StaticPage {
             // Related posts section
             let relatedPosts = Days365Loader.relatedPosts(for: post)
             RelatedPostsSection(relatedPosts: relatedPosts)
+
+            // Attribution for this post
+            Section {
+                Divider()
+                    .padding(.vertical)
+
+                Text {
+                    "Content © Daniel Devesa Derksen-Staats — "
+                    Link("Accessibility up to 11!", target: "https://accessibilityupto11.com")
+                }
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .horizontalAlignment(.leading)
+            }
+            .padding(.horizontal)
             
             // Navigation to other posts
             Section {

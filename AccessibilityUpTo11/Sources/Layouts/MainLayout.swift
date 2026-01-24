@@ -50,6 +50,10 @@ struct MainLayout: Layout {
                 
                 // Custom CSS for navigation and theme support
                 MetaLink(href: "/custom-navigation.css", rel: "stylesheet")
+                
+                // Favicon configuration
+                MetaLink(href: "/Images/Site/Global/a11yupto11favicon.png", rel: "icon")
+                MetaLink(href: "/Images/Site/Global/a11yupto11favicon.png", rel: "apple-touch-icon")
 
                 // Redirect from GitHub Pages to custom domain for SEO
                 Script(code: """

@@ -1,0 +1,9 @@
+# Accessibility up to 11! - robots.txt
+# Site information: https://accessibilityupto11.com/llms.txt
+# AI Terms of Service: https://accessibilityupto11.com/ai-tos.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://accessibilityupto11.com/sitemap.xml
+Sitemap: https://accessibilityupto11.com/image-sitemap.xml
