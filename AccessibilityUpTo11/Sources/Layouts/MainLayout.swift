@@ -6,6 +6,7 @@ struct MainLayout: Layout {
     
     @MainActor var body: some Document {
         let meta = Self.metaContext(title: page.title, path: page.url.path)
+        let assetVersion = "2026-02-03"
         
         PlainDocument {
             Head {
@@ -31,7 +32,8 @@ struct MainLayout: Layout {
                 MetaTag(name: "twitter:site", content: "@dadederk")
                 MetaTag(name: "twitter:creator", content: "@dadederk")
                 
-                MetaLink(href: "/custom-navigation.css", rel: "stylesheet")
+                MetaLink(href: "/css/ignite-core.min.css?v=\(assetVersion)", rel: "stylesheet")
+                MetaLink(href: "/custom-navigation.css?v=\(assetVersion)", rel: "stylesheet")
                 MetaLink(href: "/Images/Site/Global/a11yupto11favicon.png", rel: "icon")
                 MetaLink(href: "/Images/Site/Global/a11yupto11favicon.png", rel: "apple-touch-icon")
 
