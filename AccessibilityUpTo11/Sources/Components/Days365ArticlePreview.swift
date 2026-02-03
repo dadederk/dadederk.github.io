@@ -25,6 +25,7 @@ struct HomeArticlePreviewStyleFor365Days: HTML {
                 Link(post.title, target: post.path)
             }
             .font(.title2)
+            .foregroundStyle(.body)
         } footer: {
             if !post.tags.isEmpty {
                 HStack(alignment: .center) {
@@ -38,7 +39,8 @@ struct HomeArticlePreviewStyleFor365Days: HTML {
                         .padding(.top, 4)
                     }
                 }
-                .class("d-flex", "flex-wrap")
+                .style(.display, "flex")
+                .style(.flexWrap, "wrap")
                 .margin(.top, -5)
             }
         }

@@ -13,7 +13,15 @@ struct ActionButton: HTML {
     }
     
     @MainActor var body: some HTML {
-        Link(title, target: target)
-            .class("btn", style == .primary ? "btn-primary" : "btn-secondary")
+        switch style {
+        case .primary:
+            Link(title, target: target)
+                .linkStyle(.button)
+                .role(.primary)
+        case .secondary:
+            Link(title, target: target)
+                .linkStyle(.button)
+                .role(.secondary)
+        }
     }
 }

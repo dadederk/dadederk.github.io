@@ -16,28 +16,14 @@ struct Days365: StaticPage {
             
             // Page header with RSS link
             Section {
-                // Desktop layout: HStack with title2
                 HStack(alignment: .bottom) {
                     Text("#365DaysIOSAccessibility")
                         .font(.title2)
-                    
-                    Link("RSS Feed", target: "/365-days-feed.rss")
-                        .class("btn", "btn-primary")
+                    ActionButton(title: "RSS Feed", target: "/365-days-feed.rss", style: .primary)
                         .font(.body)
                 }
-                .class("d-none", "d-md-flex")
-                .padding(.bottom)
-                
-                // Mobile layout: VStack with title4
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("#365DaysIOSAccessibility")
-                        .font(.title4)
-                    
-                    Link("RSS Feed", target: "/365-days-feed.rss")
-                        .class("btn", "btn-primary")
-                        .font(.body)
-                }
-                .class("d-md-none")
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
                 .padding(.bottom)
                 
                 Text("A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.")
@@ -74,26 +60,37 @@ struct Days365: StaticPage {
                                 HStack(spacing: 12) {
                                     // Previous button (disabled on first page)
                                     Text("← Previous")
-                                        .class("btn", "btn-outline-secondary", "disabled")
+                                        .padding(.vertical, .small)
+                                        .padding(.horizontal)
+                                        .border(.gray)
+                                        .cornerRadius(6)
                                         .foregroundStyle(.secondary)
+                                        .style(.opacity, "0.6")
                                     
                                     Spacer()
                                     
                                     // Page indicator
-                                    Text("Page \(currentPage) of \(totalPages)")
-                                        .font(.body)
-                                        .foregroundStyle(.secondary)
+                                Text("Page \(currentPage) of \(totalPages)")
+                                    .font(.body)
+                                    .foregroundStyle(.secondary)
                                     
-                                    Spacer()
+                                Spacer()
                                     
                                     // Next button
                                     if totalPages > 1 {
                                         Link("Next →", target: "/365-days-ios-accessibility/page-2")
-                                            .class("btn", "btn-outline-secondary")
+                                            .padding(.vertical, .small)
+                                            .padding(.horizontal)
+                                            .border(.gray)
+                                            .cornerRadius(6)
                                     } else {
                                         Text("Next →")
-                                            .class("btn", "btn-outline-secondary", "disabled")
+                                            .padding(.vertical, .small)
+                                            .padding(.horizontal)
+                                            .border(.gray)
+                                            .cornerRadius(6)
                                             .foregroundStyle(.secondary)
+                                            .style(.opacity, "0.6")
                                     }
                                 }
                             }
@@ -153,28 +150,15 @@ struct Days365Page: StaticPage {
             
             // Page header with RSS link
             Section {
-                // Desktop layout: HStack with title2
                 HStack(alignment: .bottom) {
                     Text("#365DaysIOSAccessibility")
                         .font(.title2)
                     
-                    Link("RSS Feed", target: "/365-days-feed.rss")
-                        .class("btn", "btn-primary")
+                    ActionButton(title: "RSS Feed", target: "/365-days-feed.rss", style: .primary)
                         .font(.body)
                 }
-                .class("d-none", "d-md-flex")
-                .padding(.bottom)
-                
-                // Mobile layout: VStack with title4
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("#365DaysIOSAccessibility")
-                        .font(.title4)
-                    
-                    Link("RSS Feed", target: "/365-days-feed.rss")
-                        .class("btn", "btn-primary")
-                        .font(.body)
-                }
-                .class("d-md-none")
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
                 .padding(.bottom)
                 
                 Text("A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.")
@@ -214,11 +198,18 @@ struct Days365Page: StaticPage {
                                         let prevPage = currentPage - 1
                                         let prevPath = prevPage == 1 ? "/365-days-ios-accessibility" : "/365-days-ios-accessibility/page-\(prevPage)"
                                         Link("← Previous", target: prevPath)
-                                            .class("btn", "btn-outline-secondary")
+                                            .padding(.vertical, .small)
+                                            .padding(.horizontal)
+                                            .border(.gray)
+                                            .cornerRadius(6)
                                     } else {
                                         Text("← Previous")
-                                            .class("btn", "btn-outline-secondary", "disabled")
+                                            .padding(.vertical, .small)
+                                            .padding(.horizontal)
+                                            .border(.gray)
+                                            .cornerRadius(6)
                                             .foregroundStyle(.secondary)
+                                            .style(.opacity, "0.6")
                                     }
                                     
                                     Spacer()
@@ -234,11 +225,18 @@ struct Days365Page: StaticPage {
                                     if currentPage < totalPages {
                                         let nextPage = currentPage + 1
                                         Link("Next →", target: "/365-days-ios-accessibility/page-\(nextPage)")
-                                            .class("btn", "btn-outline-secondary")
+                                            .padding(.vertical, .small)
+                                            .padding(.horizontal)
+                                            .border(.gray)
+                                            .cornerRadius(6)
                                     } else {
                                         Text("Next →")
-                                            .class("btn", "btn-outline-secondary", "disabled")
+                                            .padding(.vertical, .small)
+                                            .padding(.horizontal)
+                                            .border(.gray)
+                                            .cornerRadius(6)
                                             .foregroundStyle(.secondary)
+                                            .style(.opacity, "0.6")
                                     }
                                 }
                             }

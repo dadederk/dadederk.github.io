@@ -7,7 +7,7 @@ let package = Package(
     name: "AccessibilityUpTo11",
     platforms: [.macOS(.v13)],
     dependencies: [
-        .package(url: "https://github.com/twostraws/Ignite.git", branch: "0.6.0")
+        .package(url: "https://github.com/twostraws/Ignite.git", from: "0.6.2")
     ],
     targets: [
         .executableTarget(

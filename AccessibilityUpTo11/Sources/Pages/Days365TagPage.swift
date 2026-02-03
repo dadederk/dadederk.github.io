@@ -19,33 +19,20 @@ struct Days365TagPage: StaticPage {
             .horizontalAlignment(.leading)
             .padding(.bottom)
             
-                    // Page header
-                    Section {
-                        // Desktop layout: HStack with title2
-                        HStack(alignment: .bottom) {
-                            Text("Tag: \(tag)")
-                                .font(.title2)
-                            
-                            let posts = Days365Loader.posts(withTag: tag)
-                            Text("\(posts.count) post\(posts.count == 1 ? "" : "s")")
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                        }
-                        .class("d-none", "d-md-flex")
-                        .padding(.bottom)
-                        
-                        // Mobile layout: VStack with title4
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Tag: \(tag)")
-                                .font(.title4)
-                            
-                            let posts = Days365Loader.posts(withTag: tag)
-                            Text("\(posts.count) post\(posts.count == 1 ? "" : "s")")
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                        }
-                        .class("d-md-none")
-                        .padding(.bottom)
+            // Page header
+            Section {
+                HStack(alignment: .bottom) {
+                    Text("Tag: \(tag)")
+                        .font(.title2)
+                    
+                    let posts = Days365Loader.posts(withTag: tag)
+                    Text("\(posts.count) post\(posts.count == 1 ? "" : "s")")
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                }
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
+                .padding(.bottom)
                 
                 let allPosts = Days365Loader.posts(withTag: tag)
                 let postsPerPage = 12 // Slightly fewer for tag pages
@@ -96,7 +83,7 @@ struct Days365TagPage: StaticPage {
                         .margin(.bottom, 8)
                     }
                 }
-                .class("flex-wrap")
+                .style(.flexWrap, "wrap")
             }
             .padding(.top)
             .border(.gray, edges: .top)

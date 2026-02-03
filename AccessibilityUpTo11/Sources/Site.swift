@@ -84,6 +84,13 @@ struct AccessibilityUpTo11Website {
             let cleanTitle = xmlEscape(post.title)
             let cleanExcerpt = xmlEscape(post.excerpt)
             let categories = post.tags.map { "<category>\(xmlEscape($0))</category>" }.joined(separator: "\n")
+            let enclosure: String
+            if let imagePath = post.image {
+                let absoluteImage = "https://accessibilityupto11.com\(imagePath)"
+                enclosure = "<enclosure url=\"\(absoluteImage)\" type=\"image/png\" />"
+            } else {
+                enclosure = ""
+            }
             
             rss += """
             <item>
@@ -94,6 +101,7 @@ struct AccessibilityUpTo11Website {
             <pubDate>\(pubDate)</pubDate>
             <guid isPermaLink="true">\(guid)</guid>
             \(categories)
+            \(enclosure)
             </item>
             
             """
@@ -272,6 +280,7 @@ struct AccessibilityUpTo11Website {
         let siteImages = [
             ("/Images/Site/Global/LogoShare.png", "Accessibility up to 11! Logo", "iOS accessibility development blog logo"),
             ("/Images/Site/Global/Logo.png", "Accessibility up to 11! Logo", "iOS accessibility development blog logo"),
+            ("/Images/Site/Global/Logo~dark.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode"),
             ("/Images/Site/Global/LogoDarkMode.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode")
         ]
         

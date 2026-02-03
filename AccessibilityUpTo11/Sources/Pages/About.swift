@@ -15,22 +15,11 @@ struct About: StaticPage {
             
             // Author information
             Section {
-                // Responsive layout: HStack for large viewports, VStack for small
-                Group {
-                    // Desktop/tablet layout (horizontal)
-                    HStack(alignment: .center) {
-                        AuthorInfoPanel()
-                        Spacer()
-                        SocialLinksPanel()
-                    }
-                    .class("d-none", "d-md-flex") // Hide on mobile, show on md and up
-                    
-                    // Mobile layout (vertical)
-                    VStack(alignment: .center) {
-                        AuthorInfoPanel()
-                        SocialLinksPanel()
-                    }
-                    .class("d-md-none") // Show only on mobile
+                Grid(alignment: .topLeading) {
+                    AuthorInfoPanel()
+                        .width(6)
+                    SocialLinksPanel()
+                        .width(6)
                 }
                 
                 VStack(spacing: 6) {
@@ -207,5 +196,3 @@ struct About: StaticPage {
         }
     }
 }
-
-

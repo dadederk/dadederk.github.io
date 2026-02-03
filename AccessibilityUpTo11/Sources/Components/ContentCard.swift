@@ -58,6 +58,7 @@ struct ContentCard: HTML {
             } header: {
                 Text(title)
                     .font(.title2)
+                    .foregroundStyle(.body)
             } footer: {
                 HStack(alignment: .center) {
                     ForEach(actions) { action in
@@ -65,7 +66,8 @@ struct ContentCard: HTML {
                             .padding(.top, 4)
                     }
                 }
-                .class("d-flex", "flex-wrap")
+                .style(.display, "flex")
+                .style(.flexWrap, "wrap")
                 .margin(.top, -5)
             }
         } else {
@@ -92,6 +94,7 @@ struct ContentCard: HTML {
             } header: {
                 Text(title)
                     .font(.title2)
+                    .foregroundStyle(.body)
             } footer: {
                 HStack(alignment: .center) {
                     ForEach(actions) { action in
@@ -99,7 +102,8 @@ struct ContentCard: HTML {
                             .padding(.top, 4)
                     }
                 }
-                .class("d-flex", "flex-wrap")
+                .style(.display, "flex")
+                .style(.flexWrap, "wrap")
                 .margin(.top, -5)
             }
         }

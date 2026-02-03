@@ -17,26 +17,14 @@ struct Home: StaticPage {
             
             // Recent Posts section (3 most recent)
             Section {
-                // Desktop layout: HStack with title2
                 HStack(alignment: .bottom) {
                     Text("Posts")
                         .font(.title2)
-                    
                     Link("See All", target: "/blog")
                         .font(.body)
                 }
-                .class("d-none", "d-md-flex")
-                .padding(.bottom)
-                
-                // Mobile layout: VStack with title4
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Posts")
-                        .font(.title4)
-                    
-                    Link("See All", target: "/blog")
-                        .font(.body)
-                }
-                .class("d-md-none")
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
                 .padding(.bottom)
                 
                 let recentArticles = articles.all.sorted(by: \.date, order: .reverse).prefix(3)
@@ -62,26 +50,14 @@ struct Home: StaticPage {
             
             // Recent Collaborations section (3 most recent from More Content)
             Section {
-                // Desktop layout: HStack with title2
                 HStack(alignment: .bottom) {
                     Text("Collaborations")
                         .font(.title2)
-                    
                     Link("See All", target: "/about#publications")
                         .font(.body)
                 }
-                .class("d-none", "d-md-flex")
-                .padding(.bottom)
-                
-                // Mobile layout: VStack with title4
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Collaborations")
-                        .font(.title4)
-                    
-                    Link("See All", target: "/about#publications")
-                        .font(.body)
-                }
-                .class("d-md-none")
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
                 .padding(.bottom)
                 
                 // Get the 3 most recent content items (already sorted by date)
@@ -139,26 +115,14 @@ struct Home: StaticPage {
             
             // Recent #365DaysIOSAccessibility section (3 most recent)
             Section {
-                // Desktop layout: HStack with title2
                 HStack(alignment: .bottom) {
                     Text("#365DaysIOSAccessibility")
                         .font(.title2)
-                    
                     Link("See All", target: "/365-days-ios-accessibility")
                         .font(.body)
                 }
-                .class("d-none", "d-md-flex")
-                .padding(.bottom)
-                
-                // Mobile layout: VStack with title4
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("#365DaysIOSAccessibility")
-                        .font(.title4)
-                    
-                    Link("See All", target: "/365-days-ios-accessibility")
-                        .font(.body)
-                }
-                .class("d-md-none")
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
                 .padding(.bottom)
                 
                 let recent365Posts = Days365Loader.loadPosts().prefix(3)
@@ -183,7 +147,7 @@ struct Home: StaticPage {
 }
 
 // Custom article preview style for Home page that limits description to ~8 lines
-struct HomeArticlePreviewStyle: ArticlePreviewStyle {
+struct HomeArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
     @MainActor func body(content: Article) -> any HTML {
         Card(imageName: content.image) {
             Text(content.description)
@@ -194,6 +158,7 @@ struct HomeArticlePreviewStyle: ArticlePreviewStyle {
                 Link(content)
             }
             .font(.title2)
+            .foregroundStyle(.body)
         } footer: {
             let tagLinks = content.tagLinks()
             
@@ -205,11 +170,10 @@ struct HomeArticlePreviewStyle: ArticlePreviewStyle {
                             .padding(.top, 4)
                     }
                 }
-                .class("d-flex", "flex-wrap")
+                .style(.display, "flex")
+                .style(.flexWrap, "wrap")
                 .margin(.top, -5)
             }
         }
     }
 }
-
-

@@ -36,11 +36,13 @@ struct Days365PostPage: StaticPage {
                     if !post.tags.isEmpty {
                         HStack(spacing: 8) {
                             ForEach(post.tags) { tag in
-                                Link(tag, target: "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))")
-                                    .class("badge", "bg-primary", "text-white", "rounded-pill", "me-2")
+                                Link(target: "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))") {
+                                    Badge(tag)
+                                        .role(.primary)
+                                }
                             }
                         }
-                        .class("flex-wrap")
+                        .style(.flexWrap, "wrap")
                         .horizontalAlignment(.leading)
                     }
                     
@@ -75,15 +77,17 @@ struct Days365PostPage: StaticPage {
 
             // Attribution for this post
             Section {
-                Divider()
-                    .padding(.vertical)
+                VStack(alignment: .leading) {
+                    Divider()
+                        .padding(.vertical)
 
-                Text {
-                    "Content © Daniel Devesa Derksen-Staats — "
-                    Link("Accessibility up to 11!", target: "https://accessibilityupto11.com")
+                    Text {
+                        "Content © Daniel Devesa Derksen-Staats — "
+                        Link("Accessibility up to 11!", target: "https://accessibilityupto11.com")
+                    }
+                    .font(.body)
+                    .foregroundStyle(.secondary)
                 }
-                .font(.body)
-                .foregroundStyle(.secondary)
                 .horizontalAlignment(.leading)
             }
             .padding(.horizontal)
@@ -101,7 +105,10 @@ struct Days365PostPage: StaticPage {
                     if currentIndex > 0 {
                         let previousPost = allPosts[currentIndex - 1]
                         Link("← Day \(previousPost.dayNumber)", target: previousPost.path)
-                            .class("btn", "btn-outline-secondary")
+                            .padding(.vertical, .small)
+                            .padding(.horizontal)
+                            .border(.gray)
+                            .cornerRadius(6)
                     } else {
                         Spacer()
                     }
@@ -112,7 +119,10 @@ struct Days365PostPage: StaticPage {
                     if currentIndex < allPosts.count - 1 {
                         let nextPost = allPosts[currentIndex + 1]
                         Link("Day \(nextPost.dayNumber) →", target: nextPost.path)
-                            .class("btn", "btn-outline-secondary")
+                            .padding(.vertical, .small)
+                            .padding(.horizontal)
+                            .border(.gray)
+                            .cornerRadius(6)
                     }
                 }
             }

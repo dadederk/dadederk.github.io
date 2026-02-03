@@ -3,84 +3,98 @@ import Ignite
 
 struct BlogPostLayout: ArticlePage {
     @MainActor var body: some HTML {
-        // Article-specific meta tags and structured data using Script element
-        // This overrides the global meta tags for article pages with article-specific content
-        Script(code: """
-            // Remove global meta tags that should be overridden for articles
-            const globalTagsToRemove = [
-                'og:title', 'og:description', 'og:type', 'og:url', 'og:image',
-                'twitter:title', 'twitter:description', 'twitter:image'
-            ];
-            
-            globalTagsToRemove.forEach(property => {
-                const existingTags = document.querySelectorAll(`meta[property="${property}"], meta[name="${property}"]`);
-                existingTags.forEach(tag => tag.remove());
-            });
-            
-            // Add article-specific Open Graph meta tags
-            const articleMetaTags = [
-                { property: 'og:title', content: '\(article.title.replacingOccurrences(of: "\"", with: "\\\""))' },
-                { property: 'og:description', content: '\(article.description.replacingOccurrences(of: "\"", with: "\\\""))' },
-                { property: 'og:type', content: 'article' },
-                { property: 'og:url', content: 'https://accessibilityupto11.com\(article.path)' },
-                { property: 'og:image', content: '\(article.image != nil ? "https://accessibilityupto11.com\(article.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' },
-                { property: 'article:author', content: '\(article.author ?? "Daniel Devesa Derksen-Staats")' },
-                { property: 'article:published_time', content: '\(article.date.ISO8601Format())' },
-                { property: 'article:section', content: 'Technology' }\(article.tags?.map { tag in
-                    ",\n                { property: 'article:tag', content: '\(tag)' }"
-                }.joined() ?? ""),
-                { name: 'twitter:title', content: '\(article.title.replacingOccurrences(of: "\"", with: "\\\""))' },
-                { name: 'twitter:description', content: '\(article.description.replacingOccurrences(of: "\"", with: "\\\""))' },
-                { name: 'twitter:image', content: '\(article.image != nil ? "https://accessibilityupto11.com\(article.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")' }
-            ];
-            
-            articleMetaTags.forEach(tag => {
-                const meta = document.createElement('meta');
-                if (tag.property) {
-                    meta.setAttribute('property', tag.property);
-                } else {
-                    meta.setAttribute('name', tag.name);
-                }
-                meta.setAttribute('content', tag.content);
-                document.head.appendChild(meta);
-            });
-            
-            // Add JSON-LD structured data
-            const structuredData = {
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                "headline": "\(article.title.replacingOccurrences(of: "\"", with: "\\\""))",
-                "description": "\(article.description.replacingOccurrences(of: "\"", with: "\\\""))",
-                "author": {
-                    "@type": "Person",
-                    "name": "\(article.author ?? "Daniel Devesa Derksen-Staats")",
-                    "url": "https://accessibilityupto11.com/about"
-                },
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "Accessibility up to 11!",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png"
+        let meta = MetaBuilder.article(article)
+        
+        let structuredData: String = {
+            struct StructuredData: Encodable {
+                let context = "https://schema.org"
+                let type = "BlogPosting"
+                let headline: String
+                let description: String
+                let author: Author
+                let publisher: Publisher
+                let datePublished: String
+                let dateModified: String
+                let mainEntityOfPage: MainEntity
+                let url: String
+                let articleSection: String
+                let keywords: String
+                let image: String
+                
+                struct Author: Encodable {
+                    let type = "Person"
+                    let name: String
+                    let url: String
+                    
+                    enum CodingKeys: String, CodingKey {
+                        case type = "@type"
+                        case name, url
                     }
-                },
-                "datePublished": "\(article.date.ISO8601Format())",
-                "dateModified": "\(article.date.ISO8601Format())",
-                "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": "https://accessibilityupto11.com\(article.path)"
-                },
-                "url": "https://accessibilityupto11.com\(article.path)",
-                "articleSection": "Technology",
-                "keywords": "\(article.tags?.joined(separator: ", ") ?? "")",
-                "image": "\(article.image != nil ? "https://accessibilityupto11.com\(article.image!)" : "https://accessibilityupto11.com/Images/Site/Global/LogoShare.png")"
-            };
+                }
+                
+                struct Publisher: Encodable {
+                    let type = "Organization"
+                    let name: String
+                    let logo: Logo
+                    
+                    struct Logo: Encodable {
+                        let type = "ImageObject"
+                        let url: String
+                        
+                        enum CodingKeys: String, CodingKey {
+                            case type = "@type"
+                            case url
+                        }
+                    }
+                    
+                    enum CodingKeys: String, CodingKey {
+                        case type = "@type"
+                        case name, logo
+                    }
+                }
+                
+                struct MainEntity: Encodable {
+                    let type = "WebPage"
+                    let id: String
+                    
+                    enum CodingKeys: String, CodingKey {
+                        case type = "@type"
+                        case id = "@id"
+                    }
+                }
+                
+                enum CodingKeys: String, CodingKey {
+                    case context = "@context"
+                    case type = "@type"
+                    case headline, description, author, publisher, datePublished, dateModified, mainEntityOfPage, url, articleSection, keywords, image
+                }
+            }
             
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(structuredData);
-            document.head.appendChild(script);
-            """)
+            let data = StructuredData(
+                headline: meta.title,
+                description: meta.description,
+                author: .init(name: article.author ?? "Daniel Devesa Derksen-Staats", url: "\(SiteMeta.baseURL)/about"),
+                publisher: .init(name: "Accessibility up to 11!", logo: .init(url: SiteMeta.baseURL + SiteMeta.defaultImage)),
+                datePublished: article.date.ISO8601Format(),
+                dateModified: article.date.ISO8601Format(),
+                mainEntityOfPage: .init(id: SiteMeta.baseURL + article.path),
+                url: SiteMeta.baseURL + article.path,
+                articleSection: "Technology",
+                keywords: article.tags?.joined(separator: ", ") ?? "",
+                image: SiteMeta.baseURL + meta.image
+            )
+            
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.withoutEscapingSlashes]
+            if let json = try? encoder.encode(data), let jsonString = String(data: json, encoding: .utf8) {
+                return jsonString
+            }
+            return ""
+        }()
+        
+        // Per-article meta is handled in MainLayout via MetaBuilder; JSON-LD remains here.
+        Script(code: structuredData)
+            .attribute("type", "application/ld+json")
         
         VStack(alignment: .leading) {
             // Article header with title and metadata

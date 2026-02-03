@@ -2,44 +2,33 @@ import Foundation
 import Ignite
 
 struct LogoNavBar: HTML {
+    @Environment(\.page) var page
+    
     @MainActor var body: some HTML {
         NavigationBar {
-            Link("Blog", target: "/blog")
-            Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
-            Link("Apps", target: "/apps")
-            Link("About", target: "/about")
-            Link("Resources", target: "/resources")
+            navLink("Blog", path: "/blog")
+            navLink("#365DaysIOSAccessibility", path: "/365-days-ios-accessibility")
+            navLink("Apps", path: "/apps")
+            navLink("About", path: "/about")
+            navLink("Resources", path: "/resources")
             Link("RSS", target: "/feed.rss")
         } logo: {
-            // Custom logo with image and text using Span for text
-            // Light mode logo
-            Image("/Images/Site/Global/Logo.png", description: "Accessibility up to 11! Logo")
-                .resizable()
-                .frame(width: 64, height: 64)
-                .class("logo-light")
-            
-            // Dark mode logo
-            Image("/Images/Site/Global/LogoDarkMode.png", description: "Accessibility up to 11! Logo - Dark Mode")
-                .resizable()
-                .frame(width: 64, height: 64)
-                .class("logo-dark")
-            
+            ThemeAdaptiveLogo()
             Span("Accessibility up to 11!")
-                .font(.title1)
+                .font(.title5)
                 .fontWeight(.bold)
-                .class("d-none d-lg-block") // Show on large screens (desktop)
-                .attribute("aria-label", "Accessibility up to 11!")
-
-            Span("Accessibility up to 11!")
-                .font(.title6)
-                .fontWeight(.bold)
-                .class("d-lg-none") // Show on small/medium screens (mobile/tablet)
                 .attribute("aria-label", "Accessibility up to 11!")
         }
         .navigationItemAlignment(.trailing)
-        .style(.backgroundColor, "var(--bs-navbar-bg)")
-        .ignorePageGutters()
         .position(.fixedTop)
+        .padding(.horizontal)
+        .style(.backgroundColor, "var(--bs-secondary-bg)")
+        .style(.zIndex, "1000")
         .border(.darkGray, edges: [.bottom])
+        .ignorePageGutters()
+    }
+    
+    @MainActor private func navLink(_ title: String, path: String) -> Link {
+        Link(title, target: path)
     }
 }

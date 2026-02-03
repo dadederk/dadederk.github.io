@@ -71,91 +71,19 @@ struct UniversalAppPage: StaticPage {
             if let app = findApp() {
                 // Header section with app info
                 Section {
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .top) {
-                            Image(app.imagePath, description: app.imageDescription)
-                                .resizable()
-                                .aspectRatio(.square, contentMode: .fit)
-                                .frame(width: 100, height: 100)
-                                .padding()
-                            
-                            VStack(alignment: .leading) {
-                                Text(app.title)
-                                    .font(.title1)
-                                    .fontWeight(.bold)
-                                    .horizontalAlignment(.leading)
-                                
-                                Text(app.subtitle)
-                                    .font(.title2)
-                                    .foregroundStyle(.secondary)
-                                    .padding(.bottom, 5)
-                                
-                                if !app.platforms.isEmpty {
-                                    HStack(spacing: 4) {
-                                        ForEach(app.platforms) { platform in
-                                            Text(platform)
-                                                .font(.body)
-                                                .fontWeight(.medium)
-                                                .foregroundStyle(.secondary)
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 4)
-                                                .border(Color(hex: "#444444"))
-                                                .cornerRadius(4)
-                                        }
-                                    }
-                                    .padding(.bottom, 10)
-                                }
-                            }
-                        }
-                        .padding(.bottom)
-                        
-                        Text(app.description)
-                            .font(.body)
-                            .padding(.bottom, 10)
-                        
-                        Text(app.nameOrigin)
-                            .font(.body)
-                            .foregroundStyle(.secondary)
-                            .padding(.bottom, 20)
-                        
-                        // Action buttons
-                        HStack {
-                            ForEach(app.actions) { action in
-                                ActionButton(
-                                    title: action.title,
-                                    target: action.target,
-                                    style: action.style == "primary" ? .primary : .secondary
-                                )
-                            }
-                        }
-                        .padding(.bottom, 20)
-                        
-                        // Terms, Privacy, and Support links
-                        HStack {
-                            Link("Terms & Conditions", target: "/apps/\(appIdentifier)/terms")
-                                .class("btn btn-outline-secondary")
-                            
-                            Link("Privacy Policy", target: "/apps/\(appIdentifier)/privacy")
-                                .class("btn btn-outline-secondary")
-                            
-                            Link("Support & Contact", target: "#support-contact")
-                                .class("btn btn-outline-secondary")
-                        }
-                    }
-                    .class("d-none d-md-flex") // Show HStack on medium+ screens
-                    
-                    // Mobile layout - VStack
-                    VStack(alignment: .leading) {
+                    Grid(alignment: .topLeading) {
                         Image(app.imagePath, description: app.imageDescription)
                             .resizable()
                             .aspectRatio(.square, contentMode: .fit)
                             .frame(width: 100, height: 100)
                             .padding()
+                            .width(4)
                         
                         VStack(alignment: .leading) {
                             Text(app.title)
                                 .font(.title1)
                                 .fontWeight(.bold)
+                                .horizontalAlignment(.leading)
                             
                             Text(app.subtitle)
                                 .font(.title2)
@@ -163,7 +91,7 @@ struct UniversalAppPage: StaticPage {
                                 .padding(.bottom, 5)
                             
                             if !app.platforms.isEmpty {
-                                HStack {
+                                HStack(spacing: 4) {
                                     ForEach(app.platforms) { platform in
                                         Text(platform)
                                             .font(.body)
@@ -171,49 +99,51 @@ struct UniversalAppPage: StaticPage {
                                             .foregroundStyle(.secondary)
                                             .padding(.horizontal, 4)
                                             .padding(.vertical, 4)
-                                            .border(Color(hex: "#444444"))
+                                            .border(.gray)
+                                            .style(.borderColor, "var(--bs-border-color)")
                                             .cornerRadius(4)
-                                            .margin(.trailing, 0)
                                     }
                                 }
+                                .style(.flexWrap, "wrap")
+                                .style(.gap, "0.25rem")
                                 .padding(.bottom, 10)
-                            }
-                            
-                            Text(app.description)
-                                .font(.body)
-                                .padding(.bottom, 10)
-                            
-                            Text(app.nameOrigin)
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                                .padding(.bottom, 20)
-                            
-                            // Action buttons
-                            HStack {
-                                ForEach(app.actions) { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
-                            }
-                            .padding(.bottom, 20)
-                            
-                            // Terms, Privacy, and Support links
-                            VStack(alignment: .leading) {
-                                Link("Terms & Conditions", target: "/apps/\(appIdentifier)/terms")
-                                    .class("btn btn-outline-secondary mb-2")
-                                
-                                Link("Privacy Policy", target: "/apps/\(appIdentifier)/privacy")
-                                    .class("btn btn-outline-secondary mb-2")
-                                
-                                Link("Support & Contact", target: "#support-contact")
-                                    .class("btn btn-outline-secondary")
                             }
                         }
+                        .width(8)
                     }
-                    .class("d-md-none") // Show VStack on small screens only
+                    .padding(.bottom)
+                    
+                    Text(app.description)
+                        .font(.body)
+                        .padding(.bottom, 10)
+                    
+                    Text(app.nameOrigin)
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 20)
+                    
+                    // Action buttons
+                    HStack {
+                        ForEach(app.actions) { action in
+                            ActionButton(
+                                title: action.title,
+                                target: action.target,
+                                style: action.style == "primary" ? .primary : .secondary
+                            )
+                        }
+                    }
+                    .style(.flexWrap, "wrap")
+                    .style(.gap, "0.5rem")
+                    .padding(.bottom, 20)
+                    
+                    // Terms, Privacy, and Support links
+                    HStack {
+                        pillLink("Terms & Conditions", target: "/apps/\(appIdentifier)/terms")
+                        pillLink("Privacy Policy", target: "/apps/\(appIdentifier)/privacy")
+                        pillLink("Support & Contact", target: "#support-contact")
+                    }
+                    .style(.flexWrap, "wrap")
+                    .style(.gap, "0.5rem")
                 }
                 .padding(.vertical)
                 
@@ -341,9 +271,8 @@ struct UniversalAppPage: StaticPage {
                         .horizontalAlignment(.leading)
                     
                     HStack {
-                        Link("Contact", target: "mailto:\(app.contactEmail)")
+                        ActionButton(title: "Contact", target: "mailto:\(app.contactEmail)", style: .primary)
                             .horizontalAlignment(.leading)
-                            .class("btn btn-primary")
                     }
                 }
                 .id("support-contact")
@@ -380,7 +309,7 @@ struct UniversalAppPage: StaticPage {
                                     .fontWeight(.bold)
                                 
                                 Link("← Back to \(app.title)", target: "/apps/\(appIdentifier)")
-                                    .class("text-decoration-none")
+                                    .style(.textDecoration, "none")
                                     .foregroundStyle(.secondary)
                             }
                         }
@@ -434,5 +363,15 @@ struct UniversalAppPage: StaticPage {
             return nil
         }
     }
+    
+    @MainActor private func pillLink(_ title: String, target: String, emphasis: Bool = false) -> some InlineElement {
+        Link(title, target: target)
+            .padding(.vertical, .small)
+            .padding(.horizontal)
+            .cornerRadius(8)
+            .style(.textDecoration, "none")
+            .style(.backgroundColor, emphasis ? "var(--bs-primary)" : "transparent")
+            .style(.color, emphasis ? "var(--bs-secondary)" : "var(--bs-primary)")
+            .style(.border, "1px solid var(--bs-primary)")
+    }
 }
-
