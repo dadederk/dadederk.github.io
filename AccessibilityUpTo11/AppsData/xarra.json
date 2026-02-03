@@ -1,5 +1,6 @@
 {
   "order": 1,
+  "category": "app",
   "title": "Xarra",
   "subtitle": "Read, listen (or both), to your articles and documents.",
   "description": "Import an article, a document, or some text, and Xarra will read it out loud while keeping the text in sync on screen. You can follow along line by line, listen hands-free, or switch between the two whenever it suits you.\n\nIt's designed for moments when reading alone isn't ideal, listening alone isn't enough, or when combining both helps you stay focused and engaged with the content.",
@@ -111,6 +112,6 @@
   ],
   "whySection": "Xarra is built to be helpful, respectful, and easy to trust. It works entirely offline once content is imported, keeping everything on your device. There are no ads, no trackers, and no accounts required. The app is lightweight, quick to download, and focused on doing one thing well helping you engage with text in the way that works best for you.",
   "supportText": "Having trouble getting the most out of Xarra? We're here to help you turn your text into the perfect audio experience!",
-  "contactEmail": "dadederk@icloud.com"
+  "contactEmail": "hello@accessibilityUpTo11.com"
 }
 

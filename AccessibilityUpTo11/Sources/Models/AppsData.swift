@@ -11,6 +11,12 @@ struct AppsData {
     }
 }
 
+enum AppCategory: String, Codable {
+    case app = "app"
+    case stickerPack = "stickerPack"
+    case game = "game"
+}
+
 struct AppItem: Identifiable, Codable {
     let id: UUID
     let title: String
@@ -28,8 +34,9 @@ struct AppItem: Identifiable, Codable {
     let supportText: String
     let contactEmail: String
     let order: Int
+    let category: AppCategory
     
-    init(id: UUID = UUID(), title: String, subtitle: String, description: String, nameOrigin: String, imagePath: String, imageDescription: String, platforms: [String], actions: [ActionItem], featureGroups: [FeatureGroup], features: [FeatureItem], accessibility: String?, whySection: String?, supportText: String, contactEmail: String, order: Int = 999) {
+    init(id: UUID = UUID(), title: String, subtitle: String, description: String, nameOrigin: String, imagePath: String, imageDescription: String, platforms: [String], actions: [ActionItem], featureGroups: [FeatureGroup], features: [FeatureItem], accessibility: String?, whySection: String?, supportText: String, contactEmail: String, order: Int = 999, category: AppCategory = .app) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
@@ -46,6 +53,7 @@ struct AppItem: Identifiable, Codable {
         self.supportText = supportText
         self.contactEmail = contactEmail
         self.order = order
+        self.category = category
     }
 }
 

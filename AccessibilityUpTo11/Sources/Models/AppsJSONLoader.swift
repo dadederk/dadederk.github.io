@@ -79,6 +79,7 @@ private struct AppItemJSON: Codable {
     let supportText: String?
     let contactEmail: String?
     let order: Int?
+    let category: String? // Optional for backward compatibility
     
     func toAppItem() -> AppItem {
         // Convert feature groups
@@ -106,6 +107,12 @@ private struct AppItemJSON: Codable {
             )
         }
         
+        // Parse category with fallback to .app
+        let appCategory: AppCategory = {
+            guard let categoryString = category else { return .app }
+            return AppCategory(rawValue: categoryString) ?? .app
+        }()
+        
         return AppItem(
             title: title,
             subtitle: subtitle,
@@ -120,8 +127,9 @@ private struct AppItemJSON: Codable {
             accessibility: accessibility,
             whySection: whySection,
             supportText: supportText ?? "Need help or have questions about \(title)? We're here to help!",
-            contactEmail: contactEmail ?? "dadederk@icloud.com",
-            order: order ?? 999
+            contactEmail: contactEmail ?? "hello@accessibilityUpTo11.com",
+            order: order ?? 999,
+            category: appCategory
         )
     }
 }

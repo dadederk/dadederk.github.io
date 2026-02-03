@@ -153,7 +153,10 @@ struct AccessibilityUpTo11Website {
             ("/apps/xarra/privacy", "0.8", "yearly"),
             ("/apps/iMonstickers", "0.9", "monthly"),
             ("/apps/iMonstickers/terms", "0.8", "yearly"),
-            ("/apps/iMonstickers/privacy", "0.8", "yearly")
+            ("/apps/iMonstickers/privacy", "0.8", "yearly"),
+            ("/apps/RetroRacing!", "0.9", "monthly"),
+            ("/apps/RetroRacing!/terms", "0.8", "yearly"),
+            ("/apps/RetroRacing!/privacy", "0.8", "yearly")
         ]
         
         for (path, priority, changefreq) in appPages {
@@ -382,7 +385,10 @@ struct AccessibilityUpTo11Site: Site {
             UniversalAppPage(appIdentifier: "xarra", pageType: .privacy),
             UniversalAppPage(appIdentifier: "iMonstickers", pageType: .main),
             UniversalAppPage(appIdentifier: "iMonstickers", pageType: .terms),
-            UniversalAppPage(appIdentifier: "iMonstickers", pageType: .privacy)
+            UniversalAppPage(appIdentifier: "iMonstickers", pageType: .privacy),
+            UniversalAppPage(appIdentifier: "RetroRacing!", pageType: .main),
+            UniversalAppPage(appIdentifier: "RetroRacing!", pageType: .terms),
+            UniversalAppPage(appIdentifier: "RetroRacing!", pageType: .privacy)
         ]
         
         // Add all 365 days posts and tag pages
