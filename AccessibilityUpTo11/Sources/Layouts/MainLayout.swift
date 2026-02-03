@@ -133,8 +133,8 @@ extension MainLayout {
                 }
                 
                 let appsData = AppsData.loadContent()
-                if let app = appsData.apps.first(where: { $0.title.lowercased() == identifier.lowercased() }) {
-                    return MetaBuilder.app(app, appIdentifier: String(identifier), pageType: type)
+                if let app = appsData.apps.first(where: { $0.slug.lowercased() == identifier.lowercased() }) {
+                    return MetaBuilder.app(app, pageType: type)
                 }
             }
         }

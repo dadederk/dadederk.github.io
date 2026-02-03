@@ -27,6 +27,7 @@ struct Apps: StaticPage {
                     Grid(alignment: .topLeading) {
                         ForEach(apps) { app in
                             AppCard(
+                                slug: app.slug,
                                 title: app.title,
                                 subtitle: app.subtitle,
                                 description: app.description,
@@ -61,6 +62,7 @@ struct Apps: StaticPage {
                     Grid(alignment: .topLeading) {
                         ForEach(stickerPacks) { app in
                             AppCard(
+                                slug: app.slug,
                                 title: app.title,
                                 subtitle: app.subtitle,
                                 description: app.description,
@@ -95,6 +97,7 @@ struct Apps: StaticPage {
                     Grid(alignment: .topLeading) {
                         ForEach(games) { app in
                             AppCard(
+                                slug: app.slug,
                                 title: app.title,
                                 subtitle: app.subtitle,
                                 description: app.description,

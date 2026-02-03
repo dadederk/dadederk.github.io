@@ -342,8 +342,9 @@ struct UniversalAppPage: StaticPage {
     // MARK: - Helper Methods
     private func findApp() -> AppItem? {
         let appsData = AppsData.loadContent()
+        let normalizedIdentifier = appIdentifier.lowercased()
         return appsData.apps.first { app in
-            app.title.lowercased() == appIdentifier.lowercased()
+            app.slug.lowercased() == normalizedIdentifier
         }
     }
     

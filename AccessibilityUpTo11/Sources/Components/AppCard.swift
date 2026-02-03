@@ -3,6 +3,7 @@ import Ignite
 
 // Specialized card component for displaying app information
 struct AppCard: HTML {
+    let slug: String
     let title: String
     let subtitle: String
     let description: String
@@ -24,7 +25,7 @@ struct AppCard: HTML {
                             .padding()
                         
                         VStack(alignment: .leading) {
-                            Link(title, target: appURLPath(for: title))
+                            Link(title, target: appURLPath(for: slug))
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .horizontalAlignment(.leading)
@@ -73,11 +74,7 @@ struct AppCard: HTML {
         .padding()
     }
     
-    private func appURLPath(for title: String) -> String {
-        // Special case for iMonstickers to preserve capital M
-        if title == "iMonstickers" {
-            return "/apps/iMonstickers"
-        }
-        return "/apps/\(title.lowercased().replacingOccurrences(of: " ", with: "-"))"
+    private func appURLPath(for slug: String) -> String {
+        "/apps/\(slug)"
     }
 }

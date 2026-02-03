@@ -59,7 +59,7 @@ enum MetaBuilder {
     }
     
     /// Metadata for an app page, using the app icon.
-    @MainActor static func app(_ app: AppItem, appIdentifier: String, pageType: UniversalAppPage.AppPageType) -> MetaContext {
+    @MainActor static func app(_ app: AppItem, pageType: UniversalAppPage.AppPageType) -> MetaContext {
         let suffix: String
         switch pageType {
         case .main: suffix = ""
@@ -72,7 +72,7 @@ enum MetaBuilder {
         return MetaContext(
             title: "\(app.title)\(suffix)",
             description: description,
-            path: "/apps/\(appIdentifier)\(pageType.pathSegment)",
+            path: "/apps/\(app.slug)\(pageType.pathSegment)",
             image: app.imagePath,
             imageAlt: app.imageDescription,
             type: .article

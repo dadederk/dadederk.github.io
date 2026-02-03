@@ -1,6 +1,7 @@
 {
   "order": 4,
   "category": "game",
+  "slug": "retroracing",
   "title": "RetroRacing!",
   "subtitle": "Race like it's 1985",
   "description": "⚠️ Very Early Development Notice: RetroRacing is in very early stages of development. Features, gameplay, and design are actively being developed and may change significantly. We appreciate your patience and feedback as we build this retro racing experience!\n\nRetroRacing brings back the charm of classic LCD handheld games from the late '80s and early '90s. Navigate through traffic, avoid obstacles, and compete for the highest score in this nostalgic racing experience.\n\nBuilt for all Apple platforms with accessibility at its core, RetroRacing lets you enjoy retro gaming wherever you are — on your wrist, in your pocket, on your TV, at your desk, or in spatial computing.",

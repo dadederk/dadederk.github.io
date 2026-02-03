@@ -64,6 +64,7 @@ struct AppsJSONLoader {
 // MARK: - JSON Decoding Models
 
 private struct AppItemJSON: Codable {
+    let slug: String?
     let title: String
     let subtitle: String
     let description: String
@@ -114,6 +115,7 @@ private struct AppItemJSON: Codable {
         }()
         
         return AppItem(
+            slug: slug,
             title: title,
             subtitle: subtitle,
             description: description,
@@ -145,4 +147,3 @@ private struct FeatureItemJSON: Codable {
     let imagePath: String?
     let imageDescription: String?
 }
-

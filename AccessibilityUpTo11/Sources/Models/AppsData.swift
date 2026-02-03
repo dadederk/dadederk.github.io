@@ -19,6 +19,7 @@ enum AppCategory: String, Codable {
 
 struct AppItem: Identifiable, Codable {
     let id: UUID
+    let slug: String
     let title: String
     let subtitle: String
     let description: String
@@ -36,8 +37,28 @@ struct AppItem: Identifiable, Codable {
     let order: Int
     let category: AppCategory
     
-    init(id: UUID = UUID(), title: String, subtitle: String, description: String, nameOrigin: String, imagePath: String, imageDescription: String, platforms: [String], actions: [ActionItem], featureGroups: [FeatureGroup], features: [FeatureItem], accessibility: String?, whySection: String?, supportText: String, contactEmail: String, order: Int = 999, category: AppCategory = .app) {
+    init(
+        id: UUID = UUID(),
+        slug: String? = nil,
+        title: String,
+        subtitle: String,
+        description: String,
+        nameOrigin: String,
+        imagePath: String,
+        imageDescription: String,
+        platforms: [String],
+        actions: [ActionItem],
+        featureGroups: [FeatureGroup],
+        features: [FeatureItem],
+        accessibility: String?,
+        whySection: String?,
+        supportText: String,
+        contactEmail: String,
+        order: Int = 999,
+        category: AppCategory = .app
+    ) {
         self.id = id
+        self.slug = slug ?? AppItem.defaultSlug(for: title)
         self.title = title
         self.subtitle = subtitle
         self.description = description
@@ -54,6 +75,13 @@ struct AppItem: Identifiable, Codable {
         self.contactEmail = contactEmail
         self.order = order
         self.category = category
+    }
+
+    static func defaultSlug(for title: String) -> String {
+        if title == "iMonstickers" {
+            return "iMonstickers"
+        }
+        return title.lowercased().replacingOccurrences(of: " ", with: "-")
     }
 }
 

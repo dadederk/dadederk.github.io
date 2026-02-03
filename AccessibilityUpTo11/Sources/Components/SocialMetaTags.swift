@@ -50,7 +50,7 @@ enum SocialMetaTags {
             
             if !appIdentifier.isEmpty {
                 let appsData = AppsData.loadContent()
-                if let app = appsData.apps.first(where: { $0.title.lowercased() == appIdentifier.lowercased() }) {
+                if let app = appsData.apps.first(where: { $0.slug.lowercased() == appIdentifier.lowercased() }) {
                     let description = app.description.components(separatedBy: "\n\n").first ?? app.subtitle
                     let title = "\(app.title) - \(app.subtitle)"
                     
