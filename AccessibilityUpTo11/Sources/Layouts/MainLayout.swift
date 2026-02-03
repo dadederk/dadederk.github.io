@@ -39,23 +39,26 @@ struct MainLayout: Layout {
 
                 Script(code: """
                 (function() {
-                    const root = document.documentElement;
-                    root.setAttribute('data-light-theme', 'accessibility-up-to11-light');
-                    root.setAttribute('data-dark-theme', 'accessibility-up-to11-dark-dark');
+                    // Set theme data attributes immediately
+                    document.documentElement.setAttribute('data-light-theme', 'accessibility-up-to11-light');
+                    document.documentElement.setAttribute('data-dark-theme', 'accessibility-up-to11-dark-dark');
 
+                    // Apply theme immediately based on system preference
                     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    const lightThemeID = root.getAttribute('data-light-theme') || 'light';
-                    const darkThemeID = root.getAttribute('data-dark-theme') || 'dark';
-                    const savedTheme = localStorage.getItem('custom-theme')
-                        || root.getAttribute('data-theme-state')
-                        || 'auto';
-                    const actualThemeID = savedTheme === 'auto'
-                        ? (prefersDark ? darkThemeID : lightThemeID)
-                        : savedTheme;
+                    const themeID = prefersDark ? 'accessibility-up-to11-dark-dark' : 'accessibility-up-to11-light';
+                    document.documentElement.setAttribute('data-bs-theme', themeID);
 
-                    root.setAttribute('data-bs-theme', actualThemeID);
-                    if (!root.getAttribute('data-theme-state')) {
-                        root.setAttribute('data-theme-state', savedTheme);
+                    // Apply syntax highlighting theme immediately
+                    const syntaxTheme = getComputedStyle(document.documentElement)
+                        .getPropertyValue('--syntax-highlight-theme').trim().replace(/"/g, '');
+                    if (syntaxTheme) {
+                        document.querySelectorAll('link[data-highlight-theme]').forEach(link => {
+                            link.setAttribute('disabled', 'disabled');
+                        });
+                        const themeLink = document.querySelector(`link[data-highlight-theme="${syntaxTheme}"]`);
+                        if (themeLink) {
+                            themeLink.removeAttribute('disabled');
+                        }
                     }
                 })();
                 """)
