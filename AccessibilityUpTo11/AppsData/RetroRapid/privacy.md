@@ -1,14 +1,14 @@
 # Privacy Policy
 
-**Last Updated: February 3, 2026**
+**Last Updated: February 11, 2026**
 
 ## Our Commitment to Privacy
 
-Your privacy is important to us. This Privacy Policy explains how RetroRacing handles your information.
+Your privacy is important to us. This Privacy Policy explains how RetroRapid handles your information.
 
 ## Information We Collect
 
-RetroRacing is designed with privacy in mind:
+RetroRapid is designed with privacy in mind:
 
 ### Information We DO Collect:
 - **Game Center Data**: When you use Game Center features (leaderboards, achievements), Apple collects and manages this data according to their privacy policy
@@ -26,15 +26,15 @@ All game data is stored locally on your device. When using Game Center features,
 
 ## iCloud Sync
 
-If you enable iCloud for RetroRacing, your game progress may sync across your devices via iCloud. This data is encrypted and managed by Apple according to their privacy policy.
+If you enable iCloud for RetroRapid, your game progress may sync across your devices via iCloud. This data is encrypted and managed by Apple according to their privacy policy.
 
 ## Third-Party Services
 
-RetroRacing uses Apple's Game Center for leaderboards and achievements. Use of Game Center is subject to Apple's privacy policy and terms of service.
+RetroRapid uses Apple's Game Center for leaderboards and achievements. Use of Game Center is subject to Apple's privacy policy and terms of service.
 
 ## Children's Privacy
 
-RetroRacing does not knowingly collect personal information from children. The app is designed to be family-friendly and complies with COPPA (Children's Online Privacy Protection Act).
+RetroRapid does not knowingly collect personal information from children. The app is designed to be family-friendly and complies with COPPA (Children's Online Privacy Protection Act).
 
 ## Data Security
 
@@ -56,7 +56,3 @@ We may update this privacy policy from time to time. We will notify you of any c
 If you have questions about this privacy policy, please contact us at:
 
 **Email**: hello@accessibilityUpTo11.com
-
-## Beta Testing Privacy
-
-During the TestFlight beta period, Apple may collect additional diagnostic and usage information as part of the TestFlight program. This data collection is managed by Apple and subject to their privacy policy.

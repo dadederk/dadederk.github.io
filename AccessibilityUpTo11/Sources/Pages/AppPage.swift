@@ -350,7 +350,9 @@ struct UniversalAppPage: StaticPage {
     
     private func loadLegalContent() -> String? {
         guard let app = findApp() else { return nil }
-        let contentPath = "AppsData/\(app.title)/\(pageType.fileName)"
+        // Use the title without special characters for the folder name
+        let folderName = app.title.replacingOccurrences(of: "!", with: "")
+        let contentPath = "AppsData/\(folderName)/\(pageType.fileName)"
         
         let url = URL(fileURLWithPath: contentPath)
         guard FileManager.default.fileExists(atPath: url.path) else {
