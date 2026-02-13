@@ -3,7 +3,7 @@
   "category": "game",
   "slug": "retrorapid",
   "title": "RetroRapid!",
-  "subtitle": "Race like it's 1985",
+  "subtitle": "Unexpectedly released with love ❤️ from the ARCtic conference in Oulu, Finland. Thanks to everyone that played the game and encouraged me to push the button.",
   "description": "RetroRapid brings back the charm of classic LCD handheld games from the late '80s and early '90s. Navigate through traffic, avoid obstacles, and compete for the highest score in this nostalgic racing experience.\n\nBuilt for all Apple platforms with accessibility at its core, RetroRapid lets you enjoy retro gaming wherever you are — on your wrist, in your pocket, on your TV, at your desk, or in spatial computing.",
   "nameOrigin": "RetroRapid is named after the golden era of handheld LCD racing games, recreating that simple yet addictive gameplay that kept us entertained for hours.",
   "imagePath": "/Images/Site/Apps/RetroRapidIcon.png",
@@ -11,8 +11,8 @@
   "platforms": ["watchOS", "iOS", "iPadOS", "macOS", "tvOS", "visionOS"],
   "actions": [
     {
-      "title": "Install with TestFlight",
-      "target": "https://testflight.apple.com/join/4bm7BKAm",
+      "title": "Download from the App Store",
+      "target": "https://apps.apple.com/app/id6758641625",
       "style": "primary"
     }
   ],
