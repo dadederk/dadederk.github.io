@@ -42,6 +42,9 @@ jobs:
           export PATH="$PWD/../swift-6.0-RELEASE-ubuntu22.04/usr/bin:$PATH"
           swift run AccessibilityUpTo11 build
 
+      - name: Copy .well-known to build output
+        run: cp -r AccessibilityUpTo11/Resources/.well-known AccessibilityUpTo11/Build/
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
