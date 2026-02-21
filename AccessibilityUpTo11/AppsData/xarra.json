@@ -23,42 +23,65 @@
           "title": "Synchronized highlighting",
           "description": "As Xarra reads, the current line is highlighted on screen. You can also enable word-level highlighting, using either a background or underline, depending on what you find clearer.",
           "imagePath": "/Images/Site/Apps/Xarra/SynchronizedHighlighting.png",
-          "imageDescription": "Side-by-side screenshots of the Xarra app while reading an onboarding document. In both images, the current line “Hello, I am Xarra.” is highlighted as the active line. In the left screenshot, the word “Xarra” is additionally emphasized with an underline. In the right screenshot, the word “Xarra” is highlighted using a darker background, showing two different styles for word-level highlighting during playback."
+          "imageDescription": "Side-by-side screenshots of the Xarra app while reading an onboarding document. In both images, the current line \u201cHello, I am Xarra.\u201d is highlighted as the active line. In the left screenshot, the word \u201cXarra\u201d is additionally emphasized with an underline. In the right screenshot, the word \u201cXarra\u201d is highlighted using a darker background, showing two different styles for word-level highlighting during playback."
         },
         {
           "title": "Chapters and navigation",
           "description": "Xarra tries to detect headings and sections, turning them into chapters you can jump between. This makes longer articles or documents easier to explore.",
           "imagePath": "/Images/Site/Apps/Xarra/ChaptersAndNavigation.png",
-          "imageDescription": "Screenshot of Xarra showing a Chapters sheet. A list displays detected sections from a document, including “VoiceOver Noise” labeled as Chapter 1 and “Apple’s Use” labeled as Chapter 2. Each chapter appears as a selectable row with a chevron, and a close button is shown in the top-right corner of the sheet."
+          "imageDescription": "Screenshot of Xarra showing a Chapters sheet. A list displays detected sections from a document, including \u201cVoiceOver Noise\u201d labeled as Chapter 1 and \u201cApple\u2019s Use\u201d labeled as Chapter 2. Each chapter appears as a selectable row with a chevron, and a close button is shown in the top-right corner of the sheet."
         },
         {
           "title": "Resume anytime",
           "description": "Progress is saved automatically, so you can stop and continue later without losing your place. Xarra also works with system audio controls from the Lock Screen and Control Center.",
           "imagePath": "/Images/Site/Apps/Xarra/ResumeAnytime.png",
-          "imageDescription": "Screenshot of the iOS Control Center showing Xarra integrated with system media controls. The Now Playing tile displays artwork for an audio document titled “iOS 14: Custom Accessibility Content,” along with a pause button and skip backward and skip forward controls that move five lines at a time, indicating playback can be resumed and controlled from the Lock Screen and Control Center."
+          "imageDescription": "Screenshot of the iOS Control Center showing Xarra integrated with system media controls. The Now Playing tile displays artwork for an audio document titled \u201ciOS 14: Custom Accessibility Content,\u201d along with a pause button and skip backward and skip forward controls that move five lines at a time, indicating playback can be resumed and controlled from the Lock Screen and Control Center."
         }
       ]
     },
     {
-      "title": "Bring your content, make it listenable",
+      "title": "Feels like home in Apple devices, powered with Apple Intelligence",
       "features": [
         {
-          "title": "Text, links, and documents",
-          "description": "Add content by typing or pasting text, sharing a web page from Safari or Notes, entering a URL, or importing documents like PDFs from the Files app. Xarra focuses on the readable content and prepares it for listening.",
-          "imagePath": "/Images/Site/Apps/Xarra/TextLinksDocuments.png",
-          "imageDescription": "Screenshot of the Xarra app showing a context menu titled “From:” with options for adding content. The menu lists Plain Text, Document, URL, and Clipboard, each with an icon, indicating different ways to import text, links, or files into the app for listening."
+          "title": "At home across all your Apple devices",
+          "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, embracing Apple\u2019s latest design language, including Liquid Glass. Your library and listening progress are kept in sync with iCloud, so you can start on iPhone and pick up on iPad \u2014 or the other way around. More platforms are on the way.",
+          "imagePath": "/Images/Site/Apps/Xarra/FeelsAtHome.png",
+          "imageDescription": "Screenshot of Xarra running on iPad in a multi-window setup. The app is open in a resizable window alongside other apps, showing a sidebar list of audio documents on the left and a transcript view on the right. A floating playback control panel with play and skip buttons sits above the content. The interface adapts naturally to the larger screen, demonstrating support for modern iPadOS windowing with Apple\u2019s Liquid Glass visual style."
         },
         {
           "title": "Quick system integration",
-          "description": "Use the Share extension to send content into Xarra from anywhere in the system. A couple of taps is all it takes to turn something you're already reading into something you can listen to.",
+          "description": "Xarra integrates naturally with the rest of your Apple devices. Use the Share extension to send content into Xarra from Safari, Notes, or any other app \u2014 a couple of taps and you\u2019re listening. You can also add content directly from the Files app, paste from the clipboard, or type and paste text. Once imported, Xarra shows up in Now Playing with full media controls on the Lock Screen and in Control Center, so playback is always within reach.",
           "imagePath": "/Images/Site/Apps/Xarra/QuickSystemIntegration.png",
-          "imageDescription": "Screenshot of the iOS Share extension showing a web page titled “iOS 14: Custom Accessibility Content” from mobilea11y.com being shared to Xarra. The share sheet displays an Options button and a large checkmark confirmation, indicating that the article has been successfully imported into the app for listening."
+          "imageDescription": "Screenshot of the iOS Share extension showing a web page titled \u201ciOS 14: Custom Accessibility Content\u201d from mobilea11y.com being shared to Xarra. The share sheet displays an Options button and a large checkmark confirmation, indicating that the article has been successfully imported into the app for listening."
         },
         {
-          "title": "Synced across your devices",
-          "description": "Audio Documents are kept in sync with iCloud, so your library and listening progress follow you across iPhone and iPad. Start listening on one device, pick it up later on another.",
-          "imagePath": "/Images/Site/Apps/Xarra/SyncedAcrossYourDevices.png",
-          "imageDescription": "Screenshot of the iPad version of Xarra showing a list of Audio Documents synced via iCloud. Each document displays a progress bar and a percentage indicating how much has been listened to. One document is open on the right, where the transcript highlights the last line that was played previously, showing that listening progress is preserved across devices."
+          "title": "Smarter listening with Apple Intelligence",
+          "description": "Xarra uses Apple Intelligence to do more than you might expect. Content is automatically summarised, tagged, and categorised, so your library stays organised without any effort. But we\u2019re always looking for new and creative ways to make listening smarter. One example: when a technical article includes a block of code, Xarra can transform it into a natural, audio-friendly explanation \u2014 so even the most technical content stays accessible and engaging when you\u2019re listening, not reading.",
+          "imagePath": "/Images/Site/Apps/Xarra/AppleIntelligence.png",
+          "imageDescription": "Screenshot of Xarra showing an Apple Intelligence feature that transforms a block of code from a technical article into a clear, audio-friendly explanation, making technical content listenable."
+        }
+      ]
+    },
+    {
+      "title": "Accessibility, front and center",
+      "features": [
+        {
+          "title": "Designed to work beautifully with assistive technologies",
+          "description": "Xarra works thoughtfully with VoiceOver, Switch Control, Full Keyboard Access, and Voice Control. Navigation, playback, and content reading are designed to work with different interaction methods, without assuming how the app will be used.",
+          "imagePath": "/Images/Site/Apps/Xarra/DesignedForAssistiveTechnologies.png",
+          "imageDescription": "Screenshot of Xarra\u2019s home screen with VoiceOver enabled. The VoiceOver cursor is focused on an Audio Document row titled \u201cWelcome to Xarra,\u201d highlighting the entire row. At the bottom of the screen, the Captions Panel displays VoiceOver\u2019s spoken output for the focused element, showing the document title, source, and progress information."
+        },
+        {
+          "title": "Adaptive by default",
+          "description": "Xarra respects system settings like Dynamic Type (including larger accessibility sizes), Reduce Motion, Dark and Light Mode, Increase Contrast, Bold Text, and Differentiate Without Color. The interface adapts to your preferences rather than asking you to adapt to it.",
+          "imagePath": "/Images/Site/Apps/Xarra/AdaptiveByDefault.png",
+          "imageDescription": "Screenshot of Xarra running in a split iPad layout with large Dynamic Type enabled. The text is displayed at an accessibility size, and a chapter heading (\u201cChapter 1: What is Xarra?\u201d) is clearly outlined with high contrast. A floating playback control panel sits above the content, showing large, easy-to-target controls. The layout adapts naturally to the larger text size without truncation or overlap."
+        },
+        {
+          "title": "Accessibility, made explicit",
+          "description": "Xarra aims to offer the best experience possible for everyone. As a result, it naturally complies with Apple\u2019s Accessibility Nutrition Labels, but it doesn\u2019t stop there. Accessibility is considered throughout the whole experience: how content is imported, how it\u2019s presented, and how it\u2019s listened to. For example, when articles include images with alt text or captions, that information is preserved and included in the audio experience.",
+          "imagePath": "/Images/Site/Apps/Xarra/AccessibilityMadeExplicit.png",
+          "imageDescription": "Side-by-side screenshot comparison. On the left, Safari displays a blog post containing an image of the VoiceOver rotor set to \u201cMore Content.\u201d On the right, the same article is shown in Xarra, where the image\u2019s alt text has been extracted and inserted inline into the text, making the image description readable and listenable as part of the article."
         }
       ]
     },
@@ -66,52 +89,27 @@
       "title": "Listening, your way",
       "features": [
         {
+          "title": "Text, links, and documents",
+          "description": "Add content by typing or pasting text, sharing a web page from Safari or Notes, entering a URL, or importing documents like PDFs from the Files app. Xarra focuses on the readable content and prepares it for listening.",
+          "imagePath": "/Images/Site/Apps/Xarra/TextLinksDocuments.png",
+          "imageDescription": "Screenshot of the Xarra app showing a context menu titled \u201cFrom:\u201d with options for adding content. The menu lists Plain Text, Document, URL, and Clipboard, each with an icon, indicating different ways to import text, links, or files into the app for listening."
+        },
+        {
           "title": "Voices and languages",
-          "description": "Xarra supports multiple system voices and automatically detects the language of the content. Whether you're switching between languages or just have a preferred voice, playback adapts without extra setup.",
+          "description": "Xarra supports multiple system voices and automatically detects the language of the content. Whether you\u2019re switching between languages or just have a preferred voice, playback adapts without extra setup.",
           "imagePath": "/Images/Site/Apps/Xarra/VoicesAndLanguages.png",
           "imageDescription": "Split screenshot from Xarra. On the left, the Settings screen shows a voice selector with multiple system voices, including enhanced English voices, with one selected. On the right, an Info screen for an Audio Document displays metadata such as the title, export date, detected language set to Spanish, and an automatically generated summary, illustrating voice selection and language detection."
         },
         {
           "title": "Playback speed and preferences",
-          "description": "Adjust the reading speed to match your pace. You can also ask Xarra to respect your system's assistive voice and speech rate settings, so it feels consistent with the rest of your device.",
+          "description": "Adjust the reading speed to match your pace. You can also ask Xarra to respect your system\u2019s assistive voice and speech rate settings, so it feels consistent with the rest of your device.",
           "imagePath": "/Images/Site/Apps/Xarra/PlaybackSpeedAndPreferences.png",
-          "imageDescription": "Side-by-side screenshot from Xarra. On the left, the Settings screen shows playback preferences, including a toggle to respect the device’s assistive technology settings and a selected custom voice. On the right, a playback speed menu is open, listing options from 0.25× to 1.5×, with 1.0× selected, illustrating how users can adjust reading speed."
-          
-        },
-        {
-          "title": "Feels at home on iOS and iPadOS",
-          "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, and embraces Apple's latest design language, including Liquid Glass. More platforms are on the way.",
-          "imagePath": "/Images/Site/Apps/Xarra/FeelsAtHome.png",
-          "imageDescription": "Screenshot of Xarra running on iPad in a multi-window setup. The app is open in a resizable window alongside other apps, showing a sidebar list of audio documents on the left and a transcript view on the right. A floating playback control panel with play and skip buttons sits above the content. The interface adapts naturally to the larger screen, demonstrating support for modern iPadOS windowing with Apple’s Liquid Glass visual style."
-        }
-      ]
-    },
-    {
-      "title": "Accessibility",
-      "features": [
-        {
-          "title": "Designed to work beautifully with assistive technologies",
-          "description": "Xarra works thoughtfully with VoiceOver, Switch Control, Full Keyboard Access, and Voice Control. Navigation, playback, and content reading are designed to work with different interaction methods, without assuming how the app will be used.",
-          "imagePath": "/Images/Site/Apps/Xarra/DesignedForAssistiveTechnologies.png",
-          "imageDescription": "Screenshot of Xarra’s home screen with VoiceOver enabled. The VoiceOver cursor is focused on an Audio Document row titled “Welcome to Xarra,” highlighting the entire row. At the bottom of the screen, the Captions Panel displays VoiceOver’s spoken output for the focused element, showing the document title, source, and progress information."
-        },
-        {
-          "title": "Adaptive by default",
-          "description": "Xarra respects system settings like Dynamic Type (including larger accessibility sizes), Reduce Motion, Dark and Light Mode, Increase Contrast, Bold Text, and Differentiate Without Color. The interface adapts to your preferences rather than asking you to adapt to it.",
-          "imagePath": "/Images/Site/Apps/Xarra/AdaptiveByDefault.png",
-          "imageDescription": "Screenshot of Xarra running in a split iPad layout with large Dynamic Type enabled. The text is displayed at an accessibility size, and a chapter heading (“Chapter 1: What is Xarra?”) is clearly outlined with high contrast. A floating playback control panel sits above the content, showing large, easy-to-target controls. The layout adapts naturally to the larger text size without truncation or overlap."
-        },
-        {
-          "title": "Accessibility, made explicit",
-          "description": "Xarra aims to offer the best experience possible for everyone. As a result, it naturally complies with Apple’s Accessibility Nutrition Labels, but it doesn’t stop there. Accessibility is considered throughout the whole experience: how content is imported, how it’s presented, and how it’s listened to. For example, when articles include images with alt text or captions, that information is preserved and included in the audio experience.",
-          "imagePath": "/Images/Site/Apps/Xarra/AccessibilityMadeExplicit.png",
-          "imageDescription": "Side-by-side screenshot comparison. On the left, Safari displays a blog post containing an image of the VoiceOver rotor set to “More Content.” On the right, the same article is shown in Xarra, where the image’s alt text has been extracted and inserted inline into the text, making the image description readable and listenable as part of the article."
+          "imageDescription": "Side-by-side screenshot from Xarra. On the left, the Settings screen shows playback preferences, including a toggle to respect the device\u2019s assistive technology settings and a selected custom voice. On the right, a playback speed menu is open, listing options from 0.25\u00d7 to 1.5\u00d7, with 1.0\u00d7 selected, illustrating how users can adjust reading speed."
         }
       ]
     }
   ],
   "whySection": "Xarra is built to be helpful, respectful, and easy to trust. It works entirely offline once content is imported, keeping everything on your device. There are no ads, no trackers, and no accounts required. The app is lightweight, quick to download, and focused on doing one thing well helping you engage with text in the way that works best for you.",
-  "supportText": "Having trouble getting the most out of Xarra? We're here to help you turn your text into the perfect audio experience!",
+  "supportText": "Having trouble getting the most out of Xarra? We\u2019re here to help you turn your text into the perfect audio experience!",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }
-
