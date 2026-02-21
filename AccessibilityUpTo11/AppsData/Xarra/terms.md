@@ -26,10 +26,11 @@ Xarra offers optional auto-renewing subscriptions (Monthly and Yearly) that unlo
 - The four oldest Audio Documents are always free. A subscription unlocks unlimited Audio Documents.
 - 10% of subscription proceeds are donated to AMMEC, an accessibility charity.
 - Payment is charged to your Apple ID account at confirmation of purchase and at renewal. Pricing may vary by region and is shown in the App Store at the time of purchase.
+- Subscriptions support **Family Sharing**, so all members of your Family Sharing group can access premium features under a single subscription.
 
 ## 6. In-App Purchases and Lifetime Access
 
-- **Lifetime Access** is a one-time, non-consumable purchase that unlocks unlimited Audio Documents within Xarra.
+- **Lifetime Access** is a one-time, non-consumable purchase that unlocks unlimited Audio Documents within Xarra. It supports **Family Sharing**, so everyone in your Family Sharing group can benefit from the purchase.
 - **"Lifetime"** means for the lifetime of the Xarra product — that is, for as long as we make the Xarra app and its premium features available. It does not guarantee that the app or service will exist indefinitely.
 - We may discontinue the app or its premium features in the future (for example, if we remove the app from the App Store). If we do, we will use reasonable efforts to give advance notice where practicable. In such a case, Lifetime Access applies for the period the service was available; we are not obliged to provide the service after discontinuation.
 - Refunds for subscriptions and in-app purchases are governed by Apple's App Store refund policy. Please contact Apple directly for refund requests.

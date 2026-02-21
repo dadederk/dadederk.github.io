@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["PV9S9FTZF2.com.accessibilityUpTo11.Xarra"],
+        "components": [
+          {
+            "/": "/xarra/*",
+            "comment": "Handles all Xarra deep links, including the share extension trigger"
+          }
+        ]
+      }
+    ]
+  }
+}
