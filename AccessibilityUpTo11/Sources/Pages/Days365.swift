@@ -11,6 +11,7 @@ struct Days365: StaticPage {
             Text("Tips and tricks to build accessible iOS apps")
                 .font(.title1)
                 .fontWeight(.bold)
+                .class("text-break")
                 .horizontalAlignment(.leading)
                 .padding(.bottom)
             
@@ -19,6 +20,7 @@ struct Days365: StaticPage {
                 HStack(alignment: .bottom) {
                     Text("#365DaysIOSAccessibility")
                         .font(.title2)
+                        .class("text-break")
                     ActionButton(title: "RSS Feed", target: "/365-days-feed.rss", style: .primary)
                         .font(.body)
                 }
@@ -28,6 +30,7 @@ struct Days365: StaticPage {
                 
                 Text("A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.")
                     .font(.body)
+                    .class("text-break")
                     .foregroundStyle(.secondary)
                     .padding([.bottom, .leading, .trailing])
                 
@@ -145,6 +148,7 @@ struct Days365Page: StaticPage {
             Text("Tips and tricks to build accessible iOS apps")
                 .font(.title1)
                 .fontWeight(.bold)
+                .class("text-break")
                 .horizontalAlignment(.leading)
                 .padding(.bottom)
             
@@ -153,6 +157,7 @@ struct Days365Page: StaticPage {
                 HStack(alignment: .bottom) {
                     Text("#365DaysIOSAccessibility")
                         .font(.title2)
+                        .class("text-break")
                     
                     ActionButton(title: "RSS Feed", target: "/365-days-feed.rss", style: .primary)
                         .font(.body)
@@ -163,6 +168,7 @@ struct Days365Page: StaticPage {
                 
                 Text("A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.")
                     .font(.body)
+                    .class("text-break")
                     .foregroundStyle(.secondary)
                     .padding(.bottom)
                 

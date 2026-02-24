@@ -14,6 +14,7 @@ struct Days365TagPage: StaticPage {
                 Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
                     .foregroundStyle(.primary)
                     .font(.body)
+                    .class("text-break")
                     .horizontalAlignment(.leading)
             }
             .horizontalAlignment(.leading)
@@ -24,6 +25,7 @@ struct Days365TagPage: StaticPage {
                 HStack(alignment: .bottom) {
                     Text("Tag: \(tag)")
                         .font(.title2)
+                        .class("text-break")
                     
                     let posts = Days365Loader.posts(withTag: tag)
                     Text("\(posts.count) post\(posts.count == 1 ? "" : "s")")

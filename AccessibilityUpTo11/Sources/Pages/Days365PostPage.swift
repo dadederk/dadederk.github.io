@@ -13,6 +13,7 @@ struct Days365PostPage: StaticPage {
                 Link("#365DaysIOSAccessibility", target: "/365-days-ios-accessibility")
                     .foregroundStyle(.primary)
                     .font(.body)
+                    .class("text-break")
                     .horizontalAlignment(.leading)
             }
             .horizontalAlignment(.leading)
@@ -24,6 +25,7 @@ struct Days365PostPage: StaticPage {
                     Text(post.title)
                         .font(.title1)
                         .fontWeight(.bold)
+                        .class("text-break")
                         .horizontalAlignment(.leading)
                     
                     // Date
@@ -67,6 +69,7 @@ struct Days365PostPage: StaticPage {
             // Article content
             Section {
                 MarkdownRenderer(content: post.content)
+                    .class("post-content")
                     .horizontalAlignment(.leading)
                     .padding(.horizontal)
             }

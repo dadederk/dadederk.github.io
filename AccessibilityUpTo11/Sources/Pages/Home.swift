@@ -12,6 +12,7 @@ struct Home: StaticPage {
             Text("Developing Accessible iOS Apps")
                 .font(.title1)
                 .fontWeight(.bold)
+                .class("text-break")
                 .horizontalAlignment(.leading)
                 .padding(.bottom)
             
@@ -118,6 +119,7 @@ struct Home: StaticPage {
                 HStack(alignment: .bottom) {
                     Text("#365DaysIOSAccessibility")
                         .font(.title2)
+                        .class("text-break")
                     Link("See All", target: "/365-days-ios-accessibility")
                         .font(.body)
                 }
@@ -152,12 +154,14 @@ struct HomeArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
         Card(imageName: content.image) {
             Text(content.description)
                 .lineLimit(8)
+                .class("text-break")
                 .margin(.bottom, .none)
         } header: {
             Text {
                 Link(content)
             }
             .font(.title2)
+            .class("text-break")
             .foregroundStyle(.body)
         } footer: {
             let tagLinks = content.tagLinks()

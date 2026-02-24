@@ -104,6 +104,7 @@ struct BlogPostLayout: ArticlePage {
                     Text(article.title)
                         .font(.title1)
                         .fontWeight(.bold)
+                        .class("text-break")
                         .horizontalAlignment(.leading)
                     
                     // Date (moved under title)
@@ -119,6 +120,7 @@ struct BlogPostLayout: ArticlePage {
                                 link
                             }
                         }
+                        .style(.flexWrap, "wrap")
                         .horizontalAlignment(.leading)
                     }
                     
@@ -146,10 +148,14 @@ struct BlogPostLayout: ArticlePage {
             
             // Article content
             Section {
-                Text(article.text)
-                    .horizontalAlignment(.leading)
-                    .padding(.horizontal)
+                Section {
+                    article.text
+                }
+                .class("post-content")
+                .horizontalAlignment(.leading)
+                .padding(.horizontal)
             }
+            .class("post-content-container")
             
             // Related articles section
             @Environment(\.articles) var articles

@@ -336,4 +336,47 @@ header nav.navbar {
     margin-bottom: 0.25rem !important;
 }
 
+/* Prevent horizontal overflow from long words/URLs/tags in dynamic content. */
+#main-content .text-break,
+#main-content .post-content,
+#main-content .post-content a,
+#main-content .markdown-content,
+#main-content .markdown-content a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+#main-content .post-content-container {
+    align-self: stretch !important;
+    width: 100%;
+    min-width: 0;
+}
+
+#main-content .post-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+#main-content .badge {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+#main-content pre {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+#main-content pre > code[class*="language-"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* MINIMAL CSS EXCEPTIONS - Only for features not available in Ignite modifiers */

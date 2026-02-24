@@ -48,10 +48,17 @@ struct AppCard: HTML {
                                             .cornerRadius(4)
                                     }
                                 }
+                                .class("app-card-platforms")
+                                .style(.flexWrap, "wrap")
                                 .padding(.bottom, 5)
                             }
                         }
+                        .class("app-card-meta")
+                        .style(.minWidth, "0")
                     }
+                    .class("app-card-header")
+                    .style(.flexWrap, "wrap")
+                    .style(.alignItems, "flex-start")
                     
                     Text(description)
                         .font(.body)
@@ -67,10 +74,13 @@ struct AppCard: HTML {
                             action
                         }
                     }
+                    .class("app-card-actions")
+                    .style(.flexWrap, "wrap")
                     .padding(.top)
                 }
             }
         }
+        .class("app-card")
         .padding()
     }
     

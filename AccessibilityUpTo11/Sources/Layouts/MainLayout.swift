@@ -6,7 +6,7 @@ struct MainLayout: Layout {
     
     @MainActor var body: some Document {
         let meta = Self.metaContext(title: page.title, path: page.url.path)
-        let assetVersion = "2026-02-03"
+        let assetVersion = "2026-02-24"
         
         PlainDocument {
             Head {

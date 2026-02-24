@@ -19,12 +19,14 @@ struct HomeArticlePreviewStyleFor365Days: HTML {
         Card(imageName: post.image) {
             Text(post.excerpt)
                 .lineLimit(8)
+                .class("text-break")
                 .margin(.bottom, .none)
         } header: {
             Text {
                 Link(post.title, target: post.path)
             }
             .font(.title2)
+            .class("text-break")
             .foregroundStyle(.body)
         } footer: {
             if !post.tags.isEmpty {
