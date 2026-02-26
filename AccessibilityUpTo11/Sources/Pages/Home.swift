@@ -3,6 +3,8 @@ import Ignite
 
 struct Home: StaticPage {
     var title = "Home"
+    var description = "Accessibility up to 11! shares practical guidance, posts, and resources to help build more accessible iOS apps."
+    var image: URL? { SiteMeta.imageURL(nil) }
     
     @Environment(\.articles) var articles
 

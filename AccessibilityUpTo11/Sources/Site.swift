@@ -1,5 +1,10 @@
 import Foundation
 import Ignite
+#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#endif
 
 @main
 struct AccessibilityUpTo11Website {
@@ -17,8 +22,12 @@ struct AccessibilityUpTo11Website {
             
             // Generate image sitemap
             await generateImageSitemap()
+
+            // Validate generated social metadata.
+            try runSocialMetaValidation()
         } catch {
             print(error.localizedDescription)
+            exit(EXIT_FAILURE)
         }
     }
     
@@ -325,6 +334,47 @@ struct AccessibilityUpTo11Website {
             .replacingOccurrences(of: ">", with: "&gt;")
             .replacingOccurrences(of: "\"", with: "&quot;")
             .replacingOccurrences(of: "'", with: "&#39;")
+    }
+
+    /// Run social metadata checks against generated HTML.
+    static func runSocialMetaValidation() throws {
+        if ProcessInfo.processInfo.environment["SKIP_SOCIAL_META_CHECK"] == "1" {
+            print("⏭️ Skipping social metadata validation (SKIP_SOCIAL_META_CHECK=1)")
+            return
+        }
+
+        print("🔎 Validating social metadata...")
+        let process = Process()
+        process.currentDirectoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        process.arguments = ["swift", "Scripts/CheckSocialMeta.swift"]
+
+        var environment = ProcessInfo.processInfo.environment
+        environment["SWIFTPM_MODULECACHE_OVERRIDE"] = "/tmp/swiftpm-module-cache"
+        environment["CLANG_MODULE_CACHE_PATH"] = "/tmp/clang-module-cache"
+        process.environment = environment
+
+        let outputPipe = Pipe()
+        process.standardOutput = outputPipe
+        process.standardError = outputPipe
+
+        try process.run()
+        process.waitUntilExit()
+
+        let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+        if let output = String(data: outputData, encoding: .utf8), !output.isEmpty {
+            print(output)
+        }
+
+        if process.terminationStatus != 0 {
+            throw NSError(
+                domain: "AccessibilityUpTo11Website",
+                code: Int(process.terminationStatus),
+                userInfo: [
+                    NSLocalizedDescriptionKey: "Social metadata validation failed with status \(process.terminationStatus)."
+                ]
+            )
+        }
     }
 }
 

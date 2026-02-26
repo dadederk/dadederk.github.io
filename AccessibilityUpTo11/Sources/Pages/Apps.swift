@@ -3,6 +3,8 @@ import Ignite
 
 struct Apps: StaticPage {
     var title = "Apps"
+    var description = "Browse apps, sticker packs, and games designed with accessibility and inclusive user experience in mind."
+    var image: URL? { SiteMeta.imageURL(nil) }
     
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {

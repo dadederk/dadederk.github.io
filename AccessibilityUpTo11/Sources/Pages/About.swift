@@ -3,6 +3,8 @@ import Ignite
 
 struct About: StaticPage {
     var title = "About"
+    var description = "Meet Daniel Devesa Derksen-Staats and explore publications, talks, and podcasts focused on accessible iOS development."
+    var image: URL? { SiteMeta.imageURL("/Images/Site/Global/dani.jpg") }
     
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {

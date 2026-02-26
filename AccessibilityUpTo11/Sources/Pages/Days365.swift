@@ -4,6 +4,11 @@ import Ignite
 struct Days365: StaticPage {
     var title = "#365DaysIOSAccessibility"
     var path = "/365-days-ios-accessibility"
+    var description = "A year-long journey exploring iOS accessibility, one day at a time, with practical tips and implementation ideas."
+    var image: URL? {
+        let firstImage = Days365Loader.loadPosts().first(where: { $0.image != nil })?.image
+        return SiteMeta.imageURL(firstImage)
+    }
     
     var body: some HTML {
         VStack(alignment: .leading) {
@@ -140,6 +145,15 @@ struct Days365Page: StaticPage {
     }
     var path: String { 
         pageNumber == 1 ? "/365-days-ios-accessibility" : "/365-days-ios-accessibility/page-\(pageNumber)"
+    }
+    var description: String {
+        pageNumber == 1
+            ? "A year-long journey exploring iOS accessibility, one day at a time, with practical tips and implementation ideas."
+            : "Page \(pageNumber) of #365DaysIOSAccessibility posts with practical iOS accessibility tips."
+    }
+    var image: URL? {
+        let firstImage = Days365Loader.loadPosts().first(where: { $0.image != nil })?.image
+        return SiteMeta.imageURL(firstImage)
     }
     
     var body: some HTML {

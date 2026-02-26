@@ -2,6 +2,40 @@
 
 This directory contains build scripts and utilities for the Accessibility up to 11! website.
 
+## Social Metadata Validation
+
+### `CheckSocialMeta.swift`
+
+Validates the generated social metadata for representative pages and checks:
+- Single canonical link
+- Single `twitter:card`
+- Presence of OG/Twitter image tags
+- Presence of OG/Twitter image alt text
+- Presence of OG/Twitter description
+- Fallback logo usage on pages expected to fall back
+
+Run from the website root:
+
+```bash
+swift Scripts/CheckSocialMeta.swift
+```
+
+Force a rebuild before checking:
+
+```bash
+swift Scripts/CheckSocialMeta.swift --build
+```
+
+### Automatic Build Integration
+
+`CheckSocialMeta.swift` is executed automatically by the main site build (`swift run`) after RSS, sitemap, and image sitemap generation.
+
+To skip it for a local-only run:
+
+```bash
+SKIP_SOCIAL_META_CHECK=1 swift run
+```
+
 ## RSS Feed Generation
 
 ### `generate-365-rss.sh`

@@ -6,6 +6,13 @@ struct Days365PostPage: StaticPage {
     
     var title: String { post.title }
     var path: String { post.path }
+    var description: String { post.excerpt }
+
+    /// Each post uses its lead image for sharing, with a site-logo fallback.
+    var image: URL? {
+        SiteMeta.imageURL(post.image)
+    }
+
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {
             // Breadcrumb navigation

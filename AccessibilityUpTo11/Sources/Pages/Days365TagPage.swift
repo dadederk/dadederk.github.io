@@ -6,6 +6,14 @@ struct Days365TagPage: StaticPage {
     
     var title: String { "Tag: \(tag) - #365DaysIOSAccessibility" }
     var path: String { "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))" }
+    var description: String {
+        let count = Days365Loader.posts(withTag: tag).count
+        return "Browse \(count) #365DaysIOSAccessibility post\(count == 1 ? "" : "s") tagged \(tag)."
+    }
+    var image: URL? {
+        let taggedImage = Days365Loader.posts(withTag: tag).first(where: { $0.image != nil })?.image
+        return SiteMeta.imageURL(taggedImage)
+    }
     
     var body: some HTML {
         VStack(alignment: .leading) {

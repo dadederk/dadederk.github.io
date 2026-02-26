@@ -4,6 +4,8 @@ import Ignite
 struct Blog: StaticPage {
     var title = "Blog"
     var path = "/blog"
+    var description = "Long-form articles on building accessible iOS apps, inclusive design decisions, and practical engineering techniques."
+    var image: URL? { SiteMeta.imageURL(nil) }
     
     @Environment(\.articles) var articles
     
@@ -38,4 +40,3 @@ struct Blog: StaticPage {
         }
     }
 }
-

@@ -5,7 +5,7 @@ struct MainLayout: Layout {
     @Environment(\.page) var page
     
     @MainActor var body: some Document {
-        let meta = Self.metaContext(title: page.title, path: page.url.path)
+        let meta = metaContext()
         let assetVersion = "2026-02-24"
         
         PlainDocument {
@@ -13,22 +13,27 @@ struct MainLayout: Layout {
                 MetaTag(name: "keywords", content: "iOS, accessibility, a11y, Swift, VoiceOver, development")
                 MetaTag(name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large")
                 MetaTag(name: "googlebot", content: "index, follow")
-                
-                MetaLink(href: meta.absoluteURL, rel: "canonical")
-                
+
+                // og:type and og:locale are not injected by Ignite's socialSharingTags().
                 MetaTag(property: "og:type", content: meta.type.rawValue)
-                MetaTag(property: "og:title", content: meta.title)
-                MetaTag(property: "og:description", content: meta.description)
-                MetaTag(property: "og:url", content: meta.absoluteURL)
-                MetaTag(property: "og:image", content: SiteMeta.baseURL + meta.image)
-                MetaTag(property: "og:image:alt", content: meta.imageAlt)
                 MetaTag(property: "og:locale", content: "en_US")
+
+                // Ignite is the primary source for image tags.
+                // We only inject image tags for routes that need fallback/absolute safety.
+                if meta.emitCustomImageTags {
+                    MetaTag(property: "og:image", content: meta.imageURL)
+                    MetaTag(name: "twitter:image", content: meta.imageURL)
+                }
+                MetaTag(property: "og:image:alt", content: meta.imageAlt)
                 
-                MetaTag(name: "twitter:card", content: meta.twitterCard)
-                MetaTag(name: "twitter:title", content: meta.title)
-                MetaTag(name: "twitter:description", content: meta.description)
-                MetaTag(name: "twitter:image", content: SiteMeta.baseURL + meta.image)
                 MetaTag(name: "twitter:image:alt", content: meta.imageAlt)
+
+                // Ignite injects description tags only when page.description is non-empty.
+                if meta.emitCustomDescriptionTags {
+                    MetaTag(property: "og:description", content: meta.description)
+                    MetaTag(name: "twitter:description", content: meta.description)
+                }
+
                 MetaTag(name: "twitter:site", content: "@dadederk")
                 MetaTag(name: "twitter:creator", content: "@dadederk")
                 
@@ -111,14 +116,32 @@ struct MainLayout: Layout {
 }
 
 extension MainLayout {
-    @MainActor static func metaContext(title: String, path: String) -> MetaContext {
-        
+    @MainActor func metaContext() -> MetaContext {
+        let path = page.url.path
+        let title = page.title
+        let defaultType: MetaContext.ContentType = path.hasPrefix("/post/") ? .article : .website
+
         // 365 Days individual post
         if path.hasPrefix("/365-days-ios-accessibility/") {
             let slug = path.replacingOccurrences(of: "/365-days-ios-accessibility/", with: "")
             if let post = Days365Loader.post(withFileName: slug) {
                 return MetaBuilder.days365(post)
             }
+        }
+
+        // Blog post — Ignite populates page.image with the article's image path
+        // (often relative), so we emit custom image tags for absolute URL safety.
+        if path.hasPrefix("/post/") {
+            return MetaBuilder.page(
+                title: title,
+                description: page.description,
+                path: path,
+                image: page.image?.absoluteString,
+                imageAlt: title,
+                type: .article,
+                emitCustomImageTags: true,
+                emitCustomDescriptionTags: page.description.isEmpty
+            )
         }
         
         // App pages
@@ -143,7 +166,30 @@ extension MainLayout {
                 }
             }
         }
+
+        // Ignite's TagPage type does not expose per-page image metadata.
+        if path == "/tags" || path.hasPrefix("/tags/") {
+            return MetaBuilder.page(
+                title: title,
+                description: page.description,
+                path: path,
+                image: page.image?.absoluteString,
+                imageAlt: title,
+                type: .website,
+                emitCustomImageTags: true,
+                emitCustomDescriptionTags: page.description.isEmpty
+            )
+        }
         
-        return MetaBuilder.siteFallback(title: title, path: path)
+        return MetaBuilder.page(
+            title: title,
+            description: page.description,
+            path: path,
+            image: page.image?.absoluteString,
+            imageAlt: title,
+            type: defaultType,
+            emitCustomImageTags: page.image == nil,
+            emitCustomDescriptionTags: page.description.isEmpty
+        )
     }
 }

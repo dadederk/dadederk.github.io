@@ -55,6 +55,24 @@ struct UniversalAppPage: StaticPage {
     }
     
     var path: String { "/apps/\(appIdentifier)\(pageType.pathSegment)" }
+
+    var description: String {
+        guard let app = findApp() else { return SiteMeta.defaultDescription }
+
+        switch pageType {
+        case .main:
+            return app.description
+        case .terms:
+            return "Terms and conditions for \(app.title), including usage and support information."
+        case .privacy:
+            return "Privacy policy for \(app.title), including data collection, usage, and protection details."
+        }
+    }
+
+    var image: URL? {
+        guard let app = findApp() else { return SiteMeta.imageURL(nil) }
+        return SiteMeta.imageURL(app.imagePath)
+    }
     
     @MainActor var body: some HTML {
         switch pageType {

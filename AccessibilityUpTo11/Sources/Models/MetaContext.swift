@@ -14,45 +14,78 @@ struct MetaContext {
     var image: String
     var imageAlt: String
     var type: ContentType
-    var twitterCard: String = "summary_large_image"
+    var emitCustomImageTags: Bool = false
+    var emitCustomDescriptionTags: Bool = false
     
     /// Absolute URL helper.
-    var absoluteURL: String { SiteMeta.baseURL + path }
+    var absoluteURL: String { SiteMeta.absoluteURL(for: path) }
+    var imageURL: String { SiteMeta.absoluteImageURL(for: image) }
 }
 
 /// Centralized helpers for building per-page metadata.
 enum MetaBuilder {
+    /// Generic builder that applies consistent fallback behavior.
+    @MainActor static func page(
+        title: String,
+        description: String,
+        path: String,
+        image: String?,
+        imageAlt: String?,
+        type: MetaContext.ContentType,
+        emitCustomImageTags: Bool = false,
+        emitCustomDescriptionTags: Bool = false
+    ) -> MetaContext {
+        let resolvedDescription = SiteMeta.bestDescription(description)
+        let resolvedImage = SiteMeta.bestImagePath(image)
+        let resolvedAlt = SiteMeta.bestImageAlt(
+            preferredAlt: imageAlt,
+            imagePath: resolvedImage,
+            pageTitle: title
+        )
+        
+        return MetaContext(
+            title: title,
+            description: resolvedDescription,
+            path: path,
+            image: resolvedImage,
+            imageAlt: resolvedAlt,
+            type: type,
+            emitCustomImageTags: emitCustomImageTags,
+            emitCustomDescriptionTags: emitCustomDescriptionTags
+        )
+    }
+    
     /// Fallback/site-wide defaults.
     @MainActor static func siteFallback(title: String, path: String) -> MetaContext {
-        MetaContext(
+        page(
             title: title,
-            description: SiteMeta.defaultDescription,
+            description: "",
             path: path,
-            image: SiteMeta.defaultImage,
-            imageAlt: "Accessibility up to 11! logo",
+            image: nil,
+            imageAlt: nil,
             type: .website
         )
     }
     
     /// Metadata for blog articles.
     @MainActor static func article(_ article: Article) -> MetaContext {
-        MetaContext(
+        page(
             title: article.title,
             description: article.description,
             path: article.path,
-            image: article.image ?? SiteMeta.defaultImage,
-            imageAlt: article.title,
+            image: article.image,
+            imageAlt: article.imageDescription,
             type: .article
         )
     }
     
     /// Metadata for a 365 Days tip.
     @MainActor static func days365(_ post: Days365Data) -> MetaContext {
-        MetaContext(
+        page(
             title: post.title,
             description: post.excerpt,
             path: post.path,
-            image: post.image ?? SiteMeta.defaultImage,
+            image: post.image,
             imageAlt: post.title,
             type: .article
         )
@@ -69,7 +102,7 @@ enum MetaBuilder {
         
         let description = pageType == .main ? app.description : app.nameOrigin
         
-        return MetaContext(
+        return page(
             title: "\(app.title)\(suffix)",
             description: description,
             path: "/apps/\(app.slug)\(pageType.pathSegment)",
@@ -84,5 +117,49 @@ enum MetaBuilder {
 enum SiteMeta {
     static let baseURL = "https://accessibilityupto11.com"
     static let defaultImage = "/Images/Site/Global/LogoShare.png"
+    static let defaultImageAlt = "Accessibility up to 11! logo"
     static let defaultDescription = "iOS accessibility development blog and resources for developers who want to make their apps accessible to everyone."
+    
+    static func bestDescription(_ description: String) -> String {
+        description.isEmpty ? defaultDescription : description
+    }
+    
+    static func bestImagePath(_ imagePath: String?) -> String {
+        guard let imagePath, !imagePath.isEmpty else {
+            return defaultImage
+        }
+        return imagePath
+    }
+    
+    static func bestImageAlt(preferredAlt: String?, imagePath: String, pageTitle: String) -> String {
+        if let preferredAlt, !preferredAlt.isEmpty {
+            return preferredAlt
+        }
+        
+        if imagePath == defaultImage {
+            return defaultImageAlt
+        }
+        
+        return pageTitle.isEmpty ? defaultImageAlt : pageTitle
+    }
+    
+    static func absoluteURL(for path: String) -> String {
+        if path.hasPrefix("http://") || path.hasPrefix("https://") {
+            return path
+        }
+        
+        if path.hasPrefix("/") {
+            return baseURL + path
+        }
+        
+        return baseURL + "/" + path
+    }
+    
+    static func absoluteImageURL(for imagePath: String) -> String {
+        absoluteURL(for: imagePath)
+    }
+    
+    static func imageURL(_ imagePath: String?) -> URL? {
+        URL(string: absoluteImageURL(for: bestImagePath(imagePath)))
+    }
 }
