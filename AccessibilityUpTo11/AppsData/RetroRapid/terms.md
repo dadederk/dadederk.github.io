@@ -1,6 +1,6 @@
 # Terms & Conditions
 
-**Last Updated: February 11, 2026**
+**Last Updated: March 1, 2026**
 
 ## Acceptance of Terms
 
@@ -13,6 +13,14 @@ RetroRapid is provided to you under a limited, non-exclusive, non-transferable l
 ## Game Center
 
 RetroRapid integrates with Apple's Game Center for leaderboards and achievements. Use of Game Center features is subject to Apple's Game Center Terms of Service.
+
+## In-App Purchases and Family Sharing
+
+RetroRapid offers an optional one-time purchase:
+
+- **Unlimited Play** ($3.99) is a non-consumable in-app purchase that removes the play limit and unlocks visual themes.
+- Unlimited Play supports **Family Sharing**, so everyone in your Family Sharing group can benefit from the purchase.
+- All purchases are processed by Apple through the App Store. Refunds are governed by Apple's App Store refund policy — please contact Apple directly for any refund requests.
 
 ## User Conduct
 

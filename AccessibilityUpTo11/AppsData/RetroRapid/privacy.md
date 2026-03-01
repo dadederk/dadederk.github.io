@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last Updated: February 11, 2026**
+**Last Updated: March 1, 2026**
 
 ## Our Commitment to Privacy
 
@@ -24,10 +24,6 @@ RetroRapid is designed with privacy in mind:
 
 All game data is stored locally on your device. When using Game Center features, that data is managed by Apple's Game Center service and subject to Apple's Privacy Policy.
 
-## iCloud Sync
-
-If you enable iCloud for RetroRapid, your game progress may sync across your devices via iCloud. This data is encrypted and managed by Apple according to their privacy policy.
-
 ## Third-Party Services
 
 RetroRapid uses Apple's Game Center for leaderboards and achievements. Use of Game Center is subject to Apple's privacy policy and terms of service.
@@ -45,7 +41,6 @@ Since we don't collect personal data, there's no personal data to secure. Your g
 You have full control over your data:
 - Delete the app to remove all local game data
 - Disable Game Center integration in iOS Settings
-- Disable iCloud sync in iOS Settings
 
 ## Changes to This Policy
 
