@@ -353,6 +353,8 @@ struct AccessibilityUpTo11Website {
         environment["SWIFTPM_MODULECACHE_OVERRIDE"] = "/tmp/swiftpm-module-cache"
         environment["CLANG_MODULE_CACHE_PATH"] = "/tmp/clang-module-cache"
         environment["SKIP_SOCIAL_META_CHECK"] = "1"
+        environment["SOCIAL_META_PROJECT_DIR"] = process.currentDirectoryURL?.path
+        environment["SOCIAL_META_BUILD_DIR"] = process.currentDirectoryURL?.appendingPathComponent("Build").path
         process.environment = environment
 
         try process.run()

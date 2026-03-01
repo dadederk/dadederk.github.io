@@ -32,6 +32,10 @@ Require an existing `Build/` output and never trigger an internal build:
 swift Scripts/CheckSocialMeta.swift --no-build
 ```
 
+Optional environment overrides:
+- `SOCIAL_META_PROJECT_DIR`: project directory that contains `Package.swift`.
+- `SOCIAL_META_BUILD_DIR`: explicit build output directory to validate.
+
 ### Automatic Build Integration
 
 `CheckSocialMeta.swift` is executed automatically by the main site build (`swift run`) after RSS, sitemap, and image sitemap generation.

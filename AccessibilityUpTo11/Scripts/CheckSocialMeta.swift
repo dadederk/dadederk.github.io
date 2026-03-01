@@ -25,8 +25,8 @@ let fallbackImagePath = "/Images/Site/Global/LogoShare.png"
 let fallbackImageURL = "https://accessibilityupto11.com\(fallbackImagePath)"
 
 func main() -> Int32 {
-    let projectDirectory = projectDirectoryURL()
-    let buildDirectory = projectDirectory.appendingPathComponent("Build")
+    let projectDirectory = resolveProjectDirectory()
+    let buildDirectory = resolveBuildDirectory(projectDirectory: projectDirectory)
     let shouldBuild = CommandLine.arguments.contains("--build")
     let noBuild = CommandLine.arguments.contains("--no-build")
 
@@ -63,7 +63,10 @@ func buildSiteIfNeeded(
 
     if !allowAutoBuild {
         throw NSError(domain: "CheckSocialMeta", code: 2, userInfo: [
-            NSLocalizedDescriptionKey: "Build directory not found at \(buildDirectory.path). Run `swift run` first or call this script with --build."
+            NSLocalizedDescriptionKey: """
+            Build directory not found at \(buildDirectory.path).
+            Run `swift run` first, set SOCIAL_META_BUILD_DIR, or call this script with --build.
+            """
         ])
     }
 
@@ -355,6 +358,32 @@ func projectDirectoryURL() -> URL {
     URL(fileURLWithPath: #filePath)
         .deletingLastPathComponent()
         .deletingLastPathComponent()
+}
+
+func resolveProjectDirectory() -> URL {
+    if let override = ProcessInfo.processInfo.environment["SOCIAL_META_PROJECT_DIR"], !override.isEmpty {
+        return URL(fileURLWithPath: override)
+    }
+
+    let cwd = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+    if FileManager.default.fileExists(atPath: cwd.appendingPathComponent("Package.swift").path) {
+        return cwd
+    }
+
+    return projectDirectoryURL()
+}
+
+func resolveBuildDirectory(projectDirectory: URL) -> URL {
+    if let override = ProcessInfo.processInfo.environment["SOCIAL_META_BUILD_DIR"], !override.isEmpty {
+        return URL(fileURLWithPath: override)
+    }
+
+    let cwdBuild = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Build")
+    if FileManager.default.fileExists(atPath: cwdBuild.path) {
+        return cwdBuild
+    }
+
+    return projectDirectory.appendingPathComponent("Build")
 }
 
 func extractAttribute(named name: String, in tag: String) -> String? {
