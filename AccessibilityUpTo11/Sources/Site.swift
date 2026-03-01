@@ -354,17 +354,8 @@ struct AccessibilityUpTo11Website {
         environment["CLANG_MODULE_CACHE_PATH"] = "/tmp/clang-module-cache"
         process.environment = environment
 
-        let outputPipe = Pipe()
-        process.standardOutput = outputPipe
-        process.standardError = outputPipe
-
         try process.run()
         process.waitUntilExit()
-
-        let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-        if let output = String(data: outputData, encoding: .utf8), !output.isEmpty {
-            print(output)
-        }
 
         if process.terminationStatus != 0 {
             throw NSError(
