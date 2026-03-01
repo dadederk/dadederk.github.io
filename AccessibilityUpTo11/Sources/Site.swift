@@ -347,11 +347,12 @@ struct AccessibilityUpTo11Website {
         let process = Process()
         process.currentDirectoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
-        process.arguments = ["swift", "Scripts/CheckSocialMeta.swift"]
+        process.arguments = ["swift", "Scripts/CheckSocialMeta.swift", "--no-build"]
 
         var environment = ProcessInfo.processInfo.environment
         environment["SWIFTPM_MODULECACHE_OVERRIDE"] = "/tmp/swiftpm-module-cache"
         environment["CLANG_MODULE_CACHE_PATH"] = "/tmp/clang-module-cache"
+        environment["SKIP_SOCIAL_META_CHECK"] = "1"
         process.environment = environment
 
         try process.run()

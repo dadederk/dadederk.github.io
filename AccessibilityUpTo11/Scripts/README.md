@@ -26,6 +26,12 @@ Force a rebuild before checking:
 swift Scripts/CheckSocialMeta.swift --build
 ```
 
+Require an existing `Build/` output and never trigger an internal build:
+
+```bash
+swift Scripts/CheckSocialMeta.swift --no-build
+```
+
 ### Automatic Build Integration
 
 `CheckSocialMeta.swift` is executed automatically by the main site build (`swift run`) after RSS, sitemap, and image sitemap generation.

@@ -28,9 +28,15 @@ func main() -> Int32 {
     let projectDirectory = projectDirectoryURL()
     let buildDirectory = projectDirectory.appendingPathComponent("Build")
     let shouldBuild = CommandLine.arguments.contains("--build")
+    let noBuild = CommandLine.arguments.contains("--no-build")
 
     do {
-        try buildSiteIfNeeded(forceBuild: shouldBuild, projectDirectory: projectDirectory, buildDirectory: buildDirectory)
+        try buildSiteIfNeeded(
+            forceBuild: shouldBuild,
+            allowAutoBuild: !noBuild,
+            projectDirectory: projectDirectory,
+            buildDirectory: buildDirectory
+        )
     } catch {
         print("Failed to build site: \(error)")
         return 1
@@ -44,10 +50,21 @@ func main() -> Int32 {
     return hasFailures ? 1 : 0
 }
 
-func buildSiteIfNeeded(forceBuild: Bool, projectDirectory: URL, buildDirectory: URL) throws {
+func buildSiteIfNeeded(
+    forceBuild: Bool,
+    allowAutoBuild: Bool,
+    projectDirectory: URL,
+    buildDirectory: URL
+) throws {
     if !forceBuild && FileManager.default.fileExists(atPath: buildDirectory.path) {
         print("Using existing Build directory at \(buildDirectory.path)")
         return
+    }
+
+    if !allowAutoBuild {
+        throw NSError(domain: "CheckSocialMeta", code: 2, userInfo: [
+            NSLocalizedDescriptionKey: "Build directory not found at \(buildDirectory.path). Run `swift run` first or call this script with --build."
+        ])
     }
 
     print("Building site with swift run")
@@ -59,6 +76,7 @@ func buildSiteIfNeeded(forceBuild: Bool, projectDirectory: URL, buildDirectory: 
     var environment = ProcessInfo.processInfo.environment
     environment["SWIFTPM_MODULECACHE_OVERRIDE"] = "/tmp/swiftpm-module-cache"
     environment["CLANG_MODULE_CACHE_PATH"] = "/tmp/clang-module-cache"
+    environment["SKIP_SOCIAL_META_CHECK"] = "1"
     process.environment = environment
 
     try process.run()
