@@ -37,7 +37,7 @@ Curated collection of external accessibility resources including books, articles
 Showcase of apps developed by the author.
 
 - **URL**: /apps
-- **Apps**: Mestre, Xarra, iMonstickers
+- **Apps**: Mestre!, Xarra!, iMonstickers, RetroRapid!
 
 ## Tag-Based Navigation
 

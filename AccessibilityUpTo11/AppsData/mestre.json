@@ -1,7 +1,8 @@
 {
   "order": 2,
   "category": "app",
-  "title": "Mestre",
+  "slug": "mestre",
+  "title": "Mestre!",
   "subtitle": "Screen Recording with Style",
   "description": "Mestre is a macOS app that lets you record your screen with style, combining high-quality screen capture with presenter-friendly webcam overlays. It's designed for content creators, developers, and anyone who wants to create polished tutorials, demos, or talks, without the need for complex video editing workflows.",
   "nameOrigin": "The name Mestre, meaning \"teacher\" or \"master\" in Valencian/Catalan, reflects the app's goal to support people who share knowledge, whether in social media, a classroom, online course, or code walkthrough.",
@@ -11,7 +12,7 @@
   "actions": [
     {
       "title": "Install with TestFlight",
-      "target": "https://testflight.apple.com/join/9ewEaGAz",
+      "target": "https://testflight.apple.com/join/tFT9d7UB",
       "style": "primary"
     }
   ],
@@ -43,4 +44,3 @@
   "supportText": "Need help creating amazing screen recordings with Mestre? We're here to help you get the most out of your content creation!",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }
-

@@ -1,7 +1,8 @@
 {
   "order": 1,
   "category": "app",
-  "title": "Xarra",
+  "slug": "xarra",
+  "title": "Xarra!",
   "subtitle": "Read, listen (or both), to your articles and documents.",
   "description": "Import an article, a document, or some text, and Xarra will read it out loud while keeping the text in sync on screen. You can follow along line by line, listen hands-free, or switch between the two whenever it suits you.\n\nIt's designed for moments when reading alone isn't ideal, listening alone isn't enough, or when combining both helps you stay focused and engaged with the content.",
   "nameOrigin": "Xarra (pronounced \"CHA-rra\") comes from a Valencian/Catalan word meaning \"to chat\" or \"to talk\".",
