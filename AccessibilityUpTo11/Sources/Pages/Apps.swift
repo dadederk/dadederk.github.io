@@ -52,17 +52,17 @@ struct Apps: StaticPage {
                 .padding(.vertical)
             }
             
-            // Sticker Packs section
-            let stickerPacks = appsData.apps.filter { $0.category == .stickerPack }
-            if !stickerPacks.isEmpty {
+            // Games section
+            let games = appsData.apps.filter { $0.category == .game }
+            if !games.isEmpty {
                 Section {
-                    Text("Sticker Packs")
+                    Text("Games")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding(.bottom, .small)
                     
                     Grid(alignment: .topLeading) {
-                        ForEach(stickerPacks) { app in
+                        ForEach(games) { app in
                             AppCard(
                                 slug: app.slug,
                                 title: app.title,
@@ -87,17 +87,17 @@ struct Apps: StaticPage {
                 .padding(.vertical)
             }
             
-            // Games section
-            let games = appsData.apps.filter { $0.category == .game }
-            if !games.isEmpty {
+            // Sticker Packs section
+            let stickerPacks = appsData.apps.filter { $0.category == .stickerPack }
+            if !stickerPacks.isEmpty {
                 Section {
-                    Text("Games")
+                    Text("Sticker Packs")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding(.bottom, .small)
                     
                     Grid(alignment: .topLeading) {
-                        ForEach(games) { app in
+                        ForEach(stickerPacks) { app in
                             AppCard(
                                 slug: app.slug,
                                 title: app.title,
