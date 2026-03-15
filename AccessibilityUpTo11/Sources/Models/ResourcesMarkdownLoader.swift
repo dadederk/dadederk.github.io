@@ -34,14 +34,21 @@ struct ResourcesMarkdownLoader {
             
             // Check for main section (#)
             if trimmedLine.hasPrefix("# ") {
+                // Save pending subsection before closing the current section
+                if let subsection = currentSubsection, var section = currentSection {
+                    section.subsections.append(subsection)
+                    currentSection = section
+                    currentSubsection = nil
+                }
+
                 // Save previous section if it exists
                 if let section = currentSection {
                     sections.append(section)
                 }
                 
-                    let sectionTitle = String(trimmedLine.dropFirst(2))
-                    currentSection = ResourceSectionData(title: sectionTitle, subsections: [])
-                    currentSubsection = nil
+                let sectionTitle = String(trimmedLine.dropFirst(2))
+                currentSection = ResourceSectionData(title: sectionTitle, subsections: [])
+                currentSubsection = nil
             }
             // Check for subsection (##)
             else if trimmedLine.hasPrefix("## ") {
