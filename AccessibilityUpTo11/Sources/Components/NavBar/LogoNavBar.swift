@@ -17,6 +17,7 @@ struct LogoNavBar: HTML {
             Span("Accessibility up to 11!")
                 .font(.title5)
                 .fontWeight(.bold)
+                .class("site-title-text")
                 .attribute("aria-label", "Accessibility up to 11!")
         }
         .navigationItemAlignment(.trailing)

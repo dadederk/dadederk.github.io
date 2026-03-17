@@ -6,7 +6,7 @@ struct MainLayout: Layout {
     
     @MainActor var body: some Document {
         let meta = metaContext()
-        let assetVersion = "2026-02-24"
+        let assetVersion = "2026-03-17"
         
         PlainDocument {
             Head {
@@ -88,6 +88,7 @@ struct MainLayout: Layout {
                             "Created in Swift with "
                             Link("Ignite.", target: "https://github.com/twostraws/Ignite")
                         }
+                        .class("site-footer-primary")
                         
                         Link(target: "https://swiftforswifts.org") {
                             Image(decorative: "https://swiftforswifts.org/downloads/swift-for-swifts-icon.png")
@@ -98,7 +99,9 @@ struct MainLayout: Layout {
                         Link("Supporting Swift for Swifts", target: "https://swiftforswifts.org/")
                             .target(.newWindow)
                             .relationship(.noOpener)
+                            .class("site-footer-support-link")
                     }
+                    .class("site-footer-row")
                     .style(.justifyContent, "center")
                     .style(.width, "100%")
                 }
