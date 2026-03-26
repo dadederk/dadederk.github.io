@@ -11,7 +11,7 @@
   "platforms": ["iOS", "iPadOS"],
   "actions": [
     {
-      "title": "Pre-order for free from the App Store",
+      "title": "Download from the App Store",
       "target": "https://apps.apple.com/app/xarra/id6759402266",
       "style": "primary"
     }
