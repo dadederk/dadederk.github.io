@@ -88,8 +88,8 @@
         border: none !important;
     }
 
-    /* Fix Social links box background in About page */
-    body[data-current-page="/about"] div[style*="background-color: rgb(250 235 215"] {
+    /* Theme-adaptive panel used by feature callouts and social links */
+    .feature-panel {
         background-color: #2D2D2D !important;
         border-color: #FAEBD7 !important;
     }
@@ -300,8 +300,8 @@ header nav.navbar {
     border: none !important;
 }
 
-/* Fix Social links box background in About page */
-[data-bs-theme="accessibility-up-to11-dark-dark"] body[data-current-page="/about"] div[style*="background-color: rgb(250 235 215"] {
+/* Theme-adaptive panel used by feature callouts and social links */
+[data-bs-theme="accessibility-up-to11-dark-dark"] .feature-panel {
     background-color: var(--bs-navbar-bg) !important;
     border-color: var(--bs-border-color) !important;
 }

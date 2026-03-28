@@ -19,9 +19,10 @@ struct SocialLinksPanel: HTML {
             }
             .padding()
         }
-        .background(.antiqueWhite)
-        .border(.darkGray)
+        .style(.backgroundColor, "var(--bs-navbar-bg)")
+        .style(.border, "1px solid var(--bs-border-color)")
         .cornerRadius(8)
+        .class("feature-panel")
 
     }
     
