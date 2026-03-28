@@ -73,6 +73,10 @@ private struct AppItemJSON: Codable {
     let imageDescription: String
     let platforms: [String]
     let actions: [ActionItem]
+    let featuredIn: [FeaturedMentionJSON]?
+    let featuredQuote: String?
+    let featuredQuoteSourceTitle: String?
+    let featuredQuoteSourceTarget: String?
     let featureGroups: [FeatureGroupJSON]
     let features: [FeatureItemJSON]? // Optional for backward compatibility
     let accessibility: String?
@@ -124,6 +128,15 @@ private struct AppItemJSON: Codable {
             imageDescription: imageDescription,
             platforms: platforms,
             actions: actions,
+            featuredIn: (featuredIn ?? []).map { mention in
+                FeaturedMention(
+                    title: mention.title,
+                    target: mention.target
+                )
+            },
+            featuredQuote: featuredQuote,
+            featuredQuoteSourceTitle: featuredQuoteSourceTitle,
+            featuredQuoteSourceTarget: featuredQuoteSourceTarget,
             featureGroups: groups,
             features: flatFeatures,
             accessibility: accessibility,
@@ -134,6 +147,11 @@ private struct AppItemJSON: Codable {
             category: appCategory
         )
     }
+}
+
+private struct FeaturedMentionJSON: Codable {
+    let title: String
+    let target: String
 }
 
 private struct FeatureGroupJSON: Codable {

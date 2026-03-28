@@ -16,6 +16,15 @@
       "style": "primary"
     }
   ],
+  "featuredIn": [
+    {
+      "title": "Create with Swift Weekly Newsletter #96 (Indie App of the Week)",
+      "target": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter"
+    }
+  ],
+  "featuredQuote": "But beyond the nostalgia and tight gameplay, what truly stands out is its accessibility.",
+  "featuredQuoteSourceTitle": "Create with Swift Weekly Newsletter #96 (Indie App of the Week)",
+  "featuredQuoteSourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter",
   "featureGroups": [
     {
       "title": "Race, dodge, repeat.",
@@ -68,4 +77,3 @@
   "supportText": "Need help with RetroRapid or want to share feedback? We're here to help you enjoy the retro racing experience!",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }
-

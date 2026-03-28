@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "path": "/post/2026-02-22-01",
+      "mentions": [
+        {
+          "title": "Create with Swift Weekly Newsletter #96",
+          "target": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter"
+        },
+        {
+          "title": "SwiftLee Weekly #315",
+          "target": "https://newsletter.avanderlee.com/posts/swiftlee-weekly-issue-315"
+        },
+        {
+          "title": "iOS Dev Weekly #745",
+          "target": "https://iosdevweekly.com/issues/745/"
+        }
+      ],
+      "quotes": [
+        {
+          "text": "Daniel shares lessons from making his new game, RetroRapid!, more accessible, (...) customizable settings to make gameplay inclusive.",
+          "sourceTitle": "Create with Swift Weekly Newsletter #96",
+          "sourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter"
+        },
+        {
+          "text": "It’s funny how someone that I see as an accessibility expert mentions “learn from actual experts”. Daniel (...) describes his first approach to making his game more accessible.",
+          "sourceTitle": "SwiftLee Weekly #315",
+          "sourceTarget": "https://newsletter.avanderlee.com/posts/swiftlee-weekly-issue-315"
+        },
+        {
+          "text": "I expected little side-stories about how other games get accessibility wrong. Instead, I enjoyed reading an entirely positive post about how to do it right.",
+          "sourceTitle": "Dave Verwer, iOS Dev Weekly #745",
+          "sourceTarget": "https://iosdevweekly.com/issues/745/"
+        }
+      ]
+    }
+  ]
+}

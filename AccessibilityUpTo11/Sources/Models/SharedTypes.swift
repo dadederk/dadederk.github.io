@@ -9,6 +9,25 @@ struct ActionItem: Codable {
     let style: String // "primary" or "secondary"
 }
 
+struct FeaturedQuoteItem: Identifiable, Codable {
+    let id: UUID
+    let text: String
+    let sourceTitle: String?
+    let sourceTarget: String?
+
+    init(
+        id: UUID = UUID(),
+        text: String,
+        sourceTitle: String? = nil,
+        sourceTarget: String? = nil
+    ) {
+        self.id = id
+        self.text = text
+        self.sourceTitle = sourceTitle
+        self.sourceTarget = sourceTarget
+    }
+}
+
 struct PublicationItem {
     let title: String
     let subtitle: String?

@@ -95,6 +95,8 @@ struct BlogPostLayout: ArticlePage {
         // Per-article meta is handled in MainLayout via MetaBuilder; JSON-LD remains here.
         Script(code: structuredData)
             .attribute("type", "application/ld+json")
+
+        let articleFeaturedContent = BlogFeaturedContentLoader.featuredContent(for: article.path)
         
         VStack(alignment: .leading) {
             // Article header with title and metadata
@@ -145,6 +147,18 @@ struct BlogPostLayout: ArticlePage {
                 .padding(.horizontal)
                 .padding(.vertical, 24)
             }
+
+            if let articleFeaturedContent {
+                Section {
+                    FeaturedInBox(
+                        title: "This post was featured in",
+                        mentions: articleFeaturedContent.mentions,
+                        quotes: articleFeaturedContent.quotes
+                    )
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 8)
+            }
             
             // Article content
             Section {
@@ -184,4 +198,5 @@ struct BlogPostLayout: ArticlePage {
         }
         .horizontalAlignment(.leading)
     }
+
 }

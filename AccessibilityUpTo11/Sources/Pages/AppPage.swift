@@ -153,6 +153,17 @@ struct UniversalAppPage: StaticPage {
                     .style(.flexWrap, "wrap")
                     .style(.gap, "0.5rem")
                     .padding(.bottom, 20)
+
+                    if !app.featuredIn.isEmpty {
+                        FeaturedInBox(
+                            title: "Featured in",
+                            mentions: app.featuredIn,
+                            quote: app.featuredQuote,
+                            quoteSourceTitle: app.featuredQuoteSourceTitle,
+                            quoteSourceTarget: app.featuredQuoteSourceTarget
+                        )
+                        .padding(.bottom, 24)
+                    }
                     
                     // Terms, Privacy, and Support links
                     HStack {

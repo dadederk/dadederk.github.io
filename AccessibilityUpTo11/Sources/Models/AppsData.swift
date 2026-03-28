@@ -28,6 +28,10 @@ struct AppItem: Identifiable, Codable {
     let imageDescription: String
     let platforms: [String]
     let actions: [ActionItem]
+    let featuredIn: [FeaturedMention]
+    let featuredQuote: String?
+    let featuredQuoteSourceTitle: String?
+    let featuredQuoteSourceTarget: String?
     let featureGroups: [FeatureGroup]
     let features: [FeatureItem] // Keep for backward compatibility
     let accessibility: String?
@@ -48,6 +52,10 @@ struct AppItem: Identifiable, Codable {
         imageDescription: String,
         platforms: [String],
         actions: [ActionItem],
+        featuredIn: [FeaturedMention] = [],
+        featuredQuote: String? = nil,
+        featuredQuoteSourceTitle: String? = nil,
+        featuredQuoteSourceTarget: String? = nil,
         featureGroups: [FeatureGroup],
         features: [FeatureItem],
         accessibility: String?,
@@ -67,6 +75,10 @@ struct AppItem: Identifiable, Codable {
         self.imageDescription = imageDescription
         self.platforms = platforms
         self.actions = actions
+        self.featuredIn = featuredIn
+        self.featuredQuote = featuredQuote
+        self.featuredQuoteSourceTitle = featuredQuoteSourceTitle
+        self.featuredQuoteSourceTarget = featuredQuoteSourceTarget
         self.featureGroups = featureGroups
         self.features = features
         self.accessibility = accessibility
@@ -82,6 +94,18 @@ struct AppItem: Identifiable, Codable {
             return "iMonstickers"
         }
         return title.lowercased().replacingOccurrences(of: " ", with: "-")
+    }
+}
+
+struct FeaturedMention: Identifiable, Codable {
+    let id: UUID
+    let title: String
+    let target: String
+
+    init(id: UUID = UUID(), title: String, target: String) {
+        self.id = id
+        self.title = title
+        self.target = target
     }
 }
 
