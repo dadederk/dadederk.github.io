@@ -2,7 +2,24 @@
 
 /* Essential theme variables only */
 :root {
-    --bs-navbar-bg: #FAEBD7;
+    --bs-navbar-bg: #F9F2E8;
+    --bs-card-bg: #FFFFFF;
+    --bs-primary: #262626;
+    --bs-primary-rgb: 38, 38, 38;
+    --platform-pill-border: #D8D1C8;
+}
+
+/* Bootstrap maps card background to body background by default.
+   Force dedicated card surfaces for better contrast with page background. */
+.card {
+    --bs-card-bg: #FFFFFF;
+}
+
+/* Lighter default nav links in light mode; keep selected/hovered links black. */
+[data-bs-theme="accessibility-up-to11-light"] .navbar {
+    --bs-navbar-color: #262626;
+    --bs-navbar-hover-color: #000000;
+    --bs-navbar-active-color: #000000;
 }
 
 /* CSS fallback for immediate dark mode application */
@@ -10,37 +27,38 @@
     :root {
         --bs-navbar-bg: #2D2D2D;
         --bs-body-bg: #1A1A1A;
-        --bs-border-color: #FAEBD7;
-        --bs-primary: #FAEBD7;
-        --bs-link-color: #FAEBD7;
+        --bs-card-bg: #262626;
+        --bs-border-color: #F9F2E8;
+        --bs-primary: #F9F2E8;
+        --bs-link-color: #F9F2E8;
+        --platform-pill-border: #141414;
     }
 
-    .sticky-bottom {
-        background-color: var(--bs-secondary-bg) !important;
-        border-top-color: #FAEBD7 !important;
+    .card {
+        --bs-card-bg: #262626;
     }
 
     .navbar {
-        border-bottom-color: #FAEBD7 !important;
+        border-bottom-color: #F9F2E8 !important;
     }
 
     .badge {
         color: #333333 !important;
-        background-color: #FAEBD7 !important;
+        background-color: #F9F2E8 !important;
     }
 
     .btn-primary {
         color: #333333 !important;
-        background-color: #FAEBD7 !important;
-        border-color: #FAEBD7 !important;
+        background-color: #F9F2E8 !important;
+        border-color: #F9F2E8 !important;
     }
 
     a {
-        color: #FAEBD7 !important;
+        color: #F9F2E8 !important;
     }
 
     .nav-link {
-        color: #FAEBD7 !important;
+        color: #F9F2E8 !important;
     }
 
     .logo-light {
@@ -51,36 +69,22 @@
         display: block;
     }
 
-    /* Additional fixes for elements with inline styles */
-    .navbar-brand img {
-        border: none !important;
-    }
-
     /* Fix navbar toggler (hamburger menu) for dark mode */
     .navbar-toggler {
-        border-color: #FAEBD7 !important;
+        border-color: #F9F2E8 !important;
     }
 
     .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28250, 235, 215, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-
-    header nav.navbar {
-        border-bottom: 1px solid #FAEBD7 !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28249, 242, 232, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     }
 
     .sticky-bottom {
         background-color: var(--bs-secondary-bg) !important;
-        border-top: 1px solid #FAEBD7 !important;
+        border-top: 1px solid #F9F2E8 !important;
     }
 
     .text-body-secondary {
-        color: #FAEBD7 !important;
-    }
-
-    .badge {
-        background-color: #FAEBD7 !important;
-        color: #333333 !important;
+        color: #F9F2E8 !important;
     }
 
     /* Remove borders from app icons in Apps page */
@@ -88,20 +92,17 @@
         border: none !important;
     }
 
-    /* Theme-adaptive panel used by feature callouts and social links */
-    .feature-panel {
-        background-color: #2D2D2D !important;
-        border-color: #FAEBD7 !important;
-    }
 }
 
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] {
     --bs-navbar-bg: #2D2D2D;
     --bs-body-bg: #1A1A1A;
-    --bs-border-color: #FAEBD7;
-    --bs-primary: #FAEBD7;
-    --bs-link-color: #FAEBD7;
+    --bs-card-bg: #262626;
+    --bs-border-color: #F9F2E8;
+    --bs-primary: #F9F2E8;
+    --bs-link-color: #F9F2E8;
+    --platform-pill-border: #141414;
 }
 
 /* Navigation active state accessibility enhancement */
@@ -122,13 +123,13 @@ body[data-current-page="/more-content"] .navbar .nav-item.dropdown .dropdown-tog
 /* Dark mode styling for tags and buttons */
 [data-bs-theme="accessibility-up-to11-dark-dark"] .badge {
     color: #333333 !important;
-    background-color: #FAEBD7 !important;
+    background-color: #F9F2E8 !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .btn-primary {
     color: #333333 !important;
-    background-color: #FAEBD7 !important;
-    border-color: #FAEBD7 !important;
+    background-color: #F9F2E8 !important;
+    border-color: #F9F2E8 !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .btn-primary:hover {
@@ -139,7 +140,7 @@ body[data-current-page="/more-content"] .navbar .nav-item.dropdown .dropdown-tog
 
 /* Dark mode styling for links */
 [data-bs-theme="accessibility-up-to11-dark-dark"] a {
-    color: #FAEBD7 !important;
+    color: #F9F2E8 !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] a:hover {
@@ -147,7 +148,7 @@ body[data-current-page="/more-content"] .navbar .nav-item.dropdown .dropdown-tog
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .nav-link {
-    color: #FAEBD7 !important;
+    color: #F9F2E8 !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .nav-link:hover {
@@ -225,7 +226,7 @@ article p img + img,
 [data-bs-theme="accessibility-up-to11-dark-dark"] article img,
 [data-bs-theme="accessibility-up-to11-dark-dark"] article p img,
 [data-bs-theme="accessibility-up-to11-dark-dark"] .content img {
-    box-shadow: 0 2px 8px rgba(250, 235, 215, 0.1);
+    box-shadow: 0 2px 8px rgba(249, 242, 232, 0.1);
 }
 
 /* Card header and footer styling - NECESSARY EXCEPTION: Ignite's Card component
@@ -233,12 +234,41 @@ article p img + img,
    to apply theme-aware backgrounds using Bootstrap's CSS variables */
 .card .card-header {
     background-color: var(--bs-secondary-bg) !important;
+    border-top: 1px solid var(--bs-border-color) !important;
     border-bottom: 1px solid var(--bs-border-color) !important;
 }
 
 .card .card-footer {
     background-color: var(--bs-secondary-bg) !important;
     border-top: 1px solid var(--bs-border-color) !important;
+}
+
+/* App cards: keep meta row as card surface, title on header surface. */
+.app-card .card-header {
+    padding: 0 !important;
+    border-top: none !important;
+    overflow: hidden !important;
+    border-top-left-radius: var(--bs-card-inner-border-radius) !important;
+    border-top-right-radius: var(--bs-card-inner-border-radius) !important;
+}
+
+.app-card .app-card-meta {
+    width: 100%;
+    background-color: var(--bs-card-bg) !important;
+    border-bottom: 1px solid var(--bs-border-color) !important;
+    padding: 1rem !important;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.app-card .app-card-title {
+    padding: 0.75rem 1rem !important;
+    margin: 0 !important;
+}
+
+/* Platform labels are informational (not buttons), so use a stronger outline. */
+.platform-pill {
+    border: 1.5px solid var(--platform-pill-border) !important;
 }
 
 /* Footer styling for dark theme */
@@ -254,6 +284,7 @@ article p img + img,
 
 /* Minimal border fixes for dark mode - using Ignite's CSS variables */
 [data-bs-theme="accessibility-up-to11-dark-dark"] .card {
+    --bs-card-bg: #262626;
     border-color: var(--bs-border-color) !important;
 }
 
@@ -277,33 +308,21 @@ article p img + img,
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28250, 235, 215, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28249, 242, 232, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
 header nav.navbar {
     border-bottom: 1px solid var(--bs-border-color) !important;
 }
 
-/* Fix Ignite footer background and border */
-[data-bs-theme="accessibility-up-to11-dark-dark"] .sticky-bottom {
-    background-color: var(--bs-secondary-bg) !important;
-    border-top: 1px solid var(--bs-border-color) !important;
-}
-
 /* Make metadata text lighter in Article Preview Cards */
 [data-bs-theme="accessibility-up-to11-dark-dark"] .text-body-secondary {
-    color: #FAEBD7 !important;
+    color: #F9F2E8 !important;
 }
 
 /* Remove borders from app icons in Apps page */
 [data-bs-theme="accessibility-up-to11-dark-dark"] body[data-current-page="/apps"] img {
     border: none !important;
-}
-
-/* Theme-adaptive panel used by feature callouts and social links */
-[data-bs-theme="accessibility-up-to11-dark-dark"] .feature-panel {
-    background-color: var(--bs-navbar-bg) !important;
-    border-color: var(--bs-border-color) !important;
 }
 
 /* Ensure consistent card heights in More Content - temporarily disabled to test width issue */
@@ -330,13 +349,13 @@ header nav.navbar {
 
 /* Dark mode hashtag styling */
 [data-bs-theme="accessibility-up-to11-dark-dark"] .hashtag-link {
-    color: #FAEBD7 !important;
-    background-color: rgba(250, 235, 215, 0.1) !important;
+    color: #F9F2E8 !important;
+    background-color: rgba(249, 242, 232, 0.1) !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .hashtag-link:hover {
-    background-color: rgba(250, 235, 215, 0.2) !important;
-    color: #FAEBD7 !important;
+    background-color: rgba(249, 242, 232, 0.2) !important;
+    color: #F9F2E8 !important;
 }
 
 /* Responsive improvements for 365 Days pages */
@@ -349,11 +368,6 @@ header nav.navbar {
 /* Ensure tags wrap properly on all screen sizes */
 .flex-wrap {
     flex-wrap: wrap !important;
-}
-
-/* Make sure badges have proper spacing when wrapped */
-.badge {
-    margin-bottom: 0.25rem !important;
 }
 
 /* Prevent horizontal overflow from long words/URLs/tags in dynamic content. */

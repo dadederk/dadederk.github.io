@@ -11,7 +11,7 @@ struct Resources: StaticPage {
                 .font(.title1)
                 .fontWeight(.bold)
                 .horizontalAlignment(.leading)
-                .padding(.bottom)
+                .padding(.bottom, 10)
             
             // Description
             Text("A curated collection of accessibility resources, books, articles, talks, and more to help you build inclusive mobile applications.")
@@ -30,4 +30,3 @@ struct Resources: StaticPage {
         }
     }
 }
-

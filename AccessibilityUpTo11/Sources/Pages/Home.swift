@@ -16,7 +16,7 @@ struct Home: StaticPage {
                 .fontWeight(.bold)
                 .class("text-break")
                 .horizontalAlignment(.leading)
-                .padding(.bottom)
+                .padding(.bottom, 10)
             
             // Recent Posts section (3 most recent)
             Section {
@@ -47,7 +47,7 @@ struct Home: StaticPage {
                         .padding(.vertical)
                 }
             }
-            .padding(.vertical)
+            .padding(.bottom)
             
             Divider()
             
@@ -169,14 +169,11 @@ struct HomeArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
             let tagLinks = content.tagLinks()
             
             if let tagLinks {
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 4) {
                     ForEach(tagLinks) { link in
                         link
-                            .padding([.trailing], 8)
-                            .padding(.top, 4)
                     }
                 }
-                .style(.display, "flex")
                 .style(.flexWrap, "wrap")
                 .margin(.top, -5)
             }

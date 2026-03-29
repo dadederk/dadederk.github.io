@@ -71,7 +71,7 @@ struct Days365PostPage: StaticPage {
                 }
                 .horizontalAlignment(.leading)
             }
-            .padding(.vertical, 24)
+            .padding(.bottom, 24)
             
             // Article content
             Section {

@@ -6,7 +6,7 @@ struct MainLayout: Layout {
     
     @MainActor var body: some Document {
         let meta = metaContext()
-        let assetVersion = "2026-03-28"
+        let assetVersion = "2026-03-29-5"
         
         PlainDocument {
             Head {
@@ -78,7 +78,7 @@ struct MainLayout: Layout {
                 }
                 .id("main-content")
                 .padding()
-                .padding(.top, 80)
+                .padding(.top, 24)
                 .padding(.bottom, 80)
                 
                 // Footer - Fixed bottom implementation
@@ -106,7 +106,7 @@ struct MainLayout: Layout {
                     .style(.width, "100%")
                 }
                 .position(.fixedBottom)
-                .padding(.vertical)
+                .padding(.vertical, 14)
                 .horizontalAlignment(.center)
                 .style(.backgroundColor, "var(--bs-secondary-bg)")
                 .style(.zIndex, "900")

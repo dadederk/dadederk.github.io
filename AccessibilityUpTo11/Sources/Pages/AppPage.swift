@@ -93,8 +93,8 @@ struct UniversalAppPage: StaticPage {
                         Image(app.imagePath, description: app.imageDescription)
                             .resizable()
                             .aspectRatio(.square, contentMode: .fit)
-                            .frame(width: 100, height: 100)
-                            .padding()
+                            .frame(width: 132, height: 132)
+                            .padding(.trailing, 10)
                             .width(4)
                         
                         VStack(alignment: .leading) {
@@ -109,21 +109,7 @@ struct UniversalAppPage: StaticPage {
                                 .padding(.bottom, 5)
                             
                             if !app.platforms.isEmpty {
-                                HStack(spacing: 4) {
-                                    ForEach(app.platforms) { platform in
-                                        Text(platform)
-                                            .font(.body)
-                                            .fontWeight(.medium)
-                                            .foregroundStyle(.secondary)
-                                            .padding(.horizontal, 4)
-                                            .padding(.vertical, 4)
-                                            .border(.gray)
-                                            .style(.borderColor, "var(--bs-border-color)")
-                                            .cornerRadius(4)
-                                    }
-                                }
-                                .style(.flexWrap, "wrap")
-                                .style(.gap, "0.25rem")
+                                PlatformPillRow(platforms: app.platforms)
                                 .padding(.bottom, 10)
                             }
                         }
@@ -174,7 +160,7 @@ struct UniversalAppPage: StaticPage {
                     .style(.flexWrap, "wrap")
                     .style(.gap, "0.5rem")
                 }
-                .padding(.vertical)
+                .padding(.bottom)
                 
                 // Features section with sub-sections
                 if !app.featureGroups.isEmpty {
@@ -195,30 +181,13 @@ struct UniversalAppPage: StaticPage {
                                 
                                 Grid(alignment: .topLeading) {
                                     ForEach(group.features) { feature in
-                                        Card {
-                                            VStack(alignment: .leading, spacing: 0) {
-                                                // Image at top, extends to card edges
-                                                Image(
-                                                    feature.imagePath ?? app.imagePath,
-                                                    description: feature.imageDescription ?? app.imageDescription
-                                                )
-                                                .resizable()
-                                                .aspectRatio(16/9, contentMode: .fit)
-                                                
-                                                // Text content with padding
-                                                VStack(alignment: .leading, spacing: 0) {
-                                                    Text(feature.title)
-                                                        .font(.title4)
-                                                        .fontWeight(.bold)
-                                                        .padding(.top)
-                                                        .padding(.bottom, 5)
-                                                    
-                                                    Text(feature.description)
-                                                        .font(.body)
-                                                }
-                                                .padding(.horizontal)
-                                                .padding(.bottom)
-                                            }
+                                        Card(imageName: feature.imagePath ?? app.imagePath) {
+                                            Text(feature.description)
+                                                .font(.body)
+                                        } header: {
+                                            Text(feature.title)
+                                                .font(.title4)
+                                                .foregroundStyle(.body)
                                         }
                                         .width(4)
                                     }
@@ -239,30 +208,13 @@ struct UniversalAppPage: StaticPage {
                     
                     Grid(alignment: .topLeading) {
                         ForEach(app.features) { feature in
-                            Card {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    // Image at top, extends to card edges
-                                    Image(
-                                        feature.imagePath ?? app.imagePath,
-                                        description: feature.imageDescription ?? app.imageDescription
-                                    )
-                                    .resizable()
-                                    .aspectRatio(16/9, contentMode: .fit)
-                                    
-                                    // Text content with padding
-                                    VStack(alignment: .leading, spacing: 0) {
-                                        Text(feature.title)
-                                            .font(.title3)
-                                            .fontWeight(.bold)
-                                            .padding(.top)
-                                            .padding(.bottom, 5)
-                                        
-                                        Text(feature.description)
-                                            .font(.body)
-                                    }
-                                    .padding(.horizontal)
-                                    .padding(.bottom)
-                                }
+                            Card(imageName: feature.imagePath ?? app.imagePath) {
+                                Text(feature.description)
+                                    .font(.body)
+                            } header: {
+                                Text(feature.title)
+                                    .font(.title3)
+                                    .foregroundStyle(.body)
                             }
                             .width(4)
                         }
@@ -344,7 +296,7 @@ struct UniversalAppPage: StaticPage {
                         }
                     }
                 }
-                .padding(.top)
+                .padding(.bottom, 10)
                 
                 // Legal content
                 Section {

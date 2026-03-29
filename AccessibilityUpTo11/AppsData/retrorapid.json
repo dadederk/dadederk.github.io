@@ -11,7 +11,7 @@
   "platforms": ["watchOS", "iOS", "iPadOS", "macOS"],
   "actions": [
     {
-      "title": "Download from the App Store",
+      "title": "Download on the App Store",
       "target": "https://apps.apple.com/app/id6758641625",
       "style": "primary"
     }

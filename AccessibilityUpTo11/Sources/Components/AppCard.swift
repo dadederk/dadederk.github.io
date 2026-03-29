@@ -1,7 +1,7 @@
 import Foundation
 import Ignite
 
-// Specialized card component for displaying app information
+// App card using shared site card structure and styling.
 struct AppCard: HTML {
     let slug: String
     let title: String
@@ -15,73 +15,62 @@ struct AppCard: HTML {
     
     @MainActor var body: some HTML {
         Card {
-            HStack {
-                VStack(alignment: .leading) {
-                    HStack(alignment: .center) {
+            VStack(alignment: .leading) {
+                Text(description)
+                    .font(.body)
+                    .padding(.bottom)
+                
+                Text(nameOrigin)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+            }
+        } header: {
+            VStack(alignment: .leading) {
+                // App summary row replacing the previous image area.
+                HStack(alignment: .center) {
+                    LinkGroup(target: appURLPath(for: slug)) {
                         Image(imagePath, description: imageDescription)
                             .resizable()
                             .aspectRatio(.square, contentMode: .fit)
-                            .frame(width: 120, height: 120)
-                            .padding()
+                            .frame(width: 96, height: 96)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text(subtitle)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                            .padding(.bottom, 5)
                         
-                        VStack(alignment: .leading) {
-                            Link(title, target: appURLPath(for: slug))
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .horizontalAlignment(.leading)
-                            
-                            Text(subtitle)
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                                .padding(.bottom, 5)
-                            
-                            if !platforms.isEmpty {
-                                HStack(spacing: 4) {
-                                    ForEach(platforms) { platform in
-                                        Text(platform)
-                                            .font(.body)
-                                            .fontWeight(.medium)
-                                            .foregroundStyle(.secondary)
-                                            .padding(.horizontal, 4)
-                                            .padding(.vertical, 4)
-                                            .border(Color(hex: "#444444"))
-                                            .cornerRadius(4)
-                                    }
-                                }
-                                .class("app-card-platforms")
-                                .style(.flexWrap, "wrap")
-                                .padding(.bottom, 5)
-                            }
-                        }
-                        .class("app-card-meta")
-                        .style(.minWidth, "0")
-                    }
-                    .class("app-card-header")
-                    .style(.flexWrap, "wrap")
-                    .style(.alignItems, "flex-start")
-                    
-                    Text(description)
-                        .font(.body)
-                        .padding(.vertical)
-                    
-                    Text(nameOrigin)
-                        .font(.body)
-                        .foregroundStyle(.secondary)
-                        .padding(.bottom)
-                    
-                    HStack {
-                        ForEach(actions) { action in
-                            action
+                        if !platforms.isEmpty {
+                            PlatformPillRow(platforms: platforms)
                         }
                     }
-                    .class("app-card-actions")
-                    .style(.flexWrap, "wrap")
-                    .padding(.top)
+                    .style(.minWidth, "0")
+                }
+                .class("app-card-meta")
+                .style(.flexWrap, "wrap")
+                .style(.alignItems, "flex-start")
+
+                Text {
+                    Link(title, target: appURLPath(for: slug))
+                }
+                .font(.title3)
+                .class("app-card-title")
+                .class("text-break")
+                .foregroundStyle(.body)
+            }
+        } footer: {
+            HStack(alignment: .center) {
+                ForEach(actions) { action in
+                    action
+                        .padding(.top, 4)
                 }
             }
+            .style(.display, "flex")
+            .style(.flexWrap, "wrap")
+            .margin(.top, -5)
         }
         .class("app-card")
-        .padding()
     }
     
     private func appURLPath(for slug: String) -> String {

@@ -30,18 +30,15 @@ struct HomeArticlePreviewStyleFor365Days: HTML {
             .foregroundStyle(.body)
         } footer: {
             if !post.tags.isEmpty {
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 4) {
                     ForEach(post.tags) { tag in
                         Link(target: post.path(forTag: tag)) {
                             Badge(tag)
                                 .role(.primary)
                         }
                         .relationship(.tag)
-                        .margin(.trailing, 8)
-                        .padding(.top, 4)
                     }
                 }
-                .style(.display, "flex")
                 .style(.flexWrap, "wrap")
                 .margin(.top, -5)
             }

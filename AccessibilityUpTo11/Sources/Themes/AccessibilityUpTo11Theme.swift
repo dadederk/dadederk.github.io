@@ -4,13 +4,13 @@ import Ignite
 struct AccessibilityUpTo11Theme: Theme {
     var colorScheme: ColorScheme = .light
     
-    // Custom colors for old paper/beige aesthetic in light mode
+    // Custom colors for light mode
     var background: Color {
-        return Color(hex: "#FEFBF3") // Very light beige background
+        return Color(hex: "#FCF9F4") // Light page background
     }
     
     var secondaryBackground: Color {
-        return Color(hex: "#FAEBD7") // Antique white for headers/footers
+        return Color(hex: "#F9F2E8") // Soft beige for headers/footers
     }
 
     var tertiaryBackground: Color {
@@ -18,11 +18,11 @@ struct AccessibilityUpTo11Theme: Theme {
     }
     
     var accent: Color {
-        return Color(hex: "#1A1A1A") // Very dark brown for buttons/tags
+        return Color(hex: "#262626") // Dark grey for buttons/tags
     }
     
     var secondaryAccent: Color {
-        return Color(hex: "#FAEBD7") // Antique white for button text
+        return Color(hex: "#F9F2E8") // Soft beige for button text
     }
     
     var primary: Color {

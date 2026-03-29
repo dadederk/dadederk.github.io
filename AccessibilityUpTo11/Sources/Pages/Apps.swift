@@ -13,7 +13,7 @@ struct Apps: StaticPage {
                 .font(.title1)
                 .fontWeight(.bold)
                 .horizontalAlignment(.leading)
-                .padding(.bottom)
+                .padding(.bottom, 10)
             
             let appsData = AppsData.loadContent()
             
@@ -49,7 +49,7 @@ struct Apps: StaticPage {
                         }
                     }
                 }
-                .padding(.vertical)
+                .padding(.bottom)
             }
             
             // Games section

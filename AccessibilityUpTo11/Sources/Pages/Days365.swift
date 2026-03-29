@@ -18,7 +18,7 @@ struct Days365: StaticPage {
                 .fontWeight(.bold)
                 .class("text-break")
                 .horizontalAlignment(.leading)
-                .padding(.bottom)
+                .padding(.bottom, 10)
             
             // Page header with RSS link
             Section {
@@ -129,7 +129,7 @@ struct Days365: StaticPage {
                         .padding(.vertical)
                 }
             }
-            .padding(.vertical)
+            .padding(.bottom)
         }
         .horizontalAlignment(.leading)
     }
@@ -164,7 +164,7 @@ struct Days365Page: StaticPage {
                 .fontWeight(.bold)
                 .class("text-break")
                 .horizontalAlignment(.leading)
-                .padding(.bottom)
+                .padding(.bottom, 10)
             
             // Page header with RSS link
             Section {
@@ -287,7 +287,7 @@ struct Days365Page: StaticPage {
                         .padding(.vertical)
                 }
             }
-            .padding(.vertical)
+            .padding(.bottom)
         }
         .horizontalAlignment(.leading)
     }

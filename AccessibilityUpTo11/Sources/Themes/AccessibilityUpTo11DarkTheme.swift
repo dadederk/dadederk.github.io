@@ -10,7 +10,7 @@ struct AccessibilityUpTo11DarkTheme: Theme {
     }
     
     var secondaryBackground: Color {
-        return Color(hex: "#2D2D2D") // Slightly lighter dark grey for cards/panels
+        return Color(hex: "#2D2D2D") // Slightly lighter dark grey for panels
     }
 
     var tertiaryBackground: Color {
@@ -18,7 +18,7 @@ struct AccessibilityUpTo11DarkTheme: Theme {
     }
     
     var accent: Color {
-        return Color(hex: "#FAEBD7") // Antique white for buttons/tags
+        return Color(hex: "#F9F2E8") // Warm light tone for buttons/tags
     }
     
     var secondaryAccent: Color {
@@ -51,7 +51,7 @@ struct AccessibilityUpTo11DarkTheme: Theme {
     
     // Additional colors for better dark mode support
     var cardBackground: Color {
-        return Color(hex: "#2D2D2D") // Card backgrounds
+        return Color(hex: "#262626") // Darker card background for better hierarchy
     }
     
     var border: Color {

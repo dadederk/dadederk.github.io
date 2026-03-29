@@ -145,7 +145,7 @@ struct BlogPostLayout: ArticlePage {
                 }
                 .horizontalAlignment(.leading)
                 .padding(.horizontal)
-                .padding(.vertical, 24)
+                .padding(.bottom, 24)
             }
 
             if let articleFeaturedContent {

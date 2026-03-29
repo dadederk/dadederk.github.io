@@ -3,7 +3,7 @@ import Ignite
 
 struct MyTagPage: TagPage {
     @MainActor var body: some HTML {
-        VStack(alignment: .leading, spacing: 24) {
+        VStack(alignment: .leading, spacing: 16) {
             // Page header
             Section {
                 Text("Tag: \(tag.name)")
@@ -11,7 +11,7 @@ struct MyTagPage: TagPage {
                     .fontWeight(.bold)
                     .horizontalAlignment(.leading)
             }
-            .padding(.vertical)
+            .padding(.bottom, 10)
             
             // Articles with this tag
             Section {

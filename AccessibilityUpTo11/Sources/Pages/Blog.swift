@@ -16,7 +16,7 @@ struct Blog: StaticPage {
                 .font(.title1)
                 .fontWeight(.bold)
                 .horizontalAlignment(.leading)
-                .padding(.bottom)
+                .padding(.bottom, 10)
             
             // Blog posts list - grid layout with consistent ArticlePreview components
             Section {

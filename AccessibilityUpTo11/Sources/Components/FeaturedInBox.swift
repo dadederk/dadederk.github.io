@@ -38,13 +38,12 @@ struct FeaturedInBox: HTML {
                 .font(.body)
                 .fontWeight(.semibold)
                 .horizontalAlignment(.leading)
-                .style(.color, "var(--bs-primary)")
+                .foregroundStyle(.primary)
 
             if !visibleMentions.isEmpty {
                 ForEach(visibleMentions) { mention in
                     Link(mention.title, target: mention.target)
-                        .style(.textDecoration, "underline")
-                        .style(.color, "var(--bs-primary)")
+                        .foregroundStyle(.primary)
                 }
             }
 
@@ -54,20 +53,19 @@ struct FeaturedInBox: HTML {
                         Text("\"\(quote.text)\"")
                             .font(.body)
                             .horizontalAlignment(.leading)
-                            .style(.color, "var(--bs-primary)")
+                            .foregroundStyle(.primary)
 
                         if let sourceTitle = quote.sourceTitle {
                             if let sourceTarget = quote.sourceTarget {
                                 Link("- \(sourceTitle)", target: sourceTarget)
                                     .font(.body)
-                                    .style(.textDecoration, "underline")
                                     .horizontalAlignment(.leading)
-                                    .style(.color, "var(--bs-primary)")
+                                    .foregroundStyle(.primary)
                             } else {
                                 Text("- \(sourceTitle)")
                                     .font(.body)
                                     .horizontalAlignment(.leading)
-                                    .style(.color, "var(--bs-primary)")
+                                    .foregroundStyle(.primary)
                             }
                         }
                     }
@@ -77,10 +75,9 @@ struct FeaturedInBox: HTML {
         }
         .padding()
         .style(.width, "100%")
-        .style(.backgroundColor, "var(--bs-navbar-bg)")
+        .style(.backgroundColor, "var(--bs-secondary-bg)")
         .style(.border, "1px solid var(--bs-border-color)")
         .cornerRadius(8)
-        .class("feature-panel")
     }
 
     private func mentionsToRender() -> [FeaturedMention] {
