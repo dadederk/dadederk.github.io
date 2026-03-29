@@ -33,6 +33,52 @@
           "sourceTarget": "https://iosdevweekly.com/issues/745/"
         }
       ]
+    },
+    {
+      "path": "/post/2024-12-06-01",
+      "mentions": [
+        {
+          "title": "A11y Weekly #427",
+          "target": "https://a11yweekly.com/issue/427/"
+        },
+        {
+          "title": "Dim Sum Thinking #247",
+          "target": "https://mailchi.mp/0358c78f4677/247-to-not-do-list?e=56053ff120"
+        }
+      ],
+      "quotes": [
+        {
+          "text": "If you haven't seen it yet, please add The Advent of iOS Accessibility (...) to your list. It's really well done from someone who both knows what he's talking about and is excellent at explaining it.",
+          "sourceTitle": "Daniel Steinberg, Dim Sum Thinking #247",
+          "sourceTarget": "https://mailchi.mp/0358c78f4677/247-to-not-do-list?e=56053ff120"
+        }
+      ]
+    },
+    {
+      "path": "/post/2021-01-21-01",
+      "heading": "This post was featured and referenced in",
+      "mentions": [
+        {
+          "title": "iOS Dev Weekly #491",
+          "target": "https://iosdevweekly.com/issues/491/"
+        },
+        {
+          "title": "Peter Heery: Supporting VoiceOver typing preferences",
+          "target": "https://peterheery.me/posts/supporting-voiceover-typing-preferences/"
+        }
+      ],
+      "quotes": [
+        {
+          "text": "I struggled to decide whether this article (...) should live in the code section or the design section. It straddles the divide, but either way, it’s worth a read.",
+          "sourceTitle": "Dave Verwer, iOS Dev Weekly #491",
+          "sourceTarget": "https://iosdevweekly.com/issues/491/"
+        },
+        {
+          "text": "As noted by Dani Devesa (...) adding the `keyboardKey` trait to a `UIButton` will mean it is no longer announced as 'button' by VoiceOver.",
+          "sourceTitle": "Peter Heery: Supporting VoiceOver typing preferences",
+          "sourceTarget": "https://peterheery.me/posts/supporting-voiceover-typing-preferences/"
+        }
+      ]
     }
   ]
 }

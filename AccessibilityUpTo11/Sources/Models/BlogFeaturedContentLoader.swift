@@ -1,6 +1,7 @@
 import Foundation
 
 struct BlogFeaturedContent {
+    let heading: String?
     let mentions: [FeaturedMention]
     let quotes: [FeaturedQuoteItem]
 }
@@ -24,6 +25,7 @@ struct BlogFeaturedContentLoader {
             var contentByPath: [String: BlogFeaturedContent] = [:]
             for entry in decoded.posts {
                 contentByPath[entry.path] = BlogFeaturedContent(
+                    heading: entry.heading,
                     mentions: entry.mentions.map { mention in
                         FeaturedMention(
                             title: mention.title,
@@ -74,6 +76,7 @@ private struct BlogFeaturedContentJSON: Codable {
 
 private struct PostFeaturedContentJSON: Codable {
     let path: String
+    let heading: String?
     let mentions: [FeaturedMentionJSON]
     let quotes: [FeaturedQuoteJSON]
 }

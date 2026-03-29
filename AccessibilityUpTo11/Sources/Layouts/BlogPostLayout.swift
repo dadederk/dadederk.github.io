@@ -151,7 +151,7 @@ struct BlogPostLayout: ArticlePage {
             if let articleFeaturedContent {
                 Section {
                     FeaturedInBox(
-                        title: "This post was featured in",
+                        title: articleFeaturedContent.heading ?? "This post was featured in",
                         mentions: articleFeaturedContent.mentions,
                         quotes: articleFeaturedContent.quotes
                     )
