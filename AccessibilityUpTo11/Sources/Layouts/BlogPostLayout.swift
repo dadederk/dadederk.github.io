@@ -144,7 +144,6 @@ struct BlogPostLayout: ArticlePage {
                     }
                 }
                 .horizontalAlignment(.leading)
-                .padding(.horizontal)
                 .padding(.bottom, 24)
             }
 
@@ -156,7 +155,6 @@ struct BlogPostLayout: ArticlePage {
                         quotes: articleFeaturedContent.quotes
                     )
                 }
-                .padding(.horizontal)
                 .padding(.bottom, 8)
             }
             
@@ -167,7 +165,6 @@ struct BlogPostLayout: ArticlePage {
                 }
                 .class("post-content")
                 .horizontalAlignment(.leading)
-                .padding(.horizontal)
             }
             .class("post-content-container")
             
@@ -194,7 +191,6 @@ struct BlogPostLayout: ArticlePage {
                 .foregroundStyle(.secondary)
                 .horizontalAlignment(.leading)
             }
-            .padding(.horizontal)
         }
         .horizontalAlignment(.leading)
     }

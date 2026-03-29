@@ -78,7 +78,6 @@ struct Days365PostPage: StaticPage {
                 MarkdownRenderer(content: post.content)
                     .class("post-content")
                     .horizontalAlignment(.leading)
-                    .padding(.horizontal)
             }
             
             // Related posts section
@@ -100,7 +99,6 @@ struct Days365PostPage: StaticPage {
                 }
                 .horizontalAlignment(.leading)
             }
-            .padding(.horizontal)
             
             // Navigation to other posts
             Section {

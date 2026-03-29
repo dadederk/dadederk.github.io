@@ -5,6 +5,9 @@ struct MainLayout: Layout {
     @Environment(\.page) var page
     
     @MainActor var body: some Document {
+        let pagePath = page.url.path
+        let isPostContentPage = pagePath.hasPrefix("/post/") || pagePath.hasPrefix("/365-days-ios-accessibility/day-")
+        let horizontalContentPadding = isPostContentPage ? 12 : 20
         let meta = metaContext()
         let assetVersion = "2026-03-29-5"
         
@@ -77,7 +80,7 @@ struct MainLayout: Layout {
                     content
                 }
                 .id("main-content")
-                .padding()
+                .padding(.horizontal, horizontalContentPadding)
                 .padding(.top, 24)
                 .padding(.bottom, 80)
                 

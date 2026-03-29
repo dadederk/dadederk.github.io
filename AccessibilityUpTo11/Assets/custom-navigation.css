@@ -7,6 +7,7 @@
     --bs-primary: #262626;
     --bs-primary-rgb: 38, 38, 38;
     --platform-pill-border: #D8D1C8;
+    --post-image-max-width: 720px;
 }
 
 /* Bootstrap maps card background to body background by default.
@@ -203,29 +204,27 @@ body {
     }
 }
 
-/* Article images centered with proper spacing */
-article img,
-article p img,
-.content img {
+/* Post/markdown images: readable max width, framed look, and better paragraph separation. */
+#main-content .post-content img,
+#main-content .markdown-content img {
     display: block !important;
-    margin: 2rem auto !important;
-    max-width: 100% !important;
+    margin: 1.5rem auto 2.75rem !important;
+    max-width: min(100%, var(--post-image-max-width)) !important;
     height: auto !important;
-    border-radius: 6px;
+    border: 1px solid var(--bs-border-color) !important;
+    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Ensure consecutive images have proper spacing */
-article img + img,
-article p img + img,
-.content img + img {
+#main-content .post-content img + img,
+#main-content .markdown-content img + img {
     margin-top: 3rem !important;
 }
 
 /* Dark mode image styling */
-[data-bs-theme="accessibility-up-to11-dark-dark"] article img,
-[data-bs-theme="accessibility-up-to11-dark-dark"] article p img,
-[data-bs-theme="accessibility-up-to11-dark-dark"] .content img {
+[data-bs-theme="accessibility-up-to11-dark-dark"] #main-content .post-content img,
+[data-bs-theme="accessibility-up-to11-dark-dark"] #main-content .markdown-content img {
     box-shadow: 0 2px 8px rgba(249, 242, 232, 0.1);
 }
 
