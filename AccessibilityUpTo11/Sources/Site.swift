@@ -23,6 +23,9 @@ struct AccessibilityUpTo11Website {
             // Generate image sitemap
             await generateImageSitemap()
 
+            // Generate AASA file from the universal-link route configuration.
+            try publishUniversalLinksAssociationFile()
+
             // Validate generated social metadata.
             try runSocialMetaValidation()
         } catch {
@@ -370,6 +373,11 @@ struct AccessibilityUpTo11Website {
             )
         }
     }
+
+    static func publishUniversalLinksAssociationFile() throws {
+        let currentDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        try UniversalLinkConfiguration.publishAASA(projectDirectory: currentDirectory)
+    }
 }
 
 struct AccessibilityUpTo11Site: Site {    
@@ -443,6 +451,10 @@ struct AccessibilityUpTo11Site: Site {
             UniversalAppPage(appIdentifier: "retrorapid", pageType: .terms),
             UniversalAppPage(appIdentifier: "retrorapid", pageType: .privacy)
         ]
+
+        for slug in UniversalLinkConfiguration.openPageSlugs {
+            pages.append(UniversalAppPage(appIdentifier: slug, pageType: .open))
+        }
         
         // Add all 365 days posts and tag pages
         pages.append(contentsOf: Days365StaticPages.generateAllPages())

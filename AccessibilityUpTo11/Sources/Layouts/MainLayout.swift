@@ -160,6 +160,7 @@ extension MainLayout {
                     switch components[1] {
                     case "terms": type = .terms
                     case "privacy": type = .privacy
+                    case "open": type = .open
                     default: type = .main
                     }
                 } else {

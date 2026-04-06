@@ -10,12 +10,14 @@ struct UniversalAppPage: StaticPage {
         case main
         case terms
         case privacy
+        case open
         
         var pathSegment: String {
             switch self {
             case .main: return ""
             case .terms: return "/terms"
             case .privacy: return "/privacy"
+            case .open: return "/open"
             }
         }
         
@@ -24,6 +26,7 @@ struct UniversalAppPage: StaticPage {
             case .main: return ""
             case .terms: return " - Terms & Conditions"
             case .privacy: return " - Privacy Policy"
+            case .open: return " - Open in App"
             }
         }
         
@@ -32,6 +35,7 @@ struct UniversalAppPage: StaticPage {
             case .main: return ""
             case .terms: return "terms.md"
             case .privacy: return "privacy.md"
+            case .open: return ""
             }
         }
         
@@ -40,6 +44,7 @@ struct UniversalAppPage: StaticPage {
             case .main: return "App not found"
             case .terms: return "Terms & Conditions not found for this app."
             case .privacy: return "Privacy Policy not found for this app."
+            case .open: return "App not found."
             }
         }
     }
@@ -66,6 +71,8 @@ struct UniversalAppPage: StaticPage {
             return "Terms and conditions for \(app.title), including usage and support information."
         case .privacy:
             return "Privacy policy for \(app.title), including data collection, usage, and protection details."
+        case .open:
+            return "Open \(app.title) in the app when installed, with automatic App Store fallback."
         }
     }
 
@@ -80,6 +87,8 @@ struct UniversalAppPage: StaticPage {
             renderMainPage()
         case .terms, .privacy:
             renderLegalPage()
+        case .open:
+            renderOpenRedirectPage()
         }
     }
     
@@ -320,6 +329,56 @@ struct UniversalAppPage: StaticPage {
         }
     }
     
+    // MARK: - Open Redirect Page
+    @MainActor private func renderOpenRedirectPage() -> some HTML {
+        VStack(alignment: .leading) {
+            if let app = findApp(), let appStoreTarget = appStoreURLTarget(for: app) {
+                Section {
+                    Text("Opening \(app.title)…")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 6)
+
+                    Text("If the app does not open automatically, continue to the App Store.")
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 12)
+
+                    Link("Download on the App Store", target: appStoreTarget)
+                        .linkStyle(.button)
+                        .role(.primary)
+                        .padding(.bottom, 12)
+
+                    Link("View \(app.title) details on this site", target: "/apps/\(appIdentifier)")
+                        .style(.textDecoration, "none")
+                        .foregroundStyle(.secondary)
+
+                    Script(code: """
+                    window.location.replace('\(escapeForJavaScript(appStoreTarget))');
+                    """)
+                }
+                .padding(.vertical)
+            } else if findApp() != nil {
+                Section {
+                    Text("App Store link unavailable")
+                        .font(.title2)
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 6)
+
+                    Link("Back to app page", target: "/apps/\(appIdentifier)")
+                }
+                .padding(.vertical)
+            } else {
+                Section {
+                    Text(pageType.notFoundMessage)
+                        .font(.title2)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.vertical)
+            }
+        }
+    }
+
     // MARK: - Helper Methods
     private func findApp() -> AppItem? {
         let appsData = AppsData.loadContent()
@@ -346,6 +405,20 @@ struct UniversalAppPage: StaticPage {
             print("Error loading \(pageType.fileName) content: \(error)")
             return nil
         }
+    }
+
+    private func appStoreURLTarget(for app: AppItem) -> String? {
+        if let appStoreAction = app.actions.first(where: { $0.target.contains("apps.apple.com") }) {
+            return appStoreAction.target
+        }
+
+        return app.actions.first?.target
+    }
+
+    private func escapeForJavaScript(_ value: String) -> String {
+        value
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "'", with: "\\'")
     }
     
     @MainActor private func pillLink(_ title: String, target: String, emphasis: Bool = false) -> some InlineElement {

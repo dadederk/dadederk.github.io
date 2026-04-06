@@ -98,9 +98,18 @@ enum MetaBuilder {
         case .main: suffix = ""
         case .terms: suffix = " • Terms & Conditions"
         case .privacy: suffix = " • Privacy Policy"
+        case .open: suffix = " • Open in App"
         }
         
-        let description = pageType == .main ? app.description : app.nameOrigin
+        let description: String
+        switch pageType {
+        case .main:
+            description = app.description
+        case .terms, .privacy:
+            description = app.nameOrigin
+        case .open:
+            description = "Open \(app.title) in the app when installed, with automatic App Store fallback."
+        }
         
         return page(
             title: "\(app.title)\(suffix)",
