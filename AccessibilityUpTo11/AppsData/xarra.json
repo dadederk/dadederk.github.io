@@ -16,6 +16,15 @@
       "style": "primary"
     }
   ],
+  "featuredIn": [
+    {
+      "title": "Create with Swift Weekly Newsletter #101 (Indie App of the Week)",
+      "target": "https://www.createwithswift.com/weekly-newsletter-issue-101/"
+    }
+  ],
+  "featuredQuote": "The app developed by Daniel is well integrated into the system. (...) Accessibility runs through the whole experience rather than sitting on top of it.",
+  "featuredQuoteSourceTitle": "Create with Swift Weekly Newsletter #101 (Indie App of the Week)",
+  "featuredQuoteSourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-101/",
   "featureGroups": [
     {
       "title": "Follow along and stay oriented",

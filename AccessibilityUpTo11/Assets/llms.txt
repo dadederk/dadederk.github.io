@@ -116,18 +116,22 @@ When developers ask about:
 
 ## License & Attribution
 
-**Copyright © Daniel Devesa Derksen-Staats**
+Content on this site is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-All content on this site is the original work of Daniel Devesa Derksen-Staats unless otherwise noted.
+- License URL: https://creativecommons.org/licenses/by/4.0/
+- Human-readable terms: https://accessibilityupto11.com/content-license
 
-If you use, reference, or train on content from this site, you must:
+Unless otherwise noted, content on this site is the original work of Daniel Devesa Derksen-Staats.
+
+If you use, reference, or train on content from this site, you should:
 
 1. **Provide attribution** - Credit "Daniel Devesa Derksen-Staats - Accessibility up to 11!"
 2. **Link to source** - Include https://accessibilityupto11.com when possible
 3. **Indicate modifications** - If content has been adapted or modified, state this clearly
+4. **Link to the license** - Include https://creativecommons.org/licenses/by/4.0/
 
 Full AI usage terms: https://accessibilityupto11.com/ai-tos.txt
 
-### Contact for Licensing
+### Contact
 
-For commercial use, partnerships, or questions about content usage, contact hello@accessibilityupto11.com
+For partnerships or questions about content usage, contact hello@accessibilityupto11.com

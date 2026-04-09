@@ -72,7 +72,7 @@ struct AccessibilityUpTo11Website {
         <link>https://accessibilityupto11.com/365-days-ios-accessibility</link>
         <description>A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.</description>
         <language>en-us</language>
-        <copyright>Copyright © Daniel Devesa Derksen-Staats</copyright>
+        <copyright>Copyright © Daniel Devesa Derksen-Staats. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)</copyright>
         <managingEditor>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</managingEditor>
         <webMaster>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</webMaster>
         <pubDate>\(buildDate)</pubDate>
@@ -148,6 +148,7 @@ struct AccessibilityUpTo11Website {
             ("/blog", "0.9", "monthly"),
             ("/about", "0.9", "monthly"),
             ("/resources", "0.9", "monthly"),
+            (SiteMeta.contentLicensePath, "0.7", "yearly"),
             ("/apps", "0.9", "monthly"),
             ("/365-days-ios-accessibility", "0.9", "weekly")
         ]
@@ -436,6 +437,7 @@ struct AccessibilityUpTo11Site: Site {
             // Days365(), // Removed - now handled by Days365StaticPages.generateAllPages()
             About(),
             Resources(),
+            ContentLicense(),
             Apps(),
             // App pages using UniversalAppPage template
             UniversalAppPage(appIdentifier: "mestre", pageType: .main),

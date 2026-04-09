@@ -44,6 +44,7 @@ struct MainLayout: Layout {
                 MetaLink(href: "/custom-navigation.css?v=\(assetVersion)", rel: "stylesheet")
                 MetaLink(href: "/Images/Site/Global/a11yupto11favicon.png", rel: "icon")
                 MetaLink(href: "/Images/Site/Global/a11yupto11favicon.png", rel: "apple-touch-icon")
+                MetaLink(href: SiteMeta.contentLicenseURL, rel: "license")
 
                 Script(code: """
                 (function() {
@@ -90,6 +91,14 @@ struct MainLayout: Layout {
                         Text {
                             "Created in Swift with "
                             Link("Ignite.", target: "https://github.com/twostraws/Ignite")
+                        }
+                        .class("site-footer-primary")
+
+                        Text {
+                            "Content: "
+                            Link("CC BY 4.0", target: SiteMeta.contentLicenseURL)
+                            " • "
+                            Link("Details", target: SiteMeta.contentLicensePath)
                         }
                         .class("site-footer-primary")
                         

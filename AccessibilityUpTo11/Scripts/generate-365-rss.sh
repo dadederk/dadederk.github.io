@@ -191,7 +191,7 @@ func generateRSSFeed(for posts: [Days365Data]) -> String {
 <link>https://accessibilityupto11.com/365-days-ios-accessibility</link>
 <description>A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.</description>
 <language>en-us</language>
-<copyright>Copyright © Daniel Devesa Derksen-Staats</copyright>
+<copyright>Copyright © Daniel Devesa Derksen-Staats. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)</copyright>
 <managingEditor>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</managingEditor>
 <webMaster>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</webMaster>
 <pubDate>\(buildDate)</pubDate>

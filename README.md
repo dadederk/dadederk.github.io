@@ -51,15 +51,15 @@ ignite build
 ignite run --preview
 ```
 
-## Content and Copyright
+## Content License
 
-All blog posts, articles, and written content in this repository are **copyrighted** and represent my personal views and experiences. While the code is open source, the content itself is protected by copyright.
+All blog posts, articles, and written content in this repository represent my personal views and experiences and are licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-**Content Usage:**
-- ✅ You may reference and link to articles
-- ✅ You may quote excerpts with proper attribution
-- ❌ You may not reproduce entire articles without permission
-- ❌ You may not use content for commercial purposes without permission
+**Content Usage (CC BY 4.0):**
+- ✅ You may copy, share, adapt, remix, and republish content
+- ✅ Commercial use is allowed
+- ✅ Attribution is required (author + source + license + modification notice when applicable)
+- ✅ Please link back to the original article when possible
 
 **Code Usage:**
 - ✅ Feel free to use and modify the Swift code
@@ -81,6 +81,6 @@ Special thanks to:
 
 ## License
 
-**Code:** MIT License - Feel free to use and modify the Swift code for your own projects.
+**Code:** MIT License (`AccessibilityUpTo11/LICENSE`) - Feel free to use and modify the Swift code for your own projects.
 
-**Content:** All Rights Reserved - The blog posts, articles, and written content are copyrighted and may not be reproduced without permission.
+**Content:** Creative Commons Attribution 4.0 International (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/

@@ -128,6 +128,10 @@ enum SiteMeta {
     static let defaultImage = "/Images/Site/Global/LogoShare.png"
     static let defaultImageAlt = "Accessibility up to 11! logo"
     static let defaultDescription = "iOS accessibility development blog and resources for developers who want to make their apps accessible to everyone."
+    static let contentLicenseName = "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    static let contentLicenseURL = "https://creativecommons.org/licenses/by/4.0/"
+    static let contentLicensePath = "/content-license"
+    static let contentLicensePageURL = baseURL + contentLicensePath
     
     static func bestDescription(_ description: String) -> String {
         description.isEmpty ? defaultDescription : description

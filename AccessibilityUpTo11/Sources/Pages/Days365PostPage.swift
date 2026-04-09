@@ -91,8 +91,12 @@ struct Days365PostPage: StaticPage {
                         .padding(.vertical)
 
                     Text {
-                        "Content © Daniel Devesa Derksen-Staats — "
-                        Link("Accessibility up to 11!", target: "https://accessibilityupto11.com")
+                        "Content © Daniel Devesa Derksen-Staats on "
+                        Link("Accessibility up to 11!", target: SiteMeta.baseURL)
+                        " is licensed under "
+                        Link("CC BY 4.0", target: SiteMeta.contentLicenseURL)
+                        ". "
+                        Link("License details", target: SiteMeta.contentLicensePath)
                     }
                     .font(.body)
                     .foregroundStyle(.secondary)
