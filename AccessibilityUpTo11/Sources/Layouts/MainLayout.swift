@@ -94,14 +94,6 @@ struct MainLayout: Layout {
                         }
                         .class("site-footer-primary")
 
-                        Text {
-                            "Content: "
-                            Link("CC BY 4.0", target: SiteMeta.contentLicenseURL)
-                            " • "
-                            Link("Details", target: SiteMeta.contentLicensePath)
-                        }
-                        .class("site-footer-primary")
-                        
                         Link(target: "https://swiftforswifts.org") {
                             Image(decorative: "https://swiftforswifts.org/downloads/swift-for-swifts-icon.png")
                                 .resizable()
