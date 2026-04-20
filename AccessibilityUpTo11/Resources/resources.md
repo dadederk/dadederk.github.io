@@ -27,6 +27,10 @@
 * [Apple Accessibility Skills](https://github.com/rgmez/apple-accessibility-skills) by [Roberto Gómez Muñoz](https://github.com/rgmez)
 
 # Accessibility
+## Guides
+* [Appt](https://appt.org/en/) - A practical guide to making apps accessible, with documentation, guidelines, articles, and code samples, by [Appt Foundation](https://appt.org/en/about)
+
+## Books
 * [Beyond Accessibility Compliance](https://www.springerprofessional.de/en/beyond-accessibility-compliance/23773692) - Building the Next Generation of Inclusive Products, by [Sukriti Chadha](https://www.linkedin.com/in/sukriti-chadha/) (Apress)
 
 # Android
