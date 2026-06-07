@@ -1,5 +1,46 @@
 import Foundation
 
+#if canImport(Darwin)
+import Darwin
+#elseif canImport(Glibc)
+import Glibc
+#endif
+
+enum LogStage: String {
+    case build = "Build"
+    case socialMetadata = "Social Metadata"
+
+    var emoji: String {
+        switch self {
+        case .build: "🏗️"
+        case .socialMetadata: "🔎"
+        }
+    }
+}
+
+enum Log {
+    static func step(_ stage: LogStage, _ message: String) {
+        line("⏳ \(stage.emoji) \(stage.rawValue): \(message)")
+    }
+
+    static func success(_ stage: LogStage, _ message: String) {
+        line("✅ \(stage.emoji) \(stage.rawValue): \(message)")
+    }
+
+    static func failure(_ stage: LogStage, _ message: String) {
+        line("❌ \(stage.emoji) \(stage.rawValue): \(message)")
+    }
+
+    static func detail(_ message: String) {
+        line("   • \(message)")
+    }
+
+    private static func line(_ message: String) {
+        print(message)
+        fflush(stdout)
+    }
+}
+
 struct MetaTagEntry {
     let name: String?
     let property: String?
@@ -38,12 +79,17 @@ func main() -> Int32 {
             buildDirectory: buildDirectory
         )
     } catch {
-        print("Failed to build site: \(error)")
+        Log.failure(.build, "failed to prepare generated site: \(error.localizedDescription)")
         return 1
     }
 
     let checks = pageChecks()
-    let results = checks.map { runChecks(for: $0, buildDirectory: buildDirectory) }
+    Log.step(.socialMetadata, "validating \(checks.count) representative pages")
+    let results = checks.map { check in
+        let result = runChecks(for: check, buildDirectory: buildDirectory)
+        printResult(result)
+        return result
+    }
     printSummary(results)
 
     let hasFailures = results.contains { !$0.failures.isEmpty }
@@ -57,7 +103,8 @@ func buildSiteIfNeeded(
     buildDirectory: URL
 ) throws {
     if !forceBuild && FileManager.default.fileExists(atPath: buildDirectory.path) {
-        print("Using existing Build directory at \(buildDirectory.path)")
+        Log.success(.socialMetadata, "using existing Build directory")
+        Log.detail(buildDirectory.path)
         return
     }
 
@@ -70,7 +117,7 @@ func buildSiteIfNeeded(
         ])
     }
 
-    print("Building site with swift run")
+    Log.step(.build, "running swift run before validation")
     let process = Process()
     process.currentDirectoryURL = projectDirectory
     process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -90,6 +137,8 @@ func buildSiteIfNeeded(
             NSLocalizedDescriptionKey: "swift run exited with status \(process.terminationStatus)"
         ])
     }
+
+    Log.success(.build, "generated site before validation")
 }
 
 func loadHTML(at fileURL: URL) throws -> String {
@@ -272,24 +321,26 @@ func runChecks(for check: PageCheck, buildDirectory: URL) -> PageResult {
     return PageResult(label: check.label, relativePath: check.relativePath, failures: failures)
 }
 
+func printResult(_ result: PageResult) {
+    if result.failures.isEmpty {
+        Log.success(.socialMetadata, "\(result.label) (\(result.relativePath))")
+    } else {
+        Log.failure(.socialMetadata, "\(result.label) (\(result.relativePath))")
+        for failure in result.failures {
+            Log.detail(failure)
+        }
+    }
+}
+
 func printSummary(_ results: [PageResult]) {
     let passed = results.filter { $0.failures.isEmpty }
     let failed = results.filter { !$0.failures.isEmpty }
 
-    print("")
-    print("Social metadata check summary")
-    print("Passed: \(passed.count)")
-    print("Failed: \(failed.count)")
-
-    for result in passed {
-        print("PASS \(result.label) (\(result.relativePath))")
-    }
-
-    for result in failed {
-        print("FAIL \(result.label) (\(result.relativePath))")
-        for failure in result.failures {
-            print("  - \(failure)")
-        }
+    let summary = "\(passed.count) passed, \(failed.count) failed"
+    if failed.isEmpty {
+        Log.success(.socialMetadata, summary)
+    } else {
+        Log.failure(.socialMetadata, summary)
     }
 }
 

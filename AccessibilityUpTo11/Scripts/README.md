@@ -55,7 +55,7 @@ Generates a proper RSS XML feed for the #365DaysIOSAccessibility content.
 **Automatic Generation:**
 The RSS feed is now automatically generated after every build. Just run:
 ```bash
-swift run IgniteCLI build
+ignite build
 ```
 
 **Manual Generation (if needed):**

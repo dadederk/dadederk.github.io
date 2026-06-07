@@ -1,10 +1,5 @@
 import Foundation
 import Ignite
-#if canImport(Darwin)
-import Darwin
-#elseif canImport(Glibc)
-import Glibc
-#endif
 
 @main
 struct AccessibilityUpTo11Website {
@@ -12,7 +7,9 @@ struct AccessibilityUpTo11Website {
         var site = AccessibilityUpTo11Site()
 
         do {
+            BuildLogger.step(.build, "publishing Ignite site")
             try await site.publish()
+            BuildLogger.success(.build, "site published")
             
             // Generate custom RSS feed for 365 Days iOS Accessibility
             await generate365DaysRSSFeed()
@@ -28,17 +25,22 @@ struct AccessibilityUpTo11Website {
 
             // Validate generated social metadata.
             try runSocialMetaValidation()
+
+            BuildLogger.success(.build, "all post-publish tasks completed")
         } catch {
-            print(error.localizedDescription)
+            BuildLogger.failure(.build, error.localizedDescription)
             exit(EXIT_FAILURE)
         }
     }
     
     /// Generate RSS feed for 365 Days iOS Accessibility content
     static func generate365DaysRSSFeed() async {
-        print("📝 Generating 365 Days iOS Accessibility RSS feed...")
+        BuildLogger.step(.rss, "loading 365 Days iOS Accessibility posts")
         
         let posts = Days365Loader.loadPosts()
+        BuildLogger.detail("Loaded \(posts.count) posts; publishing the newest \(min(posts.count, 50)) entries")
+
+        BuildLogger.step(.rss, "generating 365 Days iOS Accessibility feed")
         let rssContent = generateRSSFeedContent(for: Array(posts.prefix(50)))
         
         let fileManager = FileManager.default
@@ -48,9 +50,9 @@ struct AccessibilityUpTo11Website {
         
         do {
             try rssContent.write(to: rssFile, atomically: true, encoding: .utf8)
-            print("✅ Successfully generated RSS feed: \(posts.count) posts")
+            BuildLogger.success(.rss, "generated 365 Days feed with \(posts.count) posts")
         } catch {
-            print("❌ Error writing RSS feed: \(error)")
+            BuildLogger.failure(.rss, "could not write 365 Days feed: \(error.localizedDescription)")
         }
     }
     
@@ -129,7 +131,7 @@ struct AccessibilityUpTo11Website {
     
     /// Generate enhanced sitemap with lastmod and changefreq
     static func generateEnhancedSitemap() async {
-        print("🗺️ Generating enhanced sitemap...")
+        BuildLogger.step(.sitemap, "generating enhanced sitemap")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -197,6 +199,7 @@ struct AccessibilityUpTo11Website {
         
         // Add 365 Days posts
         let days365Posts = Days365Loader.loadPosts()
+        BuildLogger.detail("Adding \(days365Posts.count) 365 Days post URLs")
         for post in days365Posts {
             let postDate = dateFormatter.string(from: post.date)
             sitemap += """
@@ -211,19 +214,24 @@ struct AccessibilityUpTo11Website {
         
         // Add pagination pages for 365 Days
         let totalPages = (days365Posts.count + 14) / 15 // 15 posts per page
-        for page in 2...totalPages {
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com/365-days-ios-accessibility/page-\(page)</loc>
-                <lastmod>\(currentDate)</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>0.9</priority>
-            </url>
-            """
+        let paginationPageCount = max(totalPages - 1, 0)
+        BuildLogger.detail("Adding \(paginationPageCount) 365 Days pagination URLs")
+        if totalPages >= 2 {
+            for page in 2...totalPages {
+                sitemap += """
+                <url>
+                    <loc>https://accessibilityupto11.com/365-days-ios-accessibility/page-\(page)</loc>
+                    <lastmod>\(currentDate)</lastmod>
+                    <changefreq>monthly</changefreq>
+                    <priority>0.9</priority>
+                </url>
+                """
+            }
         }
         
         // Add tag pages
         let allTags = Set(days365Posts.flatMap { $0.tags })
+        BuildLogger.detail("Adding \(allTags.count) 365 Days tag URLs")
         for tag in allTags {
             let tagPath = "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))"
             sitemap += """
@@ -248,16 +256,16 @@ struct AccessibilityUpTo11Website {
         
         do {
             try sitemap.write(to: sitemapFile, atomically: true, encoding: .utf8)
-            let totalURLs = mainPages.count + appPages.count + days365Posts.count + totalPages - 1 + allTags.count
-            print("✅ Successfully generated enhanced sitemap with \(totalURLs) URLs")
+            let totalURLs = mainPages.count + appPages.count + days365Posts.count + paginationPageCount + allTags.count
+            BuildLogger.success(.sitemap, "generated enhanced sitemap with \(totalURLs) URLs")
         } catch {
-            print("❌ Error writing enhanced sitemap: \(error)")
+            BuildLogger.failure(.sitemap, "could not write enhanced sitemap: \(error.localizedDescription)")
         }
     }
     
     /// Generate image sitemap for better image SEO
     static func generateImageSitemap() async {
-        print("🖼️ Generating image sitemap...")
+        BuildLogger.step(.imageSitemap, "generating image sitemap")
         
         var imageSitemap = """
         <?xml version="1.0" encoding="UTF-8"?>
@@ -270,6 +278,8 @@ struct AccessibilityUpTo11Website {
         
         // Add images from 365 Days posts
         let days365Posts = Days365Loader.loadPosts()
+        let days365ImageCount = days365Posts.compactMap { $0.image }.count
+        BuildLogger.detail("Adding \(days365ImageCount) images from 365 Days posts")
         for post in days365Posts {
             if let imagePath = post.image {
                 let imageTitle = post.title
@@ -296,6 +306,7 @@ struct AccessibilityUpTo11Website {
             ("/Images/Site/Global/Logo~dark.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode"),
             ("/Images/Site/Global/LogoDarkMode.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode")
         ]
+        BuildLogger.detail("Adding \(siteImages.count) site branding images")
         
         for (imagePath, title, caption) in siteImages {
             let imageURL = "https://accessibilityupto11.com\(imagePath)"
@@ -323,10 +334,10 @@ struct AccessibilityUpTo11Website {
         
         do {
             try imageSitemap.write(to: imageSitemapFile, atomically: true, encoding: .utf8)
-            let imageCount = days365Posts.compactMap { $0.image }.count + siteImages.count
-            print("✅ Successfully generated image sitemap with \(imageCount) images")
+            let imageCount = days365ImageCount + siteImages.count
+            BuildLogger.success(.imageSitemap, "generated image sitemap with \(imageCount) images")
         } catch {
-            print("❌ Error writing image sitemap: \(error)")
+            BuildLogger.failure(.imageSitemap, "could not write image sitemap: \(error.localizedDescription)")
         }
     }
     
@@ -343,11 +354,11 @@ struct AccessibilityUpTo11Website {
     /// Run social metadata checks against generated HTML.
     static func runSocialMetaValidation() throws {
         if ProcessInfo.processInfo.environment["SKIP_SOCIAL_META_CHECK"] == "1" {
-            print("⏭️ Skipping social metadata validation (SKIP_SOCIAL_META_CHECK=1)")
+            BuildLogger.warning(.socialMetadata, "skipping validation because SKIP_SOCIAL_META_CHECK=1")
             return
         }
 
-        print("🔎 Validating social metadata...")
+        BuildLogger.step(.socialMetadata, "validating generated pages")
         let process = Process()
         process.currentDirectoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
         process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
@@ -373,11 +384,15 @@ struct AccessibilityUpTo11Website {
                 ]
             )
         }
+
+        BuildLogger.success(.socialMetadata, "validation completed")
     }
 
     static func publishUniversalLinksAssociationFile() throws {
         let currentDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        BuildLogger.step(.universalLinks, "publishing apple-app-site-association")
         try UniversalLinkConfiguration.publishAASA(projectDirectory: currentDirectory)
+        BuildLogger.success(.universalLinks, "published apple-app-site-association")
     }
 }
 
