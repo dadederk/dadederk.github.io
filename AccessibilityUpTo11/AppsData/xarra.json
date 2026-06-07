@@ -8,7 +8,7 @@
   "nameOrigin": "Xarra (pronounced \"CHA-rra\") comes from a Valencian/Catalan word meaning \"to chat\" or \"to talk\".",
   "imagePath": "/Images/Site/Apps/XarraIcon.png",
   "imageDescription": "Xarra app icon - a stylized icon representing text to audio conversion",
-  "platforms": ["iOS", "iPadOS"],
+  "platforms": ["iOS", "iPadOS", "macOS", "visionOS"],
   "actions": [
     {
       "title": "Download on the App Store",
@@ -50,11 +50,11 @@
       ]
     },
     {
-      "title": "Feels like home in Apple devices, powered with Apple Intelligence",
+      "title": "Feels at home across Apple devices, powered with Apple Intelligence",
       "features": [
         {
           "title": "At home across all your Apple devices",
-          "description": "Xarra uses a modern, adaptive interface that works naturally across iPhone and iPad. It supports Split View, Slide Over, Stage Manager, and the new windowing system, embracing Apple\u2019s latest design language, including Liquid Glass. Your library and listening progress are kept in sync with iCloud, so you can start on iPhone and pick up on iPad \u2014 or the other way around. More platforms are on the way.",
+          "description": "Xarra uses an adaptive interface that works naturally across your devices. It is shaped for each platform, not just ported between them. On iPadOS, resize it with the new windowing system. On macOS, open documents in tabs or drag in new content. On visionOS, immersive Focus Mode makes the most of Apple Vision Pro. iCloud keeps your content and progress in sync, so you can start on one device and continue on another.",
           "imagePath": "/Images/Site/Apps/Xarra/FeelsAtHome.png",
           "imageDescription": "Screenshot of Xarra running on iPad in a multi-window setup. The app is open in a resizable window alongside other apps, showing a sidebar list of audio documents on the left and a transcript view on the right. A floating playback control panel with play and skip buttons sits above the content. The interface adapts naturally to the larger screen, demonstrating support for modern iPadOS windowing with Apple\u2019s Liquid Glass visual style."
         },
