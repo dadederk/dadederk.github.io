@@ -2,6 +2,19 @@
 
 This directory contains build scripts and utilities for the Accessibility up to 11! website.
 
+## Brand Mark
+
+Site and app names use a trailing `!` as the brand mark (e.g. **Xarra!**, **Mestre!**, **RetroRapid!**, **Accessibility up to 11!**).
+
+| Context | Treatment |
+|---|---|
+| Nav titles, app names, buttons, card titles | `Name!` with italic `!` in rendered HTML |
+| Mid-sentence UI when easy (e.g. "Why Xarra!?") | Keep the brand mark; italicize `!`; keep trailing punctuation |
+| Plain strings, metadata, JSON prose | Plain `!` or no mark when it reads more naturally |
+| App Store listing names, slugs, bundle IDs | No `!` |
+
+Implementation: `Sources/Utilities/BrandCopy.swift`.
+
 ## Social Metadata Validation
 
 ### `CheckSocialMeta.swift`

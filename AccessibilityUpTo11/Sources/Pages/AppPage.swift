@@ -107,7 +107,7 @@ struct UniversalAppPage: StaticPage {
                             .width(4)
                         
                         VStack(alignment: .leading) {
-                            Text(app.title)
+                            BrandCopy.titleText(app.title)
                                 .font(.title1)
                                 .fontWeight(.bold)
                                 .horizontalAlignment(.leading)
@@ -232,10 +232,10 @@ struct UniversalAppPage: StaticPage {
                 .padding(.vertical)
                 }
                 
-                // Why Xarra? section
+                // Why Xarra!? section
                 if let whySection = app.whySection {
                     Section {
-                        Text("Why \(app.title)?")
+                        BrandCopy.whySectionTitle(for: app.title)
                             .font(.title2)
                             .fontWeight(.bold)
                             .horizontalAlignment(.leading)
@@ -298,7 +298,10 @@ struct UniversalAppPage: StaticPage {
                                     .font(.title2)
                                     .fontWeight(.bold)
                                 
-                                Link("← Back to \(app.title)", target: "/apps/\(appIdentifier)")
+                                Link(target: "/apps/\(appIdentifier)") {
+                                    Span("← Back to ")
+                                    BrandCopy.inlineTitle(app.title)
+                                }
                                     .style(.textDecoration, "none")
                                     .foregroundStyle(.secondary)
                             }
@@ -334,7 +337,11 @@ struct UniversalAppPage: StaticPage {
         VStack(alignment: .leading) {
             if let app = findApp(), let appStoreTarget = appStoreURLTarget(for: app) {
                 Section {
-                    Text("Opening \(app.title)…")
+                    Text {
+                        Span("Opening ")
+                        BrandCopy.inlineTitle(app.title)
+                        Span("…")
+                    }
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.bottom, 6)
@@ -349,7 +356,11 @@ struct UniversalAppPage: StaticPage {
                         .role(.primary)
                         .padding(.bottom, 12)
 
-                    Link("View \(app.title) details on this site", target: "/apps/\(appIdentifier)")
+                    Link(target: "/apps/\(appIdentifier)") {
+                        Span("View ")
+                        BrandCopy.inlineTitle(app.title)
+                        Span(" details on this site")
+                    }
                         .style(.textDecoration, "none")
                         .foregroundStyle(.secondary)
 

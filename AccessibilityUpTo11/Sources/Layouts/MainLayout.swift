@@ -9,7 +9,7 @@ struct MainLayout: Layout {
         let isPostContentPage = pagePath.hasPrefix("/post/") || pagePath.hasPrefix("/365-days-ios-accessibility/day-")
         let horizontalContentPadding = isPostContentPage ? 12 : 20
         let meta = metaContext()
-        let assetVersion = "2026-03-29-5"
+        let assetVersion = "2026-06-23-1"
         
         PlainDocument {
             Head {

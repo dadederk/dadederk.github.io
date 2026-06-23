@@ -51,9 +51,7 @@ struct AppCard: HTML {
                 .style(.flexWrap, "wrap")
                 .style(.alignItems, "flex-start")
 
-                Text {
-                    Link(title, target: appURLPath(for: slug))
-                }
+                BrandCopy.linkedInlineTitle(title, target: appURLPath(for: slug))
                 .font(.title3)
                 .class("app-card-title")
                 .class("text-break")

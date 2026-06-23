@@ -62,14 +62,6 @@
         color: #F9F2E8 !important;
     }
 
-    .logo-light {
-        display: none;
-    }
-
-    .logo-dark {
-        display: block;
-    }
-
     /* Fix navbar toggler (hamburger menu) for dark mode */
     .navbar-toggler {
         border-color: #F9F2E8 !important;
@@ -156,21 +148,26 @@ body[data-current-page="/more-content"] .navbar .nav-item.dropdown .dropdown-tog
     color: #E8D4B7 !important;
 }
 
-/* Logo theme switching */
-.logo-light {
-    display: block;
+/* Logo theme switching — follow site theme, not OS media queries alone */
+[data-bs-theme="accessibility-up-to11-light"] .logo-light {
+    display: inline-block !important;
 }
 
-.logo-dark {
-    display: none;
+[data-bs-theme="accessibility-up-to11-light"] .logo-dark {
+    display: none !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .logo-light {
-    display: none;
+    display: none !important;
 }
 
 [data-bs-theme="accessibility-up-to11-dark-dark"] .logo-dark {
-    display: block;
+    display: inline-block !important;
+}
+
+[data-bs-theme="accessibility-up-to11-light"] .navbar-brand,
+[data-bs-theme="accessibility-up-to11-light"] .navbar-brand .site-title-text {
+    color: var(--bs-primary) !important;
 }
 
 /* Fixed navbar spacing */
@@ -296,9 +293,19 @@ body {
 }
 
 
-/* Remove border from logo in navbar */
-.navbar-brand img {
+/* Navbar brand: keep logo visible at all breakpoints */
+.navbar-brand {
+    gap: 0.5rem;
+}
+
+.navbar-brand img,
+.navbar-brand .site-logo {
     border: none !important;
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    min-width: 64px;
+    flex-shrink: 0;
 }
 
 /* Fix navbar toggler (hamburger menu) for dark mode */

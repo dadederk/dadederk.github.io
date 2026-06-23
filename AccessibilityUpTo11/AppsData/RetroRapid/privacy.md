@@ -4,11 +4,11 @@
 
 ## Our Commitment to Privacy
 
-Your privacy is important to us. This Privacy Policy explains how RetroRapid handles your information.
+Your privacy is important to us. This Privacy Policy explains how RetroRapid! handles your information.
 
 ## Information We Collect
 
-RetroRapid is designed with privacy in mind:
+RetroRapid! is designed with privacy in mind:
 
 ### Information We DO Collect:
 - **Game Center Data**: When you use Game Center features (leaderboards, achievements), Apple collects and manages this data according to their privacy policy
@@ -26,11 +26,11 @@ All game data is stored locally on your device. When using Game Center features,
 
 ## Third-Party Services
 
-RetroRapid uses Apple's Game Center for leaderboards and achievements. Use of Game Center is subject to Apple's privacy policy and terms of service.
+RetroRapid! uses Apple's Game Center for leaderboards and achievements. Use of Game Center is subject to Apple's privacy policy and terms of service.
 
 ## Children's Privacy
 
-RetroRapid does not knowingly collect personal information from children. The app is designed to be family-friendly and complies with COPPA (Children's Online Privacy Protection Act).
+RetroRapid! does not knowingly collect personal information from children. The app is designed to be family-friendly and complies with COPPA (Children's Online Privacy Protection Act).
 
 ## Data Security
 

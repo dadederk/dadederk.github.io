@@ -14,7 +14,7 @@ struct LogoNavBar: HTML {
             Link("RSS", target: "/feed.rss")
         } logo: {
             ThemeAdaptiveLogo()
-            Span("Accessibility up to 11!")
+            BrandCopy.inlineTitle("Accessibility up to 11!")
                 .font(.title5)
                 .fontWeight(.bold)
                 .class("site-title-text")

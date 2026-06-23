@@ -9,7 +9,11 @@ struct About: StaticPage {
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {
             // Page heading - proper H1
-            Text("About Accessibility up to 11!")
+            Text {
+                Span("About ")
+                Span("Accessibility up to 11")
+                Emphasis("!")
+            }
                 .font(.title1)
                 .fontWeight(.bold)
                 .horizontalAlignment(.leading)
