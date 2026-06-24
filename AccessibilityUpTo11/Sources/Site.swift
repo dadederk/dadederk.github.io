@@ -303,7 +303,7 @@ struct AccessibilityUpTo11Website {
         let siteImages = [
             ("/Images/Site/Global/LogoShare.png", "Accessibility up to 11! Logo", "iOS accessibility development blog logo"),
             ("/Images/Site/Global/Logo.png", "Accessibility up to 11! Logo", "iOS accessibility development blog logo"),
-            ("/Images/Site/Global/Logo~dark.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode"),
+            ("/Images/Site/Global/Logo-dark.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode"),
             ("/Images/Site/Global/LogoDarkMode.png", "Accessibility up to 11! Logo - Dark Mode", "iOS accessibility development blog logo for dark mode")
         ]
         BuildLogger.detail("Adding \(siteImages.count) site branding images")

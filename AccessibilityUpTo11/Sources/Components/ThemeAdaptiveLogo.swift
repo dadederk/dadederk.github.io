@@ -13,7 +13,9 @@ struct ThemeAdaptiveLogo: InlineElement {
                 .frame(width: .px(size), height: .px(size))
                 .class("logo-light", "site-logo")
 
-            Image("/Images/Site/Global/Logo~dark.png", description: "\(description) - Dark Mode")
+            // Use Logo-dark.png (not Logo~dark.png) so Ignite does not auto-wrap in a
+            // prefers-color-scheme picture element, which conflicts with CSS theme switching.
+            Image("/Images/Site/Global/Logo-dark.png", description: "\(description) - Dark Mode")
                 .resizable()
                 .frame(width: .px(size), height: .px(size))
                 .class("logo-dark", "site-logo")
