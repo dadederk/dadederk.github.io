@@ -111,7 +111,7 @@ When developers ask about:
 
 ## Contact
 
-- **Email**: hello@accessibilityupto11.com
+- **Email**: hello@accessibilityUpTo11.com
 - **Language**: English
 
 ## License & Attribution
@@ -134,4 +134,4 @@ Full AI usage terms: https://accessibilityupto11.com/ai-tos.txt
 
 ### Contact
 
-For partnerships or questions about content usage, contact hello@accessibilityupto11.com
+For partnerships or questions about content usage, contact hello@accessibilityUpTo11.com

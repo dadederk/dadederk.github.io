@@ -192,8 +192,8 @@ func generateRSSFeed(for posts: [Days365Data]) -> String {
 <description>A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.</description>
 <language>en-us</language>
 <copyright>Copyright © Daniel Devesa Derksen-Staats. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)</copyright>
-<managingEditor>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</managingEditor>
-<webMaster>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</webMaster>
+<managingEditor>hello@accessibilityUpTo11.com (Daniel Devesa Derksen-Staats)</managingEditor>
+<webMaster>hello@accessibilityUpTo11.com (Daniel Devesa Derksen-Staats)</webMaster>
 <pubDate>\(buildDate)</pubDate>
 <lastBuildDate>\(lastBuildDateString)</lastBuildDate>
 <generator>Ignite Static Site Generator</generator>
@@ -221,7 +221,7 @@ func generateRSSFeed(for posts: [Days365Data]) -> String {
 <title>\(cleanTitle)</title>
 <link>\(guid)</link>
 <description>\(cleanExcerpt)</description>
-<author>daniel@accessibilityupto11.com (Daniel Devesa Derksen-Staats)</author>
+<author>hello@accessibilityUpTo11.com (Daniel Devesa Derksen-Staats)</author>
 <pubDate>\(pubDate)</pubDate>
 <guid isPermaLink="true">\(guid)</guid>
 \(categories)

@@ -3,11 +3,11 @@
   "category": "app",
   "slug": "mestre",
   "title": "Mestre!",
-  "subtitle": "Screen Recording with Style",
-  "description": "Mestre is a macOS app that lets you record your screen with style, combining high-quality screen capture with presenter-friendly webcam overlays. It's designed for content creators, developers, and anyone who wants to create polished tutorials, demos, or talks, without the need for complex video editing workflows.",
-  "nameOrigin": "The name Mestre, meaning \"teacher\" or \"master\" in Valencian/Catalan, reflects the app's goal to support people who share knowledge, whether in social media, a classroom, online course, or code walkthrough.",
+  "subtitle": "Mac Screencast & Walkthroughs",
+  "description": "Record your Mac screen with camera, microphone, and on-device captions. Mestre is a native, focused recorder, not a bloated editor or expensive subscription.\n\nIt is designed for presenter-style videos: tutorials, code walkthroughs, product demos, lessons, and updates where viewers benefit from seeing your screen, cursor, and optionally you on camera.",
+  "nameOrigin": "The name Mestre, meaning \"teacher\" or \"master\" in Valencian/Catalan, reflects the app's goal to support people who share knowledge, whether on social media, in a classroom, in an online course, or during a code walkthrough.",
   "imagePath": "/Images/Site/Apps/MestreIcon.png",
-  "imageDescription": "Mestre app icon - a stylized icon representing screen recording and teaching",
+  "imageDescription": "Mestre app icon, a stylised icon representing screen recording and teaching",
   "platforms": ["macOS"],
   "actions": [
     {
@@ -18,29 +18,99 @@
   ],
   "featureGroups": [
     {
-      "title": "Screen record and share, with style",
+      "title": "Record what viewers need to see",
       "features": [
         {
-          "title": "High-Quality Recording",
-          "description": "Record your screen in crisp, high-definition quality with customizable frame rates and resolutions to match your content needs.",
+          "title": "Screen and window capture",
+          "description": "Capture your full screen or selected windows. A guided status pill walks you through sharing your screen and getting ready to record.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
-          "imageDescription": "High-quality screen recording interface"
+          "imageDescription": "Screenshot of Mestre showing the screen and window capture picker and the status pill guiding the user through setup"
         },
         {
-          "title": "Webcam Overlay",
-          "description": "Add a professional webcam overlay to your recordings with customizable positioning, sizing, and styling options for a polished look.",
+          "title": "Camera and microphone",
+          "description": "Add your webcam and microphone when a personal walkthrough helps viewers follow along. Choose your camera and mic in Settings, or leave them off for screen-only recordings.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
-          "imageDescription": "Webcam overlay configuration"
+          "imageDescription": "Screenshot of Mestre with optional camera and microphone enabled alongside the screen preview"
         },
         {
-          "title": "Easy Sharing",
-          "description": "Export your recordings in multiple formats and share them directly to your favorite platforms or save them locally for later use.",
+          "title": "Presenter-friendly recording",
+          "description": "When your camera is on, Mestre works naturally with macOS Presenter Overlay and system video effects. Mestre captures the recording; macOS handles the styling.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
-          "imageDescription": "Export and sharing options"
+          "imageDescription": "Screenshot of Mestre prompting the user to enable macOS Presenter Overlay for a presenter-style recording"
+        }
+      ]
+    },
+    {
+      "title": "Captions on your Mac, not in the cloud",
+      "features": [
+        {
+          "title": "On-device subtitle generation",
+          "description": "Generate subtitles from your microphone audio using Apple Speech on your Mac. Your audio stays on your device; Mestre does not send it to a server for transcription.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre showing on-device subtitle generation in progress after a recording"
+        },
+        {
+          "title": "Embedded MOV captions",
+          "description": "Save captions inside your exported .mov file as a closed-caption track. One file, ready to share, with subtitles built in.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre exporting a recording with embedded MOV captions"
+        },
+        {
+          "title": "SRT sidecar export",
+          "description": "Prefer a separate subtitle file? Export an SRT sidecar for compatibility with editors and players that expect subtitles alongside the video.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre offering an SRT sidecar export option for subtitle compatibility"
+        }
+      ]
+    },
+    {
+      "title": "Stay in control without a heavy editor",
+      "features": [
+        {
+          "title": "Cursor and visibility",
+          "description": "Keep the cursor visible when it helps viewers follow along, or hide it when you want a cleaner result. You can also hide Mestre from the recording itself.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre Settings showing cursor visibility and hide-app-from-recording options"
+        },
+        {
+          "title": "Keyboard shortcuts",
+          "description": "Share Screen, start and stop recording, toggle camera and microphone, and open Settings from the keyboard. Help → Keyboard Shortcuts lists every shortcut in one place.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre's Keyboard Shortcuts help window listing recording shortcuts"
+        },
+        {
+          "title": "Simple settings",
+          "description": "Choose your devices, caption language, watermark behaviour, and permissions in a focused Settings pane. No timeline, no templates, no cluttered editor.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre Settings showing device pickers, caption options, and watermark controls"
+        }
+      ]
+    },
+    {
+      "title": "Free to use, fair to support",
+      "features": [
+        {
+          "title": "Record free with a small watermark",
+          "description": "Core recording is always free. Exported videos include a small \"Recorded with Mestre!\" badge so viewers know what you used to make them.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of a Mestre export showing the default Recorded with Mestre watermark badge"
+        },
+        {
+          "title": "Mestre Premium",
+          "description": "Unlock clean exports or choose between Off, Mestre, and Custom watermark modes. Premium is optional; recording itself is never paywalled. Pricing is shown in the App Store at purchase.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre Premium options for watermark modes and clean exports"
+        },
+        {
+          "title": "Custom watermark styling",
+          "description": "Preview how the watermark will look in Settings before you export. Premium unlocks full control over text, size, colour, and placement.",
+          "imagePath": "/Images/Site/Apps/MestreIcon.png",
+          "imageDescription": "Screenshot of Mestre Settings showing a watermark preview and custom styling controls"
         }
       ]
     }
   ],
-  "supportText": "Need help creating amazing screen recordings with Mestre? We're here to help you get the most out of your content creation!",
+  "whySection": "Mestre is built to be helpful, respectful, and easy to trust. Recording and transcription stay on your Mac. There is no account to create, no server required for capture or subtitles, and no ads or trackers. The app is focused on one job: helping you record presenter-style Mac videos without pulling you into a heavy editing suite. You can use it free with a small watermark, or unlock clean and custom exports with Premium when you are ready.",
+  "supportText": "Testing Mestre on TestFlight? We would love your feedback on recording, captions, watermark exports, and anything that feels unclear. Get in touch and we will help you get the most out of your screencasts.",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }

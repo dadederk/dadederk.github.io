@@ -57,4 +57,4 @@ We may update these Terms in the future. Continued use of Xarra after updates me
 For questions about these Terms, please contact:
 
 **Daniel Devesa Derksen-Staats**  
-Email: [dadederk@icloud.com](mailto:dadederk@icloud.com)
+Email: [hello@accessibilityUpTo11.com](mailto:hello@accessibilityUpTo11.com)

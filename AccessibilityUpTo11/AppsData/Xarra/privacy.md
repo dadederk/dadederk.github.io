@@ -40,4 +40,4 @@ We will update this Privacy Policy if Xarra's functionality changes in a way tha
 If you have questions about this Privacy Policy, you can contact:
 
 **Daniel Devesa Derksen-Staats**  
-Email: [dadederk@icloud.com](mailto:dadederk@icloud.com)
+Email: [hello@accessibilityUpTo11.com](mailto:hello@accessibilityUpTo11.com)
