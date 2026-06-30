@@ -105,7 +105,9 @@ struct Days365: StaticPage {
                         }
                         .padding(.top)
                     }
-                    
+
+                    Days365AllTagsSection()
+
                     // Footnote thanking Quintin Balsdon
                     Section {
                         HStack(spacing: 4) {
@@ -263,7 +265,9 @@ struct Days365Page: StaticPage {
                         }
                         .padding(.top)
                     }
-                    
+
+                    Days365AllTagsSection()
+
                     // Footnote thanking Quintin Balsdon
                     Section {
                         HStack(spacing: 4) {

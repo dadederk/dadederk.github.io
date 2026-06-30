@@ -167,6 +167,11 @@ struct BlogPostLayout: ArticlePage {
                 .horizontalAlignment(.leading)
             }
             .class("post-content-container")
+
+            Section {
+                SupportWorkBox()
+            }
+            .padding(.top, 24)
             
             // Related articles section
             @Environment(\.articles) var articles

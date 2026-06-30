@@ -79,6 +79,11 @@ struct Days365PostPage: StaticPage {
                     .class("post-content")
                     .horizontalAlignment(.leading)
             }
+
+            Section {
+                SupportWorkBox()
+            }
+            .padding(.top, 24)
             
             // Related posts section
             let relatedPosts = Days365Loader.relatedPosts(for: post)

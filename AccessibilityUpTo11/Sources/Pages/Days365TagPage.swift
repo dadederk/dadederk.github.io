@@ -75,28 +75,7 @@ struct Days365TagPage: StaticPage {
             }
             .padding(.bottom)
             
-            // All tags section
-            Section {
-                Text("All Tags")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .padding(.bottom)
-                
-                HStack {
-                    let allTags = Days365Loader.allTags()
-                    ForEach(allTags) { tagName in
-                        Link(target: "/365-days-ios-accessibility/tag/\(tagName.lowercased().replacingOccurrences(of: " ", with: "-"))") {
-                            Badge(tagName)
-                                .role(.primary)
-                        }
-                        .margin(.trailing, 8)
-                        .margin(.bottom, 8)
-                    }
-                }
-                .style(.flexWrap, "wrap")
-            }
-            .padding(.top)
-            .border(.gray, edges: .top)
+            Days365AllTagsSection()
         }
         .horizontalAlignment(.leading)
     }
