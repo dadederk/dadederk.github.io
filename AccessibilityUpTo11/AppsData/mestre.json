@@ -4,7 +4,7 @@
   "slug": "mestre",
   "title": "Mestre!",
   "subtitle": "Mac Screencast & Walkthroughs",
-  "description": "Record your Mac screen with camera, microphone, and on-device captions. Mestre is a native, focused recorder, not a bloated editor or expensive subscription.\n\nIt is designed for presenter-style videos: tutorials, code walkthroughs, product demos, lessons, and updates where viewers benefit from seeing your screen, cursor, and optionally you on camera.",
+  "description": "Record your Mac screen with camera, microphone, and on-device captions. Mestre is a native, focused Mac recorder. No heavy editing suite, no account required.\n\nIt is designed for tutorials, code walkthroughs, product demos, lessons, and updates where viewers benefit from seeing your screen, with optional cursor and camera when you want them in the recording.",
   "nameOrigin": "The name Mestre, meaning \"teacher\" or \"master\" in Valencian/Catalan, reflects the app's goal to support people who share knowledge, whether on social media, in a classroom, in an online course, or during a code walkthrough.",
   "imagePath": "/Images/Site/Apps/MestreIcon.png",
   "imageDescription": "Mestre app icon, a stylised icon representing screen recording and teaching",
@@ -34,7 +34,7 @@
         },
         {
           "title": "Presenter-friendly recording",
-          "description": "When your camera is on, Mestre works naturally with macOS Presenter Overlay and system video effects. Mestre captures the recording; macOS handles the styling.",
+          "description": "When your camera is on, Mestre works naturally with macOS Presenter Overlay, a system feature that shows you on top of the screen you are sharing, along with system video effects. Mestre captures the recording; macOS handles the styling.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
           "imageDescription": "Screenshot of Mestre prompting the user to enable macOS Presenter Overlay for a presenter-style recording"
         }
@@ -45,7 +45,7 @@
       "features": [
         {
           "title": "On-device subtitle generation",
-          "description": "Generate subtitles from your microphone audio using Apple Speech on your Mac. Your audio stays on your device; Mestre does not send it to a server for transcription.",
+          "description": "Generate subtitles from your microphone audio using Apple's on-device speech engine on your Mac. Your audio stays on your device; Mestre does not send it to a server for transcription.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
           "imageDescription": "Screenshot of Mestre showing on-device subtitle generation in progress after a recording"
         },
@@ -56,8 +56,8 @@
           "imageDescription": "Screenshot of Mestre exporting a recording with embedded MOV captions"
         },
         {
-          "title": "SRT sidecar export",
-          "description": "Prefer a separate subtitle file? Export an SRT sidecar for compatibility with editors and players that expect subtitles alongside the video.",
+          "title": "Separate subtitle file",
+          "description": "Prefer a separate subtitle file? Export an SRT file alongside your video for compatibility with editors, courses, and publishing workflows that expect subtitles separately.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
           "imageDescription": "Screenshot of Mestre offering an SRT sidecar export option for subtitle compatibility"
         }
@@ -68,7 +68,7 @@
       "features": [
         {
           "title": "Cursor and visibility",
-          "description": "Keep the cursor visible when it helps viewers follow along, or hide it when you want a cleaner result. You can also hide Mestre from the recording itself.",
+          "description": "Show or hide the cursor in your recording, depending on what helps viewers follow along. You can also hide Mestre from the recording itself.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
           "imageDescription": "Screenshot of Mestre Settings showing cursor visibility and hide-app-from-recording options"
         },
@@ -97,7 +97,7 @@
         },
         {
           "title": "Mestre Premium",
-          "description": "Unlock clean exports or choose between Off, Mestre, and Custom watermark modes. Premium is optional; recording itself is never paywalled. Pricing is shown in the App Store at purchase.",
+          "description": "Unlock clean exports or choose between Off, Mestre, and Custom watermark modes with Monthly, Yearly, or Lifetime access. Premium is optional; recording itself is never paywalled. Subscriptions support Family Sharing, and 10% of subscription proceeds go to AMMEC, an accessibility charity. Pricing is shown in the App Store at purchase.",
           "imagePath": "/Images/Site/Apps/MestreIcon.png",
           "imageDescription": "Screenshot of Mestre Premium options for watermark modes and clean exports"
         },
@@ -110,7 +110,7 @@
       ]
     }
   ],
-  "whySection": "Mestre is built to be helpful, respectful, and easy to trust. Recording and transcription stay on your Mac. There is no account to create, no server required for capture or subtitles, and no ads or trackers. The app is focused on one job: helping you record presenter-style Mac videos without pulling you into a heavy editing suite. You can use it free with a small watermark, or unlock clean and custom exports with Premium when you are ready.",
-  "supportText": "Testing Mestre on TestFlight? We would love your feedback on recording, captions, watermark exports, and anything that feels unclear. Get in touch and we will help you get the most out of your screencasts.",
+  "whySection": "Mestre is built to be helpful, respectful, and easy to trust. Recording and transcription stay on your Mac. There is no account to create, no server required for capture or subtitles, and no ads or trackers. The app is focused on one job: helping you record presenter-style Mac videos without pulling you into a heavy editing suite. You can use it free with a small watermark, or unlock clean and custom exports with Premium when you are ready. 10% of Premium subscription proceeds go to AMMEC, which promotes autonomy and community integration for people with physical disabilities, supporting families and fostering inclusive environments.",
+  "supportText": "Trying Mestre on TestFlight? We would love your feedback on recording, captions, watermark exports, and anything that feels unclear. Get in touch and we will help you get the most out of your screencasts.",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }

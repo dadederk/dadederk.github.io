@@ -1,53 +1,48 @@
-# Privacy Policy
+# Privacy Policy for RetroRapid!
 
-**Last Updated: March 1, 2026**
+_Last updated: 1 March 2026_
 
-## Our Commitment to Privacy
+RetroRapid! respects your privacy. This Privacy Policy explains how the app handles your information.
 
-Your privacy is important to us. This Privacy Policy explains how RetroRapid! handles your information.
+## Data Collection
 
-## Information We Collect
+RetroRapid! does **not** collect, store, or transmit any personal data to its developers or any third parties.
 
-RetroRapid! is designed with privacy in mind:
+- No accounts are required.
+- No analytics or tracking are used.
+- No data is shared with third parties by us.
 
-### Information We DO Collect:
-- **Game Center Data**: When you use Game Center features (leaderboards, achievements), Apple collects and manages this data according to their privacy policy
-- **Game Progress**: Your game settings and progress are stored locally on your device
+## Game Progress and Settings
 
-### Information We DON'T Collect:
-- We do not collect, store, or transmit any personal information
-- We do not use analytics or tracking services
-- We do not collect email addresses, names, or contact information
-- We do not use advertising or third-party tracking
+Your game settings and progress are stored locally on your device. You can delete the app at any time to remove all local game data.
 
-## Data Storage
+## Game Center
 
-All game data is stored locally on your device. When using Game Center features, that data is managed by Apple's Game Center service and subject to Apple's Privacy Policy.
+RetroRapid! uses Apple's Game Center for leaderboards and achievements. When you use Game Center features, Apple collects and manages that data according to [Apple's Privacy Policy](https://www.apple.com/legal/privacy/). We do not have access to your Game Center data.
+
+You can disable Game Center integration in your device's Settings at any time.
+
+## Purchases
+
+All in-app purchases are processed by Apple through the App Store. We do not collect, store, or have access to your payment information. Your purchase history is managed by Apple and is subject to [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
+
+If you have Unlimited Play, the App Store may share with us a non-personal receipt token to verify your entitlement. No personally identifiable information is shared with us as part of this process.
 
 ## Third-Party Services
 
-RetroRapid! uses Apple's Game Center for leaderboards and achievements. Use of Game Center is subject to Apple's privacy policy and terms of service.
+RetroRapid! does not use third-party analytics, advertising, or tracking services.
 
 ## Children's Privacy
 
-RetroRapid! does not knowingly collect personal information from children. The app is designed to be family-friendly and complies with COPPA (Children's Online Privacy Protection Act).
-
-## Data Security
-
-Since we don't collect personal data, there's no personal data to secure. Your game progress is stored locally on your device, protected by your device's security features.
-
-## Your Rights
-
-You have full control over your data:
-- Delete the app to remove all local game data
-- Disable Game Center integration in iOS Settings
+Because RetroRapid! does not collect or share any information with us, it is safe for use by all ages.
 
 ## Changes to This Policy
 
-We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy in the app and updating the "Last Updated" date.
+We will update this Privacy Policy if RetroRapid!'s functionality changes in a way that affects how your data is handled. You will be able to review any changes before updating the app.
 
-## Contact Us
+## Contact
 
-If you have questions about this privacy policy, please contact us at:
+If you have questions about this Privacy Policy, you can contact:
 
-**Email**: hello@accessibilityUpTo11.com
+**Daniel Devesa Derksen-Staats**  
+Email: [hello@accessibilityUpTo11.com](mailto:hello@accessibilityUpTo11.com)

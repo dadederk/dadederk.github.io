@@ -1,50 +1,56 @@
-# Terms & Conditions
+# Terms & Conditions for RetroRapid!
 
-**Last Updated: March 1, 2026**
+_Last updated: 1 March 2026_
 
-## Acceptance of Terms
+Welcome to RetroRapid! By using the app, you agree to the following terms.
 
-By downloading and using RetroRapid!, you agree to these terms and conditions. If you do not agree, please do not use the app.
+## 1. Use of the App
 
-## License
+RetroRapid! is a retro-style racing game for Apple platforms, provided for personal, non-commercial use. You are responsible for how you use the app. RetroRapid! must not be used for any unlawful purpose.
 
-RetroRapid! is provided to you under a limited, non-exclusive, non-transferable license to use the software on your Apple devices for personal, non-commercial use.
+You agree not to attempt to cheat, hack, or modify the game, reverse engineer or decompile the software, or use the game in any way that violates applicable laws.
 
-## Game Center
+## 2. App Store Distribution
+
+RetroRapid! is distributed via the App Store. Your access to the app and any applicable charges are managed by Apple Inc. through your Apple ID. No account is created or stored by the developer.
+
+## 3. Game Center
 
 RetroRapid! integrates with Apple's Game Center for leaderboards and achievements. Use of Game Center features is subject to Apple's Game Center Terms of Service.
 
-## In-App Purchases and Family Sharing
+## 4. In-App Purchases and Family Sharing
 
 RetroRapid! offers an optional one-time purchase:
 
-- **Unlimited Play** ($3.99) is a non-consumable in-app purchase that removes the play limit and unlocks visual themes.
+- **Unlimited Play** is a non-consumable in-app purchase that removes the play limit and unlocks visual themes.
 - Unlimited Play supports **Family Sharing**, so everyone in your Family Sharing group can benefit from the purchase.
-- All purchases are processed by Apple through the App Store. Refunds are governed by Apple's App Store refund policy — please contact Apple directly for any refund requests.
+- All purchases are processed by Apple through the App Store. Refunds are governed by Apple's App Store refund policy. Please contact Apple directly for refund requests.
 
-## User Conduct
+## 5. Intellectual Property
 
-You agree not to:
-- Attempt to cheat, hack, or modify the game
-- Use the game in any way that violates applicable laws
-- Attempt to reverse engineer or decompile the software
+The RetroRapid! app, its design, and features are the property of Daniel Devesa Derksen-Staats.
 
-## Intellectual Property
+## 6. Disclaimer of Warranties
 
-All content, features, and functionality of RetroRapid! are owned by Daniel Devesa Derksen-Staats and are protected by international copyright, trademark, and other intellectual property laws.
+RetroRapid! is provided "as is" without warranties of any kind. While we aim for the best possible experience, we do not guarantee error-free operation.
 
-## Updates and Modifications
+## 7. Limitation of Liability
 
-We reserve the right to modify, suspend, or discontinue RetroRapid! at any time without notice. We may also update these terms from time to time.
+To the maximum extent permitted by law, we are not liable for any loss or damage arising from your use of RetroRapid!.
 
-## Disclaimer of Warranties
+## 8. Governing Law
 
-RetroRapid! is provided "as is" without warranties of any kind, either express or implied. We do not guarantee that the app will be error-free or uninterrupted.
+These Terms shall be governed by the laws of England and Wales.
 
-## Limitation of Liability
+## 9. Changes to the Terms
 
-To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of RetroRapid!.
+We may update these Terms in the future. Continued use of RetroRapid! after updates means you accept the new Terms.
+
+We may discontinue the app or its features in the future (for example, if we remove the app from the App Store). If we do, we will use reasonable efforts to give advance notice where practicable.
 
 ## Contact
 
-If you have questions about these terms, please contact us at hello@accessibilityUpTo11.com
+For questions about these Terms, please contact:
+
+**Daniel Devesa Derksen-Staats**  
+Email: [hello@accessibilityUpTo11.com](mailto:hello@accessibilityUpTo11.com)
