@@ -4,94 +4,21 @@ import Ignite
 struct BlogPostLayout: ArticlePage {
     @MainActor var body: some HTML {
         let meta = MetaBuilder.article(article)
-        
-        let structuredData: String = {
-            struct StructuredData: Encodable {
-                let context = "https://schema.org"
-                let type = "BlogPosting"
-                let headline: String
-                let description: String
-                let author: Author
-                let publisher: Publisher
-                let datePublished: String
-                let dateModified: String
-                let mainEntityOfPage: MainEntity
-                let url: String
-                let articleSection: String
-                let keywords: String
-                let image: String
-                
-                struct Author: Encodable {
-                    let type = "Person"
-                    let name: String
-                    let url: String
-                    
-                    enum CodingKeys: String, CodingKey {
-                        case type = "@type"
-                        case name, url
-                    }
-                }
-                
-                struct Publisher: Encodable {
-                    let type = "Organization"
-                    let name: String
-                    let logo: Logo
-                    
-                    struct Logo: Encodable {
-                        let type = "ImageObject"
-                        let url: String
-                        
-                        enum CodingKeys: String, CodingKey {
-                            case type = "@type"
-                            case url
-                        }
-                    }
-                    
-                    enum CodingKeys: String, CodingKey {
-                        case type = "@type"
-                        case name, logo
-                    }
-                }
-                
-                struct MainEntity: Encodable {
-                    let type = "WebPage"
-                    let id: String
-                    
-                    enum CodingKeys: String, CodingKey {
-                        case type = "@type"
-                        case id = "@id"
-                    }
-                }
-                
-                enum CodingKeys: String, CodingKey {
-                    case context = "@context"
-                    case type = "@type"
-                    case headline, description, author, publisher, datePublished, dateModified, mainEntityOfPage, url, articleSection, keywords, image
-                }
-            }
-            
-            let data = StructuredData(
+        let structuredData = BlogPostingStructuredData.json(
+            for: .init(
                 headline: meta.title,
                 description: meta.description,
-                author: .init(name: article.author ?? "Daniel Devesa Derksen-Staats", url: "\(SiteMeta.baseURL)/about"),
-                publisher: .init(name: "Accessibility up to 11!", logo: .init(url: SiteMeta.baseURL + SiteMeta.defaultImage)),
-                datePublished: article.date.ISO8601Format(),
-                dateModified: article.date.ISO8601Format(),
-                mainEntityOfPage: .init(id: SiteMeta.baseURL + article.path),
-                url: SiteMeta.baseURL + article.path,
-                articleSection: "Technology",
+                authorName: article.author ?? "Daniel Devesa Derksen-Staats",
+                authorURL: "\(SiteMeta.baseURL)/about",
+                datePublished: article.date,
+                dateModified: article.date,
+                pageURL: SiteMeta.baseURL + article.path,
                 keywords: article.tags?.joined(separator: ", ") ?? "",
-                image: SiteMeta.baseURL + meta.image
+                imagePath: meta.image,
+                articleSection: "Technology"
             )
-            
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = [.withoutEscapingSlashes]
-            if let json = try? encoder.encode(data), let jsonString = String(data: json, encoding: .utf8) {
-                return jsonString
-            }
-            return ""
-        }()
-        
+        )
+
         // Per-article meta is handled in MainLayout via MetaBuilder; JSON-LD remains here.
         Script(code: structuredData)
             .attribute("type", "application/ld+json")

@@ -5,6 +5,8 @@ import Ignite
 struct Days365Data: Identifiable {
     var id: String { fileName }
     let title: String
+    /// SEO/social title for `<title>`, OG, and Twitter. On-page H1 uses `title` (`Day N`).
+    let seoTitle: String
     let author: String
     let date: Date
     let tags: [String]
@@ -100,6 +102,7 @@ struct Days365Loader {
         
         // Parse frontmatter
         var title = ""
+        var seoTitleOverride: String?
         var author = ""
         var date = Date()
         var tags: [String] = []
@@ -118,6 +121,8 @@ struct Days365Loader {
             switch key {
             case "title":
                 title = value
+            case "seoTitle":
+                seoTitleOverride = value
             case "author":
                 author = value
             case "date":
@@ -163,9 +168,16 @@ struct Days365Loader {
         
         // Generate excerpt from content (first paragraph or first 200 characters)
         let excerpt = Self.generateExcerpt(from: markdownContent)
+        let seoTitle = Self.generateSEOTitle(
+            dayNumber: dayNumber,
+            displayTitle: title,
+            override: seoTitleOverride,
+            content: markdownContent
+        )
         
         return Days365Data(
             title: title,
+            seoTitle: seoTitle,
             author: author,
             date: date,
             tags: tags,
@@ -215,26 +227,84 @@ struct Days365Loader {
     
     /// Generate excerpt from markdown content
     private static func generateExcerpt(from content: String) -> String {
-        // Remove markdown images and links for cleaner excerpt
+        cleanMarkdownText(content)
+    }
+
+    /// SEO/social title: optional frontmatter override, else `Day N: first sentence`.
+    private static func generateSEOTitle(
+        dayNumber: Int,
+        displayTitle: String,
+        override: String?,
+        content: String
+    ) -> String {
+        if let override, !override.isEmpty {
+            return override
+        }
+
+        let dayLabel = displayTitle.isEmpty ? "Day \(dayNumber)" : displayTitle
+        guard let firstSentence = firstSentence(from: content), !firstSentence.isEmpty else {
+            return dayLabel
+        }
+
+        let prefix = "\(dayLabel): "
+        let maxTopicLength = 70
+        let topic = truncateAtWordBoundary(firstSentence, limit: maxTopicLength)
+        return prefix + topic
+    }
+
+    /// First sentence from markdown body, with images/links stripped.
+    private static func firstSentence(from content: String) -> String? {
+        let cleaned = cleanMarkdownText(content)
+        guard !cleaned.isEmpty else { return nil }
+
+        let paragraph = cleaned
+            .components(separatedBy: .newlines)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .first { !$0.isEmpty && !$0.hasPrefix("#") && !$0.hasPrefix("```") }
+            ?? cleaned
+
+        let sentenceEnders = CharacterSet(charactersIn: ".!?")
+        if let range = paragraph.rangeOfCharacter(from: sentenceEnders) {
+            let sentence = String(paragraph[..<range.upperBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            return sentence.isEmpty ? paragraph : sentence
+        }
+
+        return paragraph
+    }
+
+    private static func cleanMarkdownText(_ content: String) -> String {
         var cleanContent = content
-        
-        // Remove image syntax ![alt](url)
+
         cleanContent = cleanContent.replacingOccurrences(
             of: "!\\[([^\\]]*)\\]\\([^\\)]*\\)",
             with: "",
             options: .regularExpression
         )
-        
-        // Remove link syntax [text](url) but keep the text
+
         cleanContent = cleanContent.replacingOccurrences(
             of: "\\[([^\\]]*)\\]\\([^\\)]*\\)",
             with: "$1",
             options: .regularExpression
         )
-        
-        // Return the cleaned content without artificial truncation
-        // Let the .lineLimit(8) modifier in the preview cards handle visual truncation
+
+        cleanContent = cleanContent.replacingOccurrences(
+            of: "#\\S+",
+            with: "",
+            options: .regularExpression
+        )
+
         return cleanContent.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private static func truncateAtWordBoundary(_ text: String, limit: Int) -> String {
+        guard text.count > limit else { return text }
+
+        let truncated = String(text.prefix(limit))
+        if let lastSpace = truncated.lastIndex(of: " ") {
+            return String(truncated[..<lastSpace]).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
+        }
+
+        return truncated.trimmingCharacters(in: .whitespacesAndNewlines) + "…"
     }
     
     /// Get posts by tag (searches both frontmatter tags and content hashtags)

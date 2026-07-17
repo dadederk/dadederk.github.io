@@ -51,7 +51,7 @@ Optional environment overrides:
 
 ### Automatic Build Integration
 
-`CheckSocialMeta.swift` is executed automatically by the main site build (`swift run`) after RSS, sitemap, and image sitemap generation.
+`CheckSocialMeta.swift` is executed automatically by the main site build (`swift run`) after RSS, sitemap, image sitemap, robots, and AASA generation.
 
 To skip it for a local-only run:
 

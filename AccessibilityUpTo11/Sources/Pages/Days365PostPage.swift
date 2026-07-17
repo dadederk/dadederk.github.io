@@ -4,9 +4,12 @@ import Ignite
 struct Days365PostPage: StaticPage {
     let post: Days365Data
     
-    var title: String { post.title }
+    var title: String { post.seoTitle }
     var path: String { post.path }
-    var description: String { post.excerpt }
+    var description: String {
+        guard !post.excerpt.isEmpty else { return "" }
+        return SiteMeta.metaDescription(post.excerpt)
+    }
 
     /// Each post uses its lead image for sharing, with a site-logo fallback.
     var image: URL? {
@@ -14,6 +17,25 @@ struct Days365PostPage: StaticPage {
     }
 
     @MainActor var body: some HTML {
+        let meta = MetaBuilder.days365(post)
+        let structuredData = BlogPostingStructuredData.json(
+            for: .init(
+                headline: post.seoTitle,
+                description: meta.description,
+                authorName: post.author.isEmpty ? "Daniel Devesa Derksen-Staats" : post.author,
+                authorURL: "\(SiteMeta.baseURL)/about",
+                datePublished: post.date,
+                dateModified: post.date,
+                pageURL: SiteMeta.baseURL + post.path,
+                keywords: post.tags.joined(separator: ", "),
+                imagePath: meta.image,
+                articleSection: "#365DaysIOSAccessibility"
+            )
+        )
+
+        Script(code: structuredData)
+            .attribute("type", "application/ld+json")
+
         VStack(alignment: .leading) {
             // Breadcrumb navigation
             Section {

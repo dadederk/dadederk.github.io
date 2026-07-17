@@ -3,6 +3,8 @@ import Ignite
 
 struct MainLayout: Layout {
     @Environment(\.page) var page
+    @Environment(\.site) var site
+    @Environment(\.author) var author
     
     @MainActor var body: some Document {
         let pagePath = page.url.path
@@ -13,30 +15,57 @@ struct MainLayout: Layout {
         
         PlainDocument {
             Head {
-                MetaTag(name: "keywords", content: "iOS, accessibility, a11y, Swift, VoiceOver, development")
-                MetaTag(name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large")
-                MetaTag(name: "googlebot", content: "index, follow")
+                MetaTag.utf8
+                MetaTag.flexibleViewport
 
-                // og:type and og:locale are not injected by Ignite's socialSharingTags().
-                MetaTag(property: "og:type", content: meta.type.rawValue)
-                MetaTag(property: "og:locale", content: "en_US")
-
-                // Ignite is the primary source for image tags.
-                // We only inject image tags for routes that need fallback/absolute safety.
-                if meta.emitCustomImageTags {
-                    MetaTag(property: "og:image", content: meta.imageURL)
-                    MetaTag(name: "twitter:image", content: meta.imageURL)
+                if !meta.description.isEmpty {
+                    MetaTag(name: "description", content: meta.description)
                 }
-                MetaTag(property: "og:image:alt", content: meta.imageAlt)
-                
-                MetaTag(name: "twitter:image:alt", content: meta.imageAlt)
 
-                // Ignite injects description tags only when page.description is non-empty.
-                if meta.emitCustomDescriptionTags {
+                if !author.isEmpty {
+                    MetaTag(name: "author", content: author)
+                }
+
+                MetaTag.generator
+                Title(page.title)
+
+                MetaLink.standardCSS
+                MetaLink(href: "/css/prism-xcode-dark.css", rel: "stylesheet")
+                    .data("highlight-theme", "xcode-dark")
+                MetaLink(href: "/css/prism-xcode-light.css", rel: "stylesheet")
+                    .data("highlight-theme", "xcode-light")
+                MetaLink(href: "/css/prism-plugins.css", rel: "stylesheet")
+                MetaLink.iconCSS
+                MetaLink(href: page.url, rel: "canonical")
+
+                MetaTag(property: "og:site_name", content: site.name)
+                MetaTag(property: "og:image", content: meta.imageURL)
+                MetaTag(name: "twitter:image", content: meta.imageURL)
+                MetaTag(property: "og:title", content: meta.title)
+                MetaTag(name: "twitter:title", content: meta.title)
+
+                if !meta.description.isEmpty {
                     MetaTag(property: "og:description", content: meta.description)
                     MetaTag(name: "twitter:description", content: meta.description)
                 }
 
+                MetaTag(property: "og:url", content: meta.absoluteURL)
+
+                if let twitterDomain = Self.twitterDomain(from: page.url) {
+                    MetaTag(name: "twitter:domain", content: twitterDomain)
+                }
+
+                MetaTag(name: "twitter:card", content: "summary_large_image")
+                MetaTag(name: "twitter:dnt", content: "on")
+
+                MetaTag(name: "keywords", content: "iOS, accessibility, a11y, Swift, VoiceOver, development")
+                MetaTag(name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large")
+                MetaTag(name: "googlebot", content: "index, follow")
+
+                MetaTag(property: "og:type", content: meta.type.rawValue)
+                MetaTag(property: "og:locale", content: "en_US")
+                MetaTag(property: "og:image:alt", content: meta.imageAlt)
+                MetaTag(name: "twitter:image:alt", content: meta.imageAlt)
                 MetaTag(name: "twitter:site", content: "@dadederk")
                 MetaTag(name: "twitter:creator", content: "@dadederk")
                 
@@ -72,6 +101,7 @@ struct MainLayout: Layout {
                 })();
                 """)
             }
+            .standardHeadersDisabled()
             
             Body {
                 LogoNavBar()
@@ -136,8 +166,7 @@ extension MainLayout {
             }
         }
 
-        // Blog post — Ignite populates page.image with the article's image path
-        // (often relative), so we emit custom image tags for absolute URL safety.
+        // Blog post — truncate descriptions via MetaBuilder; images resolved to absolute URLs.
         if path.hasPrefix("/post/") {
             return MetaBuilder.page(
                 title: title,
@@ -145,9 +174,7 @@ extension MainLayout {
                 path: path,
                 image: page.image?.absoluteString,
                 imageAlt: title,
-                type: .article,
-                emitCustomImageTags: true,
-                emitCustomDescriptionTags: page.description.isEmpty
+                type: .article
             )
         }
         
@@ -175,7 +202,6 @@ extension MainLayout {
             }
         }
 
-        // Ignite's TagPage type does not expose per-page image metadata.
         if path == "/tags" || path.hasPrefix("/tags/") {
             return MetaBuilder.page(
                 title: title,
@@ -183,9 +209,7 @@ extension MainLayout {
                 path: path,
                 image: page.image?.absoluteString,
                 imageAlt: title,
-                type: .website,
-                emitCustomImageTags: true,
-                emitCustomDescriptionTags: page.description.isEmpty
+                type: .website
             )
         }
         
@@ -195,9 +219,15 @@ extension MainLayout {
             path: path,
             image: page.image?.absoluteString,
             imageAlt: title,
-            type: defaultType,
-            emitCustomImageTags: page.image == nil,
-            emitCustomDescriptionTags: page.description.isEmpty
+            type: defaultType
         )
+    }
+
+    private static func twitterDomain(from url: URL) -> String? {
+        guard var host = url.host() else { return nil }
+        if host.hasPrefix("www.") {
+            host = String(host.dropFirst(4))
+        }
+        return host
     }
 }

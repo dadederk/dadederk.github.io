@@ -20,6 +20,9 @@ struct AccessibilityUpTo11Website {
             // Generate image sitemap
             await generateImageSitemap()
 
+            // Ignite regenerates a minimal robots.txt; replace it with the curated Assets copy.
+            try publishRobotsTxt()
+
             // Generate AASA file from the universal-link route configuration.
             try publishUniversalLinksAssociationFile()
 
@@ -193,9 +196,34 @@ struct AccessibilityUpTo11Website {
             """
         }
         
-        // Add blog posts - we'll get these from the site's articles
-        // Note: We can't access @Environment here, so we'll skip blog posts for now
-        // and add them manually or through a different approach
+        // Add long-form blog posts from Content/post (Ignite articles aren't available here).
+        let blogPosts = BlogSitemapEntry.loadAll()
+        BuildLogger.detail("Adding \(blogPosts.count) blog post URLs")
+        for post in blogPosts {
+            let postDate = dateFormatter.string(from: post.date)
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(post.path)</loc>
+                <lastmod>\(postDate)</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.9</priority>
+            </url>
+            """
+        }
+
+        // Add Ignite blog tag index pages generated under Build/tags.
+        let blogTagPaths = BlogSitemapEntry.blogTagPaths()
+        BuildLogger.detail("Adding \(blogTagPaths.count) blog tag URLs")
+        for tagPath in blogTagPaths {
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(tagPath)</loc>
+                <lastmod>\(currentDate)</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.7</priority>
+            </url>
+            """
+        }
         
         // Add 365 Days posts
         let days365Posts = Days365Loader.loadPosts()
@@ -266,7 +294,13 @@ struct AccessibilityUpTo11Website {
         
         do {
             try sitemap.write(to: sitemapFile, atomically: true, encoding: .utf8)
-            let totalURLs = mainPages.count + appPages.count + days365Posts.count + paginationPageCount + tagPageCount
+            let totalURLs = mainPages.count
+                + appPages.count
+                + blogPosts.count
+                + blogTagPaths.count
+                + days365Posts.count
+                + paginationPageCount
+                + tagPageCount
             BuildLogger.success(.sitemap, "generated enhanced sitemap with \(totalURLs) URLs")
         } catch {
             BuildLogger.failure(.sitemap, "could not write enhanced sitemap: \(error.localizedDescription)")
@@ -283,9 +317,26 @@ struct AccessibilityUpTo11Website {
                 xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
         """
         
-        // Add images from blog posts - we'll add these manually for now
-        // since we can't access @Environment in this context
-        
+        // Add images from long-form blog posts
+        let blogPosts = BlogSitemapEntry.loadAll()
+        let blogImageCount = blogPosts.compactMap(\.image).count
+        BuildLogger.detail("Adding \(blogImageCount) images from blog posts")
+        for post in blogPosts {
+            guard let imagePath = post.image else { continue }
+            let imageURL = "https://accessibilityupto11.com\(imagePath)"
+
+            imageSitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(post.path)</loc>
+                <image:image>
+                    <image:loc>\(imageURL)</image:loc>
+                    <image:title>\(xmlEscape(post.title))</image:title>
+                    <image:caption>\(xmlEscape(post.title))</image:caption>
+                </image:image>
+            </url>
+            """
+        }
+
         // Add images from 365 Days posts
         let days365Posts = Days365Loader.loadPosts()
         let days365ImageCount = days365Posts.compactMap { $0.image }.count
@@ -344,7 +395,7 @@ struct AccessibilityUpTo11Website {
         
         do {
             try imageSitemap.write(to: imageSitemapFile, atomically: true, encoding: .utf8)
-            let imageCount = days365ImageCount + siteImages.count
+            let imageCount = blogImageCount + days365ImageCount + siteImages.count
             BuildLogger.success(.imageSitemap, "generated image sitemap with \(imageCount) images")
         } catch {
             BuildLogger.failure(.imageSitemap, "could not write image sitemap: \(error.localizedDescription)")
@@ -359,6 +410,29 @@ struct AccessibilityUpTo11Website {
             .replacingOccurrences(of: ">", with: "&gt;")
             .replacingOccurrences(of: "\"", with: "&quot;")
             .replacingOccurrences(of: "'", with: "&#39;")
+    }
+
+    /// Copy the curated robots.txt from Assets, replacing Ignite's generated file.
+    static func publishRobotsTxt() throws {
+        BuildLogger.step(.sitemap, "publishing curated robots.txt")
+        let fileManager = FileManager.default
+        let currentDirectory = URL(fileURLWithPath: fileManager.currentDirectoryPath)
+        let source = currentDirectory.appendingPathComponent("Assets/robots.txt")
+        let destination = currentDirectory.appendingPathComponent("Build/robots.txt")
+
+        guard fileManager.fileExists(atPath: source.path) else {
+            throw NSError(
+                domain: "AccessibilityUpTo11Website",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: "Missing Assets/robots.txt at \(source.path)"]
+            )
+        }
+
+        if fileManager.fileExists(atPath: destination.path) {
+            try fileManager.removeItem(at: destination)
+        }
+        try fileManager.copyItem(at: source, to: destination)
+        BuildLogger.success(.sitemap, "published curated robots.txt")
     }
 
     /// Run social metadata checks against generated HTML.
@@ -408,7 +482,7 @@ struct AccessibilityUpTo11Website {
 
 struct AccessibilityUpTo11Site: Site {    
     var name = "Accessibility up to 11!"
-    var titleSuffix = " #365DaysIOSAccessibility"
+    var titleSuffix = " • Accessibility up to 11!"
     var url = URL(static: "https://accessibilityupto11.com")
     var builtInIconsEnabled = true
     var description = "iOS accessibility development blog and resources for developers who want to make their apps accessible to everyone."

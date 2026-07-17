@@ -54,6 +54,7 @@ struct PageCheck {
     let expectedImageSubstring: String?
     let expectedDescriptionSubstring: String?
     let requiresAbsoluteImageURLs: Bool
+    let maxDescriptionLength: Int?
 }
 
 struct PageResult {
@@ -191,12 +192,12 @@ func assertHasImageTags(in tags: [MetaTagEntry], requiresAbsoluteImageURLs: Bool
     let ogImages = tags.filter { $0.property == "og:image" }
     let twitterImages = tags.filter { $0.name == "twitter:image" }
 
-    if ogImages.isEmpty {
-        return "Missing og:image tag."
+    if ogImages.count != 1 {
+        return "Expected exactly 1 og:image tag, found \(ogImages.count)."
     }
 
-    if twitterImages.isEmpty {
-        return "Missing twitter:image tag."
+    if twitterImages.count != 1 {
+        return "Expected exactly 1 twitter:image tag, found \(twitterImages.count)."
     }
 
     if requiresAbsoluteImageURLs {
@@ -230,22 +231,43 @@ func assertHasAccessibleImageAlt(in tags: [MetaTagEntry]) -> String? {
     return nil
 }
 
-func assertHasDescription(in tags: [MetaTagEntry], expectedSubstring: String?) -> String? {
-    let ogDescription = tags.first { $0.property == "og:description" }?.content.trimmingCharacters(in: .whitespacesAndNewlines)
-    let twitterDescription = tags.first { $0.name == "twitter:description" }?.content.trimmingCharacters(in: .whitespacesAndNewlines)
+func assertHasDescription(
+    in tags: [MetaTagEntry],
+    expectedSubstring: String?,
+    maxLength: Int?
+) -> String? {
+    let htmlDescriptions = tags.filter { $0.name == "description" }
+    let ogDescriptions = tags.filter { $0.property == "og:description" }
+    let twitterDescriptions = tags.filter { $0.name == "twitter:description" }
 
-    if ogDescription?.isEmpty != false {
-        return "Missing or empty og:description tag."
+    for (label, entries) in [
+        ("description", htmlDescriptions),
+        ("og:description", ogDescriptions),
+        ("twitter:description", twitterDescriptions)
+    ] {
+        if entries.count != 1 {
+            return "Expected exactly 1 \(label) tag, found \(entries.count)."
+        }
+
+        if entries.first?.content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty != false {
+            return "Missing or empty \(label) tag."
+        }
     }
 
-    if twitterDescription?.isEmpty != false {
-        return "Missing or empty twitter:description tag."
+    let htmlDescription = htmlDescriptions[0].content.trimmingCharacters(in: .whitespacesAndNewlines)
+    let ogDescription = ogDescriptions[0].content.trimmingCharacters(in: .whitespacesAndNewlines)
+    let twitterDescription = twitterDescriptions[0].content.trimmingCharacters(in: .whitespacesAndNewlines)
+
+    if htmlDescription != ogDescription || htmlDescription != twitterDescription {
+        return "Description tags do not match across HTML, OG, and Twitter."
+    }
+
+    if let maxLength, htmlDescription.count > maxLength {
+        return "Description length \(htmlDescription.count) exceeds maximum \(maxLength)."
     }
 
     if let expectedSubstring {
-        let matchesOG = ogDescription?.localizedCaseInsensitiveContains(expectedSubstring) == true
-        let matchesTwitter = twitterDescription?.localizedCaseInsensitiveContains(expectedSubstring) == true
-        if !matchesOG && !matchesTwitter {
+        if !htmlDescription.localizedCaseInsensitiveContains(expectedSubstring) {
             return "Description does not contain expected text: \(expectedSubstring)"
         }
     }
@@ -303,7 +325,11 @@ func runChecks(for check: PageCheck, buildDirectory: URL) -> PageResult {
             failures.append(failure)
         }
 
-        if let failure = assertHasDescription(in: tags, expectedSubstring: check.expectedDescriptionSubstring) {
+        if let failure = assertHasDescription(
+            in: tags,
+            expectedSubstring: check.expectedDescriptionSubstring,
+            maxLength: check.maxDescriptionLength
+        ) {
             failures.append(failure)
         }
 
@@ -352,7 +378,8 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "imageDay233.jpeg",
             expectedDescriptionSubstring: nil,
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: 160
         ),
         PageCheck(
             label: "365 post without lead image uses fallback",
@@ -360,7 +387,8 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: true,
             expectedImageSubstring: nil,
             expectedDescriptionSubstring: nil,
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: 160
         ),
         PageCheck(
             label: "App page uses app icon",
@@ -368,7 +396,8 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "XarraIcon.png",
             expectedDescriptionSubstring: nil,
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: nil
         ),
         PageCheck(
             label: "About page has curated metadata",
@@ -376,7 +405,8 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "dani.jpg",
             expectedDescriptionSubstring: "Daniel Devesa Derksen-Staats",
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: 160
         ),
         PageCheck(
             label: "365 tag page has route-aware summary",
@@ -384,7 +414,8 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: nil,
             expectedDescriptionSubstring: "#365DaysIOSAccessibility post",
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: 160
         ),
         PageCheck(
             label: "Blog post has share-safe image",
@@ -392,7 +423,17 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "RetroRapidWatch.png",
             expectedDescriptionSubstring: nil,
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: 160
+        ),
+        PageCheck(
+            label: "Blog post with long intro uses truncated description",
+            relativePath: "post/2020-08-11-01/index.html",
+            expectsFallbackImage: false,
+            expectedImageSubstring: "Testing.png",
+            expectedDescriptionSubstring: "starts and ends with testing",
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: 160
         ),
         PageCheck(
             label: "Ignite tag page falls back to logo image",
@@ -400,7 +441,8 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: true,
             expectedImageSubstring: nil,
             expectedDescriptionSubstring: nil,
-            requiresAbsoluteImageURLs: true
+            requiresAbsoluteImageURLs: true,
+            maxDescriptionLength: nil
         )
     ]
 }

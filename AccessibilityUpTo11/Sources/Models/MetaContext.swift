@@ -14,8 +14,6 @@ struct MetaContext {
     var image: String
     var imageAlt: String
     var type: ContentType
-    var emitCustomImageTags: Bool = false
-    var emitCustomDescriptionTags: Bool = false
     
     /// Absolute URL helper.
     var absoluteURL: String { SiteMeta.absoluteURL(for: path) }
@@ -31,9 +29,7 @@ enum MetaBuilder {
         path: String,
         image: String?,
         imageAlt: String?,
-        type: MetaContext.ContentType,
-        emitCustomImageTags: Bool = false,
-        emitCustomDescriptionTags: Bool = false
+        type: MetaContext.ContentType
     ) -> MetaContext {
         let resolvedDescription = SiteMeta.bestDescription(description)
         let resolvedImage = SiteMeta.bestImagePath(image)
@@ -49,9 +45,7 @@ enum MetaBuilder {
             path: path,
             image: resolvedImage,
             imageAlt: resolvedAlt,
-            type: type,
-            emitCustomImageTags: emitCustomImageTags,
-            emitCustomDescriptionTags: emitCustomDescriptionTags
+            type: type
         )
     }
     
@@ -82,7 +76,7 @@ enum MetaBuilder {
     /// Metadata for a 365 Days tip.
     @MainActor static func days365(_ post: Days365Data) -> MetaContext {
         page(
-            title: post.title,
+            title: post.seoTitle,
             description: post.excerpt,
             path: post.path,
             image: post.image,
@@ -128,13 +122,28 @@ enum SiteMeta {
     static let defaultImage = "/Images/Site/Global/LogoShare.png"
     static let defaultImageAlt = "Accessibility up to 11! logo"
     static let defaultDescription = "iOS accessibility development blog and resources for developers who want to make their apps accessible to everyone."
+    static let metaDescriptionLimit = 160
     static let contentLicenseName = "Creative Commons Attribution 4.0 International (CC BY 4.0)"
     static let contentLicenseURL = "https://creativecommons.org/licenses/by/4.0/"
     static let contentLicensePath = "/content-license"
     static let contentLicensePageURL = baseURL + contentLicensePath
     
     static func bestDescription(_ description: String) -> String {
-        description.isEmpty ? defaultDescription : description
+        let resolved = description.isEmpty ? defaultDescription : description
+        return metaDescription(resolved)
+    }
+
+    /// Truncate descriptions for meta/OG/Twitter/JSON-LD at a word boundary.
+    static func metaDescription(_ description: String, limit: Int = metaDescriptionLimit) -> String {
+        let trimmed = description.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmed.count > limit else { return trimmed }
+
+        let truncated = String(trimmed.prefix(limit))
+        if let lastSpace = truncated.lastIndex(of: " ") {
+            return String(truncated[..<lastSpace]).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
+        }
+
+        return truncated.trimmingCharacters(in: .whitespacesAndNewlines) + "…"
     }
     
     static func bestImagePath(_ imagePath: String?) -> String {
