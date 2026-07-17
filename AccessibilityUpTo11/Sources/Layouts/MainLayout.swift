@@ -5,6 +5,7 @@ struct MainLayout: Layout {
     @Environment(\.page) var page
     @Environment(\.site) var site
     @Environment(\.author) var author
+    @Environment(\.articles) var articles
     
     @MainActor var body: some Document {
         let pagePath = page.url.path
@@ -12,6 +13,11 @@ struct MainLayout: Layout {
         let horizontalContentPadding = isPostContentPage ? 12 : 20
         let meta = metaContext()
         let assetVersion = "2026-06-23-1"
+        let isPaginatedListing = pagePath.contains("/page-")
+        let robotsContent = isPaginatedListing
+            ? "noindex, follow"
+            : "index, follow, max-snippet:-1, max-image-preview:large"
+        let googlebotContent = isPaginatedListing ? "noindex, follow" : "index, follow"
         
         PlainDocument {
             Head {
@@ -27,7 +33,7 @@ struct MainLayout: Layout {
                 }
 
                 MetaTag.generator
-                Title(page.title)
+                Title(meta.title)
 
                 MetaLink.standardCSS
                 MetaLink(href: "/css/prism-xcode-dark.css", rel: "stylesheet")
@@ -37,6 +43,11 @@ struct MainLayout: Layout {
                 MetaLink(href: "/css/prism-plugins.css", rel: "stylesheet")
                 MetaLink.iconCSS
                 MetaLink(href: page.url, rel: "canonical")
+
+                if let markdownAlternatePath = Self.markdownAlternatePath(for: pagePath) {
+                    MetaLink(href: markdownAlternatePath, rel: "alternate")
+                        .customAttribute(name: "type", value: "text/markdown")
+                }
 
                 MetaTag(property: "og:site_name", content: site.name)
                 MetaTag(property: "og:image", content: meta.imageURL)
@@ -59,8 +70,8 @@ struct MainLayout: Layout {
                 MetaTag(name: "twitter:dnt", content: "on")
 
                 MetaTag(name: "keywords", content: "iOS, accessibility, a11y, Swift, VoiceOver, development")
-                MetaTag(name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large")
-                MetaTag(name: "googlebot", content: "index, follow")
+                MetaTag(name: "robots", content: robotsContent)
+                MetaTag(name: "googlebot", content: googlebotContent)
 
                 MetaTag(property: "og:type", content: meta.type.rawValue)
                 MetaTag(property: "og:locale", content: "en_US")
@@ -203,14 +214,7 @@ extension MainLayout {
         }
 
         if path == "/tags" || path.hasPrefix("/tags/") {
-            return MetaBuilder.page(
-                title: title,
-                description: page.description,
-                path: path,
-                image: page.image?.absoluteString,
-                imageAlt: title,
-                type: .website
-            )
+            return blogTagMeta(for: path)
         }
         
         return MetaBuilder.page(
@@ -223,11 +227,67 @@ extension MainLayout {
         )
     }
 
+    @MainActor func blogTagMeta(for path: String) -> MetaContext {
+        if path == "/tags" {
+            return MetaBuilder.page(
+                title: "All tags",
+                description: "Browse all blog post tags on Accessibility up to 11!",
+                path: path,
+                image: page.image?.absoluteString,
+                imageAlt: "All tags",
+                type: .website
+            )
+        }
+
+        let slug = String(path.dropFirst("/tags/".count))
+        let tagName = Self.blogTagName(for: slug, articles: articles.all) ?? slug
+        let count = articles.all.filter { article in
+            article.tags?.contains { $0.convertedToSlug() == slug } ?? false
+        }.count
+        let postWord = count == 1 ? "post" : "posts"
+
+        return MetaBuilder.page(
+            title: "Posts tagged \(tagName)",
+            description: "Browse \(count) blog \(postWord) tagged \(tagName).",
+            path: path,
+            image: page.image?.absoluteString,
+            imageAlt: "Posts tagged \(tagName)",
+            type: .website
+        )
+    }
+
+    static func blogTagName(for slug: String, articles: [Article]) -> String? {
+        for article in articles {
+            guard let tags = article.tags else { continue }
+            for tag in tags where tag.convertedToSlug() == slug {
+                return tag
+            }
+        }
+        return nil
+    }
+
     private static func twitterDomain(from url: URL) -> String? {
         guard var host = url.host() else { return nil }
         if host.hasPrefix("www.") {
             host = String(host.dropFirst(4))
         }
         return host
+    }
+
+    /// Markdown mirror path for blog and 365 post pages only.
+    static func markdownAlternatePath(for pagePath: String) -> String? {
+        if pagePath.hasPrefix("/post/") {
+            let slug = String(pagePath.dropFirst("/post/".count))
+            guard !slug.isEmpty else { return nil }
+            return "/post/\(slug).md"
+        }
+
+        if pagePath.hasPrefix("/365-days-ios-accessibility/day-") {
+            let slug = String(pagePath.dropFirst("/365-days-ios-accessibility/".count))
+            guard !slug.isEmpty else { return nil }
+            return "/365-days-ios-accessibility/\(slug).md"
+        }
+
+        return nil
     }
 }

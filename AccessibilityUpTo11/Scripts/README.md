@@ -15,6 +15,16 @@ Site and app names use a trailing `!` as the brand mark (e.g. **Xarra!**, **Mest
 
 Implementation: `Sources/Utilities/BrandCopy.swift`.
 
+## 365 Days title regeneration
+
+After editing the local gitignored `Days365Content/recommended-titles.md`:
+
+```bash
+swift Scripts/RegenerateRecommendedTitles.swift
+```
+
+Commit the updated `Sources/Models/RecommendedTitles.generated.swift`.
+
 ## Social Metadata Validation
 
 ### `CheckSocialMeta.swift`

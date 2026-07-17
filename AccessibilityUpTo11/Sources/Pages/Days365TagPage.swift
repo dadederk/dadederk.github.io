@@ -39,6 +39,13 @@ struct Days365TagPage: StaticPage {
     }
 
     var body: some HTML {
+        let breadcrumbData = BreadcrumbListStructuredData.json(
+            crumbs: BreadcrumbListStructuredData.days365TagCrumbs(tag: tag, pagePath: path)
+        )
+
+        Script(code: breadcrumbData)
+            .attribute("type", "application/ld+json")
+
         VStack(alignment: .leading) {
             // Breadcrumb navigation
             Section {

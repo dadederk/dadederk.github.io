@@ -22,12 +22,19 @@ struct HomeArticlePreviewStyleFor365Days: HTML {
                 .class("text-break")
                 .margin(.bottom, .none)
         } header: {
-            Text {
-                Link(post.title, target: post.path)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(post.title)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+                    .class("text-break")
+
+                Text {
+                    Link(post.topicTitle, target: post.path)
+                }
+                .font(.title2)
+                .class("text-break")
+                .foregroundStyle(.body)
             }
-            .font(.title2)
-            .class("text-break")
-            .foregroundStyle(.body)
         } footer: {
             if !post.tags.isEmpty {
                 HStack(alignment: .center, spacing: 4) {

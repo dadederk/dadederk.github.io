@@ -53,6 +53,9 @@ struct PageCheck {
     let expectsFallbackImage: Bool
     let expectedImageSubstring: String?
     let expectedDescriptionSubstring: String?
+    let expectedTitleSubstring: String?
+    let expectedJSONLDHeadlineSubstring: String?
+    let expectedPageHeadingSubstring: String?
     let requiresAbsoluteImageURLs: Bool
     let maxDescriptionLength: Int?
 }
@@ -275,6 +278,95 @@ func assertHasDescription(
     return nil
 }
 
+func assertHasTitle(in html: String, expectedSubstring: String?) -> String? {
+    guard let regex = try? NSRegularExpression(pattern: #"<title>([^<]+)</title>"#, options: [.caseInsensitive]) else {
+        return "Could not compile title regex."
+    }
+
+    let nsRange = NSRange(html.startIndex..<html.endIndex, in: html)
+    let matches = regex.matches(in: html, options: [], range: nsRange)
+
+    if matches.count != 1 {
+        return "Expected exactly 1 title tag, found \(matches.count)."
+    }
+
+    guard let matchRange = Range(matches[0].range(at: 1), in: html) else {
+        return "Could not read title tag content."
+    }
+
+    let title = String(html[matchRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+    if title.isEmpty {
+        return "Missing or empty title tag."
+    }
+
+    if let expectedSubstring {
+        if !title.localizedCaseInsensitiveContains(expectedSubstring) {
+            return "Title does not contain expected text: \(expectedSubstring)"
+        }
+    }
+
+    return nil
+}
+
+func assertBlogPostingHeadline(in html: String, expectedSubstring: String?) -> String? {
+    guard let expectedSubstring else { return nil }
+
+    guard let regex = try? NSRegularExpression(
+        pattern: #"<script type="application/ld\+json">(\{"headline":"([^"]+)"[^<]*"@type":"BlogPosting"[^<]*\})</script>"#,
+        options: []
+    ) else {
+        return "Could not compile BlogPosting JSON-LD regex."
+    }
+
+    let nsRange = NSRange(html.startIndex..<html.endIndex, in: html)
+    let matches = regex.matches(in: html, options: [], range: nsRange)
+
+    if matches.isEmpty {
+        // JSON key order varies; fall back to a simpler search.
+        if !html.contains(#""headline":"\#(expectedSubstring)"#) {
+            return "BlogPosting JSON-LD headline does not contain expected text: \(expectedSubstring)"
+        }
+        return nil
+    }
+
+    guard let headlineRange = Range(matches[0].range(at: 2), in: html) else {
+        return "Could not read BlogPosting JSON-LD headline."
+    }
+
+    let headline = String(html[headlineRange])
+    if !headline.localizedCaseInsensitiveContains(expectedSubstring) {
+        return "BlogPosting JSON-LD headline '\(headline)' does not contain expected text: \(expectedSubstring)"
+    }
+
+    return nil
+}
+
+func assertPrimaryHeading(in html: String, expectedSubstring: String?) -> String? {
+    guard let expectedSubstring else { return nil }
+
+    guard let regex = try? NSRegularExpression(pattern: #"<h1[^>]*>([^<]+)</h1>"#, options: [.caseInsensitive]) else {
+        return "Could not compile h1 regex."
+    }
+
+    let nsRange = NSRange(html.startIndex..<html.endIndex, in: html)
+    let matches = regex.matches(in: html, options: [], range: nsRange)
+
+    if matches.count != 1 {
+        return "Expected exactly 1 h1 tag, found \(matches.count)."
+    }
+
+    guard let headingRange = Range(matches[0].range(at: 1), in: html) else {
+        return "Could not read h1 content."
+    }
+
+    let heading = String(html[headingRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+    if !heading.localizedCaseInsensitiveContains(expectedSubstring) {
+        return "Primary heading '\(heading)' does not contain expected text: \(expectedSubstring)"
+    }
+
+    return nil
+}
+
 func assertUsesFallbackImageWhenExpected(
     in tags: [MetaTagEntry],
     expectsFallbackImage: Bool,
@@ -333,6 +425,24 @@ func runChecks(for check: PageCheck, buildDirectory: URL) -> PageResult {
             failures.append(failure)
         }
 
+        if let failure = assertHasTitle(in: html, expectedSubstring: check.expectedTitleSubstring) {
+            failures.append(failure)
+        }
+
+        if let failure = assertBlogPostingHeadline(
+            in: html,
+            expectedSubstring: check.expectedJSONLDHeadlineSubstring
+        ) {
+            failures.append(failure)
+        }
+
+        if let failure = assertPrimaryHeading(
+            in: html,
+            expectedSubstring: check.expectedPageHeadingSubstring
+        ) {
+            failures.append(failure)
+        }
+
         if let failure = assertUsesFallbackImageWhenExpected(
             in: tags,
             expectsFallbackImage: check.expectsFallbackImage,
@@ -378,6 +488,9 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "imageDay233.jpeg",
             expectedDescriptionSubstring: nil,
+            expectedTitleSubstring: "Day 233:",
+            expectedJSONLDHeadlineSubstring: "Multiple inputs for accessible spatial experiences",
+            expectedPageHeadingSubstring: "Multiple inputs for accessible spatial experiences",
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: 160
         ),
@@ -387,6 +500,9 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: true,
             expectedImageSubstring: nil,
             expectedDescriptionSubstring: nil,
+            expectedTitleSubstring: nil,
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: 160
         ),
@@ -396,6 +512,9 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "XarraIcon.png",
             expectedDescriptionSubstring: nil,
+            expectedTitleSubstring: nil,
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: nil
         ),
@@ -405,6 +524,9 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "dani.jpg",
             expectedDescriptionSubstring: "Daniel Devesa Derksen-Staats",
+            expectedTitleSubstring: nil,
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: 160
         ),
@@ -414,6 +536,9 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: nil,
             expectedDescriptionSubstring: "#365DaysIOSAccessibility post",
+            expectedTitleSubstring: nil,
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: 160
         ),
@@ -423,6 +548,9 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "RetroRapidWatch.png",
             expectedDescriptionSubstring: nil,
+            expectedTitleSubstring: nil,
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: 160
         ),
@@ -432,17 +560,23 @@ func pageChecks() -> [PageCheck] {
             expectsFallbackImage: false,
             expectedImageSubstring: "Testing.png",
             expectedDescriptionSubstring: "starts and ends with testing",
+            expectedTitleSubstring: nil,
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
             maxDescriptionLength: 160
         ),
         PageCheck(
-            label: "Ignite tag page falls back to logo image",
+            label: "Blog tag page has unique metadata",
             relativePath: "tags/accessibility/index.html",
             expectsFallbackImage: true,
             expectedImageSubstring: nil,
-            expectedDescriptionSubstring: nil,
+            expectedDescriptionSubstring: "tagged Accessibility",
+            expectedTitleSubstring: "Posts tagged Accessibility",
+            expectedJSONLDHeadlineSubstring: nil,
+            expectedPageHeadingSubstring: nil,
             requiresAbsoluteImageURLs: true,
-            maxDescriptionLength: nil
+            maxDescriptionLength: 160
         )
     ]
 }

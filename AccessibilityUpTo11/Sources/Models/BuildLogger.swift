@@ -13,6 +13,7 @@ enum BuildStage: String {
     case imageSitemap = "Image Sitemap"
     case universalLinks = "Universal Links"
     case socialMetadata = "Social Metadata"
+    case agentDiscovery = "Agent Discovery"
 
     var emoji: String {
         switch self {
@@ -22,6 +23,7 @@ enum BuildStage: String {
         case .imageSitemap: "🖼️"
         case .universalLinks: "🔗"
         case .socialMetadata: "🔎"
+        case .agentDiscovery: "🤖"
         }
     }
 }

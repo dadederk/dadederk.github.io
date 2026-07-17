@@ -5,7 +5,7 @@ import Ignite
 struct Days365Data: Identifiable {
     var id: String { fileName }
     let title: String
-    /// SEO/social title for `<title>`, OG, and Twitter. On-page H1 uses `title` (`Day N`).
+    /// SEO/social title for `<title>`, OG, Twitter, and JSON-LD (`Day N: topic`).
     let seoTitle: String
     let author: String
     let date: Date
@@ -39,6 +39,20 @@ struct Days365Data: Identifiable {
             .replacingOccurrences(of: " ", with: "-")
             .replacingOccurrences(of: "#", with: "")
         return "/365-days-ios-accessibility/tag/\(slug)"
+    }
+
+    /// Curated topic for the on-page H1 (without the `Day N` prefix).
+    var topicTitle: String {
+        RecommendedTitlesLoader.title(for: dayNumber)
+            ?? seoTitleTopicFallback
+    }
+
+    private var seoTitleTopicFallback: String {
+        let prefix = "\(title): "
+        if seoTitle.hasPrefix(prefix) {
+            return String(seoTitle.dropFirst(prefix.count))
+        }
+        return seoTitle == title ? title : seoTitle
     }
 }
 
@@ -175,6 +189,10 @@ struct Days365Loader {
             content: markdownContent
         )
         
+        if seoTitleOverride == nil, RecommendedTitlesLoader.title(for: dayNumber) == nil {
+            print("Warning: No curated title for day \(dayNumber) (\(fileName)); regenerate RecommendedTitles.generated.swift")
+        }
+
         return Days365Data(
             title: title,
             seoTitle: seoTitle,
@@ -230,7 +248,8 @@ struct Days365Loader {
         cleanMarkdownText(content)
     }
 
-    /// SEO/social title: optional frontmatter override, else `Day N: first sentence`.
+    /// SEO/social title: optional frontmatter override, else curated title from
+    /// `recommended-titles.md`, else `Day N: first sentence`.
     private static func generateSEOTitle(
         dayNumber: Int,
         displayTitle: String,
@@ -242,14 +261,17 @@ struct Days365Loader {
         }
 
         let dayLabel = displayTitle.isEmpty ? "Day \(dayNumber)" : displayTitle
+        if let recommendedTitle = RecommendedTitlesLoader.title(for: dayNumber) {
+            return "\(dayLabel): \(recommendedTitle)"
+        }
+
         guard let firstSentence = firstSentence(from: content), !firstSentence.isEmpty else {
             return dayLabel
         }
 
-        let prefix = "\(dayLabel): "
         let maxTopicLength = 70
         let topic = truncateAtWordBoundary(firstSentence, limit: maxTopicLength)
-        return prefix + topic
+        return "\(dayLabel): \(topic)"
     }
 
     /// First sentence from markdown body, with images/links stripped.
@@ -321,18 +343,50 @@ struct Days365Loader {
         }
     }
     
-    /// Get all unique tags (from frontmatter and content hashtags)
+    /// Normalized slug for a tag name (used for URLs and deduplication).
+    static func tagSlug(for tag: String) -> String {
+        tag
+            .lowercased()
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: " ", with: "-")
+            .replacingOccurrences(of: "#", with: "")
+    }
+
+    /// Get all unique tags (from frontmatter and content hashtags), deduplicated by URL slug.
     static func allTags() -> [String] {
         let allPosts = loadPosts()
-        var allTags: [String] = []
-        
-        // Add frontmatter tags
-        allTags.append(contentsOf: allPosts.flatMap { $0.tags })
-        
-        // Add content hashtags
-        allTags.append(contentsOf: allPosts.flatMap { extractHashtags(from: $0.content) })
-        
-        return Array(Set(allTags)).sorted()
+        var tagCounts: [String: Int] = [:]
+
+        func record(_ tag: String) {
+            let trimmed = tag.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !trimmed.isEmpty else { return }
+            tagCounts[trimmed, default: 0] += 1
+        }
+
+        for post in allPosts {
+            post.tags.forEach(record)
+            extractHashtags(from: post.content).forEach(record)
+        }
+
+        var canonicalBySlug: [String: String] = [:]
+        var countBySlug: [String: Int] = [:]
+
+        for (tag, count) in tagCounts {
+            let slug = tagSlug(for: tag)
+            let existingCount = countBySlug[slug, default: 0]
+            if count > existingCount {
+                canonicalBySlug[slug] = tag
+                countBySlug[slug] = count
+            } else if count == existingCount,
+                      let existing = canonicalBySlug[slug],
+                      tag.localizedCaseInsensitiveCompare(existing) == .orderedAscending {
+                canonicalBySlug[slug] = tag
+            }
+        }
+
+        return canonicalBySlug.values.sorted {
+            $0.localizedCaseInsensitiveCompare($1) == .orderedAscending
+        }
     }
     
     /// Extract hashtags from markdown content

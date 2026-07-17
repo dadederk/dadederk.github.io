@@ -80,7 +80,7 @@ enum MetaBuilder {
             description: post.excerpt,
             path: post.path,
             image: post.image,
-            imageAlt: post.title,
+            imageAlt: post.topicTitle,
             type: .article
         )
     }

@@ -20,7 +20,7 @@ struct Days365PostPage: StaticPage {
         let meta = MetaBuilder.days365(post)
         let structuredData = BlogPostingStructuredData.json(
             for: .init(
-                headline: post.seoTitle,
+                headline: post.topicTitle,
                 description: meta.description,
                 authorName: post.author.isEmpty ? "Daniel Devesa Derksen-Staats" : post.author,
                 authorURL: "\(SiteMeta.baseURL)/about",
@@ -34,6 +34,12 @@ struct Days365PostPage: StaticPage {
         )
 
         Script(code: structuredData)
+            .attribute("type", "application/ld+json")
+
+        let breadcrumbData = BreadcrumbListStructuredData.json(
+            crumbs: BreadcrumbListStructuredData.days365PostCrumbs(for: post)
+        )
+        Script(code: breadcrumbData)
             .attribute("type", "application/ld+json")
 
         VStack(alignment: .leading) {
@@ -50,8 +56,12 @@ struct Days365PostPage: StaticPage {
             // Article header with title and metadata
             Section {
                 VStack(alignment: .leading, spacing: 12) {
-                    // Title
                     Text(post.title)
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .horizontalAlignment(.leading)
+
+                    Text(post.topicTitle)
                         .font(.title1)
                         .fontWeight(.bold)
                         .class("text-break")

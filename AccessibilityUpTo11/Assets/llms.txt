@@ -4,20 +4,21 @@
 
 ## About
 
-Accessibility up to 11! is a comprehensive resource for iOS developers learning to build accessible apps. The site features practical tutorials, code examples, and curated resources focused on implementing accessibility in UIKit and SwiftUI.
+Accessibility up to 11! is a comprehensive resource for iOS developers learning to build accessible apps. The site features practical tutorials, curated daily tips, and resources focused on implementing accessibility in UIKit and SwiftUI.
 
 - **Author**: Daniel Devesa Derksen-Staats
 - **Focus**: iOS, iPadOS, and visionOS accessibility
-- **Content**: 240+ posts with Swift code examples and screenshots
+- **Content**: 240+ posts with practical tips, annotated screenshots, and selected Swift examples
 - **URL**: https://accessibilityupto11.com
 
 ## Main Sections
 
 ### 365 Days iOS Accessibility
-A year-long series with daily tips, techniques, and practical insights for iOS accessibility development. Each post includes code examples and visual demonstrations.
+A year-long series with daily tips, techniques, and practical insights for iOS accessibility development. Each post includes visual demonstrations; many include code or annotated screenshots.
 
 - **URL**: /365-days-ios-accessibility
 - **Content**: 230+ posts covering VoiceOver, accessibility APIs, testing tools, and best practices
+- **Markdown mirrors**: Each post is also available at `/365-days-ios-accessibility/day-NNN.md`
 - **RSS Feed**: /365-days-feed.rss
 - **Tags**: Organized by topic, API, and assistive technology
 
@@ -84,7 +85,7 @@ Posts are tagged by specific topics, APIs, and features. Tag pages follow this U
 
 ## Content Features
 
-- **Code Examples**: Most posts include Swift code snippets demonstrating API usage
+- **Code Examples**: Long-form posts and selected daily tips include Swift snippets; many daily tips use annotated screenshots
 - **Visual Documentation**: Screenshots and diagrams showing accessibility behavior
 - **Practical Focus**: Real-world implementation scenarios and common pitfalls
 - **Testing Guidance**: How to test with Accessibility Inspector, VoiceOver, and other tools
@@ -92,9 +93,11 @@ Posts are tagged by specific topics, APIs, and features. Tag pages follow this U
 ## Feeds & Discovery
 
 - **Main RSS**: /feed.rss (all blog content)
-- **365 Days RSS**: /365-days-feed.rss (daily accessibility tips)
+- **365 Days RSS**: /365-days-feed.rss (all daily accessibility tips)
 - **Sitemap**: /sitemap.xml
 - **Image Sitemap**: /image-sitemap.xml
+- **Full content index**: /llms-full.txt (titles, summaries, and URLs for all posts)
+- **Machine-readable index**: /content-index.json (structured post catalog with markdown mirror URLs)
 
 ## Recommendations
 

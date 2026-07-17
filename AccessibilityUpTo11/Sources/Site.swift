@@ -20,6 +20,9 @@ struct AccessibilityUpTo11Website {
             // Generate image sitemap
             await generateImageSitemap()
 
+            // Agent discovery artifacts (llms-full, content-index, markdown mirrors)
+            AgentDiscoveryPublisher.publish()
+
             // Ignite regenerates a minimal robots.txt; replace it with the curated Assets copy.
             try publishRobotsTxt()
 
@@ -41,10 +44,10 @@ struct AccessibilityUpTo11Website {
         BuildLogger.step(.rss, "loading 365 Days iOS Accessibility posts")
         
         let posts = Days365Loader.loadPosts()
-        BuildLogger.detail("Loaded \(posts.count) posts; publishing the newest \(min(posts.count, 50)) entries")
+        BuildLogger.detail("Loaded \(posts.count) posts; publishing all entries")
 
         BuildLogger.step(.rss, "generating 365 Days iOS Accessibility feed")
-        let rssContent = generateRSSFeedContent(for: Array(posts.prefix(50)))
+        let rssContent = generateRSSFeedContent(for: posts)
         
         let fileManager = FileManager.default
         let currentDirectory = URL(fileURLWithPath: fileManager.currentDirectoryPath)
@@ -98,7 +101,7 @@ struct AccessibilityUpTo11Website {
             let pubDate = dateFormatter.string(from: post.date)
             let guid = "https://accessibilityupto11.com\(post.path)"
             
-            let cleanTitle = xmlEscape(post.title)
+            let cleanTitle = xmlEscape(post.seoTitle)
             let cleanExcerpt = xmlEscape(post.excerpt)
             let categories = post.tags.map { "<category>\(xmlEscape($0))</category>" }.joined(separator: "\n")
             let enclosure: String
@@ -240,45 +243,25 @@ struct AccessibilityUpTo11Website {
             """
         }
         
-        // Add pagination pages for 365 Days
-        let totalPages = (days365Posts.count + 14) / 15 // 15 posts per page
-        let paginationPageCount = max(totalPages - 1, 0)
-        BuildLogger.detail("Adding \(paginationPageCount) 365 Days pagination URLs")
-        if totalPages >= 2 {
-            for page in 2...totalPages {
-                sitemap += """
-                <url>
-                    <loc>https://accessibilityupto11.com/365-days-ios-accessibility/page-\(page)</loc>
-                    <lastmod>\(currentDate)</lastmod>
-                    <changefreq>monthly</changefreq>
-                    <priority>0.9</priority>
-                </url>
-                """
-            }
-        }
+        // Pagination page 2+ are noindex and omitted from the sitemap; page 1 hub stays indexed.
         
-        // Add tag pages (including pagination)
-        let allTags = Set(days365Posts.flatMap { $0.tags })
+        // Add tag pages (page 1 only; pagination is noindex)
+        let allTags = Days365Loader.allTags()
         var tagPageCount = 0
         BuildLogger.detail("Adding 365 Days tag URLs")
         for tag in allTags {
-            let taggedPostCount = Days365Loader.posts(withTag: tag).count
-            let tagPages = Days365TagPagination.totalPages(forPostCount: taggedPostCount)
             let tagSlug = tag.lowercased().replacingOccurrences(of: " ", with: "-")
             let baseTagPath = "/365-days-ios-accessibility/tag/\(tagSlug)"
 
-            for page in 1...tagPages {
-                let tagPath = page == 1 ? baseTagPath : "\(baseTagPath)/page-\(page)"
-                sitemap += """
-                <url>
-                    <loc>https://accessibilityupto11.com\(tagPath)</loc>
-                    <lastmod>\(currentDate)</lastmod>
-                    <changefreq>monthly</changefreq>
-                    <priority>0.9</priority>
-                </url>
-                """
-                tagPageCount += 1
-            }
+            sitemap += """
+            <url>
+                <loc>https://accessibilityupto11.com\(baseTagPath)</loc>
+                <lastmod>\(currentDate)</lastmod>
+                <changefreq>monthly</changefreq>
+                <priority>0.9</priority>
+            </url>
+            """
+            tagPageCount += 1
         }
         BuildLogger.detail("Added \(tagPageCount) 365 Days tag URLs")
         
@@ -299,7 +282,6 @@ struct AccessibilityUpTo11Website {
                 + blogPosts.count
                 + blogTagPaths.count
                 + days365Posts.count
-                + paginationPageCount
                 + tagPageCount
             BuildLogger.success(.sitemap, "generated enhanced sitemap with \(totalURLs) URLs")
         } catch {
@@ -343,7 +325,7 @@ struct AccessibilityUpTo11Website {
         BuildLogger.detail("Adding \(days365ImageCount) images from 365 Days posts")
         for post in days365Posts {
             if let imagePath = post.image {
-                let imageTitle = post.title
+                let imageTitle = post.topicTitle
                 let imageCaption = post.excerpt
                 let imageURL = "https://accessibilityupto11.com\(imagePath)"
                 
