@@ -24,10 +24,14 @@ struct Days365StaticPages {
             pages.append(Days365PostPage(post: post))
         }
         
-        // Generate tag pages
+        // Generate paginated tag pages
         let allTags = Days365Loader.allTags()
         for tag in allTags {
-            pages.append(Days365TagPage(tag: tag))
+            let taggedPostCount = Days365Loader.posts(withTag: tag).count
+            let tagPageCount = Days365TagPagination.totalPages(forPostCount: taggedPostCount)
+            for pageNumber in 1...tagPageCount {
+                pages.append(Days365TagPage(tag: tag, pageNumber: pageNumber))
+            }
         }
         
         return pages

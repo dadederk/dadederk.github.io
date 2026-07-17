@@ -229,20 +229,30 @@ struct AccessibilityUpTo11Website {
             }
         }
         
-        // Add tag pages
+        // Add tag pages (including pagination)
         let allTags = Set(days365Posts.flatMap { $0.tags })
-        BuildLogger.detail("Adding \(allTags.count) 365 Days tag URLs")
+        var tagPageCount = 0
+        BuildLogger.detail("Adding 365 Days tag URLs")
         for tag in allTags {
-            let tagPath = "/365-days-ios-accessibility/tag/\(tag.lowercased().replacingOccurrences(of: " ", with: "-"))"
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com\(tagPath)</loc>
-                <lastmod>\(currentDate)</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>0.9</priority>
-            </url>
-            """
+            let taggedPostCount = Days365Loader.posts(withTag: tag).count
+            let tagPages = Days365TagPagination.totalPages(forPostCount: taggedPostCount)
+            let tagSlug = tag.lowercased().replacingOccurrences(of: " ", with: "-")
+            let baseTagPath = "/365-days-ios-accessibility/tag/\(tagSlug)"
+
+            for page in 1...tagPages {
+                let tagPath = page == 1 ? baseTagPath : "\(baseTagPath)/page-\(page)"
+                sitemap += """
+                <url>
+                    <loc>https://accessibilityupto11.com\(tagPath)</loc>
+                    <lastmod>\(currentDate)</lastmod>
+                    <changefreq>monthly</changefreq>
+                    <priority>0.9</priority>
+                </url>
+                """
+                tagPageCount += 1
+            }
         }
+        BuildLogger.detail("Added \(tagPageCount) 365 Days tag URLs")
         
         sitemap += """
         </urlset>
@@ -256,7 +266,7 @@ struct AccessibilityUpTo11Website {
         
         do {
             try sitemap.write(to: sitemapFile, atomically: true, encoding: .utf8)
-            let totalURLs = mainPages.count + appPages.count + days365Posts.count + paginationPageCount + allTags.count
+            let totalURLs = mainPages.count + appPages.count + days365Posts.count + paginationPageCount + tagPageCount
             BuildLogger.success(.sitemap, "generated enhanced sitemap with \(totalURLs) URLs")
         } catch {
             BuildLogger.failure(.sitemap, "could not write enhanced sitemap: \(error.localizedDescription)")

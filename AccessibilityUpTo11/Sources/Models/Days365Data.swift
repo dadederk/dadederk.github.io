@@ -292,98 +292,88 @@ struct Days365Loader {
     }
     
     /// Get related posts for a given post
-    /// Returns 3 posts: prioritizing specific tags, then falling back to general tags
+    /// Returns up to `limit` posts: fill from specific tags first, then general tags, then any posts.
     static func relatedPosts(for post: Days365Data, limit: Int = 3) -> [Days365Data] {
         let allPosts = loadPosts()
         let currentPostId = post.id
         
         // Define general tags (fallback)
-        let generalTags = ["accessibility", "a11y", "ios"]
+        let generalTagNames = ["accessibility", "a11y", "ios"]
+        let generalTags = Set(generalTagNames.map { $0.lowercased() })
         
         // Get all tags from the current post (both frontmatter and content hashtags)
-        let currentPostTags = Set(post.tags + extractHashtags(from: post.content))
+        let currentPostTags = Set(
+            (post.tags + extractHashtags(from: post.content)).map { $0.lowercased() }
+        )
         
         // Separate specific tags from general tags
-        let specificTags = currentPostTags.filter { tag in
-            !generalTags.contains { $0.lowercased() == tag.lowercased() }
-        }
+        let specificTags = currentPostTags.filter { !generalTags.contains($0) }
         
         var relatedPosts: [Days365Data] = []
         var usedPostIds = Set([currentPostId])
         
-        // First, try to get posts from specific tags (prioritizing those with images)
+        func appendFromCandidates(_ candidates: [Days365Data]) {
+            for candidate in Self.prioritizeRelatedCandidates(candidates) {
+                if relatedPosts.count >= limit { break }
+                guard !usedPostIds.contains(candidate.id) else { continue }
+                relatedPosts.append(candidate)
+                usedPostIds.insert(candidate.id)
+            }
+        }
+        
+        // First, fill as many slots as possible from posts sharing specific tags
         if !specificTags.isEmpty {
-            for tag in specificTags {
+            let specificMatches = allPosts.filter { candidate in
+                guard !usedPostIds.contains(candidate.id) else { return false }
+                let candidateTags = Set(
+                    (candidate.tags + extractHashtags(from: candidate.content)).map { $0.lowercased() }
+                )
+                return !specificTags.isDisjoint(with: candidateTags)
+            }
+            
+            let byScore = Dictionary(grouping: specificMatches) { candidate in
+                Self.sharedTagCount(between: specificTags, and: candidate)
+            }
+            
+            for score in byScore.keys.sorted(by: >) {
                 if relatedPosts.count >= limit { break }
-                
-                let postsWithTag = posts(withTag: tag)
-                    .filter { !usedPostIds.contains($0.id) }
-                    // Prioritize posts with images, then shuffle
-                    .sorted { post1, post2 in
-                        let hasImage1 = post1.image != nil
-                        let hasImage2 = post2.image != nil
-                        if hasImage1 && !hasImage2 { return true }
-                        if !hasImage1 && hasImage2 { return false }
-                        return false // If both have images or both don't, maintain original order
-                    }
-                    .shuffled()
-                
-                if let randomPost = postsWithTag.first {
-                    relatedPosts.append(randomPost)
-                    usedPostIds.insert(randomPost.id)
-                }
+                appendFromCandidates(byScore[score] ?? [])
             }
         }
         
-        // If we still need more posts, fill with posts from general tags (prioritizing those with images)
+        // If we still need more posts, fill from general tags the current post actually has
         if relatedPosts.count < limit {
-            let remainingNeeded = limit - relatedPosts.count
+            let applicableGeneralTags = generalTagNames.filter { name in
+                currentPostTags.contains(name.lowercased())
+            }
             
-            for tag in generalTags {
+            for tag in applicableGeneralTags {
                 if relatedPosts.count >= limit { break }
-                
                 let postsWithTag = posts(withTag: tag)
                     .filter { !usedPostIds.contains($0.id) }
-                    // Prioritize posts with images, then shuffle
-                    .sorted { post1, post2 in
-                        let hasImage1 = post1.image != nil
-                        let hasImage2 = post2.image != nil
-                        if hasImage1 && !hasImage2 { return true }
-                        if !hasImage1 && hasImage2 { return false }
-                        return false // If both have images or both don't, maintain original order
-                    }
-                    .shuffled()
-                
-                let neededFromThisTag = min(remainingNeeded, postsWithTag.count)
-                for i in 0..<neededFromThisTag {
-                    if relatedPosts.count >= limit { break }
-                    relatedPosts.append(postsWithTag[i])
-                    usedPostIds.insert(postsWithTag[i].id)
-                }
+                appendFromCandidates(postsWithTag)
             }
         }
         
-        // If we still don't have enough, fill with any random posts (prioritizing those with images)
+        // If we still don't have enough, fill with any remaining posts
         if relatedPosts.count < limit {
-            let remainingPosts = allPosts
-                .filter { !usedPostIds.contains($0.id) }
-                // Prioritize posts with images, then shuffle
-                .sorted { post1, post2 in
-                    let hasImage1 = post1.image != nil
-                    let hasImage2 = post2.image != nil
-                    if hasImage1 && !hasImage2 { return true }
-                    if !hasImage1 && hasImage2 { return false }
-                    return false // If both have images or both don't, maintain original order
-                }
-                .shuffled()
-            
-            let needed = limit - relatedPosts.count
-            for i in 0..<min(needed, remainingPosts.count) {
-                relatedPosts.append(remainingPosts[i])
-            }
+            let remainingPosts = allPosts.filter { !usedPostIds.contains($0.id) }
+            appendFromCandidates(remainingPosts)
         }
         
         return relatedPosts
+    }
+    
+    private static func sharedTagCount(between specificTags: Set<String>, and post: Days365Data) -> Int {
+        let postTags = Set((post.tags + extractHashtags(from: post.content)).map { $0.lowercased() })
+        return specificTags.intersection(postTags).count
+    }
+    
+    /// Prefer posts with images, with light shuffling within each group.
+    private static func prioritizeRelatedCandidates(_ posts: [Days365Data]) -> [Days365Data] {
+        let withImages = posts.filter { $0.image != nil }.shuffled()
+        let withoutImages = posts.filter { $0.image == nil }.shuffled()
+        return withImages + withoutImages
     }
 }
 
