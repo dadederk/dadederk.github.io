@@ -190,14 +190,11 @@ struct UniversalAppPage: StaticPage {
                                 
                                 Grid(alignment: .topLeading) {
                                     ForEach(group.features) { feature in
-                                        Card(imageName: feature.imagePath ?? app.imagePath) {
-                                            Text(feature.description)
-                                                .font(.body)
-                                        } header: {
-                                            Text(feature.title)
-                                                .font(.title4)
-                                                .foregroundStyle(.body)
-                                        }
+                                        AppFeatureCard(
+                                            feature: feature,
+                                            fallbackImagePath: app.imagePath,
+                                            fallbackImageDescription: app.imageDescription
+                                        )
                                         .width(4)
                                     }
                                 }
@@ -217,14 +214,11 @@ struct UniversalAppPage: StaticPage {
                     
                     Grid(alignment: .topLeading) {
                         ForEach(app.features) { feature in
-                            Card(imageName: feature.imagePath ?? app.imagePath) {
-                                Text(feature.description)
-                                    .font(.body)
-                            } header: {
-                                Text(feature.title)
-                                    .font(.title3)
-                                    .foregroundStyle(.body)
-                            }
+                            AppFeatureCard(
+                                feature: feature,
+                                fallbackImagePath: app.imagePath,
+                                fallbackImageDescription: app.imageDescription
+                            )
                             .width(4)
                         }
                     }

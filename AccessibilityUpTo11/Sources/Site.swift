@@ -7,9 +7,15 @@ struct AccessibilityUpTo11Website {
         var site = AccessibilityUpTo11Site()
 
         do {
+            try ImageOptimizationPublisher.preflight()
+            try ImageOptimizationPublisher.prepareForPublishing()
             BuildLogger.step(.build, "publishing Ignite site")
             try await site.publish()
             BuildLogger.success(.build, "site published")
+
+            // Generate responsive image derivatives and rewrite image markup before
+            // the remaining publishers validate or deploy the generated HTML.
+            try ImageOptimizationPublisher.publish()
             
             // Generate custom RSS feed for 365 Days iOS Accessibility
             await generate365DaysRSSFeed()
@@ -180,9 +186,9 @@ struct AccessibilityUpTo11Website {
             ("/apps/xarra", "0.9", "monthly"),
             ("/apps/xarra/terms", "0.8", "yearly"),
             ("/apps/xarra/privacy", "0.8", "yearly"),
-            ("/apps/iMonstickers", "0.9", "monthly"),
-            ("/apps/iMonstickers/terms", "0.8", "yearly"),
-            ("/apps/iMonstickers/privacy", "0.8", "yearly"),
+            ("/apps/imonstickers", "0.9", "monthly"),
+            ("/apps/imonstickers/terms", "0.8", "yearly"),
+            ("/apps/imonstickers/privacy", "0.8", "yearly"),
             ("/apps/retrorapid", "0.9", "monthly"),
             ("/apps/retrorapid/terms", "0.8", "yearly"),
             ("/apps/retrorapid/privacy", "0.8", "yearly")
@@ -527,9 +533,9 @@ struct AccessibilityUpTo11Site: Site {
             UniversalAppPage(appIdentifier: "xarra", pageType: .main),
             UniversalAppPage(appIdentifier: "xarra", pageType: .terms),
             UniversalAppPage(appIdentifier: "xarra", pageType: .privacy),
-            UniversalAppPage(appIdentifier: "iMonstickers", pageType: .main),
-            UniversalAppPage(appIdentifier: "iMonstickers", pageType: .terms),
-            UniversalAppPage(appIdentifier: "iMonstickers", pageType: .privacy),
+            UniversalAppPage(appIdentifier: "imonstickers", pageType: .main),
+            UniversalAppPage(appIdentifier: "imonstickers", pageType: .terms),
+            UniversalAppPage(appIdentifier: "imonstickers", pageType: .privacy),
             UniversalAppPage(appIdentifier: "retrorapid", pageType: .main),
             UniversalAppPage(appIdentifier: "retrorapid", pageType: .terms),
             UniversalAppPage(appIdentifier: "retrorapid", pageType: .privacy)

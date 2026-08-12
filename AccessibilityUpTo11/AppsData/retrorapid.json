@@ -3,8 +3,8 @@
   "category": "game",
   "slug": "retrorapid",
   "title": "RetroRapid!",
-  "subtitle": "Race like it's 1985",
-  "description": "RetroRapid! brings back the charm of classic LCD handhelds from the late '80s and early '90s. Steer left or right, dodge traffic, and chase your high score. Simple to start, impossible to put down.\n\nBuilt natively for watchOS, iOS, iPadOS, and macOS, RetroRapid! fits right in wherever you are: on your wrist, in your pocket, or at your desk.",
+  "subtitle": "Three lanes. Rising speed. One more run.",
+  "description": "RetroRapid! brings back the charm of classic LCD handhelds from the late '80s and early '90s. Steer left or right, dodge traffic, and chase a high score as the road gets faster. Every overtake counts; one crash ends the run.\n\nBuilt natively for Apple Watch, iPhone, iPad, and Mac, RetroRapid! fits wherever you play. Use taps, swipes, a keyboard, the Digital Crown, or a supported controller, while Game Center leaderboards, achievements, and friend markers give you another score to chase.",
   "nameOrigin": "Unexpectedly released with love ❤️ from the ARCtic conference in Oulu, Finland. Thanks to everyone that played the game and encouraged me to push the button.",
   "imagePath": "/Images/Site/Apps/RetroRapidIcon.png",
   "imageDescription": "RetroRapid! app icon - A retro-styled racing game icon featuring a classic car in a pixelated LCD game aesthetic",
@@ -31,21 +31,21 @@
       "features": [
         {
           "title": "The look you grew up with",
-          "description": "RetroRapid! channels the look and feel of the LCD handhelds many of us grew up with, rebuilt with a clean, modern implementation. Unlock Unlimited Play to switch between visual themes and make the retro vibe your own.",
+          "description": "RetroRapid! channels classic LCD handhelds with a clean, native implementation. Unlock Unlimited Plays to choose from the available visual themes and make the retro look your own.",
           "imagePath": "/Images/Site/Apps/RetroRapid/ClassicLCDaesthetic.png",
-          "imageDescription": "Close-up gameplay screenshot showing RetroRapid!'s retro LCD-style racing grid with monochrome pixel cars and large red lane controls at the bottom"
+          "imageDescription": "RetroRapid! on iPad using the green Pocket visual theme, with pixel cars on a three-lane road and large red controls at each side."
         },
         {
           "title": "Native Cross-Platform Play",
-          "description": "Whether you're at your desk or on the move, RetroRapid! is built natively for watchOS, iOS, iPadOS, and macOS, with a tailored experience on each platform. tvOS is next, and visionOS is on the horizon.",
+          "description": "Play on Apple Watch, iPhone, iPad, or Mac with an interface and controls tailored to each device, not a phone screen stretched across platforms.",
           "imagePath": "/Images/Site/Apps/RetroRapid/NativeCrossPlatformPlay.png",
-          "imageDescription": "A person playing RetroRapid! on Apple Watch by the water, demonstrating the native watchOS gameplay experience in a real-world setting"
+          "imageDescription": "A person playing RetroRapid! on Apple Watch beside the water, with the watch and racing screen centered in the photo."
         },
         {
           "title": "Game Center Competition",
-          "description": "Track your best runs with Game Center leaderboards by platform and speed, compare scores with friends, and keep climbing. Achievements are coming soon.",
+          "description": "Game Center tracks leaderboards by platform and speed, unlocks achievements for streaks, totals, and control styles, and places friends' best scores on the road as markers to chase.",
           "imagePath": "/Images/Site/Apps/RetroRapid/GameCenterCompetition.png",
-          "imageDescription": "Apple Games screen showing RetroRapid! in the Now Playing section with leaderboard rankings, highlighting Game Center competition"
+            "imageDescription": "RetroRapid! on Mac showing an achievement sheet over the racing screen for completing a run with VoiceOver controls."
         }
       ]
     },
@@ -54,26 +54,26 @@
       "features": [
         {
           "title": "VoiceOver, Cues, and Haptics",
-          "description": "RetroRapid! supports VoiceOver and pairs spoken feedback with sound cues and haptics, so you always know where you are, even during the fastest runs.",
+          "description": "RetroRapid! supports VoiceOver and Direct Touch, pairing spoken feedback with configurable audio cues and haptics. Pause to hear the road layout, and choose how speed changes are announced.",
           "imagePath": "/Images/Site/Apps/RetroRapid/VoiceOverCuesAndHaptics.png",
-          "imageDescription": "RetroRapid! main menu with VoiceOver captions visible at the bottom, indicating spoken feedback for accessible navigation"
+            "imageDescription": "A close-up of RetroRapid! settings on iPhone showing speed-increase warning feedback, a preview warning, Detailed Road, Big Cars, and Direct Touch."
         },
         {
           "title": "Play your way",
-          "description": "Control the game your way with the Digital Crown, taps, swipes, or keyboard. Game controller support is coming soon. You can also tune settings such as font choice and sound effects volume.",
+          "description": "Race with taps, swipes, keyboard arrows, the Digital Crown, or a supported MFi, Xbox, or PlayStation controller. Remap controller actions and tune sound, haptics, fonts, and road options.",
           "imagePath": "/Images/Site/Apps/RetroRapid/FlexibleControlsAndSettings.png",
-          "imageDescription": "In-game Controls help panel listing swipe, tap, and keyboard arrow key input options for moving between lanes"
+            "imageDescription": "RetroRapid! on Mac with the Settings window open over the racing screen, showing font, speed, audio feedback, volume, control help, and accessibility options."
         },
         {
           "title": "Adaptive Interface by Default",
-          "description": "RetroRapid! respects how you like your screen. Dynamic Type, Dark Mode, and both portrait and landscape orientations are all supported, so the game adapts to your preferences, not the other way around.",
+          "description": "RetroRapid! supports Larger Text, Dark Interface, sufficient contrast, Reduce Motion, and portrait or landscape play. Big Cars makes targets easier to see and tap.",
           "imagePath": "/Images/Site/Apps/RetroRapid/AdaptiveInterfaceByDefault.png",
           "imageDescription": "A hand holding an iPhone in portrait orientation running RetroRapid!, showing the retro-styled Score display and pixelated car sprites in a real-world setting"
         }
       ]
     }
   ],
-  "whySection": "RetroRapid! is built around three things: nostalgia, accessibility, and native Apple platform craft. It started as a side project years ago, got its final push from the ARCtic Conference community, and shipped because people were having fun right away. The goal is simple: quick runs, fair challenge, and a game that more people can enjoy.",
+  "whySection": "RetroRapid! is built around nostalgia, accessibility, and native Apple-platform craft. Runs are quick, the challenge is fair, and feedback works visually, audibly, and through haptics. Play free each day or unlock Unlimited Plays with one purchase: no subscription and no data collection.",
   "supportText": "Need help with RetroRapid! or want to share feedback? We're here to help you enjoy the retro racing experience!",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }

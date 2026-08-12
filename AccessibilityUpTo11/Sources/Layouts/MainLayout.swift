@@ -136,7 +136,7 @@ struct MainLayout: Layout {
                         .class("site-footer-primary")
 
                         Link(target: "https://swiftforswifts.org") {
-                            Image(decorative: "https://swiftforswifts.org/downloads/swift-for-swifts-icon.png")
+                            Image(decorative: "/Images/Site/Global/swift-for-swifts-small.png")
                                 .resizable()
                                 .frame(height: .em(2.0))
                         }

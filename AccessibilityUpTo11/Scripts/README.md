@@ -15,6 +15,30 @@ Site and app names use a trailing `!` as the brand mark (e.g. **Xarra!**, **Mest
 
 Implementation: `Sources/Utilities/BrandCopy.swift`.
 
+## Responsive image optimisation
+
+Every normal site build keeps the files in `Assets/Images` as canonical fallbacks, then generates responsive WebP derivatives under the ignored `Build/Images/Optimized` directory. Generated HTML is rewritten with `picture`, `srcset`, intrinsic dimensions, async decoding, and eager/lazy loading hints before validation.
+
+Local and CI builds require WebP tools and ImageMagick:
+
+```bash
+brew install webp imagemagick
+```
+
+Ubuntu CI installs the equivalent `webp` and `imagemagick` packages. Encoding is selected from the decoded image format, with exact lossless treatment for the site's illustration collections and retained ICC colour profiles. Exact-path exceptions can be declared in `ImageOptimizationConfig.json` using the `photo`, `graphic`, `line-art`, or `lossless` profile.
+
+For a deliberately unoptimised local build only:
+
+```bash
+SKIP_IMAGE_OPTIMIZATION=1 ignite build
+```
+
+Production builds must not set that override. The optimiser validates every generated local image and fails the build if a derivative, responsive source set, intrinsic dimension, or loading hint is missing.
+
+The production gate also enforces the 32px browser, 96px Search, and 180px Apple-touch favicon budgets plus at least 70% estimated image-transfer reduction across representative pages at a 390px-wide 2x viewport. Article images remain lazy with low fetch priority; listing, app, and profile pages may promote their first meaningful visible image.
+
+Image encoding uses a bounded worker pool so a normal optimised build completes promptly. Set `IMAGE_OPTIMIZATION_WORKERS` only when you need to reduce or increase its default limit of six concurrent source images.
+
 ## 365 Days title regeneration
 
 After editing the local gitignored `Days365Content/recommended-titles.md`:

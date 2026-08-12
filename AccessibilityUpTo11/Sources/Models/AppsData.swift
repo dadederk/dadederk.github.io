@@ -90,9 +90,6 @@ struct AppItem: Identifiable, Codable {
     }
 
     static func defaultSlug(for title: String) -> String {
-        if BrandCopy.baseName(title) == "iMonstickers" {
-            return "iMonstickers"
-        }
         return BrandCopy.slug(from: title)
     }
 }

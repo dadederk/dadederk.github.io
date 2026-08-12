@@ -153,7 +153,15 @@ body[data-current-page="/more-content"] .navbar .nav-item.dropdown .dropdown-tog
     display: inline-block !important;
 }
 
+[data-bs-theme="accessibility-up-to11-light"] .logo-light-picture {
+    display: inline-block !important;
+}
+
 [data-bs-theme="accessibility-up-to11-light"] .logo-dark {
+    display: none !important;
+}
+
+[data-bs-theme="accessibility-up-to11-light"] .logo-dark-picture {
     display: none !important;
 }
 
@@ -161,7 +169,15 @@ body[data-current-page="/more-content"] .navbar .nav-item.dropdown .dropdown-tog
     display: none !important;
 }
 
+[data-bs-theme="accessibility-up-to11-dark-dark"] .logo-light-picture {
+    display: none !important;
+}
+
 [data-bs-theme="accessibility-up-to11-dark-dark"] .logo-dark {
+    display: inline-block !important;
+}
+
+[data-bs-theme="accessibility-up-to11-dark-dark"] .logo-dark-picture {
     display: inline-block !important;
 }
 
@@ -201,6 +217,35 @@ body {
     }
 }
 
+/* Responsive image wrappers are generated after Ignite publishes the site. */
+picture.responsive-picture {
+    display: block;
+    max-width: 100%;
+}
+
+picture.responsive-picture > img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Bootstrap's ratio helper now contains picture rather than img directly. */
+.ratio > picture.responsive-picture > img {
+    width: 100%;
+    height: 100%;
+}
+
+.ratio > picture.responsive-picture > img.object-fit-cover {
+    object-position: center;
+}
+
+.card > picture.responsive-picture {
+    width: 100%;
+}
+
+.site-footer-row picture.responsive-picture > img {
+    width: auto !important;
+}
+
 /* Post/markdown images: readable max width, framed look, and better paragraph separation. */
 #main-content .post-content img,
 #main-content .markdown-content img {
@@ -215,7 +260,9 @@ body {
 
 /* Ensure consecutive images have proper spacing */
 #main-content .post-content img + img,
-#main-content .markdown-content img + img {
+#main-content .markdown-content img + img,
+#main-content .post-content picture.responsive-picture + picture.responsive-picture img,
+#main-content .markdown-content picture.responsive-picture + picture.responsive-picture img {
     margin-top: 3rem !important;
 }
 
@@ -304,6 +351,15 @@ body {
     width: 64px !important;
     height: 64px !important;
     max-width: 64px !important;
+    min-width: 64px;
+    flex-shrink: 0;
+}
+
+.navbar-brand .logo-light-picture,
+.navbar-brand .logo-dark-picture {
+    width: 64px;
+    height: 64px;
+    max-width: 64px;
     min-width: 64px;
     flex-shrink: 0;
 }

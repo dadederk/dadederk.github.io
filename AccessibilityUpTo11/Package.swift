@@ -13,5 +13,8 @@ let package = Package(
         .executableTarget(
             name: "AccessibilityUpTo11",
             dependencies: ["Ignite"]),
+        .testTarget(
+            name: "AccessibilityUpTo11Tests",
+            dependencies: ["AccessibilityUpTo11"]),
     ]
 )
