@@ -26,7 +26,7 @@ You can disable Game Center integration in your device's Settings at any time.
 
 All in-app purchases are processed by Apple through the App Store. We do not collect, store, or have access to your payment information. Your purchase history is managed by Apple and is subject to [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
 
-If you have Unlimited Play, the App Store may share with us a non-personal receipt token to verify your entitlement. No personally identifiable information is shared with us as part of this process.
+If you have Unlimited Plays, the App Store may share with us a non-personal receipt token to verify your entitlement. No personally identifiable information is shared with us as part of this process.
 
 ## Third-Party Services
 

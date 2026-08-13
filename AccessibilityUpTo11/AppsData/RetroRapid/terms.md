@@ -22,8 +22,8 @@ RetroRapid! integrates with Apple's Game Center for leaderboards and achievement
 
 RetroRapid! offers an optional one-time purchase:
 
-- **Unlimited Play** is a non-consumable in-app purchase that removes the play limit and unlocks visual themes.
-- Unlimited Play supports **Family Sharing**, so everyone in your Family Sharing group can benefit from the purchase.
+- **Unlimited Plays** is a non-consumable in-app purchase that removes the play limit and unlocks available visual styles.
+- Unlimited Plays supports **Family Sharing**, so everyone in your Family Sharing group can benefit from the purchase.
 - All purchases are processed by Apple through the App Store. Refunds are governed by Apple's App Store refund policy. Please contact Apple directly for refund requests.
 
 ## 5. Intellectual Property
