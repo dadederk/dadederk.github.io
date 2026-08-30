@@ -1,0 +1,95 @@
+{
+  "order": 5,
+  "isPublished": false,
+  "category": "game",
+  "slug": "max-the-game",
+  "title": "Max!",
+  "subtitle": "Fly high. Dodge the city.",
+  "description": "Max! is a hand-drawn superhero adventure with one simple action: press anywhere, then release to fly up and clear the city ahead. Dodge buildings and flying baddies, protect three lives, and chase a personal best across three flight paces.",
+  "nameOrigin": "Max began with drawings by a four-year-old artist. Those drawings became the game, and what I receive from Unlimited Plays is saved for the young artist’s future.",
+  "legalContentDirectory": "MaxTheGame",
+  "imagePath": "/Images/Site/Apps/MaxTheGameIcon.png",
+  "imageDescription": "Max! app icon with a hand-drawn superhero symbol on a bright green background.",
+  "platforms": ["iOS", "iPadOS"],
+  "actions": [
+    {
+      "title": "Join the TestFlight",
+      "target": "https://testflight.apple.com/join/9dXx2Ag5",
+      "style": "primary"
+    }
+  ],
+  "featureGroups": [
+    {
+      "title": "A drawing takes flight.",
+      "features": [
+        {
+          "title": "Meet Max",
+          "description": "Max first appeared in drawings by a four-year-old artist. The main menu keeps that hand-painted hero front and center; one button sends him into a one-action flight over the city.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/MainMenu.png",
+          "imageDescription": "The Max: The Game main menu on iPad, with the hand-painted superhero filling the left side and the Play button on the right."
+        },
+        {
+          "title": "One clear action",
+          "description": "Press anywhere to prepare, then release to send Max upward. Stay low beneath high-flying baddies and time each jump around the city skyline.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/MidJump.png",
+          "imageDescription": "Max mid-jump above a hand-drawn building with clouds in the sky, two speed lines trailing behind him, a high-flying baddie ahead, a score of 18, and all three lives remaining."
+        },
+        {
+          "title": "A city full of surprises",
+          "description": "Different buildings and low- or high-flying baddies ask you to jump or stay low. More hand-drawn obstacles join the run as the score rises.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/BaddiesAndBuildings.png",
+          "imageDescription": "Max flying with clouds and speed lines behind him towards a high baddie and a hand-drawn building, with a score of 62 and two lives remaining."
+        }
+      ]
+    },
+    {
+      "title": "Fly, dodge, keep going.",
+      "features": [
+        {
+          "title": "Speed builds as you fly",
+          "description": "Glide, Boost, and Supersonic set the starting rhythm. The pace keeps rising during a run, with a clear warning before each increase.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/SpeedIncreasing.png",
+          "imageDescription": "Max flying with clouds and three speed lines behind him towards two different buildings while the Speed increasing warning appears, with a score of 23 and two lives remaining."
+        },
+        {
+          "title": "Three lives, visible stakes",
+          "description": "A collision costs one of three lives, pauses the action for clear feedback, then lets Max recover and keep flying until the third hit.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/Collision.png",
+          "imageDescription": "Max crashing into a hand-drawn building beneath two clouds, with the collision burst visible, a score of 41, and one life remaining."
+        },
+        {
+          "title": "A quieter sky when you want it",
+          "description": "The sky follows the system’s Light or Dark appearance. Reduce Distractions removes decorative clouds, and Reduce Motion removes speed-line trails, without changing the rules.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/DarkModeFlight.png",
+          "imageDescription": "Max jumping through the dark game sky with clouds and speed-line trails hidden, towards a low-flying baddie and a tall building, with a score of 88 and two lives remaining."
+        }
+      ]
+    },
+    {
+      "title": "Built for more ways to play",
+      "features": [
+        {
+          "title": "VoiceOver, Direct Touch, and audio cues",
+          "description": "With VoiceOver, Direct Touch lets the full gameplay surface receive immediate taps. Optional beeps or continuous tones announce an approaching obstacle, then end with a Jump or Stay Low cue.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/VoiceOverDirectTouch.png",
+          "imageDescription": "Max! Settings on iPad showing VoiceOver guidance text, the Beeps sound style, Haptics, Direct Touch, and Reduce distractions."
+        },
+        {
+          "title": "Learn the cues before take-off",
+          "description": "How to Play puts each audio cue in context and lets you preview the final upward Jump cue and downward Stay Low cue before starting a run.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/AudioGuidance.png",
+          "imageDescription": "The Max! How to Play screen on iPad explaining Beeps guidance, with full-width preview buttons for the Jump and Stay Low cues."
+        },
+        {
+          "title": "Free every day",
+          "description": "Play 9 free runs on your first day and 3 each day after that. When today’s free plays finish, Max simply says more are ready tomorrow. A grown-up can choose one optional Unlimited Plays purchase with Family Sharing—never a subscription.",
+          "imagePath": "/Images/Site/Apps/MaxTheGame/FreeEveryDay.png",
+          "imageDescription": "The Max! free-plays notice on iPad, saying that more free plays will be ready tomorrow, with OK and Ask a grown-up buttons."
+        }
+      ]
+    }
+  ],
+  "whySection": "Max! keeps its rules simple and its feedback flexible. VoiceOver play uses Direct Touch and optional audio cues, the menus adapt to Dynamic Type, and the game sky follows Light and Dark Mode. These features are part of the game for every player. Unlimited Plays changes only the daily run limit. What I receive from Unlimited Plays is saved for the young artist’s future.",
+  "supportText": "Need help with Max! or want to share feedback? Get in touch and we’ll be happy to help.",
+  "contactEmail": "hello@accessibilityUpTo11.com"
+}

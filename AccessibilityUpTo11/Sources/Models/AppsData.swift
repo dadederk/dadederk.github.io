@@ -19,8 +19,10 @@ enum AppCategory: String, Codable {
 
 struct AppItem: Identifiable, Codable {
     let id: UUID
+    let isPublished: Bool
     let slug: String
     let title: String
+    let legalContentDirectory: String?
     let subtitle: String
     let description: String
     let nameOrigin: String
@@ -43,8 +45,10 @@ struct AppItem: Identifiable, Codable {
     
     init(
         id: UUID = UUID(),
+        isPublished: Bool = true,
         slug: String? = nil,
         title: String,
+        legalContentDirectory: String? = nil,
         subtitle: String,
         description: String,
         nameOrigin: String,
@@ -66,8 +70,10 @@ struct AppItem: Identifiable, Codable {
         category: AppCategory = .app
     ) {
         self.id = id
+        self.isPublished = isPublished
         self.slug = slug ?? AppItem.defaultSlug(for: title)
         self.title = title
+        self.legalContentDirectory = legalContentDirectory
         self.subtitle = subtitle
         self.description = description
         self.nameOrigin = nameOrigin

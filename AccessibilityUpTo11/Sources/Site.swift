@@ -179,20 +179,13 @@ struct AccessibilityUpTo11Website {
         }
         
         // Add app pages
-        let appPages = [
-            ("/apps/mestre", "0.9", "monthly"),
-            ("/apps/mestre/terms", "0.8", "yearly"),
-            ("/apps/mestre/privacy", "0.8", "yearly"),
-            ("/apps/xarra", "0.9", "monthly"),
-            ("/apps/xarra/terms", "0.8", "yearly"),
-            ("/apps/xarra/privacy", "0.8", "yearly"),
-            ("/apps/imonstickers", "0.9", "monthly"),
-            ("/apps/imonstickers/terms", "0.8", "yearly"),
-            ("/apps/imonstickers/privacy", "0.8", "yearly"),
-            ("/apps/retrorapid", "0.9", "monthly"),
-            ("/apps/retrorapid/terms", "0.8", "yearly"),
-            ("/apps/retrorapid/privacy", "0.8", "yearly")
-        ]
+        let appPages = AppsData.loadContent().apps.flatMap { app in
+            [
+                ("/apps/\(app.slug)", "0.9", "monthly"),
+                ("/apps/\(app.slug)/terms", "0.8", "yearly"),
+                ("/apps/\(app.slug)/privacy", "0.8", "yearly")
+            ]
+        }
         
         for (path, priority, changefreq) in appPages {
             sitemap += """
@@ -518,30 +511,26 @@ struct AccessibilityUpTo11Site: Site {
     }
     
     // Static pages
-        var staticPages: [any StaticPage] {
+    var staticPages: [any StaticPage] {
         var pages: [any StaticPage] = [
             Blog(),
             // Days365(), // Removed - now handled by Days365StaticPages.generateAllPages()
             About(),
             Resources(),
             ContentLicense(),
-            Apps(),
-            // App pages using UniversalAppPage template
-            UniversalAppPage(appIdentifier: "mestre", pageType: .main),
-            UniversalAppPage(appIdentifier: "mestre", pageType: .terms),
-            UniversalAppPage(appIdentifier: "mestre", pageType: .privacy),
-            UniversalAppPage(appIdentifier: "xarra", pageType: .main),
-            UniversalAppPage(appIdentifier: "xarra", pageType: .terms),
-            UniversalAppPage(appIdentifier: "xarra", pageType: .privacy),
-            UniversalAppPage(appIdentifier: "imonstickers", pageType: .main),
-            UniversalAppPage(appIdentifier: "imonstickers", pageType: .terms),
-            UniversalAppPage(appIdentifier: "imonstickers", pageType: .privacy),
-            UniversalAppPage(appIdentifier: "retrorapid", pageType: .main),
-            UniversalAppPage(appIdentifier: "retrorapid", pageType: .terms),
-            UniversalAppPage(appIdentifier: "retrorapid", pageType: .privacy)
+            Apps()
         ]
 
-        for slug in UniversalLinkConfiguration.openPageSlugs {
+        let visibleApps = AppsData.loadContent().apps
+        let visibleAppSlugs = Set(visibleApps.map(\.slug))
+
+        for app in visibleApps {
+            pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .main))
+            pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .terms))
+            pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .privacy))
+        }
+
+        for slug in UniversalLinkConfiguration.openPageSlugs where visibleAppSlugs.contains(slug) {
             pages.append(UniversalAppPage(appIdentifier: slug, pageType: .open))
         }
         

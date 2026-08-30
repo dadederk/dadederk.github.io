@@ -4,9 +4,19 @@ import Ignite
 // MARK: - Apps JSON Content Loader
 
 struct AppsJSONLoader {
+    /// Set to `1` while building a local preview to include apps whose JSON has
+    /// `isPublished` set to `false`.
+    static let includeUnpublishedAppsEnvironmentKey = "A11Y11_INCLUDE_UNPUBLISHED_APPS"
     
-    static func loadAppsContent() -> AppsData {
-        let apps = loadApps()
+    static func loadAppsContent(
+        environment: [String: String] = ProcessInfo.processInfo.environment
+    ) -> AppsData {
+        let includesUnpublishedApps = environment[
+            includeUnpublishedAppsEnvironmentKey
+        ] == "1"
+        let apps = loadApps().filter { app in
+            app.isPublished || includesUnpublishedApps
+        }
         return AppsData(apps: apps)
     }
     
@@ -64,8 +74,10 @@ struct AppsJSONLoader {
 // MARK: - JSON Decoding Models
 
 private struct AppItemJSON: Codable {
+    let isPublished: Bool?
     let slug: String?
     let title: String
+    let legalContentDirectory: String?
     let subtitle: String
     let description: String
     let nameOrigin: String
@@ -119,8 +131,10 @@ private struct AppItemJSON: Codable {
         }()
         
         return AppItem(
+            isPublished: isPublished ?? true,
             slug: slug,
             title: title,
+            legalContentDirectory: legalContentDirectory,
             subtitle: subtitle,
             description: description,
             nameOrigin: nameOrigin,
