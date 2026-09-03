@@ -33,15 +33,15 @@ The price, purchase, redemption, restoration, and legal links are shown only aft
 
 The app uses Apple's Game Center for leaderboards. Each Game Center visit requires a grown-up to complete the app's parental gate before authentication or leaderboard presentation begins. Game Center availability and use are subject to Apple's terms. The developer cannot guarantee that Game Center or a particular leaderboard will always be available.
 
-## 6. The Young Artist and Savings Commitment
+## 6. The Developer's Son and Savings Commitment
 
-The original artwork was created by a four-year-old artist, who is credited without publishing their name.
+The original artwork was created by the developer's son when he was four. He is credited without publishing his name.
 
-The developer commits all **developer proceeds** from Unlimited Plays to the young artist's future. For this commitment, developer proceeds means every amount Apple actually pays the developer that is attributable to Unlimited Plays, after Apple's commission and any taxes Apple deducts or withholds, refunds, chargebacks, currency conversions, or other App Store adjustments made before payout. It is not the price paid by the customer. The developer does not deduct their own tax liabilities, development time, or other game or business costs from this amount.
+The developer commits all **developer proceeds** from Unlimited Plays to his son's future. For this commitment, developer proceeds means every amount Apple actually pays the developer that is attributable to Unlimited Plays, after Apple's commission and any taxes Apple deducts or withholds, refunds, chargebacks, currency conversions, or other App Store adjustments made before payout. It is not the price paid by the customer. The developer does not deduct their own tax liabilities, development time, or other game or business costs from this amount.
 
-After Apple pays the developer and the payment can be reconciled to Unlimited Plays, these proceeds are recorded and set aside. Contributions are normally made quarterly. They may instead be made annually where provider minimums or transaction charges make that more efficient. They are contributed first to the young artist's Junior ISA, subject to its remaining annual subscription allowance, and then to the young artist's Junior SIPP, subject to its remaining contribution limits, tax-relief eligibility, and provider rules. If those accounts cannot accept the full amount, the balance remains set aside for the young artist until it can be contributed to an eligible account held for their benefit. The same commitment continues if age or rule changes require a successor or alternative account.
+After Apple pays the developer and the payment can be reconciled to Unlimited Plays, these proceeds are recorded and set aside. Contributions are normally made quarterly. They may instead be made annually where provider minimums or transaction charges make that more efficient. They are contributed first to his Junior ISA, subject to its remaining annual subscription allowance, and then to his Junior SIPP, subject to its remaining contribution limits, tax-relief eligibility, and provider rules. If those accounts cannot accept the full amount, the balance remains set aside for him until it can be contributed to an eligible account held for his benefit. The same commitment continues if age or rule changes require a successor or alternative account.
 
-This is a personal savings commitment by the developer, not a charitable-donation claim. A purchase does not give the customer any ownership interest in the app, the proceeds, or the young artist's accounts, and it does not entitle the customer to tax relief.
+This is a personal savings commitment by the developer, not a charitable-donation claim. A purchase does not give the customer any ownership interest in the app, the proceeds, or his son's accounts, and it does not entitle the customer to tax relief.
 
 ## 7. Intellectual Property
 

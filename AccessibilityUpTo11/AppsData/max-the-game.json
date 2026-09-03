@@ -6,7 +6,7 @@
   "title": "Max!",
   "subtitle": "Fly high. Dodge the city.",
   "description": "Max! is a hand-drawn superhero adventure with one simple action: press anywhere, then release to fly up and clear the city ahead. Dodge buildings and flying baddies, protect three lives, and chase a personal best across three flight paces.",
-  "nameOrigin": "Max began with drawings by a four-year-old artist. Those drawings became the game, and what I receive from Unlimited Plays is saved for the young artist’s future.",
+  "nameOrigin": "Max began with drawings my son made when he was four. Those drawings became the game, and what I receive from Unlimited Plays is saved for his future.",
   "legalContentDirectory": "MaxTheGame",
   "imagePath": "/Images/Site/Apps/MaxTheGameIcon.png",
   "imageDescription": "Max! app icon with a hand-drawn superhero symbol on a bright green background.",
@@ -24,7 +24,7 @@
       "features": [
         {
           "title": "Meet Max",
-          "description": "Max first appeared in drawings by a four-year-old artist. The main menu keeps that hand-painted hero front and center; one button sends him into a one-action flight over the city.",
+          "description": "Max first appeared in drawings my son made when he was four. The main menu keeps that hand-painted hero front and center; one button sends him into a one-action flight over the city.",
           "imagePath": "/Images/Site/Apps/MaxTheGame/MainMenu.png",
           "imageDescription": "The Max: The Game main menu on iPad, with the hand-painted superhero filling the left side and the Play button on the right."
         },
@@ -89,7 +89,7 @@
       ]
     }
   ],
-  "whySection": "Max! keeps its rules simple and its feedback flexible. VoiceOver play uses Direct Touch and optional audio cues, the menus adapt to Dynamic Type, and the game sky follows Light and Dark Mode. These features are part of the game for every player. Unlimited Plays changes only the daily run limit. What I receive from Unlimited Plays is saved for the young artist’s future.",
+  "whySection": "Max! keeps its rules simple and its feedback flexible. VoiceOver play uses Direct Touch and optional audio cues, the menus adapt to Dynamic Type, and the game sky follows Light and Dark Mode. These features are part of the game for every player. Unlimited Plays changes only the daily run limit. What I receive from Unlimited Plays is saved for my son’s future.",
   "supportText": "Need help with Max! or want to share feedback? Get in touch and we’ll be happy to help.",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }

@@ -33,9 +33,9 @@ Unlimited Plays is processed by Apple through the App Store. The developer does 
 
 The product, price, purchase, redemption, restoration, privacy, and terms actions appear only after a grown-up completes the app's parental gate. Links that leave the app are likewise kept in a gated grown-up area. The gate is an on-device addition question; the answer and successful access are not stored.
 
-## The Young Artist
+## The Developer's Son
 
-The original artwork was created by a four-year-old artist. The app and this website do not publish the artist's name or ask the artist to provide personal information.
+The original artwork was created by the developer's son when he was four. The app and this website do not publish his name or ask him to provide personal information.
 
 ## Children's Privacy
 
