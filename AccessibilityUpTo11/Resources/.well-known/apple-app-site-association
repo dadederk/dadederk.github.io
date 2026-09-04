@@ -16,6 +16,7 @@
         "paths" : [
           "\/apps\/xarra\/open",
           "\/apps\/xarra\/open\/",
+          "\/apps\/xarra\/document\/*",
           "\/xarra\/open-latest-share",
           "\/xarra\/open-latest-share\/"
         ]
