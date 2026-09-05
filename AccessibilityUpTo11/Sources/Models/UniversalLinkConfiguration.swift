@@ -24,7 +24,10 @@ enum UniversalLinkConfiguration {
         UniversalLinkRoute(
             slug: "xarra",
             appID: "PV9S9FTZF2.com.accessibilityUpTo11.Xarra",
-            additionalPaths: ["/xarra/open-latest-share"]
+            additionalPaths: [
+                "/apps/xarra/document/*",
+                "/xarra/open-latest-share"
+            ]
         )
     ]
 

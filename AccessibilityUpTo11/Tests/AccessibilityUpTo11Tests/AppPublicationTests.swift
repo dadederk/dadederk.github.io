@@ -16,4 +16,12 @@ final class AppPublicationTests: XCTestCase {
 
         XCTAssertTrue(apps.contains { $0.slug == "max-the-game" })
     }
+
+    func testXarraUniversalLinksIncludeDocumentEntities() throws {
+        let route = try XCTUnwrap(
+            UniversalLinkConfiguration.routes.first { $0.slug == "xarra" }
+        )
+
+        XCTAssertTrue(route.allPaths.contains("/apps/xarra/document/*"))
+    }
 }
