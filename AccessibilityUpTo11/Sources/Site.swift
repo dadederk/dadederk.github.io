@@ -186,8 +186,12 @@ struct AccessibilityUpTo11Website {
                 ("/apps/\(app.slug)/privacy", "0.8", "yearly")
             ]
         }
+
+        let xarraPressPage = AppsData.loadContent().apps.contains { $0.slug == "xarra" }
+            ? [("/apps/xarra/press", "0.8", "monthly")]
+            : []
         
-        for (path, priority, changefreq) in appPages {
+        for (path, priority, changefreq) in appPages + xarraPressPage {
             sitemap += """
             <url>
                 <loc>https://accessibilityupto11.com\(path)</loc>
@@ -277,7 +281,7 @@ struct AccessibilityUpTo11Website {
         do {
             try sitemap.write(to: sitemapFile, atomically: true, encoding: .utf8)
             let totalURLs = mainPages.count
-                + appPages.count
+                + appPages.count + xarraPressPage.count
                 + blogPosts.count
                 + blogTagPaths.count
                 + days365Posts.count
@@ -528,6 +532,9 @@ struct AccessibilityUpTo11Site: Site {
             pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .main))
             pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .terms))
             pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .privacy))
+            if app.slug == "xarra" {
+                pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .press))
+            }
         }
 
         for slug in UniversalLinkConfiguration.openPageSlugs where visibleAppSlugs.contains(slug) {

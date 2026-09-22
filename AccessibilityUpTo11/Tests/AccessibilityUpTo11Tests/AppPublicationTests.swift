@@ -24,4 +24,18 @@ final class AppPublicationTests: XCTestCase {
 
         XCTAssertTrue(route.allPaths.contains("/apps/xarra/document/*"))
     }
+
+    @MainActor func testOnlyXarraPublishesPressPageWithPressMetadata() throws {
+        let pressPages = AccessibilityUpTo11Site().staticPages
+            .compactMap { $0 as? UniversalAppPage }
+            .filter { $0.pageType == .press }
+
+        XCTAssertEqual(pressPages.map(\.path), ["/apps/xarra/press"])
+
+        let xarra = try XCTUnwrap(AppsData.loadContent().apps.first { $0.slug == "xarra" })
+        let meta = MetaBuilder.app(xarra, pageType: .press)
+        XCTAssertEqual(meta.path, "/apps/xarra/press")
+        XCTAssertTrue(meta.title.contains("Press Kit"))
+        XCTAssertTrue(meta.description.contains("full-resolution screenshots"))
+    }
 }

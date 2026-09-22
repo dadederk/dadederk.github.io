@@ -93,6 +93,7 @@ enum MetaBuilder {
         case .terms: suffix = " • Terms & Conditions"
         case .privacy: suffix = " • Privacy Policy"
         case .open: suffix = " • Open in App"
+        case .press: suffix = " • Press Kit"
         }
         
         let description: String
@@ -103,6 +104,8 @@ enum MetaBuilder {
             description = app.nameOrigin
         case .open:
             description = "Open \(app.title) in the app when installed, with automatic App Store fallback."
+        case .press:
+            description = "Facts, copy, full-resolution screenshots, app icons, and contact details for coverage of \(app.title)"
         }
         
         return page(

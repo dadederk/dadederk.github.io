@@ -200,6 +200,7 @@ extension MainLayout {
                     case "terms": type = .terms
                     case "privacy": type = .privacy
                     case "open": type = .open
+                    case "press": type = .press
                     default: type = .main
                     }
                 } else {

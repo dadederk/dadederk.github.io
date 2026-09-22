@@ -11,6 +11,7 @@ struct UniversalAppPage: StaticPage {
         case terms
         case privacy
         case open
+        case press
         
         var pathSegment: String {
             switch self {
@@ -18,6 +19,7 @@ struct UniversalAppPage: StaticPage {
             case .terms: return "/terms"
             case .privacy: return "/privacy"
             case .open: return "/open"
+            case .press: return "/press"
             }
         }
         
@@ -27,6 +29,7 @@ struct UniversalAppPage: StaticPage {
             case .terms: return " - Terms & Conditions"
             case .privacy: return " - Privacy Policy"
             case .open: return " - Open in App"
+            case .press: return " - Press Kit"
             }
         }
         
@@ -36,6 +39,7 @@ struct UniversalAppPage: StaticPage {
             case .terms: return "terms.md"
             case .privacy: return "privacy.md"
             case .open: return ""
+            case .press: return ""
             }
         }
         
@@ -45,6 +49,7 @@ struct UniversalAppPage: StaticPage {
             case .terms: return "Terms & Conditions not found for this app."
             case .privacy: return "Privacy Policy not found for this app."
             case .open: return "App not found."
+            case .press: return "Press kit not found for this app."
             }
         }
     }
@@ -73,6 +78,8 @@ struct UniversalAppPage: StaticPage {
             return "Privacy policy for \(app.title), including data collection, usage, and protection details."
         case .open:
             return "Open \(app.title) in the app when installed, with automatic App Store fallback."
+        case .press:
+            return "Facts, copy, full-resolution screenshots, app icons, and contact details for coverage of \(app.title)"
         }
     }
 
@@ -89,6 +96,12 @@ struct UniversalAppPage: StaticPage {
             renderLegalPage()
         case .open:
             renderOpenRedirectPage()
+        case .press:
+            if let app = findApp(), app.slug == "xarra" {
+                XarraPressContent(app: app)
+            } else {
+                Text(pageType.notFoundMessage)
+            }
         }
     }
     
@@ -165,6 +178,9 @@ struct UniversalAppPage: StaticPage {
                         pillLink("Terms & Conditions", target: "/apps/\(appIdentifier)/terms")
                         pillLink("Privacy Policy", target: "/apps/\(appIdentifier)/privacy")
                         pillLink("Support & Contact", target: "#support-contact")
+                        if app.slug == "xarra" {
+                            pillLink("Press Kit", target: "/apps/xarra/press/")
+                        }
                     }
                     .style(.flexWrap, "wrap")
                     .style(.gap, "0.5rem")
