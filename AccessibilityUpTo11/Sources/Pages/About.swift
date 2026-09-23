@@ -3,7 +3,7 @@ import Ignite
 
 struct About: StaticPage {
     var title = "About"
-    var description = "Meet Daniel Devesa Derksen-Staats and explore publications, talks, and podcasts focused on accessible iOS development."
+    var description = "Meet Dani Devesa Derksen-Staats and explore publications, talks, and podcasts focused on accessible iOS development."
     var image: URL? { SiteMeta.imageURL("/Images/Site/Global/dani.jpg") }
     
     @MainActor var body: some HTML {
@@ -30,7 +30,7 @@ struct About: StaticPage {
                 
                 VStack(spacing: 6) {
                     // Author photo
-                    Image("/Images/Site/Global/dani.jpg", description: "Daniel, smiling slightly while wearing a navy sweater and a flat cap, standing outdoors with the rolling green hills of Tuscany and a cloudy sky in the background.")
+                    Image("/Images/Site/Global/dani.jpg", description: "Dani, smiling slightly while wearing a navy sweater and a flat cap, standing outdoors with the rolling green hills of Tuscany and a cloudy sky in the background.")
                         .resizable()
                         .cornerRadius(6)
                         .border(.darkGray)

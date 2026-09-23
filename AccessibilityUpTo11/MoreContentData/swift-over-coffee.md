@@ -14,6 +14,6 @@ actions:
 date: 2025-05-01
 ---
 
-To celebrate Global Accessibility Awareness Day, Mikaela and Paul recorded a special episode live at ARCtic Conference in Oulu, Finland, with a distinguished panel of accessibility champions: Rob Whitaker, Daniel Devesa Derksen-Staats and Klemens Strasser.
+To celebrate Global Accessibility Awareness Day, Mikaela and Paul recorded a special episode live at ARCtic Conference in Oulu, Finland, with a distinguished panel of accessibility champions: Rob Whitaker, Dani Devesa Derksen-Staats and Klemens Strasser.
 
 If accessibility seems like an overwhelming subject, don't panic; we show you not just why but also give you tips on how to get started with ensuring your apps are as accessible as possible — and remember the mantra, 'progress over perfection'!

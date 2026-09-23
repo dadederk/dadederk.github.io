@@ -8,7 +8,7 @@ struct BlogPostLayout: ArticlePage {
             for: .init(
                 headline: meta.title,
                 description: meta.description,
-                authorName: article.author ?? "Daniel Devesa Derksen-Staats",
+                authorName: article.author ?? "Dani Devesa Derksen-Staats",
                 authorURL: "\(SiteMeta.baseURL)/about",
                 datePublished: article.date,
                 dateModified: article.date,

@@ -18,4 +18,4 @@ When we forget to consider accessibility in our designs, we forget that it can m
 
 So how do you get developers and designers to adopt an accessibility mindset and make it a fundamental part of the development process? 
 
-Host Dave Zolotusky discusses the importance of accessibility with Daniel Devesa Derksen-Staats, an iOS engineer on Spotify’s accessibility team.
+Host Dave Zolotusky discusses the importance of accessibility with Dani Devesa Derksen-Staats, an iOS engineer on Spotify’s accessibility team.

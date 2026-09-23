@@ -6,7 +6,7 @@
 
 Accessibility up to 11! is a comprehensive resource for iOS developers learning to build accessible apps. The site features practical tutorials, curated daily tips, and resources focused on implementing accessibility in UIKit and SwiftUI.
 
-- **Author**: Daniel Devesa Derksen-Staats
+- **Author**: Dani Devesa Derksen-Staats
 - **Focus**: iOS, iPadOS, and visionOS accessibility
 - **Content**: 240+ posts with practical tips, annotated screenshots, and selected Swift examples
 - **URL**: https://accessibilityupto11.com

@@ -22,7 +22,7 @@ struct Days365PostPage: StaticPage {
             for: .init(
                 headline: post.topicTitle,
                 description: meta.description,
-                authorName: post.author.isEmpty ? "Daniel Devesa Derksen-Staats" : post.author,
+                authorName: post.author.isEmpty ? "Dani Devesa Derksen-Staats" : post.author,
                 authorURL: "\(SiteMeta.baseURL)/about",
                 datePublished: post.date,
                 dateModified: post.date,

@@ -184,7 +184,7 @@ enum AgentDiscoveryPublisher {
 
         ## About
 
-        iOS, iPadOS, and visionOS accessibility development blog by Daniel Devesa Derksen-Staats.
+        iOS, iPadOS, and visionOS accessibility development blog by Dani Devesa Derksen-Staats.
         Practical tutorials, daily tips, and curated resources for UIKit and SwiftUI developers.
 
         ## Long-form blog posts

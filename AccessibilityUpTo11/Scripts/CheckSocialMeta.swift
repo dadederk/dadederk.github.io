@@ -523,7 +523,7 @@ func pageChecks() -> [PageCheck] {
             relativePath: "about/index.html",
             expectsFallbackImage: false,
             expectedImageSubstring: "dani.jpg",
-            expectedDescriptionSubstring: "Daniel Devesa Derksen-Staats",
+            expectedDescriptionSubstring: "Dani Devesa Derksen-Staats",
             expectedTitleSubstring: nil,
             expectedJSONLDHeadlineSubstring: nil,
             expectedPageHeadingSubstring: nil,

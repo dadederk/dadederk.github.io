@@ -68,7 +68,7 @@ All blog posts, articles, and written content in this repository represent my pe
 
 ## About the Author
 
-This blog is maintained by [Daniel Devesa Derksen-Staats](https://github.com/dadederk) and focuses on making digital experiences more accessible and inclusive. The content reflects personal experiences, learnings, and advocacy in the accessibility space.
+This blog is maintained by [Dani Devesa Derksen-Staats](https://github.com/dadederk) and focuses on making digital experiences more accessible and inclusive. The content reflects personal experiences, learnings, and advocacy in the accessibility space.
 
 ## Credits
 

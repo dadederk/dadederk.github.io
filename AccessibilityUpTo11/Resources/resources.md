@@ -22,7 +22,7 @@
 * [Episode 81: Tools and Tips for Mobile App Developers](https://www.relay.fm/parallel/81), with [Rob Whitaker](https://rwapp.co.uk), by [Parallel](https://www.relay.fm/parallel)
 
 ## iOS Accessibility Agent Skills
-* [iOS Accessibility Agent Skill](https://github.com/dadederk/iOS-Accessibility-Agent-Skill) by [Daniel Devesa](https://github.com/dadederk)
+* [iOS Accessibility Agent Skill](https://github.com/dadederk/iOS-Accessibility-Agent-Skill) by [Dani Devesa](https://github.com/dadederk)
 * [Swift Accessibility Skill](https://github.com/PasqualeVittoriosi/swift-accessibility-skill) by [Pasquale Vittoriosi](https://github.com/PasqualeVittoriosi)
 * [Apple Accessibility Skills](https://github.com/rgmez/apple-accessibility-skills) by [Roberto Gómez Muñoz](https://github.com/rgmez)
 

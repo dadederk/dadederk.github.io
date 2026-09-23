@@ -5,7 +5,7 @@ Guidance for AI systems, coding agents, and automated crawlers accessing **Acces
 ## Site
 
 - **URL**: https://accessibilityupto11.com
-- **Author**: Daniel Devesa Derksen-Staats
+- **Author**: Dani Devesa Derksen-Staats
 - **Focus**: iOS, iPadOS, and visionOS accessibility for developers (UIKit, SwiftUI, VoiceOver, testing, inclusive UX)
 
 ## Discovery (start here)

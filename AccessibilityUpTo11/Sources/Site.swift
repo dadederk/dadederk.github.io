@@ -87,8 +87,8 @@ struct AccessibilityUpTo11Website {
         <description>A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.</description>
         <language>en-us</language>
         <copyright>Copyright © Daniel Devesa Derksen-Staats. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)</copyright>
-        <managingEditor>hello@accessibilityUpTo11.com (Daniel Devesa Derksen-Staats)</managingEditor>
-        <webMaster>hello@accessibilityUpTo11.com (Daniel Devesa Derksen-Staats)</webMaster>
+        <managingEditor>hello@accessibilityUpTo11.com (Dani Devesa Derksen-Staats)</managingEditor>
+        <webMaster>hello@accessibilityUpTo11.com (Dani Devesa Derksen-Staats)</webMaster>
         <pubDate>\(buildDate)</pubDate>
         <lastBuildDate>\(lastBuildDateString)</lastBuildDate>
         <generator>Ignite Static Site Generator</generator>
@@ -123,7 +123,7 @@ struct AccessibilityUpTo11Website {
             <title>\(cleanTitle)</title>
             <link>\(guid)</link>
             <description>\(cleanExcerpt)</description>
-            <author>hello@accessibilityUpTo11.com (Daniel Devesa Derksen-Staats)</author>
+            <author>hello@accessibilityUpTo11.com (Dani Devesa Derksen-Staats)</author>
             <pubDate>\(pubDate)</pubDate>
             <guid isPermaLink="true">\(guid)</guid>
             \(categories)
@@ -472,7 +472,7 @@ struct AccessibilityUpTo11Site: Site {
     var builtInIconsEnabled = true
     var description = "iOS accessibility development blog and resources for developers who want to make their apps accessible to everyone."
     
-    var author = "Daniel Devesa Derksen-Staats"
+    var author = "Dani Devesa Derksen-Staats"
     var language = Language.english
     var timeZone = TimeZone.current
     

@@ -5,7 +5,7 @@ import Ignite
 struct AuthorInfoPanel: HTML {
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {
-            Text("Daniel Devesa Derksen-Staats")
+            Text("Dani Devesa Derksen-Staats")
                 .font(.title2)
                 .fontWeight(.bold)
             
