@@ -12,7 +12,7 @@ struct MainLayout: Layout {
         let isPostContentPage = pagePath.hasPrefix("/post/") || pagePath.hasPrefix("/365-days-ios-accessibility/day-")
         let horizontalContentPadding = isPostContentPage ? 12 : 20
         let meta = metaContext()
-        let assetVersion = "2026-06-23-1"
+        let assetVersion = "2026-09-23-4"
         let isPaginatedListing = pagePath.contains("/page-")
         let robotsContent = isPaginatedListing
             ? "noindex, follow"

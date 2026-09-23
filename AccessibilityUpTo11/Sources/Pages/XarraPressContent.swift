@@ -44,7 +44,11 @@ struct XarraPressContent: HTML {
                     .fontWeight(.bold)
 
                 Section {
-                    fact("App", "Xarra: Read, Listen, Focus")
+                    Section {
+                        Text("App").class("xarra-press-fact-label")
+                        BrandCopy.phrase(prefix: "", brandTitle: app.title)
+                    }
+                    .class("xarra-press-fact")
                     fact("Name", "Xarra (pronounced \"CHA-rra\") comes from a Valencian/Catalan word meaning \"to chat\" or \"to talk\".")
                     fact("What it does", "Turns text into audio, from articles and blog posts to books, documents, and notes. Read, listen, or do both, with line and optional word highlighting to help you follow along.")
                     fact("Price", "Free download. Premium: US $1.99/month, $9.99/year, or $29.99 lifetime. Prices may vary by region.")
@@ -70,6 +74,19 @@ struct XarraPressContent: HTML {
                 .class("xarra-press-facts")
             }
             .class("xarra-press-section")
+
+            if !app.featuredIn.isEmpty {
+                Section {
+                    FeaturedInBox(
+                        title: "Featured in",
+                        mentions: app.featuredIn,
+                        quote: app.featuredQuote,
+                        quoteSourceTitle: app.featuredQuoteSourceTitle,
+                        quoteSourceTarget: app.featuredQuoteSourceTarget
+                    )
+                }
+                .class("xarra-press-section")
+            }
 
             Section {
                 BrandCopy.phrase(prefix: "About ", brandTitle: app.title)
@@ -141,15 +158,6 @@ struct XarraPressContent: HTML {
             .class("xarra-press-section")
 
             Section {
-                Text("Resumen para medios en español")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Te ayuda a avanzar con tus lecturas: puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si quieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
-                    .attribute("lang", "es")
-            }
-            .class("xarra-press-section")
-
-            Section {
                 Text("About the developer")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -157,25 +165,31 @@ struct XarraPressContent: HTML {
 
                 Text("More information")
                     .font(.title3)
-                if !app.featuredIn.isEmpty {
-                    FeaturedInBox(
-                        title: "Featured in",
-                        mentions: app.featuredIn,
-                        quote: app.featuredQuote,
-                        quoteSourceTitle: app.featuredQuoteSourceTitle,
-                        quoteSourceTarget: app.featuredQuoteSourceTarget
-                    )
+                List {
+                    ListItem {
+                        Link("About Dani", target: "/about/")
+                    }
+                    ListItem {
+                        Link("Developing Accessible iOS Apps", target: "https://www.springerprofessional.de/en/developing-accessible-ios-apps/17490934")
+                    }
+                    ListItem {
+                        Link("Watch the Double Tap interview", target: "https://www.youtube.com/watch?v=aCqS7Rg41Pg")
+                    }
                 }
-                Section {
-                    Link("About Dani", target: "/about/")
-                    Link("Developing Accessible iOS Apps", target: "https://www.springerprofessional.de/en/developing-accessible-ios-apps/17490934")
-                    Link("Watch the Double Tap interview", target: "https://www.youtube.com/watch?v=aCqS7Rg41Pg")
-                }
-                .class("xarra-press-proof-links")
 
                 Text("Press contact")
                     .font(.title3)
                 Link("Dani Devesa Derksen-Staats: \(contactEmail)", target: "mailto:\(contactEmail)")
+            }
+            .class("xarra-press-section")
+
+            Section {
+                Text("Resumen para medios en español")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .attribute("lang", "es")
+                Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Te ayuda a avanzar con tus lecturas: puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si quieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
+                    .attribute("lang", "es")
             }
             .class("xarra-press-section")
         }
