@@ -6,7 +6,7 @@ imagePath: /Images/Site/More Content/Podcasts/DoubleTap.png
 imageDescription: Double Tap podcast logo in white lettering on a red gradient background.
 actions:
   - title: Watch on YouTube
-    target: https://www.youtube.com/watch?v=aCqS7Rg41Pg
+    target: https://www.youtube.com/watch?v=3JMD70vf2yY
     style: primary
   - title: Apple Podcasts
     target: https://podcasts.apple.com/nz/podcast/weekend-building-accessible-games-and-reading-tools/id1309267346?i=1000765784913

@@ -21,7 +21,7 @@ struct XarraPressContent: HTML {
                         .font(.title1)
                         .fontWeight(.bold)
 
-                    Text("Xarra turns text into audio so you can get through articles, blog posts, books, and documents your way: read, listen, or do both, with synchronized line and optional word highlighting to help you stay focused.")
+                    Text("Xarra turns text into audio with synchronized line highlighting, so people can read, listen, or do both.")
                         .font(.body)
                 }
             }
@@ -44,19 +44,10 @@ struct XarraPressContent: HTML {
                     .fontWeight(.bold)
 
                 Section {
-                    Section {
-                        Text("App").class("xarra-press-fact-label")
-                        BrandCopy.phrase(prefix: "", brandTitle: app.title)
-                    }
-                    .class("xarra-press-fact")
-                    fact("Name", "Xarra (pronounced \"CHA-rra\") comes from a Valencian/Catalan word meaning \"to chat\" or \"to talk\".")
-                    fact("What it does", "Turns text into audio, from articles and blog posts to books, documents, and notes. Read, listen, or do both, with line and optional word highlighting to help you follow along.")
-                    fact("Price", "Free download. Premium: US $1.99/month, $9.99/year, or $29.99 lifetime. Prices may vary by region.")
-                    fact("Platforms", "iPhone, iPad, Mac, and Apple Vision Pro")
-                    fact("Requirements", "iOS, iPadOS, macOS, or visionOS 26.0 or later, respectively")
-                    fact("Availability", "Available now on the App Store")
-                    fact("First released", "March 2026")
-                    fact("Developer", "Dani Devesa Derksen-Staats, independent developer from Xàbia, based in London")
+                    fact("Price", "Free download. Premium: US $1.99/month, $9.99/year, or $29.99 lifetime. Regional pricing aims to reflect local purchasing power.")
+                    fact("Platforms", "iPhone, iPad, Mac, and Apple Vision Pro; OS version 26.0 or later on each platform")
+                    fact("Availability", "Available now on the App Store; first released March 2026")
+                    fact("Developer", "Dani Devesa Derksen-Staats, independent developer behind Accessibility up to 11!, from Xàbia and based in London")
                     linkedFact("Website", productURL, productURL)
                     linkedFact("App Store", storeURL, storeURL)
                     fact("Privacy", "No account, ads, analytics, or tracking. Documents stay on device and can sync through the user's private iCloud account.")
@@ -69,7 +60,6 @@ struct XarraPressContent: HTML {
                         }
                     }
                     .class("xarra-press-fact")
-                    linkedFact("Press contact", contactEmail, "mailto:\(contactEmail)")
                 }
                 .class("xarra-press-facts")
             }
@@ -95,17 +85,17 @@ struct XarraPressContent: HTML {
 
                 Text("One sentence")
                     .font(.title3)
-                Text("Xarra turns text into audio with a synchronized transcript so people can read, listen, or do both as they work through articles, blog posts, books, and documents.")
+                Text("Xarra turns articles, books, and documents into audio while highlighting the text in sync, so people can read, listen, or do both.")
 
                 Text("In brief")
                     .font(.title3)
-                Text("Bring in an article or blog post, PDF, EPUB, DAISY text publication, URL, or your own writing. Read on screen, listen with Apple voices, or combine both. The current line and, optionally, each spoken word are highlighted to help you stay with the text; chapters and iCloud progress sync help you pick up where you left off.")
+                Text("Import an article, PDF, EPUB, DAISY text publication, URL, or your own writing. Read on screen, listen with Apple voices, or combine both. Xarra highlights the current line as it reads; spoken words can also be underlined or highlighted with a background, or left unmarked. Chapters and iCloud progress sync help you pick up where you left off.")
 
                 Text("The story")
                     .font(.title3)
                 Text("Dani, in his own words:")
                     .fontWeight(.semibold)
-                Text("I built Xarra because I was finding it harder and harder to get through long pieces of text, especially on a screen. Listening while reading helped me stay with it; seeing the current line and each spoken word highlighted helped even more. I feel I'm reading more and getting through it faster. I understand it better and have to go back over passages less often. I can also take my reading on a walk or keep going while doing chores. Xarra grew out of wanting one place where I could read, listen, or do both, and move between them without losing my place.")
+                Text("I built Xarra because I was finding it harder and harder to get through long pieces of text, especially on a screen. Listening while reading helped me stay with it; seeing the current line and each spoken word highlighted helped me focus even more. I feel I'm reading more and getting through it faster. I understand it better and have to go back over passages less often. I can also take my reading on a walk or keep going while doing chores. Xarra grew out of wanting one place where I could read, listen, or do both, and move between them without losing my place.")
                 Text("From the start, I wanted accessibility and a native experience across Apple platforms to be at the heart of Xarra: the app should meet people where they are, on the devices and with the ways of interacting that already work for them, rather than asking them to adapt to it. I hope it helps more people get through their reading in whatever way works for them.")
             }
             .class("xarra-press-section")
@@ -115,13 +105,12 @@ struct XarraPressContent: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
                 Section {
-                    feature("Bring in reading", "Import PDF, EPUB, Markdown, DAISY, plain text, and other documents; share from another app, paste text, add a URL, or browse Project Gutenberg.")
-                    feature("Follow the words", "Synchronized line highlighting and optional word highlighting keep audio and text together.")
-                    feature("Move through longer work", "Detected headings become chapters, and playback controls let listeners skip and adjust speed.")
+                    feature("Import content", "Import PDF, EPUB, Markdown, DAISY, plain text, and other documents; share from another app, paste text, add a URL, or browse Project Gutenberg.")
+                    feature("Follow the text", "Synchronized line highlighting keeps audio and text together. Spoken words can be underlined, highlighted with a background, or left unmarked.")
                     feature("Made for Apple devices", "A native experience on iPhone, iPad, Mac, and Apple Vision Pro, with an interface designed for each device.")
                     feature("Continue across devices", "Your library and listening position can sync through your private iCloud account.")
                     feature("Lightweight and private", "A small app download using Apple's on-device voices. No Xarra account, ads, analytics, or trackers; downloaded content works offline.")
-                    feature("Accessible interaction", "Supports VoiceOver, Voice Control, Switch Control, Full Keyboard Access, Dynamic Type (including Larger Text), and other system accessibility settings.")
+                    feature("Accessible interaction", "Supports VoiceOver, Voice Control, Switch Control, Full Keyboard Access, Dynamic Type (including all larger accessibility text sizes), and other system accessibility settings.")
                 }
                 .class("xarra-press-features")
             }
@@ -131,12 +120,12 @@ struct XarraPressContent: HTML {
                 Text("Screenshots")
                     .font(.title2)
                     .fontWeight(.bold)
-                Text("Full-resolution screenshots. View an original in a new tab or download it below, or use the ZIP above.")
+                Text("Screenshots and photos preview Xarra 2.0, currently in App Review.")
                     .foregroundStyle(.secondary)
 
                 Section {
-                    ForEach(XarraPressMedia.items) { media in
-                        mediaItem(media)
+                    ForEach(XarraPressMedia.screenshots) { media in
+                        mediaItem(media, kind: "screenshot")
                     }
                 }
                 .class("xarra-press-media-grid")
@@ -147,7 +136,11 @@ struct XarraPressContent: HTML {
                 Text("App icon")
                     .font(.title2)
                     .fontWeight(.bold)
-                Text("PNG originals for publication. The icon is also in the ZIP.")
+                Text {
+                    Span("Designed by illustrator ")
+                    Link("Raúl Gil", target: "https://raul-gil.com/")
+                    Span(".")
+                }
                 Section {
                     iconLink(1024)
                     iconLink(512)
@@ -161,19 +154,19 @@ struct XarraPressContent: HTML {
                 Text("About the developer")
                     .font(.title2)
                     .fontWeight(.bold)
-                Text("Dani Devesa Derksen-Staats is an accessibility specialist and independent developer from Xàbia in Spain's Marina Alta, based in London. He writes Accessibility up to 11! and is the author of Developing Accessible iOS Apps. Xarra is his native Apple app for reading and listening.")
+                Text("Dani Devesa Derksen-Staats is an accessibility specialist and independent developer from Xàbia in the Marina Alta region of the Valencian Community, Spain, and is based in London. He currently works at Yoto and has previously worked at Apple (as a contractor), Spotify, and the BBC. He writes Accessibility up to 11! and is the author of the book Developing Accessible iOS Apps.")
 
                 Text("More information")
                     .font(.title3)
                 List {
                     ListItem {
-                        Link("About Dani", target: "/about/")
+                        Link("More about Dani", target: "/about/")
                     }
                     ListItem {
-                        Link("Developing Accessible iOS Apps", target: "https://www.springerprofessional.de/en/developing-accessible-ios-apps/17490934")
+                        Link("Developing Accessible iOS Apps (book)", target: "https://www.springerprofessional.de/en/developing-accessible-ios-apps/17490934")
                     }
                     ListItem {
-                        Link("Watch the Double Tap interview", target: "https://www.youtube.com/watch?v=aCqS7Rg41Pg")
+                        Link("Watch the Double Tap interview", target: "https://www.youtube.com/watch?v=3JMD70vf2yY")
                     }
                 }
 
@@ -184,11 +177,39 @@ struct XarraPressContent: HTML {
             .class("xarra-press-section")
 
             Section {
+                Text("Product photos")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text("Photographs by Dani Devesa Derksen-Staats on the Thames Path in Hammersmith, London.")
+                    .foregroundStyle(.secondary)
+
+                Section {
+                    ForEach(XarraPressMedia.photos) { media in
+                        mediaItem(media, kind: "photo")
+                    }
+                }
+                .class("xarra-press-media-grid")
+            }
+            .class("xarra-press-section")
+
+            Section {
+                BrandCopy.phrase(prefix: "", brandTitle: app.title, suffix: " 2.0 artwork")
+                    .font(.title2)
+                    .fontWeight(.bold)
+
+                Section {
+                    mediaItem(XarraPressMedia.eventCard, kind: "artwork")
+                }
+                .class("xarra-press-media-grid")
+            }
+            .class("xarra-press-section")
+
+            Section {
                 Text("Resumen para medios en español")
                     .font(.title2)
                     .fontWeight(.bold)
                     .attribute("lang", "es")
-                Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Te ayuda a avanzar con tus lecturas: puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si quieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
+                Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si lo prefieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
                     .attribute("lang", "es")
             }
             .class("xarra-press-section")
@@ -225,28 +246,23 @@ struct XarraPressContent: HTML {
             .attribute("download", "xarra-icon-\(size).png")
     }
 
-    @MainActor private func mediaItem(_ media: XarraPressMedia) -> some HTML {
+    @MainActor private func mediaItem(_ media: XarraPressMedia, kind: String) -> some HTML {
         Section {
             Link(target: mediaRoot + media.filename) {
                 Image(mediaRoot + media.filename, description: media.alt)
                     .resizable()
             }
-            .target(.newWindow)
-            .relationship(.noOpener)
+            .attribute("aria-label", "View full-size \(media.title) \(kind): \(media.alt)")
             Text(media.title)
                 .font(.title3)
                 .fontWeight(.semibold)
-            Text("\(media.platform) · \(media.dimensions)")
-                .foregroundStyle(.secondary)
-            HStack {
-                Link("View full size (new tab)", target: mediaRoot + media.filename)
-                    .target(.newWindow)
-                    .relationship(.noOpener)
-                Link("Download original", target: mediaRoot + media.filename)
-                    .attribute("download", media.filename)
+            if let details = media.details {
+                Text(details)
+                    .foregroundStyle(.secondary)
             }
-            .style(.flexWrap, "wrap")
-            .style(.gap, "0.75rem")
+            Link("Download original", target: mediaRoot + media.filename)
+                .attribute("aria-label", "Download original: \(media.title) \(kind)")
+                .attribute("download", media.filename)
         }
         .class("xarra-press-media")
     }
@@ -255,22 +271,33 @@ struct XarraPressContent: HTML {
 private struct XarraPressMedia: Identifiable {
     let filename: String
     let title: String
-    let platform: String
-    let dimensions: String
+    let details: String?
     let alt: String
 
     var id: String { filename }
 
-    static let items: [Self] = [
-        .init(filename: "iphone-reading.png", title: "Read and listen", platform: "iPhone", dimensions: "1206 × 2622 px", alt: "Xarra on iPhone reading a welcome document with the current line highlighted and playback controls below."),
-        .init(filename: "iphone-word-highlighting.png", title: "Word highlighting", platform: "iPhone", dimensions: "1206 × 2622 px", alt: "Xarra on iPhone in Dark Mode with synchronized line and word highlighting during playback."),
-        .init(filename: "iphone-share-import.png", title: "Share into Xarra", platform: "iPhone", dimensions: "1206 × 2622 px", alt: "Xarra on iPhone showing a confirmation after a shared item was imported."),
-        .init(filename: "ipad-import-sources.png", title: "Import sources", platform: "iPad", dimensions: "2752 × 2064 px", alt: "Xarra on iPad with the Add menu open beside a readable document, showing text, URL, document, and Gutenberg import options."),
-        .init(filename: "ipad-accessibility.png", title: "Larger text and VoiceOver", platform: "iPad", dimensions: "2752 × 2064 px", alt: "Xarra on iPad with enlarged document text and a visible VoiceOver focus outline."),
-        .init(filename: "mac-chapters.png", title: "Chapter navigation", platform: "Mac", dimensions: "2160 × 1456 px", alt: "Xarra on Mac showing a Chapters window with detected headings over an open article."),
-        .init(filename: "mac-voices.png", title: "Voice preferences", platform: "Mac", dimensions: "2160 × 1456 px", alt: "Xarra on Mac showing voice settings and preferred voices for several languages."),
-        .init(filename: "mac-audio-friendly-code.png", title: "Code made listenable", platform: "Mac", dimensions: "2160 × 1456 px", alt: "Xarra on Mac showing an edit window with a Swift code block and a plain-language audio explanation."),
-        .init(filename: "vision-reading-room.jpeg", title: "Spatial reading", platform: "Apple Vision Pro", dimensions: "3840 × 2160 px", alt: "Xarra's reading window on Apple Vision Pro in a room, with a library sidebar, transcript, and playback controls."),
-        .init(filename: "vision-focus-mode.jpeg", title: "Focus Mode", platform: "Apple Vision Pro", dimensions: "3840 × 2160 px", alt: "Xarra on Apple Vision Pro in Focus Mode, enlarging the current text while keeping reading controls nearby.")
+    static let photos: [Self] = [
+        .init(filename: "xarra-thames-path-wide.jpg", title: "Listening on the Thames Path", details: nil, alt: "A hand holds an iPhone displaying Xarra's reader beside the River Thames, with the riverbank and path behind it."),
+        .init(filename: "xarra-thames-path-dark-mode.jpg", title: "Reading in Dark Mode", details: nil, alt: "A hand holds an iPhone showing Xarra's reader in Dark Mode, with a highlighted word and playback controls open."),
+        .init(filename: "xarra-thames-path-airpods.jpg", title: "Xarra and AirPods", details: nil, alt: "An iPhone displaying Xarra's reader lies beside an orange AirPods case on stone paving.")
     ]
+
+    static let screenshots: [Self] = [
+        .init(filename: "iphone-reading.png", title: "Read and listen", details: "iPhone · 1206 × 2622 px", alt: "Xarra on iPhone reading a welcome document with the current line highlighted and playback controls below."),
+        .init(filename: "iphone-word-highlighting.png", title: "Word highlighting", details: "iPhone · 1206 × 2622 px", alt: "Xarra on iPhone in Dark Mode with synchronized line and word highlighting during playback."),
+        .init(filename: "iphone-share-import.png", title: "Share into Xarra", details: "iPhone · 1206 × 2622 px", alt: "Xarra's share extension on iPhone confirming content is ready to finish importing in the app."),
+        .init(filename: "ipad-import-sources.png", title: "Import sources", details: "iPad · 2752 × 2064 px", alt: "Xarra on iPad with the Add menu open beside a readable document, showing text, URL, document, and Gutenberg import options."),
+        .init(filename: "ipad-accessibility.png", title: "Larger text and VoiceOver", details: "iPad · 2752 × 2064 px", alt: "Xarra on iPad with enlarged document text and a visible VoiceOver focus outline."),
+        .init(filename: "mac-voices.png", title: "Voice preferences", details: "Mac · 2160 × 1456 px", alt: "Xarra on Mac showing voice settings and preferred voices for several languages."),
+        .init(filename: "mac-audio-friendly-code.png", title: "Code made listenable", details: "Mac · 2160 × 1456 px", alt: "Xarra on Mac showing an edit window with a Swift code block and a plain-language audio explanation."),
+        .init(filename: "vision-reading-room.jpeg", title: "Spatial reading", details: "Apple Vision Pro · 3840 × 2160 px", alt: "Xarra's reading window on Apple Vision Pro in a room, with a library sidebar, transcript, and playback controls."),
+        .init(filename: "vision-focus-mode.jpeg", title: "Focus Mode", details: "Apple Vision Pro · 3840 × 2160 px", alt: "Xarra on Apple Vision Pro in Focus Mode, showing one enlarged line with the current word highlighted and playback controls below.")
+    ]
+
+    static let eventCard = Self(
+        filename: "xarra-2-0-app-store-event-card.png",
+        title: "Library and reader",
+        details: nil,
+        alt: "Composite artwork showing an iPhone with Xarra's library in Dark Mode and another with the reader in light mode, against curved blue, cream, coral, and navy shapes."
+    )
 }

@@ -12,7 +12,7 @@ struct MainLayout: Layout {
         let isPostContentPage = pagePath.hasPrefix("/post/") || pagePath.hasPrefix("/365-days-ios-accessibility/day-")
         let horizontalContentPadding = isPostContentPage ? 12 : 20
         let meta = metaContext()
-        let assetVersion = "2026-09-23-4"
+        let assetVersion = "2026-09-23-5"
         let isPaginatedListing = pagePath.contains("/page-")
         let robotsContent = isPaginatedListing
             ? "noindex, follow"
@@ -115,6 +115,9 @@ struct MainLayout: Layout {
             .standardHeadersDisabled()
             
             Body {
+                Link("Skip to main content", target: "#main-content")
+                    .class("skip-link")
+
                 LogoNavBar()
                 
                 // Main content area
@@ -122,6 +125,8 @@ struct MainLayout: Layout {
                     content
                 }
                 .id("main-content")
+                .attribute("role", "main")
+                .attribute("tabindex", "-1")
                 .padding(.horizontal, horizontalContentPadding)
                 .padding(.top, 24)
                 .padding(.bottom, 80)
@@ -135,16 +140,18 @@ struct MainLayout: Layout {
                         }
                         .class("site-footer-primary")
 
-                        Link(target: "https://swiftforswifts.org") {
+                        Link(target: "https://swiftforswifts.org/") {
                             Image(decorative: "/Images/Site/Global/swift-for-swifts-small.png")
                                 .resizable()
                                 .frame(height: .em(2.0))
+                            Span("Supporting Swift for Swifts")
                         }
-                        
-                        Link("Supporting Swift for Swifts", target: "https://swiftforswifts.org/")
                             .target(.newWindow)
                             .relationship(.noOpener)
                             .class("site-footer-support-link")
+                            .style(.display, "inline-flex")
+                            .style(.alignItems, "center")
+                            .style(.gap, "0.5rem")
                     }
                     .class("site-footer-row")
                     .style(.justifyContent, "center")
@@ -157,6 +164,7 @@ struct MainLayout: Layout {
                 .style(.zIndex, "900")
                 .border(.gray, edges: .top)
                 .ignorePageGutters()
+                .attribute("role", "contentinfo")
             }
             .data("current-page", page.url.path)
         }

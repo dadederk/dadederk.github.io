@@ -1,5 +1,30 @@
 /* Minimal custom styles for Accessibility up to 11! */
 
+.skip-link:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1100;
+    padding: 0.75rem 1rem;
+    color: var(--bs-body-color);
+    background: var(--bs-body-bg);
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+}
+
+#main-content {
+    scroll-margin-top: 7rem;
+}
+
 /* Essential theme variables only */
 :root {
     --bs-navbar-bg: #F9F2E8;
@@ -556,11 +581,27 @@ header nav.navbar {
     gap: 0 1.5rem;
 }
 
-.xarra-press-fact,
-.xarra-press-features > section {
+.xarra-press-fact {
     min-width: 0;
     padding: 0.75rem 0;
     border-bottom: 1px solid var(--bs-border-color);
+}
+
+.xarra-press-features {
+    row-gap: 0.5rem;
+}
+
+.xarra-press-features > div {
+    min-width: 0;
+    padding: 0.5rem 0;
+}
+
+.xarra-press-features > div > p {
+    margin-bottom: 0;
+}
+
+.xarra-press-features > div > p:first-child {
+    margin-bottom: 0.25rem;
 }
 
 .xarra-press-facts > .xarra-press-fact:nth-last-child(-n + 2) {
@@ -619,11 +660,25 @@ header nav.navbar {
     margin-bottom: 0.4rem;
 }
 
+@media (min-width: 1100px) {
+    .xarra-press-media-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .xarra-press-media > a:first-child {
+        height: 240px;
+    }
+}
+
 @media (max-width: 700px) {
     .xarra-press-facts,
     .xarra-press-features,
     .xarra-press-media-grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .xarra-press-facts > .xarra-press-fact:nth-last-child(2) {
+        border-bottom: 1px solid var(--bs-border-color);
     }
 
     .xarra-press-media > a:first-child {
