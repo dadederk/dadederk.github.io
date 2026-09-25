@@ -187,12 +187,13 @@ extension MainLayout {
 
         // Blog post — truncate descriptions via MetaBuilder; images resolved to absolute URLs.
         if path.hasPrefix("/post/") {
+            let imageAlt = articles.all.first { $0.path == path }?.imageDescription
             return MetaBuilder.page(
                 title: title,
                 description: page.description,
                 path: path,
                 image: page.image?.absoluteString,
-                imageAlt: title,
+                imageAlt: imageAlt,
                 type: .article
             )
         }
