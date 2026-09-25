@@ -574,6 +574,10 @@ header nav.navbar {
     max-width: 100ch;
 }
 
+.xarra-press-usage {
+    margin-bottom: 0.5rem;
+}
+
 .xarra-press-facts,
 .xarra-press-features {
     display: grid;
@@ -615,6 +619,22 @@ header nav.navbar {
 
 .xarra-press-fact a {
     overflow-wrap: anywhere;
+}
+
+.xarra-press-video {
+    margin-block: 1rem;
+    margin-inline: auto;
+    max-width: 720px;
+}
+
+.xarra-press-video iframe {
+    border: 0;
+}
+
+.xarra-press-demo > a:last-child {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
 }
 
 .xarra-press-media-grid {

@@ -15,15 +15,14 @@ in London.
 supporting people with physical disabilities and their families:
 https://www.ammec.org/
 
+Demo video (about one minute): https://youtu.be/-fBbvx9dTus
 Double Tap interview (video): https://www.youtube.com/watch?v=3JMD70vf2yY
 Double Tap article: https://doubletaponair.com/indie-developer-dani-devesa-derksen-staats-launches-accessible-game-reading-app-for-apple-devices/
 
 The nine screenshots are full-resolution images for editorial coverage
-of Xarra. The files are named by platform and subject. These screenshots and
-the photos below preview Xarra! 2.0, which was in App Review when this kit was
-updated on 23 September 2026.
-Icons are provided as 1024, 512, and 256 pixel PNGs. The app icon was
-designed by illustrator Raúl Gil: https://raul-gil.com/
+of Xarra. The files are named by platform and subject. Icons are provided
+as 1024, 512, and 256 pixel PNGs. The app icon was designed by illustrator
+Raúl Gil: https://raul-gil.com/
 
 Four full-resolution, 6000 x 4000 pixel photographs show Xarra on iPhone.
 They were taken by Dani along the Thames Path in Hammersmith, London:

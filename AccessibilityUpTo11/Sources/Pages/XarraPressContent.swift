@@ -35,6 +35,7 @@ struct XarraPressContent: HTML {
                 Link("App Store", target: storeURL)
                 Link("Product page", target: productURL)
                 Link("Email Dani", target: "mailto:\(contactEmail)")
+                Link("Resumen en español", target: "#resumen-es")
             }
             .class("xarra-press-actions")
 
@@ -83,6 +84,9 @@ struct XarraPressContent: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
 
+                Text(app.nameOrigin)
+                    .foregroundStyle(.secondary)
+
                 Text("One sentence")
                     .font(.title3)
                 Text("Xarra turns articles, books, and documents into audio while highlighting the text in sync, so people can read, listen, or do both.")
@@ -95,10 +99,25 @@ struct XarraPressContent: HTML {
                     .font(.title3)
                 Text("Dani, in his own words:")
                     .fontWeight(.semibold)
-                Text("I built Xarra because I was finding it harder and harder to get through long pieces of text, especially on a screen. Listening while reading helped me stay with it; seeing the current line and each spoken word highlighted helped me focus even more. I feel I'm reading more and getting through it faster. I understand it better and have to go back over passages less often. I can also take my reading on a walk or keep going while doing chores. Xarra grew out of wanting one place where I could read, listen, or do both, and move between them without losing my place.")
-                Text("From the start, I wanted accessibility and a native experience across Apple platforms to be at the heart of Xarra: the app should meet people where they are, on the devices and with the ways of interacting that already work for them, rather than asking them to adapt to it. I hope it helps more people get through their reading in whatever way works for them.")
+                Text("I built Xarra because I was finding it harder to get through long pieces of text, especially on a screen. Listening while reading helped me stay with it; seeing the current line and each spoken word highlighted helped even more. I read more, understand better, and go back less often — and I can keep going on a walk or while doing chores. Xarra grew out of wanting one place to read, listen, or do both, without losing my place.")
+                Text("From the start, accessibility and a native Apple experience were at the heart of it: meet people where they are, rather than asking them to adapt. I hope it helps more people get through their reading in whatever way works for them.")
             }
             .class("xarra-press-section")
+
+            Section {
+                Text("Demo video")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Text("A one-minute overview of Xarra.")
+                    .foregroundStyle(.secondary)
+
+                Embed(youTubeID: "-fBbvx9dTus", title: "Xarra demo: a one-minute overview of the app")
+                    .aspectRatio(.r16x9)
+                    .class("xarra-press-video")
+
+                Link("Watch on YouTube", target: "https://youtu.be/-fBbvx9dTus")
+            }
+            .class("xarra-press-section", "xarra-press-demo")
 
             Section {
                 Text("Key features")
@@ -120,8 +139,15 @@ struct XarraPressContent: HTML {
                 Text("Screenshots")
                     .font(.title2)
                     .fontWeight(.bold)
-                Text("Screenshots and photos preview Xarra 2.0, currently in App Review.")
-                    .foregroundStyle(.secondary)
+                Text {
+                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and artwork, and ")
+                    Link("Raúl Gil", target: "https://raul-gil.com/")
+                    Span(" for the app icon. Full-resolution files are in the ")
+                    Link("downloadable press kit", target: "/Downloads/xarra-press-kit.zip")
+                    Span(".")
+                }
+                .foregroundStyle(.secondary)
+                .class("xarra-press-usage")
 
                 Section {
                     ForEach(XarraPressMedia.screenshots) { media in
@@ -212,7 +238,9 @@ struct XarraPressContent: HTML {
                 Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si lo prefieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
                     .attribute("lang", "es")
             }
+            .id("resumen-es")
             .class("xarra-press-section")
+            .attribute("lang", "es")
         }
         .class("xarra-press")
     }
