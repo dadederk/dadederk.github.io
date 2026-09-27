@@ -13,7 +13,7 @@
   "platforms": ["iOS", "iPadOS"],
   "actions": [
     {
-      "title": "Join the TestFlight",
+      "title": "Install with TestFlight",
       "target": "https://testflight.apple.com/join/9dXx2Ag5",
       "style": "primary"
     }

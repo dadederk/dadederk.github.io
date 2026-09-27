@@ -347,6 +347,13 @@ final class ImageOptimizationPublisherTests: XCTestCase {
         )
         XCTAssertEqual(
             ImageHTMLRewriter.sizesValue(
+                for: #"<img class="featured-banner-image" />"#,
+                sourcePath: "/Images/Site/Apps/Xarra/GlobalAppStoreRating-2026-09.png"
+            ),
+            "(min-width: 768px) 360px, calc(100vw - 48px)"
+        )
+        XCTAssertEqual(
+            ImageHTMLRewriter.sizesValue(
                 for: #"<img style="width: 96px; height: 96px" />"#,
                 sourcePath: "/Images/Site/Apps/ExampleIcon.png"
             ),

@@ -434,6 +434,9 @@ struct ImageHTMLRewriter {
         if imageClasses.contains("card-img-top") || imageClasses.contains(ImageOptimizationPolicy.appFeatureImageClass) {
             return "(min-width: 1400px) 416px, (min-width: 768px) 33vw, calc(100vw - 40px)"
         }
+        if imageClasses.contains("featured-banner-image") {
+            return "(min-width: 768px) 360px, calc(100vw - 48px)"
+        }
         if isPostContentPage {
             return "(min-width: 744px) 720px, calc(100vw - 24px)"
         }

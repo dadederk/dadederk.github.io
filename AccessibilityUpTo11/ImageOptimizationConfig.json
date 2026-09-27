@@ -1,6 +1,9 @@
 {
   "overrides": {
     "/Images/Site/Apps/RetroRapid/AdaptiveInterfaceByDefault.png": "photo",
-    "/Images/Site/Apps/RetroRapid/NativeCrossPlatformPlay.png": "photo"
+    "/Images/Site/Apps/RetroRapid/NativeCrossPlatformPlay.png": "photo",
+    "/Images/Site/Apps/Xarra/GlobalAppStoreRating-2026-09.png": "line-art",
+    "/Images/Site/Apps/RetroRapid/GlobalAppStoreRating-2026-09.png": "line-art",
+    "/Images/Site/Apps/iMonstickers/GlobalAppStoreRating-2026-09.png": "line-art"
   }
 }

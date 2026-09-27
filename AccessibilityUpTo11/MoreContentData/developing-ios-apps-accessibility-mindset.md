@@ -3,7 +3,7 @@ title: Developing iOS Apps with an Accessibility Mindset
 type: talk
 subtitle: CocoaHeads NL
 imagePath: /Images/Site/More Content/Talks/CocoaHeadsNL.png
-imageDescription: CocoaHeads NL logo consisting of a smiling mug with eyes, nose, and mouth. And with steam coming out of it that looks like hair. At the bottom it says: CocoaHeads.nl
+imageDescription: CocoaHeads.nl logo in black outline on a white background, a smiling mug with steam above the name.
 actions:
   - title: YouTube
     target: https://www.youtube.com/watch?v=7plgTpk3REY

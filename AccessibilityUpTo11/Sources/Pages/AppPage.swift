@@ -3,9 +3,6 @@ import Ignite
 
 // Universal AppPage that handles all app-related pages based on page type
 struct UniversalAppPage: StaticPage {
-    /// Flip to `true` to publish the worldwide App Store rating cards on app pages.
-    private static let showsAppStoreRatings = false
-
     let appIdentifier: String
     let pageType: AppPageType
     
@@ -203,17 +200,6 @@ struct UniversalAppPage: StaticPage {
                     .style(.width, "100%")
                 }
 
-                if let ratingCard = ratingCard(for: app.slug) {
-                    VStack(alignment: .leading, spacing: headingSpacing) {
-                        Text("App Store ratings")
-                            .font(.title2)
-                            .fontWeight(.bold)
-
-                        Image(ratingCard.path, description: ratingCard.description)
-                            .style(.width, "min(100%, 720px)")
-                    }
-                }
-
                 if !app.featureGroups.isEmpty {
                     VStack(alignment: .leading, spacing: headingSpacing) {
                         Text("Features")
@@ -281,7 +267,8 @@ struct UniversalAppPage: StaticPage {
                             FeaturedInBox(
                                 title: "What people are saying",
                                 mentions: [],
-                                quotes: app.customerQuotes
+                                quotes: app.customerQuotes,
+                                trailingImage: ratingCard(for: app.slug)
                             )
                             .style(.width, "100%")
                         }
@@ -440,24 +427,22 @@ struct UniversalAppPage: StaticPage {
         }
     }
 
-    private func ratingCard(for slug: String) -> (path: String, description: String)? {
-        guard Self.showsAppStoreRatings else { return nil }
-
+    private func ratingCard(for slug: String) -> FeaturedBannerImage? {
         switch slug.lowercased() {
         case "xarra":
-            return (
-                "/Images/Site/Apps/Xarra/GlobalAppStoreRating-2026-09.png",
-                "Xarra worldwide App Store rating: 5.0 out of 5 from 7 ratings, September 2026."
+            return FeaturedBannerImage(
+                path: "/Images/Site/Apps/Xarra/GlobalAppStoreRating-2026-09.png",
+                description: "Xarra worldwide App Store rating: 5.0 out of 5 from 7 ratings, September 2026."
             )
         case "retrorapid":
-            return (
-                "/Images/Site/Apps/RetroRapid/GlobalAppStoreRating-2026-09.png",
-                "RetroRapid worldwide App Store rating: 4.8 out of 5 from 58 ratings, September 2026."
+            return FeaturedBannerImage(
+                path: "/Images/Site/Apps/RetroRapid/GlobalAppStoreRating-2026-09.png",
+                description: "RetroRapid worldwide App Store rating: 4.8 out of 5 from 58 ratings, September 2026."
             )
         case "imonstickers":
-            return (
-                "/Images/Site/Apps/iMonstickers/GlobalAppStoreRating-2026-09.png",
-                "iMonstickers worldwide App Store rating: 5.0 out of 5 from 2 ratings, September 2026."
+            return FeaturedBannerImage(
+                path: "/Images/Site/Apps/iMonstickers/GlobalAppStoreRating-2026-09.png",
+                description: "iMonstickers worldwide App Store rating: 5.0 out of 5 from 2 ratings, September 2026."
             )
         default:
             return nil

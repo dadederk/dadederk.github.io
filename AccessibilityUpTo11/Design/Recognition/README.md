@@ -15,9 +15,8 @@ is specific to an App Store territory, as [Apple's documentation](https://develo
 explains. Helm confirmed the app IDs, but its CLI exposes written reviews,
 which differ from total ratings.
 
-The transparent PNGs in `Assets/Images/Site/Apps` are prepared for the app
-pages. Their display is currently gated by `showsAppStoreRatings` in
-`Sources/Pages/AppPage.swift`.
+The transparent PNGs in `Assets/Images/Site/Apps` are the trailing image on
+each app's "What people are saying" banner.
 
 Regenerate after updating the ratings snapshot or extracted artwork. `--check`
 verifies that the SVGs and PNGs are current without changing them:

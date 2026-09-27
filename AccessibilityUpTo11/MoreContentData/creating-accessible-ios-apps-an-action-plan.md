@@ -3,7 +3,7 @@ title: Creating Accessible iOS Apps: An Action Plan
 type: talk
 subtitle: "Accessibility NYC"
 imagePath: /Images/Site/More Content/Talks/CreatingAccessibleIOSApps.jpg
-imageDescription: Logo of the Accessibility New York City Meetup. It is a yellow circle and inside it says A11Y NYC Meetup in navy blue.
+imageDescription: A11Y NYC Meetup logo in black outline lettering inside a circle on a white background.
 actions:
   - title: YouTube
     target: https://www.youtube.com/watch?v=1NlYq2smkxk

@@ -1,10 +1,16 @@
 import Foundation
 import Ignite
 
+struct FeaturedBannerImage {
+    let path: String
+    let description: String
+}
+
 struct FeaturedInBox: HTML {
     let title: String
     let mentions: [FeaturedMention]
     let quotes: [FeaturedQuoteItem]
+    let trailingImage: FeaturedBannerImage?
 
     init(
         title: String,
@@ -12,10 +18,12 @@ struct FeaturedInBox: HTML {
         quote: String? = nil,
         quoteSourceTitle: String? = nil,
         quoteSourceTarget: String? = nil,
-        quotes: [FeaturedQuoteItem] = []
+        quotes: [FeaturedQuoteItem] = [],
+        trailingImage: FeaturedBannerImage? = nil
     ) {
         self.title = title
         self.mentions = mentions
+        self.trailingImage = trailingImage
         
         var resolvedQuotes = quotes
         if let quote {
@@ -31,10 +39,38 @@ struct FeaturedInBox: HTML {
     }
 
     @MainActor var body: some HTML {
+        banner
+            .padding()
+            .frame(width: .percent(100%))
+            .background("var(--bs-secondary-bg)")
+            .style(.border, "1px solid var(--bs-border-color)")
+            .cornerRadius(8)
+    }
+
+    @HTMLBuilder @MainActor private var banner: some HTML {
+        if let trailingImage {
+            HStack(alignment: .center, spacing: 24) {
+                quoteContent
+                    .class("featured-banner-copy")
+                    .style(.flex, "1 1 16rem")
+                    .style(.minWidth, "0")
+
+                Image(trailingImage.path, description: trailingImage.description)
+                    .class("featured-banner-image")
+            }
+            .class("featured-banner")
+            .style(.flexWrap, "wrap")
+            .style(.width, "100%")
+        } else {
+            quoteContent
+        }
+    }
+
+    @MainActor private var quoteContent: some HTML {
         let visibleMentions = mentionsToRender()
         let sharedSubject = sharedSubjectTitle
 
-        VStack(alignment: .leading, spacing: 6) {
+        return VStack(alignment: .leading, spacing: 6) {
             Text(title)
                 .font(.body)
                 .fontWeight(.semibold)
@@ -86,11 +122,6 @@ struct FeaturedInBox: HTML {
                 .margin(.bottom, .none)
             }
         }
-        .padding()
-        .frame(width: .percent(100%))
-        .background("var(--bs-secondary-bg)")
-        .style(.border, "1px solid var(--bs-border-color)")
-        .cornerRadius(8)
     }
 
     private var sharedSubjectTitle: (text: String, target: String?)? {

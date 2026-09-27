@@ -38,7 +38,7 @@ struct About: StaticPage {
                     // Author details
                     VStack(alignment: .leading) {
                         Text("""
-                            Dani is having a blast working at Yoto!
+                            Dani is an iOS engineer and accessibility specialist from Xàbia, in the Marina Alta region of the Valencian Community, Spain, and is based in London. He's having a blast working at Yoto!
                             """)
                             .font(.body)
                             .padding(.vertical)
