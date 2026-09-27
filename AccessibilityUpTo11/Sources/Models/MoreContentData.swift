@@ -8,6 +8,9 @@ struct MoreContentData {
     let talks: [TalkItem]
     let podcasts: [PodcastItem]
     
+    /// Cards shown in each About section. The rest live on the category page.
+    static let aboutSectionLimit = 3
+
     static func loadContent() -> MoreContentData {
         return MarkdownContentLoader.loadMoreContent()
     }

@@ -2,6 +2,18 @@ import XCTest
 @testable import AccessibilityUpTo11
 
 final class AppPublicationTests: XCTestCase {
+    func testSelectedAppsIncludeCustomerQuotes() {
+        let apps = AppsJSONLoader.loadAppsContent(environment: [:]).apps
+        let expectedCounts = ["xarra": 2, "retrorapid": 3, "imonstickers": 2]
+
+        for (slug, count) in expectedCounts {
+            let app = apps.first { $0.slug == slug }
+            XCTAssertEqual(app?.customerQuotes.count, count, slug)
+        }
+
+        XCTAssertTrue(apps.first { $0.slug == "mestre" }?.customerQuotes.isEmpty == true)
+    }
+
     func testUnpublishedAppsAreHiddenByDefault() {
         let apps = AppsJSONLoader.loadAppsContent(environment: [:]).apps
 

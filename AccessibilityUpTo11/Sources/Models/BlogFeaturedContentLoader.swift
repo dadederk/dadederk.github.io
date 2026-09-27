@@ -8,43 +8,75 @@ struct BlogFeaturedContent {
 
 struct BlogFeaturedContentLoader {
     static func featuredContent(for path: String) -> BlogFeaturedContent? {
-        let contentByPath = loadContentByPath()
-        return contentByPath[path]
+        loadContentByPath()[path]
+    }
+
+    static func featuredPublicationContent(matching title: String) -> BlogFeaturedContent? {
+        loadPublicationsByTitle()[title]
     }
 
     private static func loadContentByPath() -> [String: BlogFeaturedContent] {
+        guard let decoded = loadDecoded() else { return [:] }
+
+        var contentByPath: [String: BlogFeaturedContent] = [:]
+        for entry in decoded.posts {
+            contentByPath[entry.path] = makeContent(
+                heading: entry.heading,
+                mentions: entry.mentions,
+                quotes: entry.quotes
+            )
+        }
+        return contentByPath
+    }
+
+    private static func loadPublicationsByTitle() -> [String: BlogFeaturedContent] {
+        guard let decoded = loadDecoded() else { return [:] }
+
+        var contentByTitle: [String: BlogFeaturedContent] = [:]
+        for entry in decoded.publications ?? [] {
+            contentByTitle[entry.title] = makeContent(
+                heading: entry.heading,
+                mentions: entry.mentions,
+                quotes: entry.quotes
+            )
+        }
+        return contentByTitle
+    }
+
+    private static func makeContent(
+        heading: String?,
+        mentions: [FeaturedMentionJSON],
+        quotes: [FeaturedQuoteJSON]
+    ) -> BlogFeaturedContent {
+        BlogFeaturedContent(
+            heading: heading,
+            mentions: mentions.map { mention in
+                FeaturedMention(
+                    title: mention.title,
+                    target: mention.target
+                )
+            },
+            quotes: quotes.map { quote in
+                FeaturedQuoteItem(
+                    text: quote.text,
+                    sourceTitle: quote.sourceTitle,
+                    sourceTarget: quote.sourceTarget
+                )
+            }
+        )
+    }
+
+    private static func loadDecoded() -> BlogFeaturedContentJSON? {
         guard let url = getFeaturedContentURL() else {
-            return [:]
+            return nil
         }
 
         do {
             let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let decoded = try decoder.decode(BlogFeaturedContentJSON.self, from: data)
-
-            var contentByPath: [String: BlogFeaturedContent] = [:]
-            for entry in decoded.posts {
-                contentByPath[entry.path] = BlogFeaturedContent(
-                    heading: entry.heading,
-                    mentions: entry.mentions.map { mention in
-                        FeaturedMention(
-                            title: mention.title,
-                            target: mention.target
-                        )
-                    },
-                    quotes: entry.quotes.map { quote in
-                        FeaturedQuoteItem(
-                            text: quote.text,
-                            sourceTitle: quote.sourceTitle,
-                            sourceTarget: quote.sourceTarget
-                        )
-                    }
-                )
-            }
-            return contentByPath
+            return try JSONDecoder().decode(BlogFeaturedContentJSON.self, from: data)
         } catch {
             print("Error loading featured post content from \(url.path): \(error)")
-            return [:]
+            return nil
         }
     }
 
@@ -72,6 +104,14 @@ struct BlogFeaturedContentLoader {
 
 private struct BlogFeaturedContentJSON: Codable {
     let posts: [PostFeaturedContentJSON]
+    let publications: [PublicationFeaturedContentJSON]?
+}
+
+private struct PublicationFeaturedContentJSON: Codable {
+    let title: String
+    let heading: String?
+    let mentions: [FeaturedMentionJSON]
+    let quotes: [FeaturedQuoteJSON]
 }
 
 private struct PostFeaturedContentJSON: Codable {

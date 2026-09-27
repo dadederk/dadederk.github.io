@@ -1,8 +1,51 @@
 {
   "posts": [
     {
+      "path": "/365-days-ios-accessibility",
+      "heading": "This series was featured in",
+      "mentions": [
+        {
+          "title": "iOS Dev Weekly #610",
+          "target": "https://iosdevweekly.com/issues/610/"
+        },
+        {
+          "title": "A11y Weekly #296",
+          "target": "https://a11yweekly.com/issue/296/"
+        },
+        {
+          "title": "Programar a ciegas",
+          "target": "https://programaraciegas.net/?p=1363"
+        },
+        {
+          "title": "A11y Weekly #498: Tips and tricks to build accessible iOS apps",
+          "target": "https://a11yweekly.com/issue/498/"
+        }
+      ],
+      "quotes": [
+        {
+          "text": "Yesterday was Global Accessibility Awareness Day, which seems like a great excuse to highlight the valuable work that Daniel Devesa Derksen-Staats does in this area.",
+          "sourceTitle": "Dave Verwer, iOS Dev Weekly #610",
+          "sourceTarget": "https://iosdevweekly.com/issues/610/"
+        },
+        {
+          "text": "Daniel Devesa Derksen-Staats (...) has started an interesting project. Writing (...) about developing accessible iOS apps (...). It looks like Daniel has plenty of tips, suitable for those new to accessibility.",
+          "sourceTitle": "David Kennedy, A11y Weekly #296",
+          "sourceTarget": "https://a11yweekly.com/issue/296/"
+        },
+        {
+          "text": "The value of this project is precisely in pointing out those details. It not only explains that an app should be accessible, but shows how to improve a specific part of the interface, a specific interaction, or a specific component.",
+          "sourceTitle": "Jonathan Chacón, Programar a ciegas (translated from Spanish)",
+          "sourceTarget": "https://programaraciegas.net/?p=1363"
+        }
+      ]
+    },
+    {
       "path": "/post/2026-02-22-01",
       "mentions": [
+        {
+          "title": "iOS Dev Weekly #745",
+          "target": "https://iosdevweekly.com/issues/745/"
+        },
         {
           "title": "Create with Swift Weekly Newsletter #96",
           "target": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter"
@@ -12,25 +55,25 @@
           "target": "https://newsletter.avanderlee.com/posts/swiftlee-weekly-issue-315"
         },
         {
-          "title": "iOS Dev Weekly #745",
-          "target": "https://iosdevweekly.com/issues/745/"
+          "title": "A11y Weekly #500: Learning to develop more accessible iOS games",
+          "target": "https://a11yweekly.com/issue/500/"
         }
       ],
       "quotes": [
+        {
+          "text": "I expected little side-stories about how other games get accessibility wrong. Instead, I enjoyed reading an entirely positive post about how to do it right.",
+          "sourceTitle": "Dave Verwer, iOS Dev Weekly #745",
+          "sourceTarget": "https://iosdevweekly.com/issues/745/"
+        },
         {
           "text": "Daniel shares lessons from making his new game, RetroRapid!, more accessible, (...) customizable settings to make gameplay inclusive.",
           "sourceTitle": "Create with Swift Weekly Newsletter #96",
           "sourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter"
         },
         {
-          "text": "It’s funny how someone that I see as an accessibility expert mentions “learn from actual experts”. Daniel (...) describes his first approach to making his game more accessible.",
+          "text": "Daniel (...) describes his first approach to making his game more accessible.",
           "sourceTitle": "SwiftLee Weekly #315",
           "sourceTarget": "https://newsletter.avanderlee.com/posts/swiftlee-weekly-issue-315"
-        },
-        {
-          "text": "I expected little side-stories about how other games get accessibility wrong. Instead, I enjoyed reading an entirely positive post about how to do it right.",
-          "sourceTitle": "Dave Verwer, iOS Dev Weekly #745",
-          "sourceTarget": "https://iosdevweekly.com/issues/745/"
         }
       ]
     },
@@ -38,19 +81,37 @@
       "path": "/post/2024-12-06-01",
       "mentions": [
         {
-          "title": "A11y Weekly #427",
-          "target": "https://a11yweekly.com/issue/427/"
+          "title": "Create with Swift Weekly Newsletter #39",
+          "target": "https://www.createwithswift.com/weekly-newsletter-issue-39/"
         },
         {
           "title": "Dim Sum Thinking #247",
           "target": "https://mailchi.mp/0358c78f4677/247-to-not-do-list?e=56053ff120"
+        },
+        {
+          "title": "Accessible Mobile Apps #68",
+          "target": "https://www.appt.news/accessible-mobile-apps-issue-68/"
+        },
+        {
+          "title": "A11y Weekly #427: Advent of iOS Accessibility",
+          "target": "https://a11yweekly.com/issue/427/"
         }
       ],
       "quotes": [
         {
+          "text": "The start of December brings a lot of exciting initiatives from the developer community, including (...) Advent Calendars worth checking out: (...) one we particularly love for its daily insights on accessibility, by Daniel.",
+          "sourceTitle": "Create with Swift Weekly Newsletter #39",
+          "sourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-39/"
+        },
+        {
           "text": "If you haven't seen it yet, please add The Advent of iOS Accessibility (...) to your list. It's really well done from someone who both knows what he's talking about and is excellent at explaining it.",
           "sourceTitle": "Daniel Steinberg, Dim Sum Thinking #247",
           "sourceTarget": "https://mailchi.mp/0358c78f4677/247-to-not-do-list?e=56053ff120"
+        },
+        {
+          "text": "Learn something you didn't know about accessibility on iOS as a Christmas present to yourself.",
+          "sourceTitle": "Robin Kanatzar, Accessible Mobile Apps #68",
+          "sourceTarget": "https://www.appt.news/accessible-mobile-apps-issue-68/"
         }
       ]
     },
@@ -77,6 +138,33 @@
           "text": "As noted by Dani Devesa (...) adding the `keyboardKey` trait to a `UIButton` will mean it is no longer announced as 'button' by VoiceOver.",
           "sourceTitle": "Peter Heery: Supporting VoiceOver typing preferences",
           "sourceTarget": "https://peterheery.me/posts/supporting-voiceover-typing-preferences/"
+        }
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Fostering An Accessibility Culture",
+      "mentions": [
+        {
+          "title": "iOS Dev Weekly #712",
+          "target": "https://iosdevweekly.com/issues/712/"
+        },
+        {
+          "title": "Create with Swift Weekly Newsletter #58",
+          "target": "https://www.createwithswift.com/weekly-newsletter-issue-58/"
+        }
+      ],
+      "quotes": [
+        {
+          "text": "I appreciated many of the points in this article by Daniel Devesa Derksen-Staats (...) Empathy and diversity are essential in tech (...) accessibility is a process, not a one-time goal (...) the focus on culture change over compliance.",
+          "sourceTitle": "Tamera Middlebrooks, iOS Dev Weekly #712",
+          "sourceTarget": "https://iosdevweekly.com/issues/712/"
+        },
+        {
+          "text": "A compelling argument for this shift, showing his journey and demonstrating how even small, consistent practices can foster a culture where inclusion becomes an inherent part of everyday workflows.",
+          "sourceTitle": "Create with Swift Weekly Newsletter #58",
+          "sourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-58/"
         }
       ]
     }

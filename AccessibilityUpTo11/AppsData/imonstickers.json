@@ -16,6 +16,18 @@
       "style": "primary"
     }
   ],
+  "customerQuotes": [
+    {
+      "text": "The avatars are hilarious! Perfect for sending out funny and cute messages.",
+      "sourceTitle": "AaronJFella, App Store",
+      "sourceTarget": "https://apps.apple.com/us/app/imonstickers-for-messages/id1164272926"
+    },
+    {
+      "text": "Well designed Halloween themed sticker pack. I'm sure I'll be using it after the 31st of October as well.",
+      "sourceTitle": "ajmccall, App Store",
+      "sourceTarget": "https://apps.apple.com/us/app/imonstickers-for-messages/id1164272926"
+    }
+  ],
   "featureGroups": [
     {
       "title": "Express yourself with monsters",

@@ -29,6 +29,23 @@
   "featuredQuote": "But beyond the nostalgia and tight gameplay, what truly stands out is its accessibility.",
   "featuredQuoteSourceTitle": "Create with Swift Weekly Newsletter #96 (Indie App of the Week)",
   "featuredQuoteSourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-96/?ref=create-with-swift-newsletter",
+  "customerQuotes": [
+    {
+      "text": "I am really a fan of this nice accessible game that I can just pick up and play! Finally, something that also works with the Apple Watch!",
+      "sourceTitle": "Datafile, App Store",
+      "sourceTarget": "https://apps.apple.com/app/id6758641625"
+    },
+    {
+      "text": "A simply accessible and simply entertaining game. Highly recommended.",
+      "sourceTitle": "Jonathan Chacón, App Store (translated from Spanish)",
+      "sourceTarget": "https://apps.apple.com/app/id6758641625"
+    },
+    {
+      "text": "It takes a lot of concentration, and a quiet place works best. It's definitely great fun and addictive. High praise to the developer.",
+      "sourceTitle": "Kroni75, App Store (translated from German)",
+      "sourceTarget": "https://apps.apple.com/app/id6758641625"
+    }
+  ],
   "featureGroups": [
     {
       "title": "Race, dodge, repeat.",

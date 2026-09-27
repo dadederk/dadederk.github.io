@@ -29,6 +29,18 @@
   "featuredQuote": "The app developed by Daniel is well integrated into the system. (...) Accessibility runs through the whole experience rather than sitting on top of it.",
   "featuredQuoteSourceTitle": "Create with Swift Weekly Newsletter #101 (Indie App of the Week)",
   "featuredQuoteSourceTarget": "https://www.createwithswift.com/weekly-newsletter-issue-101/",
+  "customerQuotes": [
+    {
+      "text": "Xarra has helped me memorize a lot of chapters from my studies. Easy to use!",
+      "sourceTitle": "Laura California, App Store",
+      "sourceTarget": "https://apps.apple.com/app/xarra/id6759402266"
+    },
+    {
+      "text": "Just love using this app to help me focus on whatever I am reading. App is incredibly well designed and doesn't have any obnoxious tracking or ads. Super small binary size too.",
+      "sourceTitle": "ajmccall, App Store",
+      "sourceTarget": "https://apps.apple.com/app/xarra/id6759402266"
+    }
+  ],
   "featureGroups": [
     {
       "title": "Follow along and stay oriented",

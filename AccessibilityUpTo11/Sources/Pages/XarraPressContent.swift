@@ -77,6 +77,7 @@ struct XarraPressContent: HTML {
                     )
                 }
                 .class("xarra-press-section")
+                .style(.width, "100%")
             }
 
             Section {

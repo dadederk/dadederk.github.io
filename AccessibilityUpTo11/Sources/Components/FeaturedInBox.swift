@@ -32,6 +32,7 @@ struct FeaturedInBox: HTML {
 
     @MainActor var body: some HTML {
         let visibleMentions = mentionsToRender()
+        let sharedSubject = sharedSubjectTitle
 
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
@@ -40,37 +41,49 @@ struct FeaturedInBox: HTML {
                 .horizontalAlignment(.leading)
                 .foregroundStyle(.primary)
 
-            if !visibleMentions.isEmpty {
-                ForEach(visibleMentions) { mention in
-                    Link(mention.title, target: mention.target)
-                        .foregroundStyle(.primary)
-                }
+            if let sharedSubject {
+                subjectLabel(sharedSubject.text, target: sharedSubject.target)
             }
 
-            if !quotes.isEmpty {
-                ForEach(quotes) { quote in
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("\"\(quote.text)\"")
-                            .font(.body)
-                            .horizontalAlignment(.leading)
-                            .foregroundStyle(.primary)
+            if !quotes.isEmpty || !visibleMentions.isEmpty {
+                List {
+                    ForEach(quotes) { quote in
+                        ListItem {
+                            VStack(alignment: .leading, spacing: 4) {
+                                if sharedSubject == nil, shouldShowSubject(for: quote), let subject = quote.subject {
+                                    subjectLabel(subject, target: quote.subjectTarget)
+                                }
 
-                        if let sourceTitle = quote.sourceTitle {
-                            if let sourceTarget = quote.sourceTarget {
-                                Link("- \(sourceTitle)", target: sourceTarget)
+                                Text("\"\(quote.text)\"")
                                     .font(.body)
                                     .horizontalAlignment(.leading)
                                     .foregroundStyle(.primary)
-                            } else {
-                                Text("- \(sourceTitle)")
-                                    .font(.body)
-                                    .horizontalAlignment(.leading)
-                                    .foregroundStyle(.primary)
+
+                                if let sourceTitle = quote.sourceTitle {
+                                    if let sourceTarget = quote.sourceTarget {
+                                        Link("- \(sourceTitle)", target: sourceTarget)
+                                            .font(.body)
+                                            .horizontalAlignment(.leading)
+                                            .foregroundStyle(.primary)
+                                    } else {
+                                        Text("- \(sourceTitle)")
+                                            .font(.body)
+                                            .horizontalAlignment(.leading)
+                                            .foregroundStyle(.primary)
+                                    }
+                                }
                             }
                         }
                     }
-                    .padding(.top, 8)
+
+                    ForEach(visibleMentions) { mention in
+                        ListItem {
+                            Link(mention.title, target: mention.target)
+                                .foregroundStyle(.primary)
+                        }
+                    }
                 }
+                .margin(.bottom, .none)
             }
         }
         .padding()
@@ -78,6 +91,41 @@ struct FeaturedInBox: HTML {
         .style(.backgroundColor, "var(--bs-secondary-bg)")
         .style(.border, "1px solid var(--bs-border-color)")
         .cornerRadius(8)
+    }
+
+    private var sharedSubjectTitle: (text: String, target: String?)? {
+        guard let subject = quotes.first?.subject,
+              quotes.allSatisfy({ $0.subject == subject && $0.subjectTarget == quotes.first?.subjectTarget }) else {
+            return nil
+        }
+        return (subject, quotes.first?.subjectTarget)
+    }
+
+    @HTMLBuilder @MainActor private func subjectLabel(_ subject: String, target: String?) -> some HTML {
+        if let target {
+            Link(subject, target: target)
+                .font(.body)
+                .fontWeight(.semibold)
+                .horizontalAlignment(.leading)
+                .foregroundStyle(.primary)
+        } else {
+            Text(subject)
+                .font(.body)
+                .fontWeight(.semibold)
+                .horizontalAlignment(.leading)
+                .foregroundStyle(.primary)
+        }
+    }
+
+    private func shouldShowSubject(for quote: FeaturedQuoteItem) -> Bool {
+        guard quote.subject != nil,
+              let index = quotes.firstIndex(where: { $0.id == quote.id }) else {
+            return false
+        }
+        if index == 0 {
+            return true
+        }
+        return quotes[index - 1].subject != quote.subject
     }
 
     private func mentionsToRender() -> [FeaturedMention] {

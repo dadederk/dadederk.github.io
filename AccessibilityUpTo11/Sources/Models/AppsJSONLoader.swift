@@ -89,6 +89,7 @@ private struct AppItemJSON: Codable {
     let featuredQuote: String?
     let featuredQuoteSourceTitle: String?
     let featuredQuoteSourceTarget: String?
+    let customerQuotes: [CustomerQuoteJSON]?
     let featureGroups: [FeatureGroupJSON]
     let features: [FeatureItemJSON]? // Optional for backward compatibility
     let accessibility: String?
@@ -151,6 +152,13 @@ private struct AppItemJSON: Codable {
             featuredQuote: featuredQuote,
             featuredQuoteSourceTitle: featuredQuoteSourceTitle,
             featuredQuoteSourceTarget: featuredQuoteSourceTarget,
+            customerQuotes: (customerQuotes ?? []).map { quote in
+                FeaturedQuoteItem(
+                    text: quote.text,
+                    sourceTitle: quote.sourceTitle,
+                    sourceTarget: quote.sourceTarget
+                )
+            },
             featureGroups: groups,
             features: flatFeatures,
             accessibility: accessibility,
@@ -166,6 +174,12 @@ private struct AppItemJSON: Codable {
 private struct FeaturedMentionJSON: Codable {
     let title: String
     let target: String
+}
+
+private struct CustomerQuoteJSON: Codable {
+    let text: String
+    let sourceTitle: String?
+    let sourceTarget: String?
 }
 
 private struct FeatureGroupJSON: Codable {

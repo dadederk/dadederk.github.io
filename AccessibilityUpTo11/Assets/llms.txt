@@ -29,6 +29,14 @@ Long-form articles and multi-part series diving deeper into accessibility topics
 - **Notable series**: "Advent of iOS Accessibility" (24 common issues and solutions)
 - **Topics**: Architecture, best practices, real-world implementation patterns
 
+### About
+Profile, publications, talks, and podcast appearances.
+
+- **URL**: /about
+- **Publications**: /about/publications
+- **Talks**: /about/talks
+- **Podcasts**: /about/podcasts
+
 ### Resources
 Curated collection of external accessibility resources including books, articles, conference talks, newsletters, and podcast episodes.
 

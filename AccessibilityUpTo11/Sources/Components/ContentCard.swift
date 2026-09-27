@@ -32,6 +32,58 @@ struct ContentCard: HTML {
         self.imageDescription = imageDescription
         self.actions = actions
     }
+
+    init(publication: PublicationItem) {
+        self.init(
+            title: publication.title,
+            subtitle: publication.subtitle,
+            description: publication.description,
+            additionalInfo: publication.publisher,
+            imagePath: publication.imagePath,
+            imageDescription: publication.imageDescription,
+            actions: publication.actions.map(ActionButton.init(action:))
+        )
+    }
+
+    init(talk: TalkItem) {
+        self.init(
+            title: talk.title,
+            subtitle: talk.subtitle,
+            description: talk.description,
+            imagePath: talk.imagePath,
+            imageDescription: talk.imageDescription,
+            actions: talk.actions.map(ActionButton.init(action:))
+        )
+    }
+
+    init(podcast: PodcastItem) {
+        self.init(
+            title: podcast.title,
+            subtitle: podcast.subtitle,
+            description: podcast.description,
+            imagePath: podcast.imagePath,
+            imageDescription: podcast.imageDescription,
+            actions: podcast.actions.map(ActionButton.init(action:))
+        )
+    }
+
+    private init(
+        title: String,
+        subtitle: String?,
+        description: String,
+        additionalInfo: String? = nil,
+        imagePath: String?,
+        imageDescription: String?,
+        actions: [ActionButton]
+    ) {
+        self.title = title
+        self.subtitle = subtitle
+        self.description = description
+        self.additionalInfo = additionalInfo
+        self.imagePath = imagePath
+        self.imageDescription = imageDescription
+        self.actions = actions
+    }
     
     @MainActor var body: some HTML {
         if let imagePath = imagePath, let _ = imageDescription {

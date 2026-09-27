@@ -161,6 +161,9 @@ struct AccessibilityUpTo11Website {
             ("/", "1.0", "monthly"),
             ("/blog", "0.9", "monthly"),
             ("/about", "0.9", "monthly"),
+            ("/about/publications", "0.8", "monthly"),
+            ("/about/talks", "0.8", "monthly"),
+            ("/about/podcasts", "0.8", "monthly"),
             ("/resources", "0.9", "monthly"),
             (SiteMeta.contentLicensePath, "0.7", "yearly"),
             ("/apps", "0.9", "monthly"),
@@ -520,6 +523,9 @@ struct AccessibilityUpTo11Site: Site {
             Blog(),
             // Days365(), // Removed - now handled by Days365StaticPages.generateAllPages()
             About(),
+            PublicationsPage(),
+            TalksPage(),
+            PodcastsPage(),
             Resources(),
             ContentLicense(),
             Apps()

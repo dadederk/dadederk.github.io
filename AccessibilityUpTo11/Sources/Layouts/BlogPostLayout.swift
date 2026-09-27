@@ -24,6 +24,10 @@ struct BlogPostLayout: ArticlePage {
             .attribute("type", "application/ld+json")
 
         let articleFeaturedContent = BlogFeaturedContentLoader.featuredContent(for: article.path)
+        let featuredSplit = FeaturedContentSplit.split(
+            mentions: articleFeaturedContent?.mentions ?? [],
+            quotes: articleFeaturedContent?.quotes ?? []
+        )
         
         VStack(alignment: .leading) {
             // Article header with title and metadata
@@ -74,15 +78,16 @@ struct BlogPostLayout: ArticlePage {
                 .padding(.bottom, 24)
             }
 
-            if let articleFeaturedContent {
+            if !featuredSplit.primary.isEmpty {
                 Section {
                     FeaturedInBox(
-                        title: articleFeaturedContent.heading ?? "This post was featured in",
-                        mentions: articleFeaturedContent.mentions,
-                        quotes: articleFeaturedContent.quotes
+                        title: articleFeaturedContent?.heading ?? "This post was featured in",
+                        mentions: featuredSplit.primary.mentions,
+                        quotes: featuredSplit.primary.quotes
                     )
                 }
                 .padding(.bottom, 24)
+                .style(.width, "100%")
             }
             
             // Article content
@@ -95,10 +100,23 @@ struct BlogPostLayout: ArticlePage {
             }
             .class("post-content-container")
 
+            if !featuredSplit.additional.isEmpty {
+                Section {
+                    FeaturedInBox(
+                        title: FeaturedContentSplit.additionalHeading,
+                        mentions: featuredSplit.additional.mentions,
+                        quotes: featuredSplit.additional.quotes
+                    )
+                }
+                .padding(.top, 24)
+                .style(.width, "100%")
+            }
+
             Section {
                 SupportWorkBox()
             }
             .padding(.top, 24)
+            .style(.width, "100%")
             
             // Related articles section
             @Environment(\.articles) var articles

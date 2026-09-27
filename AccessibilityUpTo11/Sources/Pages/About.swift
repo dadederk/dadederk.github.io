@@ -69,33 +69,21 @@ struct About: StaticPage {
             
             // Publications Section
             Section {
-                Text("Publications")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .horizontalAlignment(.leading)
-                    .padding(.bottom)
-                
                 let contentData = MoreContentData.loadContent()
+                sectionHeading(
+                    "Publications",
+                    seeAll: contentData.publications.count > MoreContentData.aboutSectionLimit
+                        ? "/about/publications" : nil
+                )
+                let publications = contentData.publications.prefix(MoreContentData.aboutSectionLimit)
                 Grid(alignment: .topLeading) {
-                    ForEach(contentData.publications) { publication in
-                        ContentCard(
-                            title: publication.title,
-                            subtitle: publication.subtitle,
-                            description: publication.description,
-                            additionalInfo: publication.publisher,
-                            imagePath: publication.imagePath,
-                            imageDescription: publication.imageDescription,
-                            actions: publication.actions.map { action in
-                                ActionButton(
-                                    title: action.title,
-                                    target: action.target,
-                                    style: action.style == "primary" ? .primary : .secondary
-                                )
-                            }
-                        )
-                        .width(4)
+                    ForEach(publications) { publication in
+                        ContentCard(publication: publication)
+                            .width(4)
                     }
                 }
+
+                PublicationFeaturedSection()
             }
             .id("publications")
             .padding(.vertical)
@@ -104,46 +92,17 @@ struct About: StaticPage {
             
             // Talks Section
             Section {
-                Text("Talks")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .horizontalAlignment(.leading)
-                    .padding(.bottom)
-                
                 let contentData = MoreContentData.loadContent()
+                sectionHeading(
+                    "Talks",
+                    seeAll: contentData.talks.count > MoreContentData.aboutSectionLimit
+                        ? "/about/talks" : nil
+                )
+                let talks = contentData.talks.prefix(MoreContentData.aboutSectionLimit)
                 Grid(alignment: .topLeading) {
-                    ForEach(contentData.talks) { talk in
-                        if let imagePath = talk.imagePath, let imageDescription = talk.imageDescription {
-                            ContentCard(
-                                title: talk.title,
-                                subtitle: talk.subtitle,
-                                description: talk.description,
-                                imagePath: imagePath,
-                                imageDescription: imageDescription,
-                                actions: talk.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
-                            )
+                    ForEach(talks) { talk in
+                        ContentCard(talk: talk)
                             .width(4)
-                        } else {
-                            ContentCard(
-                                title: talk.title,
-                                subtitle: talk.subtitle,
-                                description: talk.description,
-                                actions: talk.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
-                            )
-                            .width(4)
-                        }
                     }
                 }
             }
@@ -154,51 +113,38 @@ struct About: StaticPage {
             
             // Podcasts Section
             Section {
-                Text("Podcasts")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .horizontalAlignment(.leading)
-                    .padding(.bottom)
-                
                 let contentData = MoreContentData.loadContent()
+                sectionHeading(
+                    "Podcasts",
+                    seeAll: contentData.podcasts.count > MoreContentData.aboutSectionLimit
+                        ? "/about/podcasts" : nil
+                )
+                let podcasts = contentData.podcasts.prefix(MoreContentData.aboutSectionLimit)
                 Grid(alignment: .topLeading) {
-                    ForEach(contentData.podcasts) { podcast in
-                        if let imagePath = podcast.imagePath, let imageDescription = podcast.imageDescription {
-                            ContentCard(
-                                title: podcast.title,
-                                subtitle: podcast.subtitle,
-                                description: podcast.description,
-                                imagePath: imagePath,
-                                imageDescription: imageDescription,
-                                actions: podcast.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
-                            )
+                    ForEach(podcasts) { podcast in
+                        ContentCard(podcast: podcast)
                             .width(4)
-                        } else {
-                            ContentCard(
-                                title: podcast.title,
-                                subtitle: podcast.subtitle,
-                                description: podcast.description,
-                                actions: podcast.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
-                            )
-                            .width(4)
-                        }
                     }
                 }
             }
             .id("podcasts")
             .padding(.vertical)
         }
+    }
+
+    @MainActor private func sectionHeading(_ title: String, seeAll target: String?) -> some HTML {
+        HStack(alignment: .bottom) {
+            Text(title)
+                .font(.title2)
+                .fontWeight(.bold)
+                .horizontalAlignment(.leading)
+            if let target {
+                Link("See All", target: target)
+                    .font(.body)
+            }
+        }
+        .style(.flexWrap, "wrap")
+        .style(.gap, "0.5rem")
+        .padding(.bottom)
     }
 }

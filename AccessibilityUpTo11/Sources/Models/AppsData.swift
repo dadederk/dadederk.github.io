@@ -34,6 +34,7 @@ struct AppItem: Identifiable, Codable {
     let featuredQuote: String?
     let featuredQuoteSourceTitle: String?
     let featuredQuoteSourceTarget: String?
+    let customerQuotes: [FeaturedQuoteItem]
     let featureGroups: [FeatureGroup]
     let features: [FeatureItem] // Keep for backward compatibility
     let accessibility: String?
@@ -60,6 +61,7 @@ struct AppItem: Identifiable, Codable {
         featuredQuote: String? = nil,
         featuredQuoteSourceTitle: String? = nil,
         featuredQuoteSourceTarget: String? = nil,
+        customerQuotes: [FeaturedQuoteItem] = [],
         featureGroups: [FeatureGroup],
         features: [FeatureItem],
         accessibility: String?,
@@ -85,6 +87,7 @@ struct AppItem: Identifiable, Codable {
         self.featuredQuote = featuredQuote
         self.featuredQuoteSourceTitle = featuredQuoteSourceTitle
         self.featuredQuoteSourceTarget = featuredQuoteSourceTarget
+        self.customerQuotes = customerQuotes
         self.featureGroups = featureGroups
         self.features = features
         self.accessibility = accessibility

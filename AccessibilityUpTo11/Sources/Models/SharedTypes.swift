@@ -14,17 +14,23 @@ struct FeaturedQuoteItem: Identifiable, Codable {
     let text: String
     let sourceTitle: String?
     let sourceTarget: String?
+    let subject: String?
+    let subjectTarget: String?
 
     init(
         id: UUID = UUID(),
         text: String,
         sourceTitle: String? = nil,
-        sourceTarget: String? = nil
+        sourceTarget: String? = nil,
+        subject: String? = nil,
+        subjectTarget: String? = nil
     ) {
         self.id = id
         self.text = text
         self.sourceTitle = sourceTitle
         self.sourceTarget = sourceTarget
+        self.subject = subject
+        self.subjectTarget = subjectTarget
     }
 }
 
@@ -36,6 +42,7 @@ struct PublicationItem {
     let imagePath: String
     let imageDescription: String
     let actions: [ActionItem]
+    let featuredContent: BlogFeaturedContent?
 }
 
 struct TalkItem {

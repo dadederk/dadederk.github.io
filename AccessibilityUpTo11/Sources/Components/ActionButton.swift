@@ -25,3 +25,13 @@ struct ActionButton: HTML {
         }
     }
 }
+
+extension ActionButton {
+    init(action: ActionItem) {
+        self.init(
+            title: action.title,
+            target: action.target,
+            style: action.style == "primary" ? .primary : .secondary
+        )
+    }
+}

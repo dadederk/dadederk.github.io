@@ -1,6 +1,6 @@
 import Foundation
 
-/// BreadcrumbList JSON-LD for 365 Days post and tag routes.
+/// BreadcrumbList JSON-LD for post, tag, and About category routes.
 enum BreadcrumbListStructuredData {
     struct Crumb {
         let name: String
@@ -56,6 +56,14 @@ enum BreadcrumbListStructuredData {
             .init(name: "Home", url: SiteMeta.baseURL + "/"),
             .init(name: "#365DaysIOSAccessibility", url: SiteMeta.baseURL + "/365-days-ios-accessibility"),
             .init(name: post.topicTitle, url: SiteMeta.baseURL + post.path),
+        ]
+    }
+
+    static func aboutSectionCrumbs(name: String, path: String) -> [Crumb] {
+        [
+            .init(name: "Home", url: SiteMeta.baseURL + "/"),
+            .init(name: "About", url: SiteMeta.baseURL + "/about"),
+            .init(name: name, url: SiteMeta.baseURL + path),
         ]
     }
 

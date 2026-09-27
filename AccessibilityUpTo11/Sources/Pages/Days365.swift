@@ -187,6 +187,24 @@ struct Days365Page: StaticPage {
                     .class("text-break")
                     .foregroundStyle(.secondary)
                     .padding(.bottom)
+
+                let seriesFeatured = pageNumber == 1
+                    ? BlogFeaturedContentLoader.featuredContent(for: "/365-days-ios-accessibility")
+                    : nil
+                let seriesSplit = FeaturedContentSplit.split(
+                    mentions: seriesFeatured?.mentions ?? [],
+                    quotes: seriesFeatured?.quotes ?? []
+                )
+
+                if pageNumber == 1, !seriesSplit.primary.isEmpty {
+                    FeaturedInBox(
+                        title: seriesFeatured?.heading ?? "This series was featured in",
+                        mentions: seriesSplit.primary.mentions,
+                        quotes: seriesSplit.primary.quotes
+                    )
+                    .padding(.bottom)
+                    .style(.width, "100%")
+                }
                 
                 let allPosts = Days365Loader.loadPosts()
                 let postsPerPage = 15
@@ -267,6 +285,16 @@ struct Days365Page: StaticPage {
                     }
 
                     Days365AllTagsSection()
+
+                    if pageNumber == 1, !seriesSplit.additional.isEmpty {
+                        FeaturedInBox(
+                            title: FeaturedContentSplit.additionalHeading,
+                            mentions: seriesSplit.additional.mentions,
+                            quotes: seriesSplit.additional.quotes
+                        )
+                        .padding(.top, 32)
+                        .style(.width, "100%")
+                    }
 
                     // Footnote thanking Quintin Balsdon
                     Section {

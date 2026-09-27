@@ -49,7 +49,8 @@ struct MarkdownContentLoader {
                 publisher: contentData.publisher ?? "",
                 imagePath: contentData.imagePath ?? "",
                 imageDescription: contentData.imageDescription ?? "",
-                actions: actions
+                actions: actions,
+                featuredContent: BlogFeaturedContentLoader.featuredPublicationContent(matching: contentData.title)
             )
         }
     }

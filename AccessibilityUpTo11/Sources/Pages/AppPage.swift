@@ -171,6 +171,7 @@ struct UniversalAppPage: StaticPage {
                             quoteSourceTarget: app.featuredQuoteSourceTarget
                         )
                         .padding(.bottom, 24)
+                        .style(.width, "100%")
                     }
                     
                     // Terms, Privacy, and Support links
@@ -243,7 +244,7 @@ struct UniversalAppPage: StaticPage {
                 }
                 
                 // Why Xarra!? section
-                if let whySection = app.whySection {
+                if app.whySection != nil || !app.customerQuotes.isEmpty {
                     Section {
                         BrandCopy.whySectionTitle(for: app.title)
                             .font(.title2)
@@ -251,8 +252,20 @@ struct UniversalAppPage: StaticPage {
                             .horizontalAlignment(.leading)
                             .padding(.bottom)
                         
-                        Text(whySection)
-                            .font(.body)
+                        if let whySection = app.whySection {
+                            Text(whySection)
+                                .font(.body)
+                        }
+
+                        if !app.customerQuotes.isEmpty {
+                            FeaturedInBox(
+                                title: "What people are saying",
+                                mentions: [],
+                                quotes: app.customerQuotes
+                            )
+                            .padding(.top, 24)
+                            .style(.width, "100%")
+                        }
                     }
                     .padding(.vertical)
                 }
