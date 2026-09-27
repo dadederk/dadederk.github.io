@@ -2,6 +2,23 @@
 
 This directory contains build scripts and utilities for the Accessibility up to 11! website.
 
+Prefer Swift for new repository automation. Follow the repository's existing
+standalone Swift scripts for small tools; give generators a read-only `--check`
+mode where practical.
+
+## Recognition cards
+
+The worldwide App Store rating cards use the saved territory snapshot and
+extracted hand-drawn artwork in `Design/Recognition`:
+
+```bash
+swift Scripts/GenerateRecognitionCards.swift
+swift Scripts/GenerateRecognitionCards.swift --check
+```
+
+The second command compares the generated SVGs and transparent PNGs without
+changing them. See `Design/Recognition/README.md` for the rating calculation.
+
 ## Brand Mark
 
 Site and app names use a trailing `!` as the brand mark (e.g. **Xarra!**, **Mestre!**, **RetroRapid!**, **Accessibility up to 11!**).

@@ -3,7 +3,7 @@ title: Double Tap
 type: podcast
 subtitle: "Weekend: Building Accessible Games and Reading Tools"
 imagePath: /Images/Site/More Content/Podcasts/DoubleTap.png
-imageDescription: Double Tap podcast logo in white lettering on a red gradient background.
+imageDescription: Double Tap wordmark in black outline lettering on a white background.
 actions:
   - title: Watch on YouTube
     target: https://www.youtube.com/watch?v=3JMD70vf2yY

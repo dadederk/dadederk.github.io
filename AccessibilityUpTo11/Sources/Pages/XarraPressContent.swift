@@ -10,13 +10,14 @@ struct XarraPressContent: HTML {
     private var contactEmail: String { app.contactEmail }
 
     @MainActor var body: some HTML {
-        VStack(alignment: .leading) {
-            Section {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .center, spacing: 20) {
                 Image("\(mediaRoot)xarra-icon-1024.png", description: "Xarra app icon")
                     .resizable()
                     .frame(width: 96, height: 96)
+                    .cornerRadius(20)
 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 6) {
                     BrandCopy.phrase(prefix: "", brandTitle: app.title, suffix: " Press Kit")
                         .font(.title1)
                         .fontWeight(.bold)
@@ -24,50 +25,67 @@ struct XarraPressContent: HTML {
                     Text("Xarra turns text into audio with synchronized line highlighting, so people can read, listen, or do both.")
                         .font(.body)
                 }
+                .style(.flex, "1 1 auto")
+                .style(.minWidth, "0")
             }
-            .class("xarra-press-header")
+            .style(.flexWrap, "wrap")
+            .padding(.bottom, 20)
 
-            Section {
+            HStack(alignment: .center, spacing: 12) {
+                AppStoreDownloadBadge(target: storeURL)
+
                 Link("Download press kit (ZIP)", target: "/Downloads/xarra-press-kit.zip")
                     .linkStyle(.button)
                     .role(.primary)
                     .attribute("download", "xarra-press-kit.zip")
-                Link("App Store", target: storeURL)
-                Link("Product page", target: productURL)
-                Link("Email Dani", target: "mailto:\(contactEmail)")
-                Link("Resumen en español", target: "#resumen-es")
-            }
-            .class("xarra-press-actions")
 
-            Section {
+                PillLink(title: "Product page", target: productURL)
+                PillLink(title: "Email Dani", target: "mailto:\(contactEmail)")
+                PillLink(title: "Resumen en español", target: "#resumen-es")
+            }
+            .class("action-row")
+            .style(.flexWrap, "wrap")
+            .padding()
+            .frame(width: .percent(100%))
+            .background("var(--bs-secondary-bg)")
+            .style(.border, "1px solid var(--bs-border-color)")
+            .cornerRadius(6)
+
+            pressSection(divider: app.featuredIn.isEmpty) {
                 Text("At a glance")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Section {
+                Grid(alignment: .topLeading, spacing: 24) {
                     fact("Price", "Free download. Premium: US $1.99/month, $9.99/year, or $29.99 lifetime. Regional pricing aims to reflect local purchasing power.")
+                        .width(6)
                     fact("Platforms", "iPhone, iPad, Mac, and Apple Vision Pro; OS version 26.0 or later on each platform")
+                        .width(6)
                     fact("Availability", "Available now on the App Store; first released March 2026")
+                        .width(6)
                     fact("Developer", "Dani Devesa Derksen-Staats, independent developer behind Accessibility up to 11!, from Xàbia and based in London")
+                        .width(6)
                     linkedFact("Website", productURL, productURL)
+                        .width(6)
                     linkedFact("App Store", storeURL, storeURL)
-                    fact("Privacy", "No account, ads, analytics, or tracking. Documents stay on device and can sync through the user's private iCloud account.")
-                    Section {
-                        Text("Giving back").class("xarra-press-fact-label")
+                        .width(6)
+                    fact("Privacy", "No account, ads, analytics, or tracking. Documents stay on device and can sync through the user's private iCloud account.", divider: false)
+                        .width(6)
+                    fact("Giving back", divider: false, content: {
                         Text {
                             Span("10% of subscription proceeds are donated to ")
                             Link("AMMEC", target: "https://www.ammec.org/")
                             Span(", a Valencia-based nonprofit supporting people with physical disabilities and their families.")
                         }
-                    }
-                    .class("xarra-press-fact")
+                    })
+                    .width(6)
                 }
-                .class("xarra-press-facts")
+                .class("glance-facts")
+                .frame(width: .percent(100%))
             }
-            .class("xarra-press-section")
 
             if !app.featuredIn.isEmpty {
-                Section {
+                pressSection(divider: false) {
                     FeaturedInBox(
                         title: "Featured in",
                         mentions: app.featuredIn,
@@ -76,11 +94,9 @@ struct XarraPressContent: HTML {
                         quoteSourceTarget: app.featuredQuoteSourceTarget
                     )
                 }
-                .class("xarra-press-section")
-                .style(.width, "100%")
             }
 
-            Section {
+            pressSection {
                 BrandCopy.phrase(prefix: "About ", brandTitle: app.title)
                     .font(.title2)
                     .fontWeight(.bold)
@@ -88,24 +104,20 @@ struct XarraPressContent: HTML {
                 Text(app.nameOrigin)
                     .foregroundStyle(.secondary)
 
-                Text("One sentence")
-                    .font(.title3)
+                subsectionTitle("One sentence")
                 Text("Xarra turns articles, books, and documents into audio while highlighting the text in sync, so people can read, listen, or do both.")
 
-                Text("In brief")
-                    .font(.title3)
+                subsectionTitle("In brief")
                 Text("Import an article, PDF, EPUB, DAISY text publication, URL, or your own writing. Read on screen, listen with Apple voices, or combine both. Xarra highlights the current line as it reads; spoken words can also be underlined or highlighted with a background, or left unmarked. Chapters and iCloud progress sync help you pick up where you left off.")
 
-                Text("The story")
-                    .font(.title3)
+                subsectionTitle("The story")
                 Text("Dani, in his own words:")
                     .fontWeight(.semibold)
                 Text("I built Xarra because I was finding it harder to get through long pieces of text, especially on a screen. Listening while reading helped me stay with it; seeing the current line and each spoken word highlighted helped even more. I read more, understand better, and go back less often — and I can keep going on a walk or while doing chores. Xarra grew out of wanting one place to read, listen, or do both, without losing my place.")
                 Text("From the start, accessibility and a native Apple experience were at the heart of it: meet people where they are, rather than asking them to adapt. I hope it helps more people get through their reading in whatever way works for them.")
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 Text("Demo video")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -114,29 +126,39 @@ struct XarraPressContent: HTML {
 
                 Embed(youTubeID: "-fBbvx9dTus", title: "Xarra demo: a one-minute overview of the app")
                     .aspectRatio(.r16x9)
-                    .class("xarra-press-video")
+                    .frame(maxWidth: 720)
+                    .frame(width: .percent(100%))
+                    .margin(.vertical, 16)
+                    .style(.marginInline, "auto")
 
                 Link("Watch on YouTube", target: "https://youtu.be/-fBbvx9dTus")
+                    .style(.display, "block")
+                    .style(.width, "fit-content")
+                    .style(.marginInline, "auto")
             }
-            .class("xarra-press-section", "xarra-press-demo")
 
-            Section {
+            pressSection {
                 Text("Key features")
                     .font(.title2)
                     .fontWeight(.bold)
-                Section {
+                Grid(alignment: .topLeading, spacing: 8) {
                     feature("Import content", "Import PDF, EPUB, Markdown, DAISY, plain text, and other documents; share from another app, paste text, add a URL, or browse Project Gutenberg.")
+                        .width(6)
                     feature("Follow the text", "Synchronized line highlighting keeps audio and text together. Spoken words can be underlined, highlighted with a background, or left unmarked.")
+                        .width(6)
                     feature("Made for Apple devices", "A native experience on iPhone, iPad, Mac, and Apple Vision Pro, with an interface designed for each device.")
+                        .width(6)
                     feature("Continue across devices", "Your library and listening position can sync through your private iCloud account.")
+                        .width(6)
                     feature("Lightweight and private", "A small app download using Apple's on-device voices. No Xarra account, ads, analytics, or trackers; downloaded content works offline.")
+                        .width(6)
                     feature("Accessible interaction", "Supports VoiceOver, Voice Control, Switch Control, Full Keyboard Access, Dynamic Type (including all larger accessibility text sizes), and other system accessibility settings.")
+                        .width(6)
                 }
-                .class("xarra-press-features")
+                .frame(width: .percent(100%))
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 Text("Screenshots")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -148,18 +170,11 @@ struct XarraPressContent: HTML {
                     Span(".")
                 }
                 .foregroundStyle(.secondary)
-                .class("xarra-press-usage")
 
-                Section {
-                    ForEach(XarraPressMedia.screenshots) { media in
-                        mediaItem(media, kind: "screenshot")
-                    }
-                }
-                .class("xarra-press-media-grid")
+                mediaGrid(XarraPressMedia.screenshots, kind: "screenshot")
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 Text("App icon")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -168,23 +183,21 @@ struct XarraPressContent: HTML {
                     Link("Raúl Gil", target: "https://raul-gil.com/")
                     Span(".")
                 }
-                Section {
+                HStack(alignment: .center, spacing: 16) {
                     iconLink(1024)
                     iconLink(512)
                     iconLink(256)
                 }
-                .class("xarra-press-icon-links")
+                .style(.flexWrap, "wrap")
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 Text("About the developer")
                     .font(.title2)
                     .fontWeight(.bold)
                 Text("Dani Devesa Derksen-Staats is an accessibility specialist and independent developer from Xàbia in the Marina Alta region of the Valencian Community, Spain, and is based in London. He currently works at Yoto and has previously worked at Apple (as a contractor), Spotify, and the BBC. He writes Accessibility up to 11! and is the author of the book Developing Accessible iOS Apps.")
 
-                Text("More information")
-                    .font(.title3)
+                subsectionTitle("More information")
                 List {
                     ListItem {
                         Link("More about Dani", target: "/about/")
@@ -197,41 +210,29 @@ struct XarraPressContent: HTML {
                     }
                 }
 
-                Text("Press contact")
-                    .font(.title3)
+                subsectionTitle("Press contact")
                 Link("Dani Devesa Derksen-Staats: \(contactEmail)", target: "mailto:\(contactEmail)")
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 Text("Product photos")
                     .font(.title2)
                     .fontWeight(.bold)
                 Text("Photographs by Dani Devesa Derksen-Staats on the Thames Path in Hammersmith, London.")
                     .foregroundStyle(.secondary)
 
-                Section {
-                    ForEach(XarraPressMedia.photos) { media in
-                        mediaItem(media, kind: "photo")
-                    }
-                }
-                .class("xarra-press-media-grid")
+                mediaGrid(XarraPressMedia.photos, kind: "photo")
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 BrandCopy.phrase(prefix: "", brandTitle: app.title, suffix: " 2.0 artwork")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Section {
-                    mediaItem(XarraPressMedia.eventCard, kind: "artwork")
-                }
-                .class("xarra-press-media-grid")
+                mediaGrid([XarraPressMedia.eventCard], kind: "artwork", columnWidth: 6)
             }
-            .class("xarra-press-section")
 
-            Section {
+            pressSection {
                 Text("Resumen para medios en español")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -240,34 +241,77 @@ struct XarraPressContent: HTML {
                     .attribute("lang", "es")
             }
             .id("resumen-es")
-            .class("xarra-press-section")
             .attribute("lang", "es")
         }
-        .class("xarra-press")
     }
 
-    @MainActor private func fact(_ label: String, _ value: String) -> some HTML {
-        Section {
-            Text(label).class("xarra-press-fact-label")
+    @MainActor private func pressSection(divider: Bool = true, @HTMLBuilder content: () -> some HTML) -> some HTML {
+        let section = VStack(alignment: .leading, spacing: 14) {
+            content()
+        }
+        .padding(.vertical, 24)
+        .frame(width: .percent(100%))
+
+        if divider {
+            return AnyHTML(section.style(.borderBottom, "1px solid var(--bs-border-color)"))
+        } else {
+            return AnyHTML(section)
+        }
+    }
+
+    @MainActor private func subsectionTitle(_ title: String) -> some HTML {
+        Text(title)
+            .font(.title3)
+            .fontWeight(.semibold)
+            .padding(.top, 8)
+    }
+
+    @MainActor private func fact(_ label: String, _ value: String, divider: Bool = true) -> some HTML {
+        fact(label, divider: divider) {
             Text(value)
         }
-        .class("xarra-press-fact")
+    }
+
+    @MainActor private func fact(_ label: String, divider: Bool = true, @HTMLBuilder content: () -> some HTML) -> some HTML {
+        let item = VStack(alignment: .leading, spacing: 4) {
+            Text(label)
+                .fontWeight(.bold)
+            content()
+        }
+        .padding(.vertical, 12)
+        .style(.overflowWrap, "anywhere")
+
+        if divider {
+            return AnyHTML(item.style(.borderBottom, "1px solid var(--bs-border-color)"))
+        } else {
+            return AnyHTML(item)
+        }
     }
 
     @MainActor private func linkedFact(_ label: String, _ text: String, _ target: String) -> some HTML {
-        Section {
-            Text(label).class("xarra-press-fact-label")
+        fact(label) {
             Link(text, target: target)
         }
-        .class("xarra-press-fact")
     }
 
     @MainActor private func feature(_ title: String, _ description: String) -> some HTML {
-        Section {
+        VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .fontWeight(.semibold)
             Text(description)
         }
+        .padding(.vertical, 8)
+    }
+
+    @MainActor private func mediaGrid(_ items: [XarraPressMedia], kind: String, columnWidth: Int = 4) -> some HTML {
+        Grid(alignment: .topLeading, spacing: 24) {
+            ForEach(items) { media in
+                mediaItem(media, kind: kind)
+                    .width(columnWidth)
+            }
+        }
+        .padding(.top, 8)
+        .frame(width: .percent(100%))
     }
 
     @MainActor private func iconLink(_ size: Int) -> some InlineElement {
@@ -276,12 +320,20 @@ struct XarraPressContent: HTML {
     }
 
     @MainActor private func mediaItem(_ media: XarraPressMedia, kind: String) -> some HTML {
-        Section {
+        VStack(alignment: .leading, spacing: 6) {
             Link(target: mediaRoot + media.filename) {
                 Image(mediaRoot + media.filename, description: media.alt)
                     .resizable()
+                    .frame(maxWidth: .percent(100%), maxHeight: .px(240))
+                    .style(.objectFit, "contain")
             }
             .attribute("aria-label", "View full-size \(media.title) \(kind): \(media.alt)")
+            .frame(width: .percent(100%), height: .px(240))
+            .style(.display, "flex")
+            .style(.alignItems, "center")
+            .style(.justifyContent, "center")
+            .background("var(--bs-secondary-bg)")
+
             Text(media.title)
                 .font(.title3)
                 .fontWeight(.semibold)
@@ -292,8 +344,13 @@ struct XarraPressContent: HTML {
             Link("Download original", target: mediaRoot + media.filename)
                 .attribute("aria-label", "Download original: \(media.title) \(kind)")
                 .attribute("download", media.filename)
+                .style(.marginTop, "auto")
         }
-        .class("xarra-press-media")
+        .padding()
+        .frame(width: .percent(100%))
+        .style(.border, "1px solid var(--bs-border-color)")
+        .cornerRadius(6)
+        .class("press-media-card")
     }
 }
 

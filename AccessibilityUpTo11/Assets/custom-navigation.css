@@ -311,32 +311,63 @@ picture.responsive-picture > img {
     border-top: 1px solid var(--bs-border-color) !important;
 }
 
-/* App cards: keep meta row as card surface, title on header surface. */
+/* Ignite's Grid pins every column with align-self-start, and it has no stretch
+   alignment. Let card columns match the tallest card in the row. The image and
+   title stay at the top; the card body takes the extra space. */
+.row > .align-self-start:has(> .card) {
+    align-self: stretch !important;
+}
+
+.row > .align-self-start > .card {
+    height: 100%;
+}
+
+/* Press media tiles are bordered stacks, not Bootstrap cards. */
+.row > .align-self-start:has(> .press-media-card) {
+    align-self: stretch !important;
+}
+
+.press-media-card {
+    height: 100%;
+}
+
+/* Ignite's grid pins columns to the top, so paired facts end at different heights.
+   Stretch each column and fill it so the divider sits on the taller fact. */
+.glance-facts > .align-self-start {
+    align-self: stretch !important;
+}
+
+.glance-facts > .align-self-start > .vstack {
+    height: 100%;
+}
+
+/* Ignite's Card header has Bootstrap padding and no modifier to remove it.
+   The title and platform row paint their own full-bleed surfaces. */
 .app-card .card-header {
     padding: 0 !important;
     border-top: none !important;
+    border-bottom: none !important;
     overflow: hidden !important;
     border-top-left-radius: var(--bs-card-inner-border-radius) !important;
     border-top-right-radius: var(--bs-card-inner-border-radius) !important;
 }
 
-.app-card .app-card-meta {
-    width: 100%;
-    background-color: var(--bs-card-bg) !important;
-    border-bottom: 1px solid var(--bs-border-color) !important;
-    padding: 1rem !important;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
+/* Apple ships separate light and dark badge files. Ignite's dark-image
+   convention follows prefers-color-scheme, which fights the site theme. */
+.app-store-badge-light {
+    display: block;
 }
 
-.app-card .app-card-title {
-    padding: 0.75rem 1rem !important;
-    margin: 0 !important;
+.app-store-badge-dark {
+    display: none;
 }
 
-/* Platform labels are informational (not buttons), so use a stronger outline. */
-.platform-pill {
-    border: 1.5px solid var(--platform-pill-border) !important;
+[data-bs-theme="accessibility-up-to11-dark-dark"] .app-store-badge-light {
+    display: none;
+}
+
+[data-bs-theme="accessibility-up-to11-dark-dark"] .app-store-badge-dark {
+    display: block;
 }
 
 /* Footer styling for dark theme */
@@ -502,231 +533,18 @@ header nav.navbar {
 
 /* MINIMAL CSS EXCEPTIONS - Only for features not available in Ignite modifiers */
 
-/* Xarra press materials */
-.xarra-press {
-    width: min(100%, 1100px);
-    margin-inline: auto;
-    padding-top: 0.75rem;
-    gap: 0;
-}
-
-.xarra-press-header {
-    display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
-    align-items: center;
-    gap: 1.25rem;
-    padding-bottom: 1.25rem;
-}
-
-.xarra-press > .xarra-press-header,
-.xarra-press > .xarra-press-actions,
-.xarra-press > .xarra-press-section {
-    width: 100%;
-}
-
-.xarra-press-header img {
-    width: 96px;
-    height: 96px;
-    border-radius: 20px;
-}
-
-.xarra-press-header h1,
-.xarra-press-header h2 {
-    margin-bottom: 0.4rem;
-}
-
-.xarra-press-header p {
-    font-size: 1.15rem;
-    line-height: 1.45;
-    font-weight: 400;
-    margin-bottom: 0;
-}
-
-.xarra-press-actions,
-.xarra-press-icon-links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem 1.25rem;
-}
-
-.xarra-press-actions {
-    padding: 1rem;
-    background: var(--bs-secondary-bg);
-    border: 1px solid var(--bs-border-color);
-    border-radius: 6px;
-}
-
-.xarra-press-section {
-    padding-block: 1.5rem;
-    border-bottom: 1px solid var(--bs-border-color);
-}
-
-.xarra-press-section > h2 {
-    margin-bottom: 0.9rem;
-}
-
-.xarra-press-section > h3 {
-    margin-top: 1.25rem;
-}
-
-.xarra-press-section p {
-    max-width: 100ch;
-}
-
-.xarra-press-usage {
-    margin-bottom: 0.5rem;
-}
-
-.xarra-press-facts,
-.xarra-press-features {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 1.5rem;
-}
-
-.xarra-press-fact {
-    min-width: 0;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--bs-border-color);
-}
-
-.xarra-press-features {
-    row-gap: 0.5rem;
-}
-
-.xarra-press-features > div {
-    min-width: 0;
-    padding: 0.5rem 0;
-}
-
-.xarra-press-features > div > p {
-    margin-bottom: 0;
-}
-
-.xarra-press-features > div > p:first-child {
-    margin-bottom: 0.25rem;
-}
-
-.xarra-press-facts > .xarra-press-fact:nth-last-child(-n + 2) {
-    border-bottom: 0;
-}
-
-.xarra-press-fact-label {
-    font-weight: 700;
-    margin-bottom: 0.2rem;
-}
-
-.xarra-press-fact a {
-    overflow-wrap: anywhere;
-}
-
-.xarra-press-video {
-    margin-block: 1rem;
-    margin-inline: auto;
-    max-width: 720px;
-}
-
-.xarra-press-video iframe {
-    border: 0;
-}
-
-.xarra-press-demo > a:last-child {
-    display: block;
-    width: fit-content;
-    margin-inline: auto;
-}
-
-.xarra-press-media-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.25rem;
-}
-
-.xarra-press-media {
-    min-width: 0;
-    padding: 1rem;
-    border: 1px solid var(--bs-border-color);
-    border-radius: 6px;
-}
-
-.xarra-press-media > a:first-child {
-    display: grid;
-    place-items: center;
-    height: 300px;
-    margin-bottom: 0.9rem;
-    background: var(--bs-secondary-bg);
-}
-
-.xarra-press-media picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.xarra-press-media picture.responsive-picture > img {
-    width: 100%;
-    height: 100% !important;
-    object-fit: contain;
-}
-
-.xarra-press-media > h3 {
-    margin-bottom: 0.25rem;
-}
-
-.xarra-press-media > p {
-    margin-bottom: 0.4rem;
-}
-
-@media (min-width: 1100px) {
-    .xarra-press-media-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .xarra-press-media > a:first-child {
-        height: 240px;
+/* HStack gap is one value for both axes, and the inline gap shorthand wins
+   over a later row-gap. Stacked controls need more room below the md breakpoint. */
+@media (max-width: 767.98px) {
+    .action-row {
+        row-gap: 16px !important;
     }
 }
 
-@media (max-width: 700px) {
-    .xarra-press-facts,
-    .xarra-press-features,
-    .xarra-press-media-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .xarra-press-facts > .xarra-press-fact:nth-last-child(2) {
-        border-bottom: 1px solid var(--bs-border-color);
-    }
-
-    .xarra-press-media > a:first-child {
-        height: 260px;
-    }
-}
-
+/* The fixed nav grows to two lines between these widths. Ignite has no
+   modifier for that overlap on the press page. */
 @media (min-width: 768px) and (max-width: 960px) {
     body[data-current-page="/apps/xarra/press"] {
         padding-top: 116px;
-    }
-}
-
-@media (max-width: 480px) {
-    .xarra-press-header {
-        grid-template-columns: minmax(0, 1fr);
-        align-items: start;
-        gap: 0.75rem;
-    }
-
-    .xarra-press-header picture {
-        width: 64px;
-        height: 64px;
-    }
-
-    .xarra-press-header img {
-        width: 64px;
-        height: 64px;
-        border-radius: 14px;
     }
 }

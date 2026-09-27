@@ -35,3 +35,24 @@ extension ActionButton {
         )
     }
 }
+
+/// Outline control matching Terms, Privacy, and Support on an app page.
+struct PillLink: HTML {
+    let title: String
+    let target: String
+
+    @MainActor var body: some HTML {
+        Link(title, target: target)
+            .padding(.vertical, .small)
+            .padding(.horizontal)
+            .cornerRadius(8)
+            .textDecoration(.none)
+            .background("transparent")
+            .foregroundStyle("var(--bs-primary)")
+            // Inline links let vertical padding paint outside the line box, so
+            // stacked pills overlap the row gap.
+            .style(.display, "inline-block")
+            // Ignite's border modifier only accepts a Color, which always emits rgb().
+            .style(.border, "1px solid var(--bs-primary)")
+    }
+}

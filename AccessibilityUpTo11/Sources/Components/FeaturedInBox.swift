@@ -87,8 +87,8 @@ struct FeaturedInBox: HTML {
             }
         }
         .padding()
-        .style(.width, "100%")
-        .style(.backgroundColor, "var(--bs-secondary-bg)")
+        .frame(width: .percent(100%))
+        .background("var(--bs-secondary-bg)")
         .style(.border, "1px solid var(--bs-border-color)")
         .cornerRadius(8)
     }

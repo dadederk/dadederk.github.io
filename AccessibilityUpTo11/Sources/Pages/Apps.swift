@@ -37,13 +37,7 @@ struct Apps: StaticPage {
                                 imagePath: app.imagePath,
                                 imageDescription: app.imageDescription,
                                 platforms: app.platforms,
-                                actions: app.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
+                                actions: app.actions
                             )
                             .width(6)
                         }
@@ -72,13 +66,7 @@ struct Apps: StaticPage {
                                 imagePath: app.imagePath,
                                 imageDescription: app.imageDescription,
                                 platforms: app.platforms,
-                                actions: app.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
+                                actions: app.actions
                             )
                             .width(6)
                         }
@@ -107,13 +95,7 @@ struct Apps: StaticPage {
                                 imagePath: app.imagePath,
                                 imageDescription: app.imageDescription,
                                 platforms: app.platforms,
-                                actions: app.actions.map { action in
-                                    ActionButton(
-                                        title: action.title,
-                                        target: action.target,
-                                        style: action.style == "primary" ? .primary : .secondary
-                                    )
-                                }
+                                actions: app.actions
                             )
                             .width(6)
                         }

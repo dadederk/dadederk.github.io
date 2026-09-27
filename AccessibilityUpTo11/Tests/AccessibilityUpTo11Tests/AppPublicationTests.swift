@@ -14,14 +14,27 @@ final class AppPublicationTests: XCTestCase {
         XCTAssertTrue(apps.first { $0.slug == "mestre" }?.customerQuotes.isEmpty == true)
     }
 
-    func testUnpublishedAppsAreHiddenByDefault() {
+    func testAppsNavigationStaysCurrentOnChildPages() {
+        let subpage = #"<body data-current-page="/apps/xarra/terms"><a href="/apps" class="nav-link text-nowrap">Apps</a>"#
+        let marked = NavigationSectionMarker.markingCurrentSections(in: subpage)
+
+        XCTAssertTrue(marked.contains(#"class="nav-link active text-nowrap" aria-current="page">Apps</a>"#))
+
+        let home = #"<body data-current-page="/"><a href="/apps" class="nav-link text-nowrap">Apps</a>"#
+        XCTAssertEqual(NavigationSectionMarker.markingCurrentSections(in: home), home)
+
+        let appsIndex = #"<body data-current-page="/apps"><a href="/apps" class="nav-link active text-nowrap" aria-current="page">Apps</a>"#
+        XCTAssertEqual(NavigationSectionMarker.markingCurrentSections(in: appsIndex), appsIndex)
+    }
+
+    func testPublishedAppsAreVisibleByDefault() {
         let apps = AppsJSONLoader.loadAppsContent(environment: [:]).apps
 
-        XCTAssertFalse(apps.contains { $0.slug == "max-the-game" })
+        XCTAssertTrue(apps.contains { $0.slug == "max-the-game" })
         XCTAssertTrue(apps.contains { $0.slug == "retrorapid" })
     }
 
-    func testPreviewFlagIncludesUnpublishedApps() {
+    func testPreviewFlagKeepsPublishedAppsVisible() {
         let apps = AppsJSONLoader.loadAppsContent(environment: [
             AppsJSONLoader.includeUnpublishedAppsEnvironmentKey: "1"
         ]).apps

@@ -146,6 +146,46 @@ struct Home: StaticPage {
                 }
             }
             .padding(.vertical)
+
+            Divider()
+
+            Section {
+                HStack(alignment: .bottom) {
+                    Text("Apps")
+                        .font(.title2)
+                    Link("See All", target: "/apps")
+                        .font(.body)
+                }
+                .style(.flexWrap, "wrap")
+                .style(.gap, "0.5rem")
+                .padding(.bottom)
+
+                let featuredSlugs = ["xarra", "retrorapid", "imonstickers"]
+                let appsBySlug = Dictionary(
+                    uniqueKeysWithValues: AppsData.loadContent().apps.map { ($0.slug, $0) }
+                )
+                let featuredApps = featuredSlugs.compactMap { appsBySlug[$0] }
+
+                if !featuredApps.isEmpty {
+                    Grid(alignment: .topLeading) {
+                        ForEach(featuredApps) { app in
+                            AppCard(
+                                slug: app.slug,
+                                title: app.title,
+                                subtitle: app.subtitle,
+                                description: app.description,
+                                nameOrigin: app.nameOrigin,
+                                imagePath: app.imagePath,
+                                imageDescription: app.imageDescription,
+                                platforms: app.platforms,
+                                actions: app.actions
+                            )
+                            .width(4)
+                        }
+                    }
+                }
+            }
+            .padding(.vertical)
         }
     }
 }

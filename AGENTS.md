@@ -58,3 +58,9 @@ When updating 365 Days tips, prefer putting the tip text and any Swift code in t
 ## Repository
 
 This site is built with [Ignite](https://github.com/twostraws/Ignite) (Swift static site generator). Agent discovery artifacts are generated at build time in `Sources/Models/AgentDiscoveryPublisher.swift`.
+
+Prefer Swift for active repository scripts whenever practical. Follow this
+site's `AccessibilityUpTo11/Scripts/README.md` and consult Xarra's or
+RetroRapid's `Scripts/` conventions for new automation. Give generators a
+non-mutating `--check` mode where practical, and document any non-Swift
+exception beside the script.

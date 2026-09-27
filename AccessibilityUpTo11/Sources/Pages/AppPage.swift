@@ -3,6 +3,9 @@ import Ignite
 
 // Universal AppPage that handles all app-related pages based on page type
 struct UniversalAppPage: StaticPage {
+    /// Flip to `true` to publish the worldwide App Store rating cards on app pages.
+    private static let showsAppStoreRatings = false
+
     let appIdentifier: String
     let pageType: AppPageType
     
@@ -107,154 +110,171 @@ struct UniversalAppPage: StaticPage {
     
     // MARK: - Main App Page
     @MainActor private func renderMainPage() -> some HTML {
-        VStack(alignment: .leading) {
+        // 32pt between major blocks, 16pt under a section heading, 8pt between a
+        // subsection title and the content it labels. The title line box keeps
+        // about 8pt of descender under the letters; the capsules use that inset
+        // so their bottoms meet the type.
+        let blockSpacing = 32
+        let headingSpacing = 16
+        let subsectionSpacing = 8
+        let titleDescender = 8
+
+        return VStack(alignment: .leading, spacing: blockSpacing) {
             if let app = findApp() {
-                // Header section with app info
-                Section {
-                    Grid(alignment: .topLeading) {
-                        Image(app.imagePath, description: app.imageDescription)
-                            .resizable()
-                            .aspectRatio(.square, contentMode: .fit)
-                            .frame(width: 132, height: 132)
-                            .padding(.trailing, 10)
-                            .width(4)
-                        
-                        VStack(alignment: .leading) {
+                HStack(alignment: .center, spacing: headingSpacing) {
+                    Image(app.imagePath, description: app.imageDescription)
+                        .resizable()
+                        .aspectRatio(.square, contentMode: .fit)
+                        .frame(width: 132, height: 132)
+                        .style(.flex, "0 0 auto")
+
+                    VStack(alignment: .leading, spacing: subsectionSpacing) {
+                        HStack(alignment: .bottom, spacing: 10) {
                             BrandCopy.titleText(app.title)
                                 .font(.title1)
                                 .fontWeight(.bold)
+                                .lineSpacing(1)
                                 .horizontalAlignment(.leading)
-                            
-                            Text(app.subtitle)
-                                .font(.title2)
-                                .foregroundStyle(.secondary)
-                                .padding(.bottom, 5)
-                            
+
                             if !app.platforms.isEmpty {
-                                PlatformPillRow(platforms: app.platforms)
-                                .padding(.bottom, 10)
+                                PlatformPillRow(platforms: app.platforms, appearance: .badge)
+                                    .padding(.bottom, titleDescender)
                             }
                         }
-                        .width(8)
+                        .style(.flexWrap, "wrap")
+
+                        Text(app.subtitle)
+                            .font(.title2)
+                            .foregroundStyle(.secondary)
                     }
-                    .padding(.bottom)
-                    
+                    .style(.flex, "1 1 auto")
+                    .style(.minWidth, "0")
+                }
+                .style(.flexWrap, "wrap")
+                .style(.width, "100%")
+
+                VStack(alignment: .leading, spacing: headingSpacing) {
                     Text(app.description)
                         .font(.body)
-                        .padding(.bottom, 10)
-                    
-                    Text(app.nameOrigin)
-                        .font(.body)
-                        .foregroundStyle(.secondary)
-                        .padding(.bottom, 20)
-                    
-                    // Action buttons
-                    HStack {
-                        ForEach(app.actions) { action in
-                            ActionButton(
-                                title: action.title,
-                                target: action.target,
-                                style: action.style == "primary" ? .primary : .secondary
-                            )
-                        }
-                    }
-                    .style(.flexWrap, "wrap")
-                    .style(.gap, "0.5rem")
-                    .padding(.bottom, 20)
 
-                    if !app.featuredIn.isEmpty {
-                        FeaturedInBox(
-                            title: "Featured in",
-                            mentions: app.featuredIn,
-                            quote: app.featuredQuote,
-                            quoteSourceTitle: app.featuredQuoteSourceTitle,
-                            quoteSourceTarget: app.featuredQuoteSourceTarget
-                        )
-                        .padding(.bottom, 24)
-                        .style(.width, "100%")
+                    if !app.nameOrigin.isEmpty {
+                        Text(app.nameOrigin)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
                     }
-                    
-                    // Terms, Privacy, and Support links
-                    HStack {
-                        pillLink("Terms & Conditions", target: "/apps/\(appIdentifier)/terms")
-                        pillLink("Privacy Policy", target: "/apps/\(appIdentifier)/privacy")
-                        pillLink("Support & Contact", target: "#support-contact")
-                        if app.slug == "xarra" {
-                            pillLink("Press Kit", target: "/apps/xarra/press/")
-                        }
-                    }
-                    .style(.flexWrap, "wrap")
-                    .style(.gap, "0.5rem")
                 }
-                .padding(.bottom)
-                
-                // Features section with sub-sections
+
+                HStack(alignment: .center, spacing: 12) {
+                    ForEach(app.actions.filter { isAppStoreLink($0.target) }) { action in
+                        AppStoreDownloadBadge(target: action.target)
+                    }
+
+                    if app.slug == "xarra" {
+                        ActionButton(
+                            title: "Press Kit",
+                            target: "/apps/xarra/press/",
+                            style: .primary
+                        )
+                    }
+
+                    ForEach(app.actions.filter { !isAppStoreLink($0.target) }) { action in
+                        ActionButton(
+                            title: action.title,
+                            target: action.target,
+                            style: action.style == "primary" ? .primary : .secondary
+                        )
+                    }
+
+                    PillLink(title: "Terms & Conditions", target: "/apps/\(appIdentifier)/terms")
+                    PillLink(title: "Privacy Policy", target: "/apps/\(appIdentifier)/privacy")
+                    PillLink(title: "Support & Contact", target: "#support-contact")
+                }
+                .class("action-row")
+                .style(.flexWrap, "wrap")
+
+                if !app.featuredIn.isEmpty {
+                    FeaturedInBox(
+                        title: "Featured in",
+                        mentions: app.featuredIn,
+                        quote: app.featuredQuote,
+                        quoteSourceTitle: app.featuredQuoteSourceTitle,
+                        quoteSourceTarget: app.featuredQuoteSourceTarget
+                    )
+                    .style(.width, "100%")
+                }
+
+                if let ratingCard = ratingCard(for: app.slug) {
+                    VStack(alignment: .leading, spacing: headingSpacing) {
+                        Text("App Store ratings")
+                            .font(.title2)
+                            .fontWeight(.bold)
+
+                        Image(ratingCard.path, description: ratingCard.description)
+                            .style(.width, "min(100%, 720px)")
+                    }
+                }
+
                 if !app.featureGroups.isEmpty {
-                    Section {
+                    VStack(alignment: .leading, spacing: headingSpacing) {
                         Text("Features")
                             .font(.title2)
                             .fontWeight(.bold)
                             .horizontalAlignment(.leading)
-                            .padding(.bottom)
-                        
-                        ForEach(app.featureGroups) { group in
-                            VStack(alignment: .leading) {
-                                Text(group.title)
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .horizontalAlignment(.leading)
-                                    .padding(.bottom)
-                                
-                                Grid(alignment: .topLeading) {
-                                    ForEach(group.features) { feature in
-                                        AppFeatureCard(
-                                            feature: feature,
-                                            fallbackImagePath: app.imagePath,
-                                            fallbackImageDescription: app.imageDescription
-                                        )
-                                        .width(4)
+
+                        VStack(alignment: .leading, spacing: blockSpacing) {
+                            ForEach(app.featureGroups) { group in
+                                VStack(alignment: .leading, spacing: subsectionSpacing) {
+                                    Text(group.title)
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .horizontalAlignment(.leading)
+
+                                    Grid(alignment: .topLeading) {
+                                        ForEach(group.features) { feature in
+                                            AppFeatureCard(
+                                                feature: feature,
+                                                fallbackImagePath: app.imagePath,
+                                                fallbackImageDescription: app.imageDescription
+                                            )
+                                            .width(4)
+                                        }
                                     }
                                 }
-                                .padding(.bottom, 30)
                             }
                         }
                     }
-                    .padding(.vertical)
                 } else {
-                    // Fallback to flat features for backward compatibility
-                Section {
-                    Text("Features")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .horizontalAlignment(.leading)
-                        .padding(.bottom)
-                    
-                    Grid(alignment: .topLeading) {
-                        ForEach(app.features) { feature in
-                            AppFeatureCard(
-                                feature: feature,
-                                fallbackImagePath: app.imagePath,
-                                fallbackImageDescription: app.imageDescription
-                            )
-                            .width(4)
-                        }
-                    }
-                }
-                .padding(.vertical)
-                }
-                
-                // Why Xarra!? section
-                if app.whySection != nil || !app.customerQuotes.isEmpty {
-                    Section {
-                        BrandCopy.whySectionTitle(for: app.title)
+                    VStack(alignment: .leading, spacing: headingSpacing) {
+                        Text("Features")
                             .font(.title2)
                             .fontWeight(.bold)
                             .horizontalAlignment(.leading)
-                            .padding(.bottom)
-                        
-                        if let whySection = app.whySection {
-                            Text(whySection)
-                                .font(.body)
+
+                        Grid(alignment: .topLeading) {
+                            ForEach(app.features) { feature in
+                                AppFeatureCard(
+                                    feature: feature,
+                                    fallbackImagePath: app.imagePath,
+                                    fallbackImageDescription: app.imageDescription
+                                )
+                                .width(4)
+                            }
+                        }
+                    }
+                }
+
+                if app.whySection != nil || !app.customerQuotes.isEmpty {
+                    VStack(alignment: .leading, spacing: blockSpacing) {
+                        VStack(alignment: .leading, spacing: headingSpacing) {
+                            BrandCopy.whySectionTitle(for: app.title)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .horizontalAlignment(.leading)
+
+                            if let whySection = app.whySection {
+                                Text(whySection)
+                                    .font(.body)
+                            }
                         }
 
                         if !app.customerQuotes.isEmpty {
@@ -263,74 +283,72 @@ struct UniversalAppPage: StaticPage {
                                 mentions: [],
                                 quotes: app.customerQuotes
                             )
-                            .padding(.top, 24)
                             .style(.width, "100%")
                         }
                     }
-                    .padding(.vertical)
                 }
-                
-                // Support & Contact section
-                Section {
+
+                VStack(alignment: .leading, spacing: headingSpacing) {
                     Text("Support & Contact")
                         .font(.title2)
                         .fontWeight(.bold)
-                        .padding(.bottom)
                         .horizontalAlignment(.leading)
-                    
+
                     Text(app.supportText)
                         .font(.body)
-                        .padding(.bottom)
                         .horizontalAlignment(.leading)
-                    
+
                     HStack {
                         ActionButton(title: "Contact", target: "mailto:\(app.contactEmail)", style: .primary)
                             .horizontalAlignment(.leading)
                     }
                 }
                 .id("support-contact")
-                .padding(.vertical)
             } else {
-                // App not found
-                Section {
-                    Text(pageType.notFoundMessage)
-                        .font(.title2)
-                        .foregroundStyle(.secondary)
-                }
-                .padding(.vertical)
+                Text(pageType.notFoundMessage)
+                    .font(.title2)
+                    .foregroundStyle(.secondary)
+                    .padding(.vertical)
             }
         }
+        .padding(.top, 24)
     }
     
     // MARK: - Legal Pages
     @MainActor private func renderLegalPage() -> some HTML {
-        VStack {
+        VStack(alignment: .leading) {
             if let app = findApp() {
                 // Header with app info and back link
                 Section {
-                    VStack(alignment: .leading) {
-                        HStack(alignment: .center) {
-                            Image(decorative: app.imagePath)
-                                .resizable()
-                                .aspectRatio(.square, contentMode: .fit)
-                                .frame(width: 80, height: 80)
-                                .padding(.trailing)
-                            
-                            VStack(alignment: .leading) {
-                                Text("\(app.title)\(pageType.titleSuffix)")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                
-                                Link(target: "/apps/\(appIdentifier)") {
-                                    Span("← Back to ")
-                                    BrandCopy.inlineTitle(app.title)
-                                }
-                                    .style(.textDecoration, "none")
-                                    .foregroundStyle(.secondary)
+                    HStack(alignment: .center) {
+                        Image(decorative: app.imagePath)
+                            .resizable()
+                            .aspectRatio(.square, contentMode: .fit)
+                            .frame(width: 80, height: 80)
+                            .padding(.trailing)
+
+                        VStack(alignment: .leading) {
+                            // A span keeps the title size without emitting an h2
+                            // ahead of the document h1 in the legal markdown.
+                            Span {
+                                BrandCopy.inlineTitle(app.title)
+                                Span(pageType.titleSuffix)
                             }
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .horizontalAlignment(.leading)
+
+                            Link(target: "/apps/\(appIdentifier)") {
+                                Span("← Back to ")
+                                BrandCopy.inlineTitle(app.title)
+                            }
+                            .style(.textDecoration, "none")
+                            .foregroundStyle(.secondary)
+                            .horizontalAlignment(.leading)
                         }
                     }
                 }
+                .frame(width: .percent(100%))
                 .padding(.bottom, 10)
                 
                 // Legal content
@@ -421,6 +439,30 @@ struct UniversalAppPage: StaticPage {
             app.slug.lowercased() == normalizedIdentifier
         }
     }
+
+    private func ratingCard(for slug: String) -> (path: String, description: String)? {
+        guard Self.showsAppStoreRatings else { return nil }
+
+        switch slug.lowercased() {
+        case "xarra":
+            return (
+                "/Images/Site/Apps/Xarra/GlobalAppStoreRating-2026-09.png",
+                "Xarra worldwide App Store rating: 5.0 out of 5 from 7 ratings, September 2026."
+            )
+        case "retrorapid":
+            return (
+                "/Images/Site/Apps/RetroRapid/GlobalAppStoreRating-2026-09.png",
+                "RetroRapid worldwide App Store rating: 4.8 out of 5 from 58 ratings, September 2026."
+            )
+        case "imonstickers":
+            return (
+                "/Images/Site/Apps/iMonstickers/GlobalAppStoreRating-2026-09.png",
+                "iMonstickers worldwide App Store rating: 5.0 out of 5 from 2 ratings, September 2026."
+            )
+        default:
+            return nil
+        }
+    }
     
     private func loadLegalContent() -> String? {
         guard let app = findApp() else { return nil }
@@ -441,6 +483,10 @@ struct UniversalAppPage: StaticPage {
         }
     }
 
+    private func isAppStoreLink(_ target: String) -> Bool {
+        target.contains("apps.apple.com")
+    }
+
     private func appStoreURLTarget(for app: AppItem) -> String? {
         if let appStoreAction = app.actions.first(where: { $0.target.contains("apps.apple.com") }) {
             return appStoreAction.target
@@ -455,14 +501,4 @@ struct UniversalAppPage: StaticPage {
             .replacingOccurrences(of: "'", with: "\\'")
     }
     
-    @MainActor private func pillLink(_ title: String, target: String, emphasis: Bool = false) -> some InlineElement {
-        Link(title, target: target)
-            .padding(.vertical, .small)
-            .padding(.horizontal)
-            .cornerRadius(8)
-            .style(.textDecoration, "none")
-            .style(.backgroundColor, emphasis ? "var(--bs-primary)" : "transparent")
-            .style(.color, emphasis ? "var(--bs-secondary)" : "var(--bs-primary)")
-            .style(.border, "1px solid var(--bs-primary)")
-    }
 }

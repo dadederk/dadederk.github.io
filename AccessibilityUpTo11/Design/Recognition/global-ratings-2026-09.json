@@ -1,0 +1,2474 @@
+{
+  "appIds": {
+    "RetroRapid": 6758641625,
+    "Xarra": 6759402266,
+    "iMonstickers": 1164272926
+  },
+  "collectedUTC": "2026-09-27T17:18:03.312836+00:00",
+  "errors": {},
+  "method": "Sum per-territory userRatingCount; weight averageUserRating by each territory count.",
+  "source": "https://itunes.apple.com/lookup",
+  "storefronts": {
+    "AE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AF": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AI": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AL": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AT": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AU": {
+      "RetroRapid": {
+        "average": 4,
+        "count": 4
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "AZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BB": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BE": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BF": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BH": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BJ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BR": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 3
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BS": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BT": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "BZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CA": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CD": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CH": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CI": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CL": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CN": {
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CR": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CV": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "CZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "DE": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 6
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "DK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "DM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "DO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "DZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "EC": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "EE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "EG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ES": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 6
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 5,
+        "count": 1
+      }
+    },
+    "FI": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "FJ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "FM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "FR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GB": {
+      "RetroRapid": {
+        "average": 4.76471,
+        "count": 17
+      },
+      "Xarra": {
+        "average": 5,
+        "count": 7
+      },
+      "iMonstickers": {
+        "average": 5,
+        "count": 1
+      }
+    },
+    "GD": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GH": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GT": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "GY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "HK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "HN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "HR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "HU": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ID": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "IE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "IL": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "IN": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "IQ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "IS": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "IT": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "JM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "JO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "JP": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KH": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "KZ": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LB": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LC": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LT": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LU": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LV": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "LY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MD": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ME": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ML": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MS": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MT": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MU": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MV": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MX": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 2
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "MZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NI": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NL": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NP": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "NZ": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "OM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PH": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PL": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PT": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "PY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "QA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "RO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "RS": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "RU": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 1
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "RW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SB": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SC": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SI": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SL": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ST": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SV": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "SZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TC": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TD": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TH": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TJ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TO": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TR": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TT": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "TZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "UA": {
+      "RetroRapid": {
+        "average": 5,
+        "count": 2
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "UG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "US": {
+      "RetroRapid": {
+        "average": 4.83333,
+        "count": 6
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "UY": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "UZ": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "VC": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "VE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "VG": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "VN": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "VU": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "XK": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "YE": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ZA": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ZM": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    },
+    "ZW": {
+      "RetroRapid": {
+        "average": 0,
+        "count": 0
+      },
+      "Xarra": {
+        "average": 0,
+        "count": 0
+      },
+      "iMonstickers": {
+        "average": 0,
+        "count": 0
+      }
+    }
+  },
+  "territories": 175,
+  "totals": {
+    "RetroRapid": {
+      "average": 4.8448284482758615,
+      "count": 58
+    },
+    "Xarra": {
+      "average": 5.0,
+      "count": 7
+    },
+    "iMonstickers": {
+      "average": 5.0,
+      "count": 2
+    }
+  }
+}

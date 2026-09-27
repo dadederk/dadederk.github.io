@@ -11,7 +11,7 @@ struct AppCard: HTML {
     let imagePath: String
     let imageDescription: String
     let platforms: [String]
-    let actions: [ActionButton]
+    let actions: [ActionItem]
     
     @MainActor var body: some HTML {
         Card {
@@ -25,50 +25,63 @@ struct AppCard: HTML {
                     .foregroundStyle(.secondary)
             }
         } header: {
-            VStack(alignment: .leading) {
-                // App summary row replacing the previous image area.
-                HStack(alignment: .center) {
+            VStack(alignment: .leading, spacing: 0) {
+                Section {
+                    BrandCopy.linkedInlineTitle(title, target: appURLPath(for: slug))
+                        .font(.title3)
+                        .foregroundStyle(.body)
+                        .style(.overflowWrap, "break-word")
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                .frame(width: .percent(100%))
+                .background("var(--bs-secondary-bg)")
+                .style(.borderBottom, "1px solid var(--bs-border-color)")
+
+                HStack(alignment: .center, spacing: 16) {
                     LinkGroup(target: appURLPath(for: slug)) {
                         Image(imagePath, description: imageDescription)
                             .resizable()
                             .aspectRatio(.square, contentMode: .fit)
                             .frame(width: 96, height: 96)
                     }
-                    
-                    VStack(alignment: .leading) {
+                    .style(.flex, "0 0 auto")
+
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(subtitle)
                             .font(.body)
                             .foregroundStyle(.secondary)
-                            .padding(.bottom, 5)
-                        
+
                         if !platforms.isEmpty {
-                            PlatformPillRow(platforms: platforms)
+                            PlatformPillRow(platforms: platforms, appearance: .badge)
                         }
                     }
+                    .style(.flex, "1 1 auto")
                     .style(.minWidth, "0")
                 }
-                .class("app-card-meta")
+                .padding(16)
+                .frame(width: .percent(100%))
+                .background("var(--bs-card-bg)")
+                .style(.borderBottom, "1px solid var(--bs-border-color)")
                 .style(.flexWrap, "wrap")
-                .style(.alignItems, "flex-start")
-
-                BrandCopy.linkedInlineTitle(title, target: appURLPath(for: slug))
-                .font(.title3)
-                .class("app-card-title")
-                .class("text-break")
-                .foregroundStyle(.body)
             }
         } footer: {
-            HStack(alignment: .center) {
-                ForEach(actions) { action in
-                    action
-                        .padding(.top, 4)
+            HStack(alignment: .center, spacing: 12) {
+                ForEach(actions.filter { isAppStoreLink($0.target) }) { action in
+                    AppStoreDownloadBadge(target: action.target)
+                }
+
+                ForEach(actions.filter { !isAppStoreLink($0.target) }) { action in
+                    ActionButton(action: action)
                 }
             }
-            .style(.display, "flex")
             .style(.flexWrap, "wrap")
-            .margin(.top, -5)
         }
         .class("app-card")
+    }
+
+    private func isAppStoreLink(_ target: String) -> Bool {
+        target.contains("apps.apple.com")
     }
     
     private func appURLPath(for slug: String) -> String {

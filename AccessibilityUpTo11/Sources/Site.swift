@@ -16,6 +16,11 @@ struct AccessibilityUpTo11Website {
             // Generate responsive image derivatives and rewrite image markup before
             // the remaining publishers validate or deploy the generated HTML.
             try ImageOptimizationPublisher.publish()
+
+            // Ignite's nav current state is an exact path match. Mark Apps on child pages.
+            let buildDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+                .appendingPathComponent("Build", isDirectory: true)
+            try NavigationSectionMarker.markBuiltSite(at: buildDirectory)
             
             // Generate custom RSS feed for 365 Days iOS Accessibility
             await generate365DaysRSSFeed()
