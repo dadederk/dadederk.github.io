@@ -87,12 +87,16 @@ struct XarraPressContent: HTML {
             if !app.featuredIn.isEmpty {
                 pressSection(divider: false) {
                     FeaturedInBox(
-                        title: "Featured in",
+                        title: "Awards & coverage",
                         mentions: app.featuredIn,
                         quote: app.featuredQuote,
                         quoteSourceTitle: app.featuredQuoteSourceTitle,
-                        quoteSourceTarget: app.featuredQuoteSourceTarget
+                        quoteSourceTarget: app.featuredQuoteSourceTarget,
+                        trailingImage: XarraRecognition.bannerImage
                     )
+
+                    Link("Download transparent Gaady award artwork (PNG)", target: XarraRecognition.artworkPath)
+                        .attribute("download", XarraRecognition.artworkFilename)
                 }
             }
 
@@ -163,7 +167,7 @@ struct XarraPressContent: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
                 Text {
-                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and artwork, and ")
+                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and Xarra artwork, GAAD Foundation for the Gaadys mark, and ")
                     Link("Raúl Gil", target: "https://raul-gil.com/")
                     Span(" for the app icon. Full-resolution files are in the ")
                     Link("downloadable press kit", target: "/Downloads/xarra-press-kit.zip")
@@ -238,6 +242,8 @@ struct XarraPressContent: HTML {
                     .fontWeight(.bold)
                     .attribute("lang", "es")
                 Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si lo prefieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
+                    .attribute("lang", "es")
+                Text("En 2026, Xarra fue una de las cinco ganadoras de los Premios Gaady de la GAAD Foundation.")
                     .attribute("lang", "es")
             }
             .id("resumen-es")

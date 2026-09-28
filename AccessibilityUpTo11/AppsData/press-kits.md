@@ -7,7 +7,7 @@ Xarra’s press kit (`/apps/xarra/press/`) is the first full press page on this 
 - Quick facts: price, platforms, availability, developer, privacy, contact
 - Paste-ready copy tiers: one sentence, short brief, longer story
 - Name origin / pronunciation when the name is unfamiliar
-- Social proof (coverage, quotes) when available
+- Social proof (awards, coverage, quotes) when available
 - Demo video when you have one (embed + YouTube link)
 - Key features (keep an even grid if the layout is multi-column)
 - Primary media early (screenshots people will actually use)
@@ -25,13 +25,13 @@ Xarra’s press kit (`/apps/xarra/press/`) is the first full press page on this 
 | Media catalog | Private `XarraPressMedia` in the same file | Per-app media list (paths, titles, alts, kinds) |
 | ZIP | Manual `Assets/Downloads/xarra-press-kit.zip` + `XarraPressKit/README.txt` | Scripted pack from a per-app folder so page and ZIP cannot drift |
 | URLs / pricing | Hardcoded in the press page | Prefer `AppsData` / app JSON fields already used on the product page |
-| Featured coverage | Already from `xarra.json` | Keep sourcing social proof from app JSON |
+| Awards and coverage | From `xarra.json`, with award artwork beside the banner | Keep sourcing social proof from app JSON |
 
 ## Layout pattern that worked for Xarra
 
 1. Header + actions (ZIP, Store, product, email, optional language jump)
 2. At a glance
-3. Featured in (if any)
+3. Awards and coverage (if any)
 4. About (pronunciation, one sentence, brief, story)
 5. Demo video
 6. Key features

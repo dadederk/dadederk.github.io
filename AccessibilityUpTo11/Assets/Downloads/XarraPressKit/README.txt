@@ -6,6 +6,8 @@ Email: hello@accessibilityUpTo11.com
 Product page: https://accessibilityupto11.com/apps/xarra/
 Press page: https://accessibilityupto11.com/apps/xarra/press/
 App Store: https://apps.apple.com/us/app/xarra/id6759402266
+Recognition: Xarra! is one of the five 2026 Gaady Award winners.
+Official announcement: https://gaad.foundation/what-we-do/gaadys/winners/xarra
 
 Xarra (pronounced "CHA-rra") comes from a Valencian/Catalan word meaning
 "to chat" or "to talk". Dani is from Xàbia in the Marina Alta and is based
@@ -35,8 +37,12 @@ The 1920 x 1080 xarra-2-0-app-store-event-card.png is Xarra! 2.0 artwork.
 It is an AI-assisted composite based on Xarra screen captures, not a direct
 app screenshot.
 
+The 1200 x 800 xarra-gaady-award-2026.png is a transparent award graphic
+using the hand-drawn Gaadys mark and mirrored laurels. It is suitable for
+editorial coverage of Xarra's 2026 recognition.
+
 These photos, screenshots, icons, and artwork may be used for
 editorial coverage of Xarra. Please credit Xarra / Dani Devesa
-Derksen-Staats for the photos, screenshots, and artwork, and Raúl Gil for
-the app icon. For other formats, interviews, or new images, contact Dani
-at the email above.
+Derksen-Staats for the photos, screenshots, and Xarra artwork; GAAD Foundation
+for the Gaadys mark; and Raúl Gil for the app icon. For other formats,
+interviews, or new images, contact Dani at the email above.

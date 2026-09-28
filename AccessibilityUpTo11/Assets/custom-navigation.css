@@ -370,8 +370,8 @@ picture.responsive-picture > img {
     display: block;
 }
 
-/* Rating cards are black line art on a transparent background. Keep them at the
-   trailing edge of a featuring banner, and invert them on the dark theme. */
+/* Recognition cards are black line art on a transparent background. Keep them at
+   the trailing edge of a banner, and invert them on the dark theme. */
 .featured-banner > picture.responsive-picture,
 .featured-banner > img.featured-banner-image {
     flex: 0 1 22.5rem;

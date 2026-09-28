@@ -191,11 +191,12 @@ struct UniversalAppPage: StaticPage {
 
                 if !app.featuredIn.isEmpty {
                     FeaturedInBox(
-                        title: "Featured in",
+                        title: app.slug == "xarra" ? "Awards & coverage" : "Featured in",
                         mentions: app.featuredIn,
                         quote: app.featuredQuote,
                         quoteSourceTitle: app.featuredQuoteSourceTitle,
-                        quoteSourceTarget: app.featuredQuoteSourceTarget
+                        quoteSourceTarget: app.featuredQuoteSourceTarget,
+                        trailingImage: app.slug == "xarra" ? XarraRecognition.bannerImage : nil
                     )
                     .style(.width, "100%")
                 }

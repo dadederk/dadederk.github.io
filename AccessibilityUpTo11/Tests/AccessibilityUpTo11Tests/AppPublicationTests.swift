@@ -62,5 +62,16 @@ final class AppPublicationTests: XCTestCase {
         XCTAssertEqual(meta.path, "/apps/xarra/press")
         XCTAssertTrue(meta.title.contains("Press Kit"))
         XCTAssertTrue(meta.description.contains("full-resolution screenshots"))
+
+        let award = try XCTUnwrap(
+            xarra.featuredIn.first {
+                $0.target == "https://gaad.foundation/what-we-do/gaadys/winners/xarra"
+            }
+        )
+        XCTAssertEqual(award.title, "One of five 2026 Gaady Award winners — GAAD Foundation")
+        XCTAssertEqual(
+            XarraRecognition.artworkPath,
+            "/Images/Site/Apps/Xarra/Press/xarra-gaady-award-2026.png"
+        )
     }
 }
