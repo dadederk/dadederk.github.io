@@ -4,6 +4,13 @@ import Ignite
 struct FeaturedBannerImage {
     let path: String
     let description: String
+    let invertsInDarkMode: Bool
+
+    init(path: String, description: String, invertsInDarkMode: Bool = false) {
+        self.path = path
+        self.description = description
+        self.invertsInDarkMode = invertsInDarkMode
+    }
 }
 
 struct FeaturedInBox: HTML {
@@ -56,7 +63,11 @@ struct FeaturedInBox: HTML {
                     .style(.minWidth, "0")
 
                 Image(trailingImage.path, description: trailingImage.description)
-                    .class("featured-banner-image")
+                    .class(
+                        trailingImage.invertsInDarkMode
+                            ? "featured-banner-image featured-banner-image-invert-dark"
+                            : "featured-banner-image"
+                    )
             }
             .class("featured-banner")
             .style(.flexWrap, "wrap")

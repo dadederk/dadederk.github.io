@@ -71,7 +71,7 @@ final class AppPublicationTests: XCTestCase {
         XCTAssertEqual(award.title, "One of five 2026 Gaady Award winners — GAAD Foundation")
         XCTAssertEqual(
             XarraRecognition.artworkPath,
-            "/Images/Site/Apps/Xarra/Press/xarra-gaady-award-2026.png"
+            "/Images/Site/Apps/Xarra/Press/xarra-gaady-award-2026-card.png"
         )
     }
 }

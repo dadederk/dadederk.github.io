@@ -94,9 +94,6 @@ struct XarraPressContent: HTML {
                         quoteSourceTarget: app.featuredQuoteSourceTarget,
                         trailingImage: XarraRecognition.bannerImage
                     )
-
-                    Link("Download transparent Gaady award artwork (PNG)", target: XarraRecognition.artworkPath)
-                        .attribute("download", XarraRecognition.artworkFilename)
                 }
             }
 
@@ -167,7 +164,7 @@ struct XarraPressContent: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
                 Text {
-                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and Xarra artwork, GAAD Foundation for the Gaadys mark, and ")
+                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and Xarra artwork, and ")
                     Link("Raúl Gil", target: "https://raul-gil.com/")
                     Span(" for the app icon. Full-resolution files are in the ")
                     Link("downloadable press kit", target: "/Downloads/xarra-press-kit.zip")

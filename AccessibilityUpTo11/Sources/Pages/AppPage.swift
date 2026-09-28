@@ -433,17 +433,20 @@ struct UniversalAppPage: StaticPage {
         case "xarra":
             return FeaturedBannerImage(
                 path: "/Images/Site/Apps/Xarra/GlobalAppStoreRating-2026-09.png",
-                description: "Xarra worldwide App Store rating: 5.0 out of 5 from 7 ratings, September 2026."
+                description: "Xarra worldwide App Store rating: 5.0 out of 5 from 7 ratings, September 2026.",
+                invertsInDarkMode: true
             )
         case "retrorapid":
             return FeaturedBannerImage(
                 path: "/Images/Site/Apps/RetroRapid/GlobalAppStoreRating-2026-09.png",
-                description: "RetroRapid worldwide App Store rating: 4.8 out of 5 from 58 ratings, September 2026."
+                description: "RetroRapid worldwide App Store rating: 4.8 out of 5 from 58 ratings, September 2026.",
+                invertsInDarkMode: true
             )
         case "imonstickers":
             return FeaturedBannerImage(
                 path: "/Images/Site/Apps/iMonstickers/GlobalAppStoreRating-2026-09.png",
-                description: "iMonstickers worldwide App Store rating: 5.0 out of 5 from 2 ratings, September 2026."
+                description: "iMonstickers worldwide App Store rating: 5.0 out of 5 from 2 ratings, September 2026.",
+                invertsInDarkMode: true
             )
         default:
             return nil

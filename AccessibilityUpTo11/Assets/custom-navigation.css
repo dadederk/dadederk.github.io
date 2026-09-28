@@ -370,8 +370,8 @@ picture.responsive-picture > img {
     display: block;
 }
 
-/* Recognition cards are black line art on a transparent background. Keep them at
-   the trailing edge of a banner, and invert them on the dark theme. */
+/* Keep recognition artwork at the trailing edge of its banner. Individual
+   monochrome images opt into dark-theme inversion. */
 .featured-banner > picture.responsive-picture,
 .featured-banner > img.featured-banner-image {
     flex: 0 1 22.5rem;
@@ -388,7 +388,7 @@ picture.responsive-picture > img {
     border: none;
 }
 
-[data-bs-theme="accessibility-up-to11-dark-dark"] .featured-banner img.featured-banner-image {
+[data-bs-theme="accessibility-up-to11-dark-dark"] .featured-banner img.featured-banner-image-invert-dark {
     filter: invert(1);
 }
 
