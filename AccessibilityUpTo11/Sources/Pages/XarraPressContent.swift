@@ -164,7 +164,7 @@ struct XarraPressContent: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
                 Text {
-                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and Xarra artwork, and ")
+                    Span("Screenshots, photos, icons, and artwork may be used for editorial coverage of Xarra. Please credit Xarra / Dani Devesa Derksen-Staats for the photos, screenshots, and Xarra artwork, GAAD Foundation for the Gaadys mark, and ")
                     Link("Raúl Gil", target: "https://raul-gil.com/")
                     Span(" for the app icon. Full-resolution files are in the ")
                     Link("downloadable press kit", target: "/Downloads/xarra-press-kit.zip")
@@ -226,11 +226,11 @@ struct XarraPressContent: HTML {
             }
 
             pressSection {
-                BrandCopy.phrase(prefix: "", brandTitle: app.title, suffix: " 2.0 artwork")
+                BrandCopy.phrase(prefix: "", brandTitle: app.title, suffix: " artwork")
                     .font(.title2)
                     .fontWeight(.bold)
 
-                mediaGrid([XarraPressMedia.eventCard], kind: "artwork", columnWidth: 6)
+                mediaGrid([XarraPressMedia.eventCard, XarraPressMedia.awardCard], kind: "artwork", columnWidth: 6)
             }
 
             pressSection {
@@ -388,5 +388,12 @@ private struct XarraPressMedia: Identifiable {
         title: "Library and reader",
         details: nil,
         alt: "Composite artwork showing an iPhone with Xarra's library in Dark Mode and another with the reader in light mode, against curved blue, cream, coral, and navy shapes."
+    )
+
+    static let awardCard = Self(
+        filename: "xarra-gaady-award-2026-card.png",
+        title: "2026 Gaady Award winner",
+        details: nil,
+        alt: "Xarra's library and reader on two iPhones beside a badge reading '2026', the official Gaadys logo, 'Winner', and 'Xarra', against flowing blue, cream, coral, and navy bands."
     )
 }

@@ -38,11 +38,11 @@ It is an AI-assisted composite based on Xarra screen captures, not a direct
 app screenshot.
 
 The 1672 x 941 xarra-gaady-award-2026-card.png is campaign artwork combining
-Xarra's library and reader with its 2026 Gaady Award recognition. It is
-suitable for editorial coverage of the award.
+Xarra's library and reader with its 2026 Gaady Award recognition and the
+official Gaadys logo. It is suitable for editorial coverage of the award.
 
 These photos, screenshots, icons, and artwork may be used for
 editorial coverage of Xarra. Please credit Xarra / Dani Devesa
-Derksen-Staats for the photos, screenshots, and Xarra artwork, and Raúl Gil
-for the app icon. For other formats,
+Derksen-Staats for the photos, screenshots, and Xarra artwork; GAAD Foundation
+for the Gaadys mark; and Raúl Gil for the app icon. For other formats,
 interviews, or new images, contact Dani at the email above.
