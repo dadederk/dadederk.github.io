@@ -196,23 +196,42 @@ struct XarraPressContent: HTML {
                 Text("About the developer")
                     .font(.title2)
                     .fontWeight(.bold)
-                Text("Dani Devesa Derksen-Staats is an accessibility specialist and independent developer from Xàbia in the Marina Alta region of the Valencian Community, Spain, and is based in London. He currently works at Yoto and has previously worked at Apple (as a contractor), Spotify, and the BBC. He writes Accessibility up to 11! and is the author of the book Developing Accessible iOS Apps.")
 
-                subsectionTitle("More information")
-                List {
-                    ListItem {
-                        Link("More about Dani", target: "/about/")
+                Grid(alignment: .topLeading, spacing: 24) {
+                    VStack(alignment: .leading, spacing: 14) {
+                        Text("Dani Devesa Derksen-Staats is an accessibility specialist and independent developer from Xàbia in the Marina Alta region of the Valencian Community, Spain, and is based in London. He currently works at Yoto and has previously worked at Apple (as a contractor), Spotify, and the BBC. He writes Accessibility up to 11! and is the author of the book Developing Accessible iOS Apps.")
+
+                        subsectionTitle("More information")
+                        List {
+                            ListItem {
+                                Link("More about Dani", target: "/about/")
+                            }
+                            ListItem {
+                                Link("Developing Accessible iOS Apps (book)", target: "https://www.springerprofessional.de/en/developing-accessible-ios-apps/17490934")
+                            }
+                            ListItem {
+                                Link("Watch the Double Tap interview", target: "https://www.youtube.com/watch?v=3JMD70vf2yY")
+                            }
+                        }
+
+                        subsectionTitle("Press contact")
+                        Link("Dani Devesa Derksen-Staats: \(contactEmail)", target: "mailto:\(contactEmail)")
                     }
-                    ListItem {
-                        Link("Developing Accessible iOS Apps (book)", target: "https://www.springerprofessional.de/en/developing-accessible-ios-apps/17490934")
+                    .width(7)
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        Image("\(mediaRoot)dani-with-xarra-hammersmith-bridge.jpg", description: "Dani smiling while holding an iPhone showing Xarra, with Hammersmith Bridge behind him.")
+                            .resizable()
+                            .frame(maxWidth: .percent(100%))
+                            .cornerRadius(6)
+                        Text("Dani with Xarra near Hammersmith Bridge, London.")
+                            .foregroundStyle(.secondary)
+                        Link("Download full-resolution photo", target: "\(mediaRoot)dani-with-xarra-hammersmith-bridge-full-resolution.jpg")
+                            .attribute("download", "dani-with-xarra-hammersmith-bridge-full-resolution.jpg")
                     }
-                    ListItem {
-                        Link("Watch the Double Tap interview", target: "https://www.youtube.com/watch?v=3JMD70vf2yY")
-                    }
+                    .width(5)
                 }
-
-                subsectionTitle("Press contact")
-                Link("Dani Devesa Derksen-Staats: \(contactEmail)", target: "mailto:\(contactEmail)")
+                .frame(width: .percent(100%))
             }
 
             pressSection {
@@ -241,6 +260,8 @@ struct XarraPressContent: HTML {
                 Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si lo prefieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
                     .attribute("lang", "es")
                 Text("En 2026, Xarra fue una de las cinco ganadoras de los Premios Gaady de la GAAD Foundation.")
+                    .attribute("lang", "es")
+                Link("Ver la demostración de Xarra en español", target: "https://www.youtube.com/watch?v=0BES0gr123I")
                     .attribute("lang", "es")
             }
             .id("resumen-es")
