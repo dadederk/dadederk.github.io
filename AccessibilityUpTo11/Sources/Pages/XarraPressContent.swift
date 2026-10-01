@@ -257,10 +257,28 @@ struct XarraPressContent: HTML {
                     .font(.title2)
                     .fontWeight(.bold)
                     .attribute("lang", "es")
-                Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos. Puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si lo prefieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud. Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a AMMEC, una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias. Para entrevistas o materiales de prensa: \(contactEmail).")
+                Text("Xarra es una app para iPhone, iPad, Mac y Apple Vision Pro creada por Dani Devesa Derksen-Staats, desarrollador independiente de Xàbia afincado en Londres. Su nombre viene de una palabra valenciana/catalana que significa «charlar» o «hablar». Convierte texto en audio, desde artículos y entradas de blog hasta libros y documentos.")
                     .attribute("lang", "es")
-                Text("En 2026, Xarra fue una de las cinco ganadoras de los Premios Gaady de la GAAD Foundation.")
+                Text("Puedes leer, escuchar o combinar ambas cosas, con resaltado sincronizado de líneas y, si lo prefieres, de palabras para seguir mejor el texto. Permite importar PDF, EPUB, publicaciones DAISY, enlaces y texto; navegar por capítulos; y continuar en otros dispositivos mediante iCloud.")
                     .attribute("lang", "es")
+                Text {
+                    Span("Está disponible en el App Store y se puede descargar gratis, con opciones Premium. El 10% de los ingresos de las suscripciones se dona a ")
+                    Link("AMMEC", target: "https://www.ammec.org/")
+                    Span(", una asociación valenciana que apoya a personas con discapacidades físicas y a sus familias.")
+                }
+                .attribute("lang", "es")
+                Text {
+                    Span("En 2026, Xarra fue una de las cinco ganadoras de los ")
+                    Link("Premios Gaady", target: "https://gaad.foundation/what-we-do/gaadys/winners/xarra")
+                    Span(" de la GAAD Foundation.")
+                }
+                .attribute("lang", "es")
+                Text {
+                    Span("Para entrevistas o materiales de prensa: ")
+                    Link(contactEmail, target: "mailto:\(contactEmail)")
+                    Span(".")
+                }
+                .attribute("lang", "es")
                 Link("Ver la demostración de Xarra en español", target: "https://www.youtube.com/watch?v=0BES0gr123I")
                     .attribute("lang", "es")
             }
