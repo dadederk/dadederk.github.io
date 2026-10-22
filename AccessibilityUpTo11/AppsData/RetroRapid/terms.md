@@ -1,56 +1,64 @@
 # Terms & Conditions for RetroRapid!
 
-_Last updated: 1 March 2026_
+_Last updated: 22 October 2026_
 
-Welcome to RetroRapid! By using the app, you agree to the following terms.
+By downloading, testing, or using RetroRapid!, you agree to these terms.
 
 ## 1. Use of the App
 
-RetroRapid! is a retro-style racing game for Apple platforms, provided for personal, non-commercial use. You are responsible for how you use the app. RetroRapid! must not be used for any unlawful purpose.
+RetroRapid! is a retro-style racing game for Apple platforms, provided for personal, non-commercial use. You must not use the app for an unlawful purpose or attempt to interfere with, cheat, modify, reverse engineer, decompile, or redistribute it except where applicable law permits it.
 
-You agree not to attempt to cheat, hack, or modify the game, reverse engineer or decompile the software, or use the game in any way that violates applicable laws.
+## 2. TestFlight and App Store Distribution
 
-## 2. App Store Distribution
+Pre-release versions may be distributed through TestFlight and may contain unfinished features or defects. TestFlight access can expire or be withdrawn. Release versions are distributed through the App Store.
 
-RetroRapid! is distributed via the App Store. Your access to the app and any applicable charges are managed by Apple Inc. through your Apple ID. No account is created or stored by the developer.
+Access, availability, purchases, and applicable charges are managed by Apple through your Apple Account and are also subject to the [Apple Media Services Terms and Conditions](https://www.apple.com/legal/internet-services/). The developer does not create or store a separate account for you.
 
-## 3. Game Center
+## 3. Free Play
 
-RetroRapid! integrates with Apple's Game Center for leaderboards and achievements. Use of Game Center features is subject to Apple's Game Center Terms of Service.
+Without Unlimited Plays, solo play on iPhone, iPad, and Mac includes:
 
-## 4. In-App Purchases and Family Sharing
+- 9 free runs on the first local calendar day on which you play; and
+- 3 free runs on each following local calendar day.
 
-RetroRapid! offers an optional one-time purchase:
+A run is counted when solo gameplay begins, and restarting after game over starts a new run. The allowance is stored on the device and normally resets at local midnight. Deleting and reinstalling the app may reset locally stored allowance information.
 
-- **Unlimited Plays** is a non-consumable in-app purchase that removes the play limit and unlocks available visual styles.
-- Unlimited Plays supports **Family Sharing**, so everyone in your Family Sharing group can benefit from the purchase.
-- All purchases are processed by Apple through the App Store. Refunds are governed by Apple's App Store refund policy. Please contact Apple directly for refund requests.
+SharePlay friend races are always free and do not use the daily solo allowance. Apple Watch play has no daily run limit.
 
-## 5. Intellectual Property
+## 4. Unlimited Plays, Pricing, and Family Sharing
 
-The RetroRapid! app, its design, and features are the property of Daniel Devesa Derksen-Staats.
+Unlimited Plays is an optional, non-consumable in-app purchase. It removes the solo daily run limit and unlocks paid visual Styles and eligible alternate App Icons where those features are available. It is a one-time purchase, not a subscription.
 
-## 6. Disclaimer of Warranties
+The price shown by Apple varies by country or region. Regional prices may be set or adjusted to better reflect local purchasing power using the price points Apple makes available. The price Apple shows before confirmation is the price that applies to that purchase. A later price change does not create a new charge for an existing purchase.
 
-RetroRapid! is provided "as is" without warranties of any kind. While we aim for the best possible experience, we do not guarantee error-free operation.
+Unlimited Plays is eligible for Family Sharing. Availability to another family member depends on Apple's Family Sharing configuration and App Store rules. Apple processes purchases and restorations. Refund eligibility is governed by Apple's policies; [refund requests should be made to Apple](https://support.apple.com/118223).
 
-## 7. Limitation of Liability
+## 5. Game Center and SharePlay
 
-To the maximum extent permitted by law, we are not liable for any loss or damage arising from your use of RetroRapid!.
+RetroRapid! uses Apple's Game Center for leaderboards, achievements, and friend score markers. It uses Apple's SharePlay and Group Activities services for live friend races. These services depend on compatible devices, software, internet access, Apple Account settings, and Apple's continued availability of the relevant services. Their use is subject to Apple's terms.
 
-## 8. Governing Law
+## 6. Intellectual Property
 
-These Terms shall be governed by the laws of England and Wales.
+The app, its software, design, audio, artwork, and features are protected by applicable intellectual-property laws. No rights are transferred except the limited right to use the app under these terms.
 
-## 9. Changes to the Terms
+## 7. Disclaimer and Limitation of Liability
 
-We may update these Terms in the future. Continued use of RetroRapid! after updates means you accept the new Terms.
+RetroRapid! is provided "as is" to the extent permitted by law. The developer does not guarantee uninterrupted or error-free operation. To the maximum extent permitted by applicable law, the developer is not liable for indirect or consequential loss arising from use of the app. Nothing in these terms limits rights that cannot legally be limited, including applicable consumer rights.
 
-We may discontinue the app or its features in the future (for example, if we remove the app from the App Store). If we do, we will use reasonable efforts to give advance notice where practicable.
+## 8. Changes and Availability
+
+These terms may be updated when the app, applicable law, or relevant services change. The current version applies to use after its stated update date. Material changes will be communicated through the app or website where practicable. Changes do not reduce statutory rights or alter a purchase already completed unless applicable law or Apple's rules require it.
+
+The app or a feature may be changed or discontinued, with reasonable notice where practicable.
+
+## 9. Governing Law
+
+These terms are governed by the laws of England and Wales, without limiting any mandatory consumer protections that apply where you live.
 
 ## Contact
 
-For questions about these Terms, please contact:
+For questions about these Terms, contact:
 
-**Daniel Devesa Derksen-Staats**  
+**Daniel Devesa Derksen-Staats**
+
 Email: [hello@accessibilityUpTo11.com](mailto:hello@accessibilityUpTo11.com)
