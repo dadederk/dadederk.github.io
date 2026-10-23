@@ -32,17 +32,21 @@ enum BlogPostingStructuredData {
             let image: String
 
             struct Author: Encodable {
+                let id = SiteMeta.authorID
                 let type = "Person"
-                let name: String
+                let name = "Daniel Devesa Derksen-Staats"
+                let alternateName: String
                 let url: String
 
                 enum CodingKeys: String, CodingKey {
+                    case id = "@id"
                     case type = "@type"
-                    case name, url
+                    case name, alternateName, url
                 }
             }
 
             struct Publisher: Encodable {
+                let id = SiteMeta.organizationID
                 let type = "Organization"
                 let name: String
                 let logo: Logo
@@ -58,6 +62,7 @@ enum BlogPostingStructuredData {
                 }
 
                 enum CodingKeys: String, CodingKey {
+                    case id = "@id"
                     case type = "@type"
                     case name, logo
                 }
@@ -83,10 +88,10 @@ enum BlogPostingStructuredData {
         let data = StructuredData(
             headline: input.headline,
             description: input.description,
-            author: .init(name: input.authorName, url: input.authorURL),
+            author: .init(alternateName: input.authorName, url: input.authorURL),
             publisher: .init(
                 name: "Accessibility up to 11!",
-                logo: .init(url: SiteMeta.baseURL + SiteMeta.defaultImage)
+                logo: .init(url: SiteMeta.absoluteImageURL(for: SiteMeta.defaultImage))
             ),
             datePublished: input.datePublished.ISO8601Format(),
             dateModified: input.dateModified.ISO8601Format(),

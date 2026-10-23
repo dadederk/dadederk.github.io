@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct Blog: StaticPage {
-    var title = "Blog"
+    var title = "iOS Accessibility Articles"
     var path = "/blog"
     var description = "Long-form articles on building accessible iOS apps, inclusive design decisions, and practical engineering techniques."
     var image: URL? { SiteMeta.imageURL(nil) }
@@ -17,6 +17,12 @@ struct Blog: StaticPage {
                 .fontWeight(.bold)
                 .horizontalAlignment(.leading)
                 .padding(.bottom, 10)
+
+            Text("Long-form articles about accessibility in SwiftUI and UIKit, VoiceOver, testing, inclusive games, and lessons learned while building apps for Apple platforms.")
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .horizontalAlignment(.leading)
+                .padding(.bottom)
             
             // Blog posts list - grid layout with consistent ArticlePreview components
             Section {

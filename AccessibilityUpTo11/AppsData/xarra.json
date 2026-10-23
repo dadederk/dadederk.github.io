@@ -4,7 +4,7 @@
   "slug": "xarra",
   "title": "Xarra!",
   "subtitle": "Turn articles, books, and documents into audio you can follow.",
-  "description": "Import an article, PDF, DAISY book, document, or your own text, and Xarra turns it into natural-sounding audio with synchronized highlighting. Read along line by line, listen hands-free, or move between the two.\n\nBring content in from Safari, Files, the clipboard, a URL, or Project Gutenberg. Downloaded content remains available offline, while your library and listening progress can sync through your private iCloud.",
+  "description": "Import an article, PDF, EPUB, Markdown file, DAISY book, document, or your own text, and Xarra turns it into natural-sounding audio with synchronized highlighting. Read along line by line, listen hands-free, or move between the two.\n\nBring content in from Safari, Files, the clipboard, a URL, or Project Gutenberg. Downloaded content remains available offline, while your library and listening progress can sync through your private iCloud.\n\nXarra is free to download. Four Audio Documents are always free; Premium unlocks unlimited documents through monthly, yearly, or lifetime options, with Family Sharing.",
   "nameOrigin": "Xarra (pronounced \"CHA-rra\") comes from a Valencian/Catalan word meaning \"to chat\" or \"to talk\".",
   "imagePath": "/Images/Site/Apps/XarraIcon.png",
   "imageDescription": "Xarra app icon - a stylized icon representing text to audio conversion",
@@ -74,13 +74,13 @@
       "features": [
         {
           "title": "Tailored to each Apple device",
-          "description": "Xarra is tailored for iPhone, iPad, Mac, and Apple Vision Pro: resizable iPad windows, Mac tabs and drag-and-drop, and Focus Mode on Vision Pro. Your library and progress can sync through iCloud.",
+          "description": "Xarra is tailored for iPhone — including iPhone Duo — iPad, Mac, and Apple Vision Pro. On iPhone Duo, your library and playback controls adapt as the available space changes. Xarra also supports resizable iPad windows, Mac tabs and drag-and-drop, and Focus Mode on Vision Pro.",
           "imagePath": "/Images/Site/Apps/Xarra/FeelsAtHome.png",
             "imageDescription": "Xarra on Apple Vision Pro in a room, with a translucent library-and-reader window, synchronized highlighting, playback controls, and Focus Mode."
         },
         {
           "title": "Quick system integration",
-          "description": "Share pages and documents from Safari, Notes, and other apps; import from Files; paste from the clipboard; type text; or add a URL. Once imported, Now Playing keeps playback close on the Lock Screen and in Control Center.",
+          "description": "On supported systems, ask Siri to search your library, find documents in Spotlight, or use Shortcuts to resume, play, or open a document. Share pages and documents from Safari, Notes, and other apps, while Now Playing keeps playback close on the Lock Screen and in Control Center.",
           "imagePath": "/Images/Site/Apps/Xarra/QuickSystemIntegration.png",
           "imageDescription": "Xarra's iPad share extension showing a checkmark and the confirmation Saved to Xarra, indicating that shared content is ready to open in the app."
         },
@@ -120,7 +120,7 @@
       "features": [
         {
           "title": "Text, links, and documents",
-          "description": "Add articles and PDFs, import DAISY books, browse Project Gutenberg, share from another app, paste text, or enter a URL. Xarra extracts the readable content and prepares it for listening.",
+          "description": "Add articles; import PDF, EPUB, Markdown, RTF, plain-text, and DAISY documents; browse Project Gutenberg; share from another app; paste text; or enter a URL. Xarra extracts the readable content and prepares it for listening.",
           "imagePath": "/Images/Site/Apps/Xarra/TextLinksDocuments.png",
           "imageDescription": "Xarra's iPad library with its Add menu open, offering Plain Text, URL, Document, and Gutenberg Library as import sources."
         },
@@ -140,6 +140,12 @@
     }
   ],
   "whySection": "Xarra is built to be helpful, respectful, and easy to trust. Downloaded content works offline, and your documents and listening progress can sync through your private iCloud when enabled. There are no ads, analytics, trackers, or separate Xarra account to create. The app stays focused on helping you engage with text in the way that works best for you.",
+  "communityOffer": {
+    "title": "Free access for public organisations and nonprofits",
+    "description": "Could Xarra help people in your school, university, library, museum, healthcare service, charity, or other public-good organisation? Eligible public-sector organisations and nonprofits can request free lifetime access for the people they support. Get in touch and we’ll work out the simplest way to make Xarra available.",
+    "actionTitle": "Ask about free access",
+    "actionTarget": "mailto:hello@accessibilityUpTo11.com?subject=Xarra%20institutional%20access"
+  },
   "supportText": "Having trouble getting the most out of Xarra? We\u2019re here to help you turn your text into the perfect audio experience!",
   "contactEmail": "hello@accessibilityUpTo11.com"
 }

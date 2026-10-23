@@ -94,6 +94,7 @@ private struct AppItemJSON: Codable {
     let features: [FeatureItemJSON]? // Optional for backward compatibility
     let accessibility: String?
     let whySection: String?
+    let communityOffer: AppCommunityOffer?
     let supportText: String?
     let contactEmail: String?
     let order: Int?
@@ -163,6 +164,7 @@ private struct AppItemJSON: Codable {
             features: flatFeatures,
             accessibility: accessibility,
             whySection: whySection,
+            communityOffer: communityOffer,
             supportText: supportText ?? "Need help or have questions about \(title)? We're here to help!",
             contactEmail: contactEmail ?? "hello@accessibilityUpTo11.com",
             order: order ?? 999,

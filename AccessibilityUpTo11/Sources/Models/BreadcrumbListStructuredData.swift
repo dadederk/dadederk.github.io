@@ -53,25 +53,25 @@ enum BreadcrumbListStructuredData {
 
     static func days365PostCrumbs(for post: Days365Data) -> [Crumb] {
         [
-            .init(name: "Home", url: SiteMeta.baseURL + "/"),
-            .init(name: "#365DaysIOSAccessibility", url: SiteMeta.baseURL + "/365-days-ios-accessibility"),
-            .init(name: post.topicTitle, url: SiteMeta.baseURL + post.path),
+            .init(name: "Home", url: SiteMeta.absolutePageURL(for: "/")),
+            .init(name: "#365DaysIOSAccessibility", url: SiteMeta.absolutePageURL(for: "/365-days-ios-accessibility")),
+            .init(name: post.topicTitle, url: SiteMeta.absolutePageURL(for: post.path)),
         ]
     }
 
     static func aboutSectionCrumbs(name: String, path: String) -> [Crumb] {
         [
-            .init(name: "Home", url: SiteMeta.baseURL + "/"),
-            .init(name: "About", url: SiteMeta.baseURL + "/about"),
-            .init(name: name, url: SiteMeta.baseURL + path),
+            .init(name: "Home", url: SiteMeta.absolutePageURL(for: "/")),
+            .init(name: "About", url: SiteMeta.absolutePageURL(for: "/about")),
+            .init(name: name, url: SiteMeta.absolutePageURL(for: path)),
         ]
     }
 
     static func days365TagCrumbs(tag: String, pagePath: String) -> [Crumb] {
         [
-            .init(name: "Home", url: SiteMeta.baseURL + "/"),
-            .init(name: "#365DaysIOSAccessibility", url: SiteMeta.baseURL + "/365-days-ios-accessibility"),
-            .init(name: tag, url: SiteMeta.baseURL + pagePath),
+            .init(name: "Home", url: SiteMeta.absolutePageURL(for: "/")),
+            .init(name: "#365DaysIOSAccessibility", url: SiteMeta.absolutePageURL(for: "/365-days-ios-accessibility")),
+            .init(name: tag, url: SiteMeta.absolutePageURL(for: pagePath)),
         ]
     }
 }

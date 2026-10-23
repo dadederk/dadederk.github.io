@@ -4,15 +4,18 @@ import Ignite
 struct BlogPostLayout: ArticlePage {
     @MainActor var body: some HTML {
         let meta = MetaBuilder.article(article)
+        let modifiedDate = BlogSitemapEntry.loadAll()
+            .first { $0.path == article.path }?
+            .lastModifiedDate ?? article.date
         let structuredData = BlogPostingStructuredData.json(
             for: .init(
                 headline: meta.title,
                 description: meta.description,
                 authorName: article.author ?? "Dani Devesa Derksen-Staats",
-                authorURL: "\(SiteMeta.baseURL)/about",
+                authorURL: SiteMeta.authorPageURL,
                 datePublished: article.date,
-                dateModified: article.date,
-                pageURL: SiteMeta.baseURL + article.path,
+                dateModified: modifiedDate,
+                pageURL: SiteMeta.absolutePageURL(for: article.path),
                 keywords: article.tags?.joined(separator: ", ") ?? "",
                 imagePath: meta.image,
                 articleSection: "Technology"

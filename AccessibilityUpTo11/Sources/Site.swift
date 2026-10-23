@@ -32,13 +32,16 @@ struct AccessibilityUpTo11Website {
             await generateImageSitemap()
 
             // Agent discovery artifacts (llms-full, content-index, markdown mirrors)
-            AgentDiscoveryPublisher.publish()
+            try AgentDiscoveryPublisher.publish()
 
             // Ignite regenerates a minimal robots.txt; replace it with the curated Assets copy.
             try publishRobotsTxt()
 
             // Generate AASA file from the universal-link route configuration.
             try publishUniversalLinksAssociationFile()
+
+            // Match GitHub Pages' final trailing-slash URLs throughout HTML.
+            try CanonicalURLPublisher.publish(buildDirectory: buildDirectory)
 
             // Validate generated social metadata.
             try runSocialMetaValidation()
@@ -88,7 +91,7 @@ struct AccessibilityUpTo11Website {
         <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
         <channel>
         <title>#365DaysIOSAccessibility</title>
-        <link>https://accessibilityupto11.com/365-days-ios-accessibility</link>
+        <link>https://accessibilityupto11.com/365-days-ios-accessibility/</link>
         <description>A year-long journey exploring iOS accessibility, one day at a time. Each post shares practical insights, tips, and techniques to make your iOS apps more accessible.</description>
         <language>en-us</language>
         <copyright>Copyright © Daniel Devesa Derksen-Staats. Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)</copyright>
@@ -100,7 +103,7 @@ struct AccessibilityUpTo11Website {
         <image>
         <url>https://accessibilityupto11.com/Images/Site/Global/LogoShare.png</url>
         <title>#365DaysIOSAccessibility</title>
-        <link>https://accessibilityupto11.com/365-days-ios-accessibility</link>
+        <link>https://accessibilityupto11.com/365-days-ios-accessibility/</link>
         <width>144</width>
         <height>144</height>
         </image>
@@ -110,7 +113,7 @@ struct AccessibilityUpTo11Website {
         
         for post in posts {
             let pubDate = dateFormatter.string(from: post.date)
-            let guid = "https://accessibilityupto11.com\(post.path)"
+            let guid = SiteMeta.absolutePageURL(for: post.path)
             
             let cleanTitle = xmlEscape(post.seoTitle)
             let cleanExcerpt = xmlEscape(post.excerpt)
@@ -146,140 +149,115 @@ struct AccessibilityUpTo11Website {
         return rss
     }
     
-    /// Generate enhanced sitemap with lastmod and changefreq
+    /// Generate a sitemap whose URLs match the final served URLs and whose
+    /// lastmod values come from content dates rather than build time.
     static func generateEnhancedSitemap() async {
         BuildLogger.step(.sitemap, "generating enhanced sitemap")
-        
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
-        let currentDate = dateFormatter.string(from: Date())
-        
+
+        let blogPosts = BlogSitemapEntry.loadAll()
+        let days365Posts = Days365Loader.loadPosts()
+        let latestBlogDate = blogPosts.map(\.lastModifiedDate).max()
+        let latestDaysDate = days365Posts.map { $0.modifiedDate ?? $0.date }.max()
+        let latestSiteDate = (blogPosts.map(\.lastModifiedDate) + days365Posts.map { $0.modifiedDate ?? $0.date }).max()
+
         var sitemap = """
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         """
-        
-        // Add main pages
-        let mainPages = [
-            ("/", "1.0", "monthly"),
-            ("/blog", "0.9", "monthly"),
-            ("/about", "0.9", "monthly"),
-            ("/about/publications", "0.8", "monthly"),
-            ("/about/talks", "0.8", "monthly"),
-            ("/about/podcasts", "0.8", "monthly"),
-            ("/resources", "0.9", "monthly"),
-            (SiteMeta.contentLicensePath, "0.7", "yearly"),
-            ("/apps", "0.9", "monthly"),
-            ("/365-days-ios-accessibility", "0.9", "weekly")
-        ]
-        
-        for (path, priority, changefreq) in mainPages {
+
+        func appendURL(path: String, lastModified: Date? = nil) {
             sitemap += """
             <url>
-                <loc>https://accessibilityupto11.com\(path)</loc>
-                <lastmod>\(currentDate)</lastmod>
-                <changefreq>\(changefreq)</changefreq>
-                <priority>\(priority)</priority>
-            </url>
+                <loc>\(SiteMeta.absolutePageURL(for: path))</loc>
             """
+            if let lastModified {
+                sitemap += "\n        <lastmod>\(dateFormatter.string(from: lastModified))</lastmod>"
+            }
+            sitemap += "\n    </url>"
         }
-        
+
+        let mainPages: [(String, Date?)] = [
+            ("/", latestSiteDate),
+            ("/blog", latestBlogDate),
+            ("/about", nil),
+            ("/about/publications", nil),
+            ("/about/talks", nil),
+            ("/about/podcasts", nil),
+            ("/resources", nil),
+            (SiteMeta.contentLicensePath, nil),
+            ("/apps", nil),
+            ("/365-days-ios-accessibility", latestDaysDate),
+        ]
+
+        for (path, lastModified) in mainPages {
+            appendURL(path: path, lastModified: lastModified)
+        }
+
         // Add app pages
         let appPages = AppsData.loadContent().apps.flatMap { app in
             [
-                ("/apps/\(app.slug)", "0.9", "monthly"),
-                ("/apps/\(app.slug)/terms", "0.8", "yearly"),
-                ("/apps/\(app.slug)/privacy", "0.8", "yearly")
+                "/apps/\(app.slug)",
+                "/apps/\(app.slug)/terms",
+                "/apps/\(app.slug)/privacy",
             ]
         }
 
-        let xarraPressPage = AppsData.loadContent().apps.contains { $0.slug == "xarra" }
-            ? [("/apps/xarra/press", "0.8", "monthly")]
-            : []
-        
-        for (path, priority, changefreq) in appPages + xarraPressPage {
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com\(path)</loc>
-                <lastmod>\(currentDate)</lastmod>
-                <changefreq>\(changefreq)</changefreq>
-                <priority>\(priority)</priority>
-            </url>
-            """
+        let pressPages = AppsData.loadContent().apps
+            .filter { AppPressKits.appSlugs.contains($0.slug) }
+            .map { "/apps/\($0.slug)/press" }
+
+        for path in appPages + pressPages {
+            appendURL(path: path)
         }
-        
+
         // Add long-form blog posts from Content/post (Ignite articles aren't available here).
-        let blogPosts = BlogSitemapEntry.loadAll()
         BuildLogger.detail("Adding \(blogPosts.count) blog post URLs")
         for post in blogPosts {
-            let postDate = dateFormatter.string(from: post.date)
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com\(post.path)</loc>
-                <lastmod>\(postDate)</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>0.9</priority>
-            </url>
-            """
+            appendURL(path: post.path, lastModified: post.lastModifiedDate)
         }
 
         // Add Ignite blog tag index pages generated under Build/tags.
         let blogTagPaths = BlogSitemapEntry.blogTagPaths()
         BuildLogger.detail("Adding \(blogTagPaths.count) blog tag URLs")
         for tagPath in blogTagPaths {
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com\(tagPath)</loc>
-                <lastmod>\(currentDate)</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>0.7</priority>
-            </url>
-            """
+            let slug = String(tagPath.dropFirst("/tags/".count))
+            let matchingDates = tagPath == "/tags"
+                ? blogPosts.map(\.lastModifiedDate)
+                : blogPosts
+                    .filter { post in post.tags.contains { $0.convertedToSlug() == slug } }
+                    .map(\.lastModifiedDate)
+            appendURL(path: tagPath, lastModified: matchingDates.max())
         }
-        
+
         // Add 365 Days posts
-        let days365Posts = Days365Loader.loadPosts()
         BuildLogger.detail("Adding \(days365Posts.count) 365 Days post URLs")
         for post in days365Posts {
-            let postDate = dateFormatter.string(from: post.date)
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com\(post.path)</loc>
-                <lastmod>\(postDate)</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>0.9</priority>
-            </url>
-            """
+            appendURL(path: post.path, lastModified: post.modifiedDate ?? post.date)
         }
-        
+
         // Pagination page 2+ are noindex and omitted from the sitemap; page 1 hub stays indexed.
-        
+
         // Add tag pages (page 1 only; pagination is noindex)
         let allTags = Days365Loader.allTags()
         var tagPageCount = 0
         BuildLogger.detail("Adding 365 Days tag URLs")
         for tag in allTags {
-            let tagSlug = tag.lowercased().replacingOccurrences(of: " ", with: "-")
+            let tagSlug = Days365Loader.tagSlug(for: tag)
             let baseTagPath = "/365-days-ios-accessibility/tag/\(tagSlug)"
-
-            sitemap += """
-            <url>
-                <loc>https://accessibilityupto11.com\(baseTagPath)</loc>
-                <lastmod>\(currentDate)</lastmod>
-                <changefreq>monthly</changefreq>
-                <priority>0.9</priority>
-            </url>
-            """
+            let tagDate = Days365Loader.posts(withTag: tag)
+                .map { $0.modifiedDate ?? $0.date }
+                .max()
+            appendURL(path: baseTagPath, lastModified: tagDate)
             tagPageCount += 1
         }
         BuildLogger.detail("Added \(tagPageCount) 365 Days tag URLs")
-        
-        sitemap += """
-        </urlset>
-        """
-        
+
+        sitemap += "\n</urlset>"
+
         // Write enhanced sitemap
         let fileManager = FileManager.default
         let currentDirectory = URL(fileURLWithPath: fileManager.currentDirectoryPath)
@@ -289,7 +267,7 @@ struct AccessibilityUpTo11Website {
         do {
             try sitemap.write(to: sitemapFile, atomically: true, encoding: .utf8)
             let totalURLs = mainPages.count
-                + appPages.count + xarraPressPage.count
+                + appPages.count + pressPages.count
                 + blogPosts.count
                 + blogTagPaths.count
                 + days365Posts.count
@@ -320,7 +298,7 @@ struct AccessibilityUpTo11Website {
 
             imageSitemap += """
             <url>
-                <loc>https://accessibilityupto11.com\(post.path)</loc>
+                <loc>\(SiteMeta.absolutePageURL(for: post.path))</loc>
                 <image:image>
                     <image:loc>\(imageURL)</image:loc>
                     <image:title>\(xmlEscape(post.title))</image:title>
@@ -342,7 +320,7 @@ struct AccessibilityUpTo11Website {
                 
                 imageSitemap += """
                 <url>
-                    <loc>https://accessibilityupto11.com\(post.path)</loc>
+                    <loc>\(SiteMeta.absolutePageURL(for: post.path))</loc>
                     <image:image>
                         <image:loc>\(imageURL)</image:loc>
                         <image:title>\(xmlEscape(imageTitle))</image:title>
@@ -543,7 +521,7 @@ struct AccessibilityUpTo11Site: Site {
             pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .main))
             pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .terms))
             pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .privacy))
-            if app.slug == "xarra" {
+            if AppPressKits.appSlugs.contains(app.slug) {
                 pages.append(UniversalAppPage(appIdentifier: app.slug, pageType: .press))
             }
         }

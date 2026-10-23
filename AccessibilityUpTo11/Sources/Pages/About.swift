@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct About: StaticPage {
-    var title = "About"
+    var title = "About Dani Devesa Derksen-Staats"
     var description = "Meet Dani Devesa Derksen-Staats and explore publications, talks, and podcasts focused on accessible iOS development."
     var image: URL? { SiteMeta.imageURL("/Images/Site/Global/dani.jpg") }
     

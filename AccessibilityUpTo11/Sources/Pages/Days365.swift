@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct Days365: StaticPage {
-    var title = "#365DaysIOSAccessibility"
+    var title = "365 Days of iOS Accessibility"
     var path = "/365-days-ios-accessibility"
     var description = "A year-long journey exploring iOS accessibility, one day at a time, with practical tips and implementation ideas."
     var image: URL? {
@@ -143,7 +143,7 @@ struct Days365Page: StaticPage {
     let pageNumber: Int
     
     var title: String { 
-        pageNumber == 1 ? "#365DaysIOSAccessibility" : "#365DaysIOSAccessibility - Page \(pageNumber)"
+        pageNumber == 1 ? "365 Days of iOS Accessibility" : "365 Days of iOS Accessibility - Page \(pageNumber)"
     }
     var path: String { 
         pageNumber == 1 ? "/365-days-ios-accessibility" : "/365-days-ios-accessibility/page-\(pageNumber)"

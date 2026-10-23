@@ -2,7 +2,8 @@ import Foundation
 import Ignite
 
 struct Resources: StaticPage {
-    var title = "Resources"
+    var title = "iOS Accessibility Resources"
+    var description = "A curated collection of iOS accessibility books, articles, talks, tools, and guidance for building inclusive mobile apps."
     
     @MainActor var body: some HTML {
         VStack(alignment: .leading) {

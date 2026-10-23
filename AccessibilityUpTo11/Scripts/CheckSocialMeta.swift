@@ -89,11 +89,14 @@ func main() -> Int32 {
 
     let checks = pageChecks()
     Log.step(.socialMetadata, "validating \(checks.count) representative pages")
-    let results = checks.map { check in
+    var results = checks.map { check in
         let result = runChecks(for: check, buildDirectory: buildDirectory)
         printResult(result)
         return result
     }
+    let siteWideResult = runSiteWideChecks(buildDirectory: buildDirectory)
+    printResult(siteWideResult)
+    results.append(siteWideResult)
     printSummary(results)
 
     let hasFailures = results.contains { !$0.failures.isEmpty }
@@ -177,6 +180,96 @@ func assertSingleCanonical(in html: String) -> String? {
 
     if matches.count != 1 {
         return "Expected exactly 1 canonical link, found \(matches.count)."
+    }
+
+    guard let range = Range(matches[0].range, in: html),
+          let href = extractAttribute(named: "href", in: String(html[range]))
+    else {
+        return "Canonical link is missing an href."
+    }
+
+    if !href.hasPrefix("https://accessibilityupto11.com/") {
+        return "Canonical URL must be absolute: \(href)"
+    }
+
+    if let components = URLComponents(string: href),
+       components.path != "/",
+       !components.path.hasSuffix("/"),
+       !(components.path.split(separator: "/").last?.contains(".") ?? false) {
+        return "Canonical page URL must end in a slash: \(href)"
+    }
+
+    return nil
+}
+
+func assertMetaTagsAreWellFormed(in html: String) -> String? {
+    guard let tagRegex = try? NSRegularExpression(
+        pattern: #"<meta\s+[^>]*>"#,
+        options: [.caseInsensitive]
+    ), let strictRegex = try? NSRegularExpression(
+        pattern: #"^<meta(?:\s+(?:charset|name|property|content)="[^"]*")+\s*/>$"#,
+        options: [.caseInsensitive]
+    ) else {
+        return "Could not compile metadata validation regex."
+    }
+
+    let fullRange = NSRange(html.startIndex..<html.endIndex, in: html)
+    for match in tagRegex.matches(in: html, range: fullRange) {
+        guard let range = Range(match.range, in: html) else { continue }
+        let tag = String(html[range])
+        let tagRange = NSRange(tag.startIndex..<tag.endIndex, in: tag)
+        guard strictRegex.firstMatch(in: tag, range: tagRange)?.range == tagRange else {
+            return "Malformed meta tag: \(tag.prefix(180))"
+        }
+    }
+
+    return nil
+}
+
+func assertIndexablePageHasOneH1(in html: String) -> String? {
+    if html.contains(#"<meta name="robots" content="noindex"#) {
+        return nil
+    }
+
+    guard let regex = try? NSRegularExpression(pattern: #"<h1(?:\s|>)"#, options: [.caseInsensitive]) else {
+        return "Could not compile h1 validation regex."
+    }
+    let range = NSRange(html.startIndex..<html.endIndex, in: html)
+    let count = regex.numberOfMatches(in: html, range: range)
+    return count == 1 ? nil : "Expected exactly 1 h1 on an indexable page, found \(count)."
+}
+
+func brokenInternalLink(in html: String, buildDirectory: URL) -> String? {
+    guard let regex = try? NSRegularExpression(
+        pattern: #"href="([^"]+)""#,
+        options: [.caseInsensitive]
+    ) else {
+        return "Could not compile link validation regex."
+    }
+
+    let range = NSRange(html.startIndex..<html.endIndex, in: html)
+    for match in regex.matches(in: html, range: range) {
+        guard let valueRange = Range(match.range(at: 1), in: html) else { continue }
+        let target = decodeHTMLEntities(String(html[valueRange]))
+
+        if target.hasPrefix("#") || target.hasPrefix("mailto:") || target.hasPrefix("tel:") || target.contains("://") {
+            continue
+        }
+        guard target.hasPrefix("/") else {
+            return "Relative internal link should be root-relative: \(target)"
+        }
+        guard !target.hasPrefix("//") else { continue }
+
+        let path = target.split(whereSeparator: { $0 == "?" || $0 == "#" }).first.map(String.init) ?? target
+        if path == "/" { continue }
+
+        let relative = String(path.dropFirst())
+        let file = buildDirectory.appendingPathComponent(relative)
+        let directoryIndex = file.appendingPathComponent("index.html")
+        if !FileManager.default.fileExists(atPath: file.path),
+           !FileManager.default.fileExists(atPath: directoryIndex.path) {
+            return "Internal link target does not exist in the build: \(target)"
+        }
     }
 
     return nil
@@ -401,6 +494,10 @@ func runChecks(for check: PageCheck, buildDirectory: URL) -> PageResult {
         let html = try loadHTML(at: fileURL)
         let tags = extractMetaTags(from: html)
 
+        if let failure = assertMetaTagsAreWellFormed(in: html) {
+            failures.append(failure)
+        }
+
         if let failure = assertSingleCanonical(in: html) {
             failures.append(failure)
         }
@@ -455,6 +552,52 @@ func runChecks(for check: PageCheck, buildDirectory: URL) -> PageResult {
     }
 
     return PageResult(label: check.label, relativePath: check.relativePath, failures: failures)
+}
+
+func runSiteWideChecks(buildDirectory: URL) -> PageResult {
+    var failures: [String] = []
+    guard let enumerator = FileManager.default.enumerator(
+        at: buildDirectory,
+        includingPropertiesForKeys: [.isRegularFileKey],
+        options: [.skipsHiddenFiles]
+    ) else {
+        return PageResult(
+            label: "Site-wide HTML integrity",
+            relativePath: "Build/**/*.html",
+            failures: ["Could not enumerate generated HTML."]
+        )
+    }
+
+    for case let file as URL in enumerator where file.pathExtension.lowercased() == "html" {
+        do {
+            let html = try loadHTML(at: file)
+            if let failure = assertMetaTagsAreWellFormed(in: html) {
+                let relative = file.path.replacingOccurrences(of: buildDirectory.path + "/", with: "")
+                failures.append("\(relative): \(failure)")
+            }
+            if let failure = assertSingleCanonical(in: html) {
+                let relative = file.path.replacingOccurrences(of: buildDirectory.path + "/", with: "")
+                failures.append("\(relative): \(failure)")
+            }
+            if let failure = assertIndexablePageHasOneH1(in: html) {
+                let relative = file.path.replacingOccurrences(of: buildDirectory.path + "/", with: "")
+                failures.append("\(relative): \(failure)")
+            }
+            if let failure = brokenInternalLink(in: html, buildDirectory: buildDirectory) {
+                let relative = file.path.replacingOccurrences(of: buildDirectory.path + "/", with: "")
+                failures.append("\(relative): \(failure)")
+            }
+            if failures.count >= 20 { break }
+        } catch {
+            failures.append("Could not read \(file.lastPathComponent): \(error.localizedDescription)")
+        }
+    }
+
+    return PageResult(
+        label: "Site-wide HTML integrity",
+        relativePath: "Build/**/*.html",
+        failures: failures
+    )
 }
 
 func printResult(_ result: PageResult) {
@@ -626,7 +769,16 @@ func extractAttribute(named name: String, in tag: String) -> String? {
         return nil
     }
 
-    return String(tag[range])
+    return decodeHTMLEntities(String(tag[range]))
+}
+
+func decodeHTMLEntities(_ value: String) -> String {
+    value
+        .replacingOccurrences(of: "&quot;", with: "\"")
+        .replacingOccurrences(of: "&#39;", with: "'")
+        .replacingOccurrences(of: "&lt;", with: "<")
+        .replacingOccurrences(of: "&gt;", with: ">")
+        .replacingOccurrences(of: "&amp;", with: "&")
 }
 
 exit(main())

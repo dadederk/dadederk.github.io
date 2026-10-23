@@ -13,6 +13,23 @@ Xarra (pronounced "CHA-rra") comes from a Valencian/Catalan word meaning
 "to chat" or "to talk". Dani is from Xàbia in the Marina Alta and is based
 in London.
 
+Xarra turns articles, books, and documents into audio with synchronized line
+highlighting, so people can read, listen, or do both. It imports PDF, EPUB,
+Markdown, DAISY, plain text, web pages, and other documents, and includes a
+Project Gutenberg browser.
+
+Xarra is available for iPhone (including iPhone Duo), iPad, Mac, and Apple
+Vision Pro. On iPhone Duo, the library and playback controls adapt as the
+available space changes. On supported systems, Siri can search the Xarra
+library, Spotlight can surface documents, and Shortcuts can resume, play, or
+open a reading.
+
+The app is free to download. Four Audio Documents are always free; Premium
+unlocks unlimited documents through monthly, yearly, or lifetime options,
+with Family Sharing. Eligible public-sector organisations and nonprofits can
+request free lifetime access for the people they support by emailing the
+press contact above.
+
 10% of subscription proceeds are donated to AMMEC, a Valencia-based nonprofit
 supporting people with physical disabilities and their families:
 https://www.ammec.org/

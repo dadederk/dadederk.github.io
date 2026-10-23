@@ -39,6 +39,7 @@ struct AppItem: Identifiable, Codable {
     let features: [FeatureItem] // Keep for backward compatibility
     let accessibility: String?
     let whySection: String?
+    let communityOffer: AppCommunityOffer?
     let supportText: String
     let contactEmail: String
     let order: Int
@@ -66,6 +67,7 @@ struct AppItem: Identifiable, Codable {
         features: [FeatureItem],
         accessibility: String?,
         whySection: String?,
+        communityOffer: AppCommunityOffer? = nil,
         supportText: String,
         contactEmail: String,
         order: Int = 999,
@@ -92,6 +94,7 @@ struct AppItem: Identifiable, Codable {
         self.features = features
         self.accessibility = accessibility
         self.whySection = whySection
+        self.communityOffer = communityOffer
         self.supportText = supportText
         self.contactEmail = contactEmail
         self.order = order
@@ -101,6 +104,13 @@ struct AppItem: Identifiable, Codable {
     static func defaultSlug(for title: String) -> String {
         return BrandCopy.slug(from: title)
     }
+}
+
+struct AppCommunityOffer: Codable {
+    let title: String
+    let description: String
+    let actionTitle: String
+    let actionTarget: String
 }
 
 struct FeaturedMention: Identifiable, Codable {

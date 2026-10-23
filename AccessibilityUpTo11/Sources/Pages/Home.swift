@@ -2,7 +2,7 @@ import Foundation
 import Ignite
 
 struct Home: StaticPage {
-    var title = "Home"
+    var title = "iOS Accessibility Development"
     var description = "Accessibility up to 11! shares practical guidance, posts, and resources to help build more accessible iOS apps."
     var image: URL? { SiteMeta.imageURL(nil) }
     
@@ -17,6 +17,26 @@ struct Home: StaticPage {
                 .class("text-break")
                 .horizontalAlignment(.leading)
                 .padding(.bottom, 10)
+
+            Text("Practical tips, articles, and resources to help developers build more accessible apps for iOS, iPadOS, and visionOS with SwiftUI and UIKit.")
+                .font(.body)
+                .class("text-break")
+                .horizontalAlignment(.leading)
+                .padding(.bottom, 8)
+
+            Text {
+                "Explore "
+                Link("common iOS accessibility issues", target: "/post/2024-12-06-01")
+                ", "
+                Link("VoiceOver", target: "/365-days-ios-accessibility/tag/voiceover")
+                ", "
+                Link("SwiftUI accessibility", target: "/365-days-ios-accessibility/tag/swiftui")
+                ", and "
+                Link("accessibility testing", target: "/post/2020-08-11-01")
+                "."
+            }
+            .font(.body)
+            .padding(.bottom)
             
             // Recent Posts section (3 most recent)
             Section {

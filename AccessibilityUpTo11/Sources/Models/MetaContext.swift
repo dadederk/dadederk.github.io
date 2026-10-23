@@ -16,7 +16,7 @@ struct MetaContext {
     var type: ContentType
     
     /// Absolute URL helper.
-    var absoluteURL: String { SiteMeta.absoluteURL(for: path) }
+    var absoluteURL: String { SiteMeta.absolutePageURL(for: path) }
     var imageURL: String { SiteMeta.absoluteImageURL(for: image) }
 }
 
@@ -100,8 +100,10 @@ enum MetaBuilder {
         switch pageType {
         case .main:
             description = app.description
-        case .terms, .privacy:
-            description = app.nameOrigin
+        case .terms:
+            description = "Terms and conditions for \(app.title), including usage and support information."
+        case .privacy:
+            description = "Privacy policy for \(app.title), including data collection, usage, and protection details."
         case .open:
             description = "Open \(app.title) in the app when installed, with automatic App Store fallback."
         case .press:
@@ -114,7 +116,7 @@ enum MetaBuilder {
             path: "/apps/\(app.slug)\(pageType.pathSegment)",
             image: app.imagePath,
             imageAlt: app.imageDescription,
-            type: .article
+            type: .website
         )
     }
 }
@@ -129,7 +131,11 @@ enum SiteMeta {
     static let contentLicenseName = "Creative Commons Attribution 4.0 International (CC BY 4.0)"
     static let contentLicenseURL = "https://creativecommons.org/licenses/by/4.0/"
     static let contentLicensePath = "/content-license"
-    static let contentLicensePageURL = baseURL + contentLicensePath
+    static let contentLicensePageURL = absolutePageURL(for: contentLicensePath)
+    static let organizationID = baseURL + "/#organization"
+    static let websiteID = baseURL + "/#website"
+    static let authorID = baseURL + "/about/#person"
+    static let authorPageURL = baseURL + "/about/"
     
     static func bestDescription(_ description: String) -> String {
         let resolved = description.isEmpty ? defaultDescription : description
@@ -168,23 +174,67 @@ enum SiteMeta {
         return pageTitle.isEmpty ? defaultImageAlt : pageTitle
     }
     
-    static func absoluteURL(for path: String) -> String {
+    /// Canonical path for an HTML page. GitHub Pages serves directory-backed
+    /// pages with a trailing slash, so our declared URLs should match it.
+    static func canonicalPagePath(_ path: String) -> String {
+        guard !path.isEmpty else { return "/" }
+
+        let prefix = path.hasPrefix("/") ? "" : "/"
+        let normalized = prefix + path
+        guard normalized != "/", !normalized.hasSuffix("/") else {
+            return normalized
+        }
+
+        let lastComponent = normalized.split(separator: "/").last.map(String.init) ?? ""
+        guard !lastComponent.contains(".") else { return normalized }
+        return normalized + "/"
+    }
+
+    static func absolutePageURL(for path: String) -> String {
+        if path.hasPrefix("http://") || path.hasPrefix("https://") {
+            guard path.hasPrefix(baseURL),
+                  var components = URLComponents(string: path)
+            else {
+                return path
+            }
+            components.path = canonicalPagePath(components.path)
+            return components.string ?? path
+        }
+
+        return baseURL + canonicalPagePath(path)
+    }
+
+    static func absoluteAssetURL(for path: String) -> String {
         if path.hasPrefix("http://") || path.hasPrefix("https://") {
             return path
         }
-        
-        if path.hasPrefix("/") {
-            return baseURL + path
-        }
-        
-        return baseURL + "/" + path
+        return baseURL + (path.hasPrefix("/") ? path : "/" + path)
     }
     
     static func absoluteImageURL(for imagePath: String) -> String {
-        absoluteURL(for: imagePath)
+        absoluteAssetURL(for: imagePath)
     }
     
     static func imageURL(_ imagePath: String?) -> URL? {
         URL(string: absoluteImageURL(for: bestImagePath(imagePath)))
+    }
+}
+
+/// Ignite 0.6 does not escape attribute values in `MetaTag` or text in
+/// `Title`, so metadata must be escaped before it reaches those elements.
+enum HTMLMetadataEscaper {
+    static func attribute(_ value: String) -> String {
+        value
+            .replacingOccurrences(of: "&", with: "&amp;")
+            .replacingOccurrences(of: "\"", with: "&quot;")
+            .replacingOccurrences(of: "<", with: "&lt;")
+            .replacingOccurrences(of: ">", with: "&gt;")
+    }
+
+    static func text(_ value: String) -> String {
+        value
+            .replacingOccurrences(of: "&", with: "&amp;")
+            .replacingOccurrences(of: "<", with: "&lt;")
+            .replacingOccurrences(of: ">", with: "&gt;")
     }
 }

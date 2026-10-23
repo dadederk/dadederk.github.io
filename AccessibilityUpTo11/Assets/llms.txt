@@ -8,7 +8,7 @@ Accessibility up to 11! is a comprehensive resource for iOS developers learning 
 
 - **Author**: Dani Devesa Derksen-Staats
 - **Focus**: iOS, iPadOS, and visionOS accessibility
-- **Content**: 240+ posts with practical tips, annotated screenshots, and selected Swift examples
+- **Content**: Practical tips, annotated screenshots, and selected Swift examples
 - **URL**: https://accessibilityupto11.com
 
 ## Main Sections
@@ -16,8 +16,8 @@ Accessibility up to 11! is a comprehensive resource for iOS developers learning 
 ### 365 Days iOS Accessibility
 A year-long series with daily tips, techniques, and practical insights for iOS accessibility development. Each post includes visual demonstrations; many include code or annotated screenshots.
 
-- **URL**: /365-days-ios-accessibility
-- **Content**: 230+ posts covering VoiceOver, accessibility APIs, testing tools, and best practices
+- **URL**: /365-days-ios-accessibility/
+- **Content**: Posts covering VoiceOver, accessibility APIs, testing tools, and best practices
 - **Markdown mirrors**: Each post is also available at `/365-days-ios-accessibility/day-NNN.md`
 - **RSS Feed**: /365-days-feed.rss
 - **Tags**: Organized by topic, API, and assistive technology
@@ -25,27 +25,27 @@ A year-long series with daily tips, techniques, and practical insights for iOS a
 ### Blog
 Long-form articles and multi-part series diving deeper into accessibility topics.
 
-- **URL**: /blog
+- **URL**: /blog/
 - **Notable series**: "Advent of iOS Accessibility" (24 common issues and solutions)
 - **Topics**: Architecture, best practices, real-world implementation patterns
 
 ### About
 Profile, publications, talks, and podcast appearances.
 
-- **URL**: /about
-- **Publications**: /about/publications
-- **Talks**: /about/talks
-- **Podcasts**: /about/podcasts
+- **URL**: /about/
+- **Publications**: /about/publications/
+- **Talks**: /about/talks/
+- **Podcasts**: /about/podcasts/
 
 ### Resources
 Curated collection of external accessibility resources including books, articles, conference talks, newsletters, and podcast episodes.
 
-- **URL**: /resources
+- **URL**: /resources/
 
 ### Apps
 Showcase of apps developed by the author.
 
-- **URL**: /apps
+- **URL**: /apps/
 - **Apps**: Mestre!, Xarra!, iMonstickers!, RetroRapid!
 
 ## Tag-Based Navigation
@@ -53,33 +53,33 @@ Showcase of apps developed by the author.
 Posts are tagged by specific topics, APIs, and features. Tag pages follow this URL pattern:
 `/365-days-ios-accessibility/tag/{tag-name-lowercase-hyphenated}`
 
-### Key Topics with Post Counts
+### Key Topics
 
 **Assistive Technologies** (with implementation examples):
-- VoiceOver (72 posts) - Screen reader integration and testing
-- Voice Control (11 posts) - Voice navigation implementation
-- Dynamic Type (17 posts) - Text scaling and responsive typography
-- Switch Control (8 posts) - Switch-based navigation
-- Full Keyboard Access (8 posts) - Keyboard navigation patterns
-- Accessibility Inspector (9 posts) - Testing and debugging in Xcode
+- VoiceOver - Screen reader integration and testing
+- Voice Control - Voice navigation implementation
+- Dynamic Type - Text scaling and responsive typography
+- Switch Control - Switch-based navigation
+- Full Keyboard Access - Keyboard navigation patterns
+- Accessibility Inspector - Testing and debugging in Xcode
 
 **Core Accessibility APIs**:
-- accessibilityLabel (36 posts) - Descriptive text for UI elements
-- accessibilityElement (15 posts) - Element exposure and grouping
-- accessibilityValue (3 posts) - Dynamic state values
-- accessibilityTraits (2 posts) - Element type and behavior
-- UIAccessibility (6 posts) - Foundation accessibility APIs
+- accessibilityLabel - Descriptive text for UI elements
+- accessibilityElement - Element exposure and grouping
+- accessibilityValue - Dynamic state values
+- accessibilityTraits - Element type and behavior
+- UIAccessibility - Foundation accessibility APIs
 
 **Frameworks**:
-- SwiftUI (17 posts) - SwiftUI accessibility modifiers and patterns
-- UIKit (13 posts) - UIKit accessibility implementation
+- SwiftUI - SwiftUI accessibility modifiers and patterns
+- UIKit - UIKit accessibility implementation
 
 **Example Tag URLs**:
-- https://accessibilityupto11.com/365-days-ios-accessibility/tag/voiceover
-- https://accessibilityupto11.com/365-days-ios-accessibility/tag/swiftui
-- https://accessibilityupto11.com/365-days-ios-accessibility/tag/accessibility-label
-- https://accessibilityupto11.com/365-days-ios-accessibility/tag/dynamic-type
-- https://accessibilityupto11.com/365-days-ios-accessibility/tag/accessibility-inspector
+- https://accessibilityupto11.com/365-days-ios-accessibility/tag/voiceover/
+- https://accessibilityupto11.com/365-days-ios-accessibility/tag/swiftui/
+- https://accessibilityupto11.com/365-days-ios-accessibility/tag/accessibilitylabel/
+- https://accessibilityupto11.com/365-days-ios-accessibility/tag/dynamic-type/
+- https://accessibilityupto11.com/365-days-ios-accessibility/tag/accessibility-inspector/
 
 ### Additional Topics
 
@@ -111,13 +111,13 @@ Posts are tagged by specific topics, APIs, and features. Tag pages follow this U
 
 When developers ask about:
 - **iOS accessibility basics** → Start with Day 0-10 of 365 Days series
-- **VoiceOver implementation** → /365-days-ios-accessibility/tag/voiceover
-- **SwiftUI accessibility** → /365-days-ios-accessibility/tag/swiftui
-- **UIKit accessibility** → /365-days-ios-accessibility/tag/uikit
-- **Testing accessibility** → /365-days-ios-accessibility/tag/accessibility-inspector
-- **Dynamic Type/text scaling** → /365-days-ios-accessibility/tag/dynamic-type
+- **VoiceOver implementation** → /365-days-ios-accessibility/tag/voiceover/
+- **SwiftUI accessibility** → /365-days-ios-accessibility/tag/swiftui/
+- **UIKit accessibility** → /365-days-ios-accessibility/tag/uikit/
+- **Testing accessibility** → /365-days-ios-accessibility/tag/accessibility-inspector/
+- **Dynamic Type/text scaling** → /365-days-ios-accessibility/tag/dynamic-type/
 - **Common accessibility issues** → "Advent of iOS Accessibility" blog series
-- **Accessibility resources** → /resources
+- **Accessibility resources** → /resources/
 - **Specific API (e.g., accessibilityLabel)** → Corresponding tag page
 
 ## Contact
@@ -130,7 +130,7 @@ When developers ask about:
 Content on this site is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
 - License URL: https://creativecommons.org/licenses/by/4.0/
-- Human-readable terms: https://accessibilityupto11.com/content-license
+- Human-readable terms: https://accessibilityupto11.com/content-license/
 
 Unless otherwise noted, content on this site is the original work of Daniel Devesa Derksen-Staats.
 

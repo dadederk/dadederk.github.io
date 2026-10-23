@@ -6,7 +6,7 @@ struct Days365TagPage: StaticPage {
     let pageNumber: Int
 
     private var tagSlug: String {
-        tag.lowercased().replacingOccurrences(of: " ", with: "-")
+        Days365Loader.tagSlug(for: tag)
     }
 
     private var basePath: String {
@@ -19,8 +19,8 @@ struct Days365TagPage: StaticPage {
 
     var title: String {
         pageNumber == 1
-            ? "Tag: \(tag) - #365DaysIOSAccessibility"
-            : "Tag: \(tag) - Page \(pageNumber) - #365DaysIOSAccessibility"
+            ? "\(tag) Accessibility Tips for iOS Developers"
+            : "\(tag) Accessibility Tips - Page \(pageNumber)"
     }
 
     var path: String { path(forPage: pageNumber) }
@@ -61,8 +61,9 @@ struct Days365TagPage: StaticPage {
             // Page header
             Section {
                 HStack(alignment: .bottom) {
-                    Text("Tag: \(tag)")
-                        .font(.title2)
+                    Text("\(tag) Accessibility Tips for iOS Developers")
+                        .font(.title1)
+                        .fontWeight(.bold)
                         .class("text-break")
 
                     let posts = Days365Loader.posts(withTag: tag)
@@ -73,6 +74,14 @@ struct Days365TagPage: StaticPage {
                 .style(.flexWrap, "wrap")
                 .style(.gap, "0.5rem")
                 .padding(.bottom)
+
+                if pageNumber == 1 {
+                    Text(Self.topicIntroduction(for: tag))
+                        .font(.body)
+                        .foregroundStyle(.secondary)
+                        .class("text-break")
+                        .padding(.bottom)
+                }
 
                 let allPosts = Days365Loader.posts(withTag: tag)
                 let postsPerPage = Days365TagPagination.postsPerPage
@@ -156,6 +165,25 @@ struct Days365TagPage: StaticPage {
             Days365AllTagsSection()
         }
         .horizontalAlignment(.leading)
+    }
+}
+
+extension Days365TagPage {
+    static func topicIntroduction(for tag: String) -> String {
+        let introductions = [
+            "voiceover": "Practical VoiceOver guidance for iOS developers, covering accessible names, navigation order, custom controls, focus, announcements, and hands-on testing.",
+            "swiftui": "SwiftUI accessibility techniques for building clear semantics, scalable interfaces, predictable focus, and controls that work well with assistive technologies.",
+            "uikit": "UIKit accessibility patterns for exposing useful semantics, grouping content, managing focus, supporting custom interactions, and testing real interfaces.",
+            "accessibilitylabel": "Examples and guidance for writing useful accessibility labels that identify controls clearly without repeating traits, state, or surrounding context.",
+            "dynamic-type": "Dynamic Type techniques for readable, resilient iOS layouts that scale with the user's preferred text size without clipping or hiding content.",
+            "accessibility-inspector": "Ways to use Accessibility Inspector to audit labels, traits, values, contrast, hit targets, and navigation before testing on a device.",
+            "voice-control": "Voice Control implementation and testing guidance for interfaces that remain discoverable and operable without touch.",
+            "full-keyboard-access": "Full Keyboard Access patterns for logical focus order, visible focus, keyboard-operable controls, and efficient iPad navigation.",
+            "switch-control": "Switch Control guidance for predictable scanning, meaningful grouping, usable actions, and interfaces that do not depend on precise gestures.",
+        ]
+
+        return introductions[Days365Loader.tagSlug(for: tag)]
+            ?? "Browse practical #365DaysIOSAccessibility notes, examples, and implementation ideas related to \(tag)."
     }
 }
 

@@ -1,6 +1,11 @@
-# Press kits — notes for future apps
+# Press kits
 
-Xarra’s press kit (`/apps/xarra/press/`) is the first full press page on this site. It is intentionally Xarra-specific for now. When adding kits for other apps (for example RetroRapid!), use these notes so we do not rebuild the same decisions from scratch.
+The site publishes model-driven press pages for Xarra and RetroRapid:
+
+- `/apps/xarra/press/`
+- `/apps/retrorapid/press/`
+
+`AppPressContent` owns the shared page experience. Each app supplies an `AppPressKit` configuration, so absent material is omitted rather than represented by placeholders. RetroRapid currently omits its demo-video, developer-photo, product-photo, and localized-summary sections; approved App Store event artwork is available as secondary media.
 
 ## What journalists need (checklist)
 
@@ -16,16 +21,17 @@ Xarra’s press kit (`/apps/xarra/press/`) is the first full press page on this 
 - Downloadable ZIP with full-resolution assets + README
 - Optional: localized summary (Xarra has Spanish) with a jump link from the top actions
 
-## Current implementation shape
+## Implementation shape
 
-| Piece | Today (Xarra) | Future direction |
-|---|---|---|
-| Page route | `UniversalAppPage` + `pageType: .press` | Keep; one press route per app slug |
-| Content | Hardcoded `XarraPressContent.swift` | Shared layout/components + per-app content (JSON, markdown, or a small Swift model) |
-| Media catalog | Private `XarraPressMedia` in the same file | Per-app media list (paths, titles, alts, kinds) |
-| ZIP | Manual `Assets/Downloads/xarra-press-kit.zip` + `XarraPressKit/README.txt` | Scripted pack from a per-app folder so page and ZIP cannot drift |
-| URLs / pricing | Hardcoded in the press page | Prefer `AppsData` / app JSON fields already used on the product page |
-| Awards and coverage | From `xarra.json`, with award artwork beside the banner | Keep sourcing social proof from app JSON |
+| Piece | Source |
+|---|---|
+| Page route | `UniversalAppPage` + `pageType: .press`, enabled by `AppPressKits` |
+| Shared layout | `Sources/Pages/AppPressContent.swift` |
+| Shared model and registry | `Sources/Models/AppPressKit.swift` |
+| Per-app copy and media catalog | `Sources/Models/AppPressKit+<App>.swift` |
+| Awards and coverage | Existing `AppsData/<app>.json` fields |
+| Full-resolution media | `Assets/Images/Site/Apps/<App>/Press/` |
+| Downloadable packs | `Assets/Downloads/<App>PressKit/README.txt` + matching ZIP |
 
 ## Layout pattern that worked for Xarra
 
@@ -43,10 +49,11 @@ Xarra’s press kit (`/apps/xarra/press/`) is the first full press page on this 
 
 Fragmenting media (primary assets → bio → more assets) is intentional: put the most reusable assets first, keep important context in the middle, and leave lifestyle/secondary media for people who keep scrolling.
 
-## When building the next kit
+## When building another kit
 
-1. Copy the Xarra structure; swap facts, copy, media, and ZIP.
-2. Extract shared UI only after the second kit exists (actions strip, facts grid, media card, usage blurb, demo section).
-3. Keep page copy and ZIP README aligned in the same change.
-4. Prefer privacy-friendly YouTube embeds (`Embed(youTubeID:title:)` + `.aspectRatio(.r16x9)`).
-5. Do not leave temporary App Review / “coming soon” lines on the live page once they no longer apply.
+1. Add an `AppPressKit` configuration and register it in `AppPressKits.all`.
+2. Add only verified media and copy; leave unavailable optional fields `nil` or empty so their sections do not render.
+3. Put full-resolution media under the app's `Press/` folder and keep page copy and ZIP README aligned in the same change.
+4. Prefer privacy-friendly YouTube embeds through `AppPressVideo` when a demo exists.
+5. Add a publication test covering the route and the app's intentionally absent sections.
+6. Do not leave temporary App Review or “coming soon” lines on a live page.

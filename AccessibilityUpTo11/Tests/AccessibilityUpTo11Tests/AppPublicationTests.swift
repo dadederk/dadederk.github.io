@@ -50,18 +50,62 @@ final class AppPublicationTests: XCTestCase {
         XCTAssertTrue(route.allPaths.contains("/apps/xarra/document/*"))
     }
 
-    @MainActor func testOnlyXarraPublishesPressPageWithPressMetadata() throws {
+    func testXarraProductCopyIncludesCurrentDiscoveryAndDeviceFeatures() throws {
+        let xarra = try XCTUnwrap(
+            AppsJSONLoader.loadAppsContent(environment: [:]).apps.first { $0.slug == "xarra" }
+        )
+        let featureCopy = xarra.featureGroups
+            .flatMap(\.features)
+            .map { "\($0.title) \($0.description)" }
+            .joined(separator: " ")
+
+        for expectedTerm in ["iPhone Duo", "Siri", "Spotlight", "Shortcuts", "EPUB", "Markdown"] {
+            XCTAssertTrue(featureCopy.contains(expectedTerm), expectedTerm)
+        }
+    }
+
+    func testXarraPublishesFreeCommunityAccessOffer() throws {
+        let xarra = try XCTUnwrap(
+            AppsJSONLoader.loadAppsContent(environment: [:]).apps.first { $0.slug == "xarra" }
+        )
+        let offer = try XCTUnwrap(xarra.communityOffer)
+
+        XCTAssertEqual(offer.title, "Free access for public organisations and nonprofits")
+        XCTAssertTrue(offer.description.contains("free lifetime access"))
+        XCTAssertEqual(offer.actionTitle, "Ask about free access")
+        XCTAssertTrue(offer.actionTarget.hasPrefix("mailto:hello@accessibilityUpTo11.com"))
+    }
+
+    @MainActor func testConfiguredAppsPublishPressPagesWithPressMetadata() throws {
         let pressPages = AccessibilityUpTo11Site().staticPages
             .compactMap { $0 as? UniversalAppPage }
             .filter { $0.pageType == .press }
 
-        XCTAssertEqual(pressPages.map(\.path), ["/apps/xarra/press"])
+        XCTAssertEqual(
+            Set(pressPages.map(\.path)),
+            Set(["/apps/xarra/press", "/apps/retrorapid/press"])
+        )
 
         let xarra = try XCTUnwrap(AppsData.loadContent().apps.first { $0.slug == "xarra" })
-        let meta = MetaBuilder.app(xarra, pageType: .press)
-        XCTAssertEqual(meta.path, "/apps/xarra/press")
-        XCTAssertTrue(meta.title.contains("Press Kit"))
-        XCTAssertTrue(meta.description.contains("full-resolution screenshots"))
+        let xarraMeta = MetaBuilder.app(xarra, pageType: .press)
+        XCTAssertEqual(xarraMeta.path, "/apps/xarra/press")
+        XCTAssertTrue(xarraMeta.title.contains("Press Kit"))
+        XCTAssertTrue(xarraMeta.description.contains("full-resolution screenshots"))
+
+        let retroRapid = try XCTUnwrap(AppsData.loadContent().apps.first { $0.slug == "retrorapid" })
+        let retroRapidMeta = MetaBuilder.app(retroRapid, pageType: .press)
+        XCTAssertEqual(retroRapidMeta.path, "/apps/retrorapid/press")
+        XCTAssertTrue(retroRapidMeta.title.contains("Press Kit"))
+
+        let retroRapidKit = try XCTUnwrap(AppPressKits.kit(for: "retrorapid"))
+        XCTAssertNil(retroRapidKit.demoVideo)
+        XCTAssertNil(retroRapidKit.developer?.photo)
+        XCTAssertEqual(retroRapidKit.screenshots?.items.count, 9)
+        XCTAssertEqual(retroRapidKit.recognitionTitle, "Coverage")
+        XCTAssertEqual(retroRapidKit.additionalMediaSections.count, 1)
+        XCTAssertEqual(retroRapidKit.additionalMediaSections.first?.items.count, 2)
+        XCTAssertTrue(retroRapidKit.facts.contains { $0.label == "Giving back" })
+        XCTAssertFalse(retroRapidKit.facts.contains { $0.label == "Free play" })
 
         let award = try XCTUnwrap(
             xarra.featuredIn.first {

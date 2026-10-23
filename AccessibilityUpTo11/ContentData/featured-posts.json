@@ -40,6 +40,22 @@
       ]
     },
     {
+      "path": "/post/2026-09-24-01",
+      "mentions": [
+        {
+          "title": "iOS Dev Weekly #770",
+          "target": "https://iosdevweekly.com/issues/770/"
+        }
+      ],
+      "quotes": [
+        {
+          "text": "In this article, he demonstrates a whole range of advanced accessibility techniques and features that go well beyond the bare minimum of accessibility support.",
+          "sourceTitle": "Andyy Hope, iOS Dev Weekly #770",
+          "sourceTarget": "https://iosdevweekly.com/issues/770/"
+        }
+      ]
+    },
+    {
       "path": "/post/2026-02-22-01",
       "mentions": [
         {

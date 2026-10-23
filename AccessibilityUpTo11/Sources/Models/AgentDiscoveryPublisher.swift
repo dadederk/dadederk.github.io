@@ -31,7 +31,7 @@ enum AgentDiscoveryPublisher {
         let sourceURL: URL
     }
 
-    static func publish() {
+    static func publish() throws {
         BuildLogger.step(.agentDiscovery, "generating agent discovery artifacts")
 
         let fileManager = FileManager.default
@@ -72,9 +72,56 @@ enum AgentDiscoveryPublisher {
             try llmsFull.write(to: llmsFullURL, atomically: true, encoding: .utf8)
             BuildLogger.detail("Published llms-full.txt")
 
+            try validateCuratedMap(buildDirectory: buildDirectory, fileManager: fileManager)
+            BuildLogger.detail("Validated internal URLs in llms.txt")
+
             BuildLogger.success(.agentDiscovery, "agent discovery artifacts published")
         } catch {
             BuildLogger.failure(.agentDiscovery, error.localizedDescription)
+            throw error
+        }
+    }
+
+    private static func validateCuratedMap(
+        buildDirectory: URL,
+        fileManager: FileManager
+    ) throws {
+        let mapURL = buildDirectory.appendingPathComponent("llms.txt")
+        let map = try String(contentsOf: mapURL, encoding: .utf8)
+        let pattern = #"https://accessibilityupto11\.com/[^\s)`]+|(?<![:/A-Za-z0-9.])/[A-Za-z0-9][^\s)`]+"#
+        let regex = try NSRegularExpression(pattern: pattern)
+        let range = NSRange(map.startIndex..<map.endIndex, in: map)
+        let trimCharacters = CharacterSet(charactersIn: "`.,:;\"'")
+
+        var missing: [String] = []
+        for match in regex.matches(in: map, range: range) {
+            guard let matchRange = Range(match.range, in: map) else { continue }
+            var target = String(map[matchRange]).trimmingCharacters(in: trimCharacters)
+            if target.contains("{") || target.contains("NNN") { continue }
+            if target.hasPrefix(SiteMeta.baseURL) {
+                target.removeFirst(SiteMeta.baseURL.count)
+            }
+
+            target = target.split(whereSeparator: { $0 == "?" || $0 == "#" }).first.map(String.init) ?? target
+            guard target.hasPrefix("/"), target != "/" else { continue }
+
+            let localPath = String(target.dropFirst())
+            let directFile = buildDirectory.appendingPathComponent(localPath)
+            let indexFile = directFile.appendingPathComponent("index.html")
+            if !fileManager.fileExists(atPath: directFile.path),
+               !fileManager.fileExists(atPath: indexFile.path) {
+                missing.append(target)
+            }
+        }
+
+        guard missing.isEmpty else {
+            throw NSError(
+                domain: "AgentDiscoveryPublisher",
+                code: 2,
+                userInfo: [
+                    NSLocalizedDescriptionKey: "llms.txt contains missing internal URLs: \(missing.sorted().joined(separator: ", "))"
+                ]
+            )
         }
     }
 
@@ -91,11 +138,11 @@ enum AgentDiscoveryPublisher {
                 title: post.title,
                 seriesLabel: nil,
                 seoTitle: nil,
-                url: SiteMeta.baseURL + post.path,
+                url: SiteMeta.absolutePageURL(for: post.path),
                 date: dateFormatter.string(from: post.date),
                 tags: post.tags,
                 excerpt: post.excerpt,
-                markdownUrl: SiteMeta.baseURL + post.path + ".md"
+                markdownUrl: SiteMeta.absoluteAssetURL(for: post.path + ".md")
             )
         }
 
@@ -106,11 +153,11 @@ enum AgentDiscoveryPublisher {
                 title: post.topicTitle,
                 seriesLabel: post.title,
                 seoTitle: post.seoTitle,
-                url: SiteMeta.baseURL + post.path,
+                url: SiteMeta.absolutePageURL(for: post.path),
                 date: dateFormatter.string(from: post.date),
                 tags: post.tags,
                 excerpt: post.excerpt,
-                markdownUrl: SiteMeta.baseURL + post.path + ".md"
+                markdownUrl: SiteMeta.absoluteAssetURL(for: post.path + ".md")
             )
         }
 
@@ -178,7 +225,7 @@ enum AgentDiscoveryPublisher {
 
         Generated: \(generatedAt)
         Site: \(SiteMeta.baseURL)
-        License: CC BY 4.0 — \(SiteMeta.baseURL)/content-license
+        License: CC BY 4.0 — \(SiteMeta.absolutePageURL(for: SiteMeta.contentLicensePath))
         AI terms: \(SiteMeta.baseURL)/ai-tos.txt
         JSON index: \(SiteMeta.baseURL)/content-index.json
 
@@ -192,10 +239,11 @@ enum AgentDiscoveryPublisher {
         """
 
         for post in blogPosts {
-            let url = SiteMeta.baseURL + post.path
+            let url = SiteMeta.absolutePageURL(for: post.path)
+            let markdownURL = SiteMeta.absoluteAssetURL(for: post.path + ".md")
             let summary = post.excerpt.isEmpty ? post.title : post.excerpt
             output += "- \(post.title) — \(summary): \(url)\n"
-            output += "  Markdown: \(url).md\n"
+            output += "  Markdown: \(markdownURL)\n"
         }
 
         output += """
@@ -206,8 +254,8 @@ enum AgentDiscoveryPublisher {
 
         let tagCounts = tagPostCounts(for: days365Posts)
         for (tag, count) in tagCounts.prefix(15) {
-            let slug = tag.lowercased().replacingOccurrences(of: " ", with: "-")
-            output += "- \(tag) (\(count) posts): \(SiteMeta.baseURL)/365-days-ios-accessibility/tag/\(slug)\n"
+            let slug = Days365Loader.tagSlug(for: tag)
+            output += "- \(tag) (\(count) posts): \(SiteMeta.absolutePageURL(for: "/365-days-ios-accessibility/tag/\(slug)"))\n"
         }
 
         output += """
@@ -217,10 +265,11 @@ enum AgentDiscoveryPublisher {
         """
 
         for post in days365Posts {
-            let url = SiteMeta.baseURL + post.path
+            let url = SiteMeta.absolutePageURL(for: post.path)
+            let markdownURL = SiteMeta.absoluteAssetURL(for: post.path + ".md")
             let summary = post.excerpt.isEmpty ? post.topicTitle : post.excerpt
             output += "- \(post.seoTitle) — \(summary): \(url)\n"
-            output += "  Markdown: \(url).md\n"
+            output += "  Markdown: \(markdownURL)\n"
         }
 
         output += """

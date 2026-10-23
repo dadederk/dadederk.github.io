@@ -14,10 +14,12 @@ struct MainLayout: Layout {
         let meta = metaContext()
         let assetVersion = "2026-09-27-16"
         let isPaginatedListing = pagePath.contains("/page-")
-        let robotsContent = isPaginatedListing
+        let isUtilityPage = pagePath.hasSuffix("/open")
+        let shouldNoIndex = isPaginatedListing || isUtilityPage
+        let robotsContent = shouldNoIndex
             ? "noindex, follow"
             : "index, follow, max-snippet:-1, max-image-preview:large"
-        let googlebotContent = isPaginatedListing ? "noindex, follow" : "index, follow"
+        let googlebotContent = shouldNoIndex ? "noindex, follow" : "index, follow"
         
         PlainDocument {
             Head {
@@ -25,15 +27,15 @@ struct MainLayout: Layout {
                 MetaTag.flexibleViewport
 
                 if !meta.description.isEmpty {
-                    MetaTag(name: "description", content: meta.description)
+                    MetaTag(name: "description", content: HTMLMetadataEscaper.attribute(meta.description))
                 }
 
                 if !author.isEmpty {
-                    MetaTag(name: "author", content: author)
+                    MetaTag(name: "author", content: HTMLMetadataEscaper.attribute(author))
                 }
 
                 MetaTag.generator
-                Title(meta.title)
+                Title(HTMLMetadataEscaper.text(meta.title))
 
                 MetaLink.standardCSS
                 MetaLink(href: "/css/prism-xcode-dark.css", rel: "stylesheet")
@@ -42,41 +44,40 @@ struct MainLayout: Layout {
                     .data("highlight-theme", "xcode-light")
                 MetaLink(href: "/css/prism-plugins.css", rel: "stylesheet")
                 MetaLink.iconCSS
-                MetaLink(href: page.url, rel: "canonical")
+                MetaLink(href: meta.absoluteURL, rel: "canonical")
 
                 if let markdownAlternatePath = Self.markdownAlternatePath(for: pagePath) {
                     MetaLink(href: markdownAlternatePath, rel: "alternate")
                         .customAttribute(name: "type", value: "text/markdown")
                 }
 
-                MetaTag(property: "og:site_name", content: site.name)
-                MetaTag(property: "og:image", content: meta.imageURL)
-                MetaTag(name: "twitter:image", content: meta.imageURL)
-                MetaTag(property: "og:title", content: meta.title)
-                MetaTag(name: "twitter:title", content: meta.title)
+                MetaTag(property: "og:site_name", content: HTMLMetadataEscaper.attribute(site.name))
+                MetaTag(property: "og:image", content: HTMLMetadataEscaper.attribute(meta.imageURL))
+                MetaTag(name: "twitter:image", content: HTMLMetadataEscaper.attribute(meta.imageURL))
+                MetaTag(property: "og:title", content: HTMLMetadataEscaper.attribute(meta.title))
+                MetaTag(name: "twitter:title", content: HTMLMetadataEscaper.attribute(meta.title))
 
                 if !meta.description.isEmpty {
-                    MetaTag(property: "og:description", content: meta.description)
-                    MetaTag(name: "twitter:description", content: meta.description)
+                    MetaTag(property: "og:description", content: HTMLMetadataEscaper.attribute(meta.description))
+                    MetaTag(name: "twitter:description", content: HTMLMetadataEscaper.attribute(meta.description))
                 }
 
-                MetaTag(property: "og:url", content: meta.absoluteURL)
+                MetaTag(property: "og:url", content: HTMLMetadataEscaper.attribute(meta.absoluteURL))
 
                 if let twitterDomain = Self.twitterDomain(from: page.url) {
-                    MetaTag(name: "twitter:domain", content: twitterDomain)
+                    MetaTag(name: "twitter:domain", content: HTMLMetadataEscaper.attribute(twitterDomain))
                 }
 
                 MetaTag(name: "twitter:card", content: "summary_large_image")
                 MetaTag(name: "twitter:dnt", content: "on")
 
-                MetaTag(name: "keywords", content: "iOS, accessibility, a11y, Swift, VoiceOver, development")
                 MetaTag(name: "robots", content: robotsContent)
                 MetaTag(name: "googlebot", content: googlebotContent)
 
                 MetaTag(property: "og:type", content: meta.type.rawValue)
                 MetaTag(property: "og:locale", content: "en_US")
-                MetaTag(property: "og:image:alt", content: meta.imageAlt)
-                MetaTag(name: "twitter:image:alt", content: meta.imageAlt)
+                MetaTag(property: "og:image:alt", content: HTMLMetadataEscaper.attribute(meta.imageAlt))
+                MetaTag(name: "twitter:image:alt", content: HTMLMetadataEscaper.attribute(meta.imageAlt))
                 MetaTag(name: "twitter:site", content: "@dadederk")
                 MetaTag(name: "twitter:creator", content: "@dadederk")
                 
@@ -115,6 +116,11 @@ struct MainLayout: Layout {
             .standardHeadersDisabled()
             
             Body {
+                if pagePath == "/" || pagePath == "/about" {
+                    Script(code: SiteIdentityStructuredData.json())
+                        .attribute("type", "application/ld+json")
+                }
+
                 Link("Skip to main content", target: "#main-content")
                     .class("skip-link")
 
@@ -185,7 +191,7 @@ extension MainLayout {
             }
         }
 
-        // Blog post — truncate descriptions via MetaBuilder; images resolved to absolute URLs.
+        // Blog post: truncate descriptions via MetaBuilder; images resolved to absolute URLs.
         if path.hasPrefix("/post/") {
             let imageAlt = articles.all.first { $0.path == path }?.imageDescription
             return MetaBuilder.page(

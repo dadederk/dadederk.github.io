@@ -9,6 +9,7 @@ struct Days365Data: Identifiable {
     let seoTitle: String
     let author: String
     let date: Date
+    let modifiedDate: Date?
     let tags: [String]
     let categories: [String]
     let series: [String]
@@ -119,6 +120,7 @@ struct Days365Loader {
         var seoTitleOverride: String?
         var author = ""
         var date = Date()
+        var modifiedDate: Date?
         var tags: [String] = []
         var categories: [String] = []
         var series: [String] = []
@@ -140,33 +142,9 @@ struct Days365Loader {
             case "author":
                 author = value
             case "date":
-                // Try multiple date formats to handle different input formats
-                var parsedDate: Date?
-                
-                // Try ISO8601 format first
-                let iso8601Formatter = ISO8601DateFormatter()
-                iso8601Formatter.formatOptions = [.withInternetDateTime]
-                if let parsed = iso8601Formatter.date(from: value) {
-                    parsedDate = parsed
-                } else {
-                    // Try custom format: YYYY-MM-DD HH:MM
-                    let customFormatter = DateFormatter()
-                    customFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-                    customFormatter.timeZone = TimeZone(identifier: "UTC")
-                    if let parsed = customFormatter.date(from: value) {
-                        parsedDate = parsed
-                    } else {
-                        // Try format: YYYY-MM-DD
-                        let dateOnlyFormatter = DateFormatter()
-                        dateOnlyFormatter.dateFormat = "yyyy-MM-dd"
-                        dateOnlyFormatter.timeZone = TimeZone(identifier: "UTC")
-                        if let parsed = dateOnlyFormatter.date(from: value) {
-                            parsedDate = parsed
-                        }
-                    }
-                }
-                
-                date = parsedDate ?? Date()
+                date = Self.parseDate(value) ?? Date()
+            case "modified", "lastModified":
+                modifiedDate = Self.parseDate(value)
             case "tags":
                 tags = Self.parseArrayValue(value)
             case "categories":
@@ -198,6 +176,7 @@ struct Days365Loader {
             seoTitle: seoTitle,
             author: author,
             date: date,
+            modifiedDate: modifiedDate,
             tags: tags,
             categories: categories,
             series: series,
@@ -207,6 +186,28 @@ struct Days365Loader {
             fileName: fileName,
             dayNumber: dayNumber
         )
+    }
+
+    private static func parseDate(_ value: String) -> Date? {
+        let iso8601Formatter = ISO8601DateFormatter()
+        iso8601Formatter.formatOptions = [.withInternetDateTime]
+        if let parsed = iso8601Formatter.date(from: value) {
+            return parsed
+        }
+
+        let customFormatter = DateFormatter()
+        customFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        customFormatter.locale = Locale(identifier: "en_US_POSIX")
+        customFormatter.timeZone = TimeZone(identifier: "UTC")
+        if let parsed = customFormatter.date(from: value) {
+            return parsed
+        }
+
+        let dateOnlyFormatter = DateFormatter()
+        dateOnlyFormatter.dateFormat = "yyyy-MM-dd"
+        dateOnlyFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateOnlyFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateOnlyFormatter.date(from: value)
     }
     
     /// Extract day number from filename

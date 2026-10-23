@@ -6,7 +6,11 @@ struct BlogSitemapEntry {
     let path: String
     let title: String
     let date: Date
+    let modifiedDate: Date?
+    let tags: [String]
     let image: String?
+
+    var lastModifiedDate: Date { modifiedDate ?? date }
 
     static func loadAll() -> [BlogSitemapEntry] {
         let fileManager = FileManager.default
@@ -64,6 +68,8 @@ struct BlogSitemapEntry {
         let frontmatter = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
         var title = url.deletingPathExtension().lastPathComponent
         var date = Date()
+        var modifiedDate: Date?
+        var tags: [String] = []
         var image: String?
 
         for line in frontmatter.components(separatedBy: .newlines) {
@@ -77,6 +83,15 @@ struct BlogSitemapEntry {
                 title = value
             case "date":
                 date = parseDate(value) ?? date
+            case "modified", "lastModified":
+                modifiedDate = parseDate(value)
+            case "tags":
+                tags = value
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
+                    .split(separator: ",")
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .map { $0.trimmingCharacters(in: CharacterSet(charactersIn: "\"")) }
+                    .filter { !$0.isEmpty }
             case "image":
                 image = value
             default:
@@ -89,6 +104,8 @@ struct BlogSitemapEntry {
             path: "/post/\(slug)",
             title: title,
             date: date,
+            modifiedDate: modifiedDate,
+            tags: tags,
             image: image
         )
     }

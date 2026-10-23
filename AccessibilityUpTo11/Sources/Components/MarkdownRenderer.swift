@@ -171,10 +171,24 @@ struct MarkdownRenderer: HTML {
         
         let range = NSRange(location: 0, length: text.count)
         let matches = regex.matches(in: text, options: [], range: range)
+        let markdownLinkRanges: [NSRange]
+        if let linkRegex = try? NSRegularExpression(
+            pattern: #"\[[^\]]+\]\([^)]+\)"#,
+            options: []
+        ) {
+            markdownLinkRanges = linkRegex.matches(in: text, options: [], range: range).map(\.range)
+        } else {
+            markdownLinkRanges = []
+        }
         
         var result = text
         // Process matches in reverse order to avoid index shifting
         for match in matches.reversed() {
+            // A hashtag used as the label of an explicit Markdown link already
+            // has a destination. Re-linking it would create invalid nested anchors.
+            guard !markdownLinkRanges.contains(where: { NSIntersectionRange($0, match.range).length > 0 }) else {
+                continue
+            }
             if let hashtagRange = Range(match.range(at: 1), in: text) {
                 let hashtag = String(text[hashtagRange])
                 let tagPath = "/365-days-ios-accessibility/tag/\(hashtag.lowercased().replacingOccurrences(of: " ", with: "-"))"

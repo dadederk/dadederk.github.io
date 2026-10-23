@@ -97,8 +97,8 @@ struct UniversalAppPage: StaticPage {
         case .open:
             renderOpenRedirectPage()
         case .press:
-            if let app = findApp(), app.slug == "xarra" {
-                XarraPressContent(app: app)
+            if let app = findApp(), let pressKit = AppPressKits.kit(for: app.slug) {
+                AppPressContent(app: app, kit: pressKit)
             } else {
                 Text(pageType.notFoundMessage)
             }
@@ -118,6 +118,9 @@ struct UniversalAppPage: StaticPage {
 
         return VStack(alignment: .leading, spacing: blockSpacing) {
             if let app = findApp() {
+                Script(code: SoftwareApplicationStructuredData.json(for: app))
+                    .attribute("type", "application/ld+json")
+
                 HStack(alignment: .center, spacing: headingSpacing) {
                     Image(app.imagePath, description: app.imageDescription)
                         .resizable()
@@ -166,10 +169,10 @@ struct UniversalAppPage: StaticPage {
                         AppStoreDownloadBadge(target: action.target)
                     }
 
-                    if app.slug == "xarra" {
+                    if AppPressKits.kit(for: app.slug) != nil {
                         ActionButton(
                             title: "Press Kit",
-                            target: "/apps/xarra/press/",
+                            target: "/apps/\(app.slug)/press/",
                             style: .primary
                         )
                     }
@@ -276,6 +279,29 @@ struct UniversalAppPage: StaticPage {
                     }
                 }
 
+                if let communityOffer = app.communityOffer {
+                    VStack(alignment: .leading, spacing: headingSpacing) {
+                        Text(communityOffer.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .horizontalAlignment(.leading)
+
+                        Text(communityOffer.description)
+                            .font(.body)
+                            .horizontalAlignment(.leading)
+
+                        HStack {
+                            ActionButton(
+                                title: communityOffer.actionTitle,
+                                target: communityOffer.actionTarget,
+                                style: .primary
+                            )
+                            .horizontalAlignment(.leading)
+                        }
+                    }
+                    .id("community-access")
+                }
+
                 VStack(alignment: .leading, spacing: headingSpacing) {
                     Text("Support & Contact")
                         .font(.title2)
@@ -371,7 +397,7 @@ struct UniversalAppPage: StaticPage {
                         BrandCopy.inlineTitle(app.title)
                         Span("…")
                     }
-                        .font(.title2)
+                        .font(.title1)
                         .fontWeight(.bold)
                         .padding(.bottom, 6)
 
@@ -401,7 +427,7 @@ struct UniversalAppPage: StaticPage {
             } else if findApp() != nil {
                 Section {
                     Text("App Store link unavailable")
-                        .font(.title2)
+                        .font(.title1)
                         .foregroundStyle(.secondary)
                         .padding(.bottom, 6)
 
@@ -411,7 +437,7 @@ struct UniversalAppPage: StaticPage {
             } else {
                 Section {
                     Text(pageType.notFoundMessage)
-                        .font(.title2)
+                        .font(.title1)
                         .foregroundStyle(.secondary)
                 }
                 .padding(.vertical)

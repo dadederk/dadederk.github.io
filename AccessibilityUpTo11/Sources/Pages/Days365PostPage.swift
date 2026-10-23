@@ -23,10 +23,10 @@ struct Days365PostPage: StaticPage {
                 headline: post.topicTitle,
                 description: meta.description,
                 authorName: post.author.isEmpty ? "Dani Devesa Derksen-Staats" : post.author,
-                authorURL: "\(SiteMeta.baseURL)/about",
+                authorURL: SiteMeta.authorPageURL,
                 datePublished: post.date,
-                dateModified: post.date,
-                pageURL: SiteMeta.baseURL + post.path,
+                dateModified: post.modifiedDate ?? post.date,
+                pageURL: SiteMeta.absolutePageURL(for: post.path),
                 keywords: post.tags.joined(separator: ", "),
                 imagePath: meta.image,
                 articleSection: "#365DaysIOSAccessibility"

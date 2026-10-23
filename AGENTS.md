@@ -19,7 +19,7 @@ Guidance for AI systems, coding agents, and automated crawlers accessing **Acces
 | 365 Days RSS | https://accessibilityupto11.com/365-days-feed.rss |
 | Sitemap | https://accessibilityupto11.com/sitemap.xml |
 | AI terms | https://accessibilityupto11.com/ai-tos.txt |
-| License | https://accessibilityupto11.com/content-license |
+| License | https://accessibilityupto11.com/content-license/ |
 
 ## Markdown mirrors
 
@@ -32,12 +32,12 @@ HTML pages link to these with `rel="alternate" type="text/markdown"`.
 
 ## Best entry points by question
 
-- **Common iOS a11y issues and fixes** → Advent of iOS Accessibility (`/post/2024-12-06-01`)
-- **VoiceOver** → `/365-days-ios-accessibility/tag/voiceover`
-- **SwiftUI accessibility** → `/365-days-ios-accessibility/tag/swiftui`
-- **UIKit / accessibilityLabel** → `/365-days-ios-accessibility/tag/accessibility-label`
-- **Testing** → `/post/2020-08-11-01` and `/365-days-ios-accessibility/tag/accessibility-inspector`
-- **External resources** → `/resources`
+- **Common iOS a11y issues and fixes** → Advent of iOS Accessibility (`/post/2024-12-06-01/`)
+- **VoiceOver** → `/365-days-ios-accessibility/tag/voiceover/`
+- **SwiftUI accessibility** → `/365-days-ios-accessibility/tag/swiftui/`
+- **UIKit / accessibilityLabel** → `/365-days-ios-accessibility/tag/accessibilitylabel/`
+- **Testing** → `/post/2020-08-11-01/` and `/365-days-ios-accessibility/tag/accessibility-inspector/`
+- **External resources** → `/resources/`
 
 ## Attribution
 
