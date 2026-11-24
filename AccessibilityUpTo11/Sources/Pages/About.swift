@@ -3,7 +3,7 @@ import Ignite
 
 struct About: StaticPage {
     var title = "About Dani Devesa Derksen-Staats"
-    var description = "Meet Dani Devesa Derksen-Staats and explore publications, talks, and podcasts focused on accessible iOS development."
+    var description = "Meet Dani Devesa Derksen-Staats and explore community projects, publications, talks, and podcasts."
     var image: URL? { SiteMeta.imageURL("/Images/Site/Global/dani.jpg") }
     
     @MainActor var body: some HTML {
@@ -65,6 +65,10 @@ struct About: StaticPage {
                 .padding(.vertical)
             }
             
+            Divider()
+
+            CommunityProjectsSection()
+
             Divider()
             
             // Publications Section
